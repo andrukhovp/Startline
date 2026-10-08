@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Startline</title>
+<meta name="description" content="Plan, learn and run an online business, step by step: 7-day plans for 12 ways to earn online, with tasks, lessons, calculators and links to the platforms you'll use.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://*.supabase.co wss://*.supabase.co; manifest-src 'self'; worker-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="theme-color" content="#f2f5f3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0b1514" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<meta name="apple-mobile-web-app-title" content="Startline">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="icons/icon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Instrument+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<noscript><p style="padding:24px;font:16px system-ui">Startline needs JavaScript. Turn it on in your browser settings, then reload this page.</p></noscript>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">
+      <span class="logo"><svg viewBox="0 0 32 32" aria-hidden="true"><rect class="mark-bg" x="1" y="1" width="30" height="30" rx="9"/><path class="mark-lane" d="M7 11h18M7 21h18" opacity=".45"/><rect class="mark-start" x="13.4" y="6" width="3.6" height="20" rx="1.8"/></svg><h1 id="appName">Startline</h1></span>
+      <div class="brand-sub">
+        <button class="biz-btn" type="button" id="bizBtn"><span class="dotmark" id="bizMark" aria-hidden="true">M</span><span id="bizName">My business</span><svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 6l4 4 4-4"/></svg></button>
+        <span class="sync" id="saveMode" role="status" title=""><i aria-hidden="true"></i><span id="syncText">Loading…</span></span>
+      </div>
+      <div class="brand-tools">
+        <button class="btn sm head-btn" type="button" id="palBtn" aria-keyshortcuts="Control+K Meta+K" aria-label="Search and commands"><svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5L14 14"/></svg><span class="hide-sm">Search</span> <kbd class="hide-sm" id="palKbd">Ctrl K</kbd></button>
+        <button class="btn sm" type="button" id="aiBtn">AI</button>
+        <button class="btn sm head-btn" type="button" id="setBtn" aria-label="Settings"><svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="8" cy="8" r="2.2"/><path d="M8 1.5v2M8 12.5v2M14.5 8h-2M3.5 8h-2M12.6 3.4l-1.4 1.4M4.8 11.2l-1.4 1.4M12.6 12.6l-1.4-1.4M4.8 4.8L3.4 3.4"/></svg><span class="hide-sm">Settings</span></button>
+        <button class="acct-btn" type="button" id="acctBtn" aria-label="Your account and saves"><span class="avatar" id="avatar" aria-hidden="true">?</span></button>
+      </div>
+    </div>
+    <nav class="tabs" role="tablist" aria-label="Sections" id="tabs">
+      <button role="tab" id="tab-today" data-tab="today" aria-controls="out" aria-selected="true">Today</button>
+      <button role="tab" id="tab-plan" data-tab="plan" aria-controls="out" aria-selected="false">Plan</button>
+      <button role="tab" id="tab-tasks" data-tab="tasks" aria-controls="out" aria-selected="false">Tasks<span class="n" id="tabTaskN" hidden></span></button>
+      <button role="tab" id="tab-learn" data-tab="learn" aria-controls="out" aria-selected="false">Learn</button>
+      <button role="tab" id="tab-tools" data-tab="tools" aria-controls="out" aria-selected="false">Tools</button>
+      <button role="tab" id="tab-sites" data-tab="sites" aria-controls="out" aria-selected="false">Sites</button>
+    </nav>
+  </header>
+  <div id="note" class="note" hidden></div>
+  <main id="out" role="tabpanel" aria-labelledby="tab-today" tabindex="-1"></main>
+</div>
+
+<nav class="bnav" id="bnav" aria-label="Sections">
+  <button type="button" data-tab="today"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 9l7-6 7 6v8H3z"/><path d="M8 17v-5h4v5"/></svg>Today</button>
+  <button type="button" data-tab="plan"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 5h12M4 10h12M4 15h7"/></svg>Plan</button>
+  <button type="button" data-tab="tasks"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="14" height="14" rx="3"/><path d="M6.5 10l2.5 2.5L14 7.5"/></svg>Tasks</button>
+  <button type="button" data-tab="tools"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="4" y="2.5" width="12" height="15" rx="2"/><path d="M7 6h6M7 10h1M10 10h1M13 10h0M7 13.5h1M10 13.5h1"/></svg>Tools</button>
+  <button type="button" data-tab="more" id="moreBtn"><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><circle cx="4.5" cy="10" r="1.6"/><circle cx="10" cy="10" r="1.6"/><circle cx="15.5" cy="10" r="1.6"/></svg>More</button>
+</nav>
+
+<dialog id="guideDlg"><div class="dlg" id="guideBody"></div></dialog>
+<dialog id="readDlg"><div class="dlg" id="readBody"></div></dialog>
+<dialog id="aiDlg"><div class="dlg" id="aiBody"></div></dialog>
+<dialog id="setDlg"><div class="dlg" id="setBody"></div></dialog>
+<dialog id="acctDlg" aria-labelledby="acctTitle"><div class="dlg" id="acctBody"></div></dialog>
+<dialog id="moreDlg" aria-labelledby="moreTitle"><div class="dlg" id="moreBody"></div></dialog>
+<dialog id="palDlg" class="pal" aria-label="Search and commands">
+  <input id="palIn" class="pal-in" type="text" role="combobox" aria-expanded="true" aria-controls="palList" aria-autocomplete="list" aria-label="Search tools, lessons, tasks, sites and actions" placeholder="Search tools, lessons, tasks, sites, actions…" autocomplete="off" spellcheck="false">
+  <ul id="palList" class="pal-list" role="listbox" aria-label="Results"></ul>
+  <div class="pal-foot"><span><kbd>↑</kbd> <kbd>↓</kbd> move</span><span><kbd>Enter</kbd> open</span><span><kbd>Esc</kbd> close</span><span><kbd>?</kbd> all shortcuts</span></div>
+</dialog>
+
+<dialog id="editDlg">
+  <form class="dlg" id="editForm" method="dialog">
+    <h2 id="editTitle">Edit task</h2>
+    <div class="field"><label class="label" for="fTitle">Task</label><input type="text" id="fTitle" required></div>
+    <div class="grid2">
+      <div class="field"><label class="label" for="fArea">Area</label><select id="fArea"></select></div>
+      <div class="field"><label class="label" for="fStatus">Status</label><select id="fStatus"></select></div>
+      <div class="field"><label class="label" for="fPrio">Priority</label>
+        <select id="fPrio"><option value="high">High</option><option value="med">Medium</option><option value="low">Low</option></select></div>
+      <div class="field"><label class="label" for="fDue">Due</label><input id="fDue" type="date"></div>
+      <div class="field"><label class="label" for="fProduct">Product / SKU</label><input type="text" id="fProduct"></div>
+      <div class="field"><label class="label" for="fSupplier">Supplier</label><input type="text" id="fSupplier"></div>
+      <div class="field"><label class="label" for="fRef">Order # / tracking</label><input type="text" id="fRef"></div>
+      <div class="field"><label class="label" for="fRepeat">Repeats</label>
+        <select id="fRepeat"><option value="none">Never</option><option value="daily">Daily</option><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select></div>
+    </div>
+    <div class="field"><label class="label" for="fNotes">Notes</label><textarea id="fNotes" rows="3"></textarea></div>
+    <div class="actions">
+      <button class="btn danger" type="button" id="delBtn">Delete</button>
+      <div><button class="btn" type="button" id="cancelBtn">Cancel</button><button class="btn primary" type="submit">Save</button></div>
+    </div>
+  </form>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+<script src="vendor/supabase.js"></script>
+<script src="config.js"></script>
+<script src="platform.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

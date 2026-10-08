@@ -1,0 +1,95 @@
+import { PGlite } from "@electric-sql/pglite";
+import fs from "fs";
+import { fileURLToPath } from "url";
+// Checks supabase/schema.sql in a real Postgres (PGlite): row-level security,
+// limits, and account deletion.   cd tests && npm install && npm run test:schema
+const sql = fs.readFileSync(process.argv[2] || fileURLToPath(new URL("../supabase/schema.sql", import.meta.url)), "utf8");
+const db = new PGlite();
+let pass = 0, fail = 0;
+const ok = (name, cond, extra = "") => { if (cond) pass++; else fail++; console.log((cond ? "PASS " : "FAIL ") + name + (extra ? "  " + extra : "")); };
+const tryq = async (q, p) => { try { return { r: await db.query(q, p) }; } catch (e) { return { e }; } };
+// Minimal stand-ins for what Supabase provides.
+await db.exec(`
+  create role anon nologin; create role authenticated nologin;
+  create schema auth;
+  create table auth.users (id uuid primary key, email text);
+  create function auth.uid() returns uuid language sql stable as $$ select nullif(current_setting('request.jwt.claim.sub', true), '')::uuid $$;
+  grant usage on schema auth to anon, authenticated;
+  grant execute on function auth.uid() to anon, authenticated;
+  grant usage on schema public to anon, authenticated;
+  grant all on all tables in schema public to anon, authenticated;
+  alter default privileges in schema public grant all on tables to anon, authenticated;
+`);
+await db.exec(sql);
+await db.exec(sql); // safe to run twice
+ok("schema runs twice", true);
+const A = "11111111-1111-1111-1111-111111111111", B = "22222222-2222-2222-2222-222222222222";
+await db.exec(`insert into auth.users values ('${A}','a@example.com'),('${B}','b@example.com')`);
+const as = async (who, role = "authenticated") => { await db.exec(`reset role; select set_config('request.jwt.claim.sub', '${who || ""}', false); set role ${role};`); };
+await as(A);
+let x = await tryq(`insert into public.docs (path, data) values ('account', '{"name":"A"}')`);
+ok("A can add a document (user_id defaults to A)", !x.e, x.e && x.e.message);
+x = await tryq(`insert into public.docs (user_id, path, data) values ($1, 'desk/tasks/t1', '{"title":"x"}') on conflict (user_id, path) do update set data = excluded.data`, [A]);
+ok("A can upsert", !x.e, x.e && x.e.message);
+x = await tryq(`insert into public.docs (user_id, path, data) values ($1, 'desk/tasks/t1', '{"title":"y"}') on conflict (user_id, path) do update set data = excluded.data`, [A]);
+ok("A can upsert the same path again", !x.e, x.e && x.e.message);
+x = await tryq(`insert into public.docs (user_id, path, data) values ($1, 'hack', '{}')`, [B]);
+ok("A cannot write into B's account", !!x.e, x.e && x.e.message);
+await as(B);
+x = await tryq(`insert into public.docs (path, data) values ('account', '{"name":"B"}')`);
+ok("B can add a document at the same path", !x.e, x.e && x.e.message);
+x = await db.query(`select user_id, path from public.docs`);
+ok("B sees only B's rows", x.rows.length === 1 && x.rows[0].user_id === B, JSON.stringify(x.rows));
+x = await db.query(`update public.docs set data = '{"t":1}' where user_id = $1`, [A]);
+ok("B can't change A's rows", x.affectedRows === 0);
+x = await db.query(`delete from public.docs where user_id = $1`, [A]);
+ok("B can't delete A's rows", x.affectedRows === 0);
+x = await tryq(`update public.docs set user_id = $1 where path = 'account'`, [A]);
+ok("B can't move a row into A's account", !!x.e, x.e && x.e.message);
+await as(A);
+x = await db.query(`select path, data, updated_at from public.docs order by path`);
+ok("A sees only A's 2 rows", x.rows.length === 2 && x.rows.every((r) => r.path), JSON.stringify(x.rows.map((r) => r.path)));
+const t0 = x.rows.find((r) => r.path === "desk/tasks/t1").updated_at;
+await new Promise((r) => setTimeout(r, 20));
+await db.query(`update public.docs set data = '{"title":"z"}' where path = 'desk/tasks/t1'`);
+x = await db.query(`select updated_at from public.docs where path = 'desk/tasks/t1'`);
+ok("updated_at moves on change", x.rows[0].updated_at > t0);
+x = await db.query(`select count(*)::int as n from public.docs`);
+x = await tryq(`insert into public.docs (path, data) values ('', '{}')`);
+ok("empty path refused", !!x.e);
+x = await tryq(`insert into public.docs (path, data) values ($1, '{}')`, ["p".repeat(301)]);
+ok("path over 300 characters refused", !!x.e);
+x = await tryq(`insert into public.docs (path, data) values ('big', $1::jsonb)`, [JSON.stringify({ s: "x".repeat(1200000) })]);
+ok("document over 1 MB refused", !!x.e, x.e && x.e.message);
+x = await tryq(`insert into public.docs (path, data) values ('fine', $1::jsonb)`, [JSON.stringify({ s: "x".repeat(700000) })]);
+ok("a 700 KB document is fine", !x.e, x.e && x.e.message);
+await as("", "anon");
+x = await tryq(`select * from public.docs`);
+ok("signed-out visitors can't read the table", !!x.e || x.r.rows.length === 0, x.e ? x.e.message : x.r.rows.length);
+x = await tryq(`select public.delete_my_account()`);
+ok("signed-out visitors can't call delete_my_account", !!x.e, x.e && x.e.message);
+// Row cap (lowered here so the test is quick)
+await db.exec(`reset role;`);
+await db.exec(sql.replace("25000", "5"));
+await as(B);
+for (let i = 0; i < 4; i++) await db.query(`insert into public.docs (path, data) values ($1, '{}')`, ["k" + i]);
+x = await tryq(`insert into public.docs (path, data) values ('k9', '{}')`);
+ok("the per-account cap stops new documents", !!x.e && x.e.code === "23514", x.e && x.e.code);
+x = await tryq(`insert into public.docs (user_id, path, data) values ($1, 'k1', '{"v":2}') on conflict (user_id, path) do update set data = excluded.data`, [B]);
+ok("at the cap, existing documents can still be changed", !x.e, x.e && x.e.message);
+await db.exec(`reset role;`); await db.exec(sql);
+// Delete my account
+await as(A);
+x = await tryq(`select public.delete_my_account()`);
+ok("A can delete their account", !x.e, x.e && x.e.message);
+await db.exec(`reset role;`);
+x = await db.query(`select (select count(*)::int from public.docs where user_id = $1) as docs, (select count(*)::int from auth.users where id = $1) as users`, [A]);
+ok("A's sign-in and documents are gone", x.rows[0].docs === 0 && x.rows[0].users === 0, JSON.stringify(x.rows[0]));
+x = await db.query(`select (select count(*)::int from public.docs where user_id = $1) as docs, (select count(*)::int from auth.users where id = $1) as users`, [B]);
+ok("B is untouched", x.rows[0].docs === 5 && x.rows[0].users === 1, JSON.stringify(x.rows[0]));
+// Cascade when an admin deletes a user from the dashboard
+await db.exec(`delete from auth.users where id = '${B}'`);
+x = await db.query(`select count(*)::int as n from public.docs`);
+ok("deleting a user in the dashboard removes their documents", x.rows[0].n === 0);
+console.log(`\n${pass} passed, ${fail} failed`);
+process.exit(fail ? 1 : 0);

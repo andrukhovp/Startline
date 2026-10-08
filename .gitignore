@@ -1,0 +1,4 @@
+tests/node_modules/
+tests/results.json
+startline-claude.html
+.DS_Store
