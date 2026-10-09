@@ -528,3 +528,32 @@ kbd { font: 500 0.72rem/1 var(--mono); border: 1px solid var(--line); border-bot
 .legal h2 { margin-top: 12px; }
 .legal ul { margin: 0; padding-left: 20px; display: grid; gap: 8px; }
 .legal [hidden] { display: none; }
+
+/* Step facts: what you'll have, what it costs */
+.step-meta { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; margin: 0; padding: 10px 12px; background: var(--sunk); border-radius: var(--r-sm); font-size: 0.88rem; }
+.step-meta dt { font: 500 0.7rem/1.6 var(--mono); text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+.step-meta dd { margin: 0; }
+.step-meta.compact { background: transparent; padding: 0; }
+/* Prompts on Today */
+.card.prompt { border-color: var(--accent); background: linear-gradient(0deg, var(--accent-soft), var(--accent-soft)) padding-box, var(--surface); }
+.card.catchup { border-color: var(--signal); background: var(--signal-soft); }
+.card.prompt h3, .card.catchup h3 { margin: 0; }
+.card.prompt, .card.catchup { display: grid; gap: 10px; }
+/* Learn */
+.learn-list { display: grid; }
+.learn-row { display: flex; gap: 12px; align-items: center; justify-content: space-between; flex-wrap: wrap; padding: 10px 0; border-top: 1px solid var(--line); }
+.learn-row:first-child { border-top: 0; }
+.learn-row > div:first-child { display: grid; gap: 2px; min-width: 0; flex: 1 1 260px; }
+.learn-row.isdone b { color: var(--muted); }
+details.fold > summary { cursor: pointer; list-style: none; display: flex; gap: 6px; align-items: baseline; }
+details.fold > summary::-webkit-details-marker { display: none; }
+details.fold > summary::before { content: "\25B8"; color: var(--muted); transition: transform .15s; display: inline-block; }
+details.fold[open] > summary::before { transform: rotate(90deg); }
+details.fold[open] > summary { margin-bottom: 8px; }
+/* Sites for your plan */
+.site-group { margin: 6px 0 2px; }
+.site-rows { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 6px; }
+.site-item { display: grid; gap: 2px; padding: 10px 12px; border: 1px solid var(--line); border-radius: var(--r-sm); background: var(--surface); color: var(--fg); text-decoration: none; font-weight: 600; }
+.site-item:hover { border-color: var(--accent); }
+.site-item .small { font-weight: 400; }
+.site-item.ext::after { justify-self: end; margin-top: -1.4em; }

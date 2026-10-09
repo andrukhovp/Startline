@@ -261,7 +261,7 @@
 
   const GUIDE = [
     // ======== Shared: business basics (every way of making money)
-    { id: "d1-legal-us", day: 1, area: "legal", prio: "med", when: (p) => p.level === "new" && p.country === "us",
+    { id: "d1-legal-us", day: 2, area: "legal", prio: "med", when: (p) => p.country === "us",
       title: "Sort out the business basics (US)",
       body: () => ul([
         "If you don't register another kind of business, you're a sole proprietor automatically and don't need to register the business with your state.",
@@ -273,7 +273,7 @@
       ]) + '<p class="small muted">General information from the SBA and IRS, not legal or tax advice.</p>',
       links: [link("sbaLicense", "Licenses and permits (SBA)"), link("irsEin", "Get an EIN (IRS)"), link("irsSE", "Self-employment tax")], src: ["sbaStructure", "sbaLicense", "irsEin", "irs1099kFaq", "irs1099k", "irsSE", "irsEst"] },
 
-    { id: "d1-legal-uk", day: 1, area: "legal", prio: "med", when: (p) => p.level === "new" && p.country === "uk",
+    { id: "d1-legal-uk", day: 2, area: "legal", prio: "med", when: (p) => p.country === "uk",
       title: "Check what HMRC needs from you (UK)",
       body: () => ul([
         "The trading allowance lets you earn up to £1,000 of gross trading income a year tax-free. It's measured before costs, not on profit, and covers all your side-hustle income together.",
@@ -282,7 +282,7 @@
       ]) + '<p class="small muted">General information from GOV.UK, not tax advice.</p>',
       links: [link("hmrcOnline", "Check if you need to tell HMRC"), link("hmrcAllow", "Trading allowance")], src: ["hmrcAllow", "hmrcOnline"] },
 
-    { id: "d1-legal-other", day: 1, area: "legal", prio: "med", when: (p) => p.level === "new" && p.country === "other",
+    { id: "d1-legal-other", day: 2, area: "legal", prio: "med", when: (p) => p.country === "other",
       title: "Check your country's rules for selling online",
       body: () => "<p>Look up how your country handles registering a small business and paying tax on online income. If you sell into the EU, VAT rules can differ from normal retail. Shopify recommends talking to a lawyer about the laws where you operate and sell.</p>",
       links: [link("shopDrop", "Shopify's legal notes")], src: ["shopDrop"] },
@@ -1260,7 +1260,174 @@
     { id: "on-supplier", day: 7, ongoing: true, repeat: "weekly", area: "suppliers", prio: "low", when: (p) => SHIP(p),
       title: "Check supplier stock, prices and delivery times", body: () => "<p>Update your prices and the delivery time you show customers if anything changed.</p>" },
   ];
+  GUIDE.push({ id: "d1-scams", day: 1, area: "learning", prio: "med", when: () => true,
+    title: "Read: how to spot a get-rich-quick scam",
+    body: () => ul([
+      "The FTC's warning signs: guaranteed income, earnings you can't check, vague answers about what you'd sell, pressure to pay now, and upsells for “mentoring”.",
+      "Startline sells nothing. If someone asks for money or your store login to “make it work”, stop and check first.",
+    ]),
+    action: { label: "Open the lesson", go: "lesson:scams" }, src: ["ftcScam"] });
   const STEP = Object.fromEntries(GUIDE.map((s) => [s.id, s]));
+  // What each plan step costs and what you will have when it is done (facts from the step and its sources).
+  const STEP_META = {"d1-legal-us":{"cost":"Free to check; an EIN from the IRS is free","gets":"Notes on the US registrations, licenses and taxes you need"},
+    "d1-legal-uk":{"cost":"Free to check on GOV.UK","gets":"A note of whether you must register for Self Assessment"},
+    "d1-legal-other":{"cost":"Free to look up","gets":"Notes on your country's business and tax rules"},
+    "d1-how":{"cost":"Free; a 4-minute lesson in this app","gets":"An overview of who's responsible and where the money goes"},
+    "d1-shopify":{"cost":"Free 3-day trial; most plans then $1/month for 3 months","gets":"A Shopify store on the free trial"},
+    "d1-etsy":{"cost":"Possible one-time setup fee; listings are $0.20 each","gets":"An Etsy shop, ready for your first listing"},
+    "d1-tiktok":{"cost":"No setup fee (US); 6% commission per sale","gets":"A registered TikTok Shop seller account"},
+    "d1-ebay":{"cost":"250 free listings a month; 13.6% + $0.30 or $0.40 per order","gets":"An eBay seller account"},
+    "d1-amazon":{"cost":"$0.99 per unit sold or $39.99/month, plus referral fees","gets":"An Amazon selling plan chosen for your expected sales"},
+    "d1-rules":{"cost":"Free","gets":"Your platform's dropshipping rules, read before you list"},
+    "d1-course":{"cost":{"shopify":"About 2 hours of your time","*":"Free to read"},
+    "gets":"Your platform's own beginner guide, started or read"},
+    "d2-research":{"cost":"Free tools; TikTok Top Products needs a sign-in","gets":"3 to 5 product ideas on a shortlist"},
+    "d2-designs":{"cost":"$0 on Canva Free; Pro elements need a licence or upgrade","gets":"3 to 5 designs you own the rights to"},
+    "d2-supplier-app":{"cost":"Free with DSers, CJ or Collective; Spocket from $39.99/month","gets":"One supplier app connected to your store"},
+    "d2-supplier-mkt":{"cost":"Depends on the supplier you pick","gets":{"ebay":"A wholesale supplier agreement to list their items","amazon":"A written agreement naming you the only seller of record","tiktok":"A supplier with US stock that can deliver in 6 business days","*":"A supplier that meets your marketplace's rules"}},
+    "d2-pod-app":{"cost":"No monthly fee to start; you pay production per order","gets":"Printful or Printify connected to where you sell"},
+    "d3-vet":{"cost":"Free to check; a sample costs what the supplier charges","gets":"A checked supplier and a delivery time you can promise"},
+    "d3-sample":{"cost":"What the supplier charges for a sample order","gets":"A sample on order so you can check quality yourself"},
+    "d3-price":{"cost":"Free; uses this app's profit calculator","gets":"A price and your break-even ad cost per order"},
+    "d4-build":{"cost":"Free with a free theme and Canva's free plan","gets":"A store with a theme, logo, address and product page"},
+    "d4-audit":{"cost":"Free","gets":"A store where contact, refund and delivery info are clear"},
+    "d4-list":{"cost":{"etsy":"$0.20 per Etsy listing","ebay":"Free within 250 listings a month; $0.35 each after","tiktok":"6% commission when it sells","amazon":"Your plan's fees, plus a referral fee when it sells","*":"Your platform's listing and sales fees"},
+    "gets":"Your first listing, with photos and specs you can back up"},
+    "d4-policies":{"cost":"Free; Shopify can generate policy templates","gets":"Refund, privacy, terms and delivery policies on your store"},
+    "d4-delivery":{"cost":"Free; uses this app's delivery date tool","gets":"Delivery promises you can keep, and a plan for delays"},
+    "d5-payments":{"cost":"Free to set up; 2.9% + 30¢ per US card sale on Basic","gets":"Shopify Payments set up, with payouts to your bank"},
+    "d5-test":{"cost":"Free in test mode; labels for test orders are charged","gets":"A tested checkout and a store open to customers"},
+    "d5-google":{"cost":"Free app and free listings; ads are billed separately","gets":"Your products submitted to Google's free listings"},
+    "d5-check":{"cost":"Free","gets":"A live listing that matches what your supplier can do"},
+    "d6-organic":{"cost":"Free to post","gets":"Your first short videos posted, with a link to buy"},
+    "d6-ads-learn":{"cost":"Free; about 35 minutes","gets":"The basics of Meta or TikTok ads, before you spend"},
+    "d6-ads":{"cost":"Your budget: Meta from $1 a day, TikTok over $20 a day","gets":"One capped test ad, compared with your break-even"},
+    "d7-fulfill":{"cost":"The supplier's or print partner's price for each order","gets":"Every new order passed to the supplier the same day"},
+    "d7-support":{"cost":"Free","gets":"Every message answered with tracking and an honest date"},
+    "d7-review":{"cost":"Free","gets":"The week's profit or loss and one change to try"},
+    "af1-how":{"cost":"Free; a 4-minute lesson in this app","gets":"An overview of commission, approval and disclosure"},
+    "af1-join":{"cost":{"aff_amazon":"Free to join","aff_tiktok":"Free; needs 1,000+ followers","aff_network":"Free to join; Awin asks a small refundable deposit","*":"Free to join"},
+    "gets":{"aff_amazon":"An Associates account, reviewed after 3 qualifying sales","aff_tiktok":"Confirmed eligibility for TikTok Shop affiliate","aff_network":"An account with one affiliate network","*":"An account with your affiliate program"}},
+    "af1-disclose":{"cost":"Free","gets":"Disclosure wording to put next to every link"},
+    "af2-niche":{"cost":"Free","gets":"One niche and 10 products you'd honestly recommend"},
+    "af2-channel":{"cost":"Free for a social account; site builders have free plans","gets":"A public site or account of your own to post on"},
+    "af3-calc":{"cost":"Free; uses this app's affiliate calculator","gets":"Your earnings per sale and per 100 clicks"},
+    "af4-content":{"cost":"Free","gets":"3 pieces of content with the disclosure built in"},
+    "af5-links":{"cost":"Free","gets":"Tracked links in your content, each with a disclosure"},
+    "af6-post":{"cost":"Free","gets":"Your content published and every comment answered"},
+    "af7-review":{"cost":"Free","gets":"Your real conversion rate and a list of what worked"},
+    "dg1-how":{"cost":"Free; a 4-minute lesson in this app","gets":"An overview of what sells, platform rules and licences"},
+    "dg1-platform":{"cost":{"gumroad":"No monthly fee; 10% + 50¢ per direct sale","payhip":"Free plan: 5% per sale, plus PayPal or Stripe fees","*":"Free to start; fees come out of each sale"},
+    "gets":"A seller account ready for your first product"},
+    "dg1-shopify-app":{"cost":"Free app; your Shopify plan still applies","gets":"The Digital Downloads app installed on your store"},
+    "dg1-etsy-rules":{"cost":"Free","gets":"Etsy's digital-item rules checked before you make anything"},
+    "dg2-idea":{"cost":"Free","gets":"One product idea that solves a specific problem"},
+    "dg3-make":{"cost":"$0 on Canva's Free plan; check every licence","gets":"The finished files, exported in formats buyers expect"},
+    "dg4-list":{"cost":{"etsy":"$0.20 per Etsy listing","gumroad":"No monthly fee; 10% + 50¢ per direct sale","payhip":"Free plan: 5% per sale, plus processing","shopify":"Your Shopify plan; the Digital Downloads app is free","*":"Your platform's fees on each sale"},
+    "gets":"A listing with clear contents, previews and a price"},
+    "dg5-test":{"cost":"Free using your platform's preview","gets":"A download that opens on a phone and a computer"},
+    "dg6-promote":{"cost":"Free","gets":"Previews and short videos posted where buyers look"},
+    "dg7-review":{"cost":"Free","gets":"One change to test: a preview, title or price"},
+    "rs1-how":{"cost":"Free; a 4-minute lesson in this app","gets":"An overview of sourcing, sold prices and fees"},
+    "rs1-account":{"cost":{"mercari":"No listing fee; 10% selling fee when an item sells","poshmark":"No listing or monthly fees; $2.95 or 20% per sale","*":"No listing fee; a fee when an item sells"},
+    "gets":"Your marketplace seller account"},
+    "rs2-research":{"cost":"Free","gets":"10 items you could find locally, with sold prices"},
+    "rs3-maxbuy":{"cost":"Free; uses this app's max buy price calculator","gets":"A maximum buy price for each item"},
+    "rs3-source":{"cost":"What you pay for the items, up to your max buy price","gets":"Your first 5 to 10 items, checked for condition"},
+    "rs4-list":{"cost":{"ebay":"Free for your first 250 listings each month","mercari":"No listing fee on Mercari","poshmark":"No listing fee on Poshmark","*":"Depends on the marketplace's listing fees"},
+    "gets":"Your items listed with clear photos, sizes and flaws"},
+    "rs5-ship":{"cost":"The cost of mailers or boxes and a small scale","gets":"Packaging, a scale and shipping options ready"},
+    "rs6-offers":{"cost":"Free","gets":"A lowest price for each item and same-day replies"},
+    "rs7-review":{"cost":"Free","gets":"A list of what to reprice and what to buy more of"},
+    "fr1-how":{"cost":"Free; a 4-minute lesson in this app","gets":"An overview of platform fees, pay timing and rates"},
+    "fr1-account":{"cost":{"fiverr":"Fiverr keeps 20% of every order, tips included","upwork":"Free to join; 0–15% per contract; extra Connects $0.15","direct":"No platform fee; card processing (Stripe 2.9% + 30¢)","*":"Depends on the platform's fees"},
+    "gets":{"fiverr":"A Fiverr seller profile, ready for your first gig","upwork":"An Upwork profile, ready to send proposals","direct":"A work page, an agreement template and a way to get paid","*":"A profile clients can find and pay you through"}},
+    "fr2-offer":{"cost":"Free","gets":"One service packaged with scope, revisions and timing"},
+    "fr2-rate":{"cost":"Free; uses this app's freelance rate calculator","gets":"A rate that covers fees, tax and unpaid hours"},
+    "fr3-portfolio":{"cost":"Free","gets":"3 portfolio samples with a one-line summary each"},
+    "fr4-profile":{"cost":"Free to write; fees come out of what clients pay","gets":"Your offer published, with samples, outcome and price"},
+    "fr5-outreach":{"cost":{"upwork":"Connects per proposal (varies by job); extras $0.15 each","*":"Free"},
+    "gets":"Your first pitches sent to possible clients"},
+    "fr6-deliver":{"cost":"Free","gets":"Work delivered on time and a review requested"},
+    "fr7-review":{"cost":"Free","gets":"Your real hourly rate and a decision on pricing"},
+    "cr1-how":{"cost":"Free; a 4-minute lesson in this app","gets":"An overview of payouts, sponsorships and their rules"},
+    "cr1-program":{"cost":"Free; the programs are free to apply to","gets":"The thresholds you need to reach before you apply"},
+    "cr2-niche":{"cost":"Free","gets":"One topic and one format you can repeat weekly"},
+    "cr3-batch":{"cost":"Free","gets":"5 videos planned and filmed in one session"},
+    "cr4-post":{"cost":"Free","gets":"A posting schedule you can keep for months"},
+    "cr5-deals":{"cost":"Free","gets":"Disclosure wording for sponsorships and affiliate links"},
+    "cr6-income":{"cost":"Free; uses this app's creator income calculator","gets":"A map of the income sources you could add"},
+    "cr7-review":{"cost":"Free","gets":"Your best videos found, and what to make next"},
+    "co1-how":{"cost":"Free; a 4-minute lesson in this app","gets":"An overview of platform costs and checking demand"},
+    "co1-platform":{"cost":{"teachable":"7-day free trial; then from $29/month billed yearly","thinkific":"30-day free trial; then Basic $40/month billed yearly","payhip":"Free plan: 5% per sale, plus processing","*":"Depends on the course platform's plan"},
+    "gets":"Your course platform set up on a trial or free plan"},
+    "co2-validate":{"cost":"Free","gets":"A course promise tested with 10 people or a waitlist"},
+    "co3-outline":{"cost":"Free","gets":"An outline of 5 to 10 short lessons"},
+    "co4-record":{"cost":"Free with OBS or DaVinci Resolve's free version","gets":"The first module recorded, with captions"},
+    "co5-sales":{"cost":"Free; uses this app's price calculator","gets":"A sales page and a price that covers platform fees"},
+    "co6-launch":{"cost":"Free","gets":"Enrolment open to a small first group"},
+    "co7-review":{"cost":"Free","gets":"A short list of fixes for the sales page and lessons"},
+    "bk1-how":{"cost":"Free; a 4-minute lesson in this app","gets":"An overview of royalties, printing costs and KDP rules"},
+    "bk1-account":{"cost":"Free to publish on KDP","gets":"A KDP account and the royalty option that fits your price"},
+    "bk1-rules":{"cost":"Free","gets":"A clear idea of the AI use you must disclose"},
+    "bk2-idea":{"cost":"Free","gets":"A topic and one sentence on who the book is for"},
+    "bk3-write":{"cost":"Free","gets":"A chapter outline and a first chapter"},
+    "bk4-cover":{"cost":"Free with KDP's Cover Creator and Kindle Create","gets":"A cover plan and paperback specs that set printing cost"},
+    "bk5-price":{"cost":"Free; uses this app's royalty calculator","gets":"eBook and paperback prices with royalty per copy"},
+    "bk6-launch":{"cost":"Free","gets":"A book description and a launch message to first readers"},
+    "bk7-review":{"cost":"Free","gets":"Next week's writing target and a plan for the next book"},
+    "nl1-how":{"cost":"Free; a 4-minute lesson in this app","gets":"An overview of subscriptions, sponsors and email rules"},
+    "nl1-platform":{"cost":{"substack":"Free; 10% of paid subscriptions, plus Stripe fees","beehiiv":"Free up to 2,500 subscribers; no card needed","*":"Free plan available"},
+    "gets":"Your newsletter set up on a free plan"},
+    "nl1-email":{"cost":"Free","gets":"The email rules you'll follow: address, opt-out, disclosure"},
+    "nl2-topic":{"cost":"Free","gets":"A one-sentence promise and a schedule you can keep"},
+    "nl3-issues":{"cost":"Free","gets":"3 issues written and ready before launch"},
+    "nl4-signup":{"cost":"Free on Substack or beehiiv's free plan","gets":"A sign-up page that says what readers get and how often"},
+    "nl5-promote":{"cost":"Free","gets":"Social posts with a subscribe link, and swap requests"},
+    "nl6-money":{"cost":"Free; uses this app's subscription income calculator","gets":"An estimate of paid-subscription income after fees"},
+    "nl7-review":{"cost":"Free","gets":"A note of which posts and issues worked best"},
+    "fb1-how":{"cost":"Free; a 5-minute lesson in this app","gets":"An overview of FBA fees, storage and stock costs"},
+    "fb1-account":{"cost":"$39.99 a month plus selling fees","gets":"A Professional seller account with identity verified"},
+    "fb2-research":{"cost":"Free; Jungle Scout and Helium 10 are paid options","gets":"Product ideas you could improve and brand"},
+    "fb3-fees":{"cost":"Free; uses Amazon's fee estimator and the profit calculator","gets":"A full fee estimate per unit before you buy stock"},
+    "fb3-supplier":{"cost":"Depends on each manufacturer's sample price","gets":"Quotes and samples from at least 3 manufacturers"},
+    "fb4-brand":{"cost":"Brand Registry is free; it needs a trademark or application","gets":"A brand plan and what Brand Registry needs from you"},
+    "fb5-listing":{"cost":"Free","gets":"A draft listing and images that answer buyers' questions"},
+    "fb6-ship":{"cost":"Free to plan; the shipment has an inbound placement fee","gets":"A plan to label, pack and send stock to Amazon"},
+    "fb7-review":{"cost":"Free","gets":"Profit per unit re-checked with real quotes and fees"},
+    "hm1-how":{"cost":"Free; a 4-minute lesson in this app","gets":"An overview of pricing your time, rules and safety"},
+    "hm1-rules":{"cost":"Free","gets":"Etsy's handmade rules checked against your items"},
+    "hm1-safety":{"cost":"Free to check; lab testing, if needed, is a separate cost","gets":"The certificates and lab tests your products need"},
+    "hm2-product":{"cost":"Free","gets":"1 to 3 products you can make consistently well"},
+    "hm3-price":{"cost":"Free; uses this app's price calculator","gets":"A price per item covering materials, time and fees"},
+    "hm4-photos":{"cost":"Free with a phone camera and daylight","gets":"Your own photos of each finished item"},
+    "hm5-list":{"cost":"$0.20 per listing on Etsy; your plan on Shopify","gets":"Your first listings with materials, size, care and timing"},
+    "hm6-promote":{"cost":"Free","gets":"Process videos posted with a link to your shop"},
+    "hm7-review":{"cost":"Free","gets":"A decision on whether to raise prices or simplify"},
+    "on-orders":{"cost":"Postage, supplier or production costs for each order","gets":"Every new order sent out, with tracking confirmed"},
+    "on-inbox":{"cost":"Free","gets":"Every message answered; late orders get a delay notice"},
+    "on-post":{"cost":"Free","gets":"One disclosed post published each day"},
+    "on-list":{"cost":{"ebay":"Free within 250 listings a month; $0.35 each after","mercari":"No listing fee on Mercari","poshmark":"No listing fee on Poshmark","*":"Depends on the marketplace's listing fees"},
+    "gets":"3 new items listed a day, priced from sold listings"},
+    "on-pitch":{"cost":{"upwork":"Connects for Upwork proposals; extras $0.15 each","*":"Free"},
+    "gets":"Same-day replies to clients and new pitches sent"},
+    "on-create":{"cost":"Free","gets":"Steady daily progress on the schedule you chose"},
+    "on-make":{"cost":"Free, apart from materials or any listing fee","gets":"One new or improved product each week"},
+    "on-week":{"cost":"Free; uses this app's calculators","gets":"This week's real income, costs and profit"},
+    "on-supplier":{"cost":"Free","gets":"Prices and delivery times that match your supplier"}};
+  STEP_META["d1-scams"] = { cost: "Free; a 3-minute lesson in this app", gets: "The warning signs of a money-making scam" };
+  function metaOf(id, p) {
+    const m = STEP_META[id]; if (!m) return null;
+    const pick = (v) => (v && typeof v === "object" ? v[p && p.channel] || v["*"] || "" : v || "");
+    return { cost: pick(m.cost), gets: pick(m.gets) };
+  }
+  function stepFacts(id, p, cls) {
+    const m = metaOf(id, p); if (!m || (!m.cost && !m.gets)) return null;
+    const box = el("dl", "step-meta" + (cls ? " " + cls : ""));
+    if (m.gets) box.append(el("dt", null, "You'll have"), el("dd", null, m.gets));
+    if (m.cost) box.append(el("dt", null, "Cost"), el("dd", null, m.cost));
+    return box;
+  }
   const val = (v, p) => (typeof v === "function" ? v(p) : v);
 
   // ---------------------------------------------------------------------------
@@ -2260,6 +2427,15 @@
       if (t.title !== title && t.status !== "done") await putTask(t.id, { ...strip(t), title });
     }
   }
+  async function catchUp() {
+    const td = today();
+    const left = planOrder().filter((t) => !STEP[t.step].ongoing && t.status !== "done");
+    if (!left.length) return;
+    const first = Math.min(...left.map((t) => t.day || 1));
+    await bulk(async () => { for (const t of left) await putTask(t.id, { ...strip(t), due: addDays(td, (t.day || 1) - first) }); });
+    lsSet("dd-catchup-hide", td + ":" + st.biz);
+    toast("Done. Your next step is due today, and the rest follow at the same pace.");
+  }
   async function restartPlan() {
     const p = { ...st.profile, start: today() };
     if (!(await saveProfile(p))) return;
@@ -2978,7 +3154,7 @@
   }
   function toolsCard(p) {
     const groups = planChoiceGroups(p); if (!groups.length) return null;
-    const card = el("details", "card tools-card"); card.open = lsGet("dd-tools-open", true);
+    const card = el("details", "card tools-card"); card.open = lsGet("dd-tools-open", false);
     card.addEventListener("toggle", () => lsSet("dd-tools-open", card.open));
     const n = groups.filter((g) => chosen(g)).length;
     const sum = el("summary"); sum.append(el("b", null, "Your tools and sites"), el("span", "small muted", " · " + n + " of " + groups.length + " chosen"));
@@ -3028,6 +3204,19 @@
     const grid = el("div", "today-grid");
     const left = el("div", "col-stack"), right = el("div", "col-stack");
 
+    // Behind schedule: offer to move what's left to start today.
+    const overdue = oneOff.filter((t) => t.status !== "done" && t.due && t.due < td);
+    if (overdue.length >= 2 && lsGet("dd-catchup-hide", "") !== td + ":" + st.biz) {
+      const cu = el("section", "card catchup");
+      const leftN = oneOff.filter((t) => t.status !== "done").length;
+      cu.append(el("h3", null, "Pick up where you left off"));
+      cu.append(el("p", "small muted", (dayN > 7 ? "Your plan week has passed" : "You're on day " + dayN) + " with " + leftN + (leftN === 1 ? " step" : " steps") + " to go. That's normal: most people need more than a week. Move what's left so it starts today, at the same pace."));
+      const r = el("div", "row-gap");
+      const mv = el("button", "btn primary", "Move my remaining steps to start today"); mv.type = "button"; mv.onclick = () => catchUp();
+      const kp = el("button", "btn", "Keep the dates"); kp.type = "button"; kp.onclick = () => { lsSet("dd-catchup-hide", td + ":" + st.biz); render(); };
+      r.append(mv, kp); cu.append(r); left.append(cu);
+    }
+
     // Up next
     const n = oneOff.find((t) => t.status !== "done");
     const next = el("section", "card next");
@@ -3035,10 +3224,14 @@
       const s = STEP[n.step];
       next.append(el("span", "up-tag", "Up next · Day " + n.day), el("span", "label", AREA[n.area] || ""));
       next.append(el("h3", null, n.title));
-      const plain = el("div"); plain.innerHTML = val(s.body, p) || "";
-      plain.querySelectorAll("p, li, br, tr, h3, h4").forEach((x) => x.append(" "));
-      const txt = (plain.textContent || "").replace(/\s+/g, " ").trim();
-      if (txt) next.append(el("p", "small muted", txt.length > 180 ? txt.slice(0, 177).replace(/\s+\S*$/, "") + "…" : txt));
+      const ml = stepFacts(s.id, p, "compact");
+      if (ml) next.append(ml);
+      else {
+        const plain = el("div"); plain.innerHTML = val(s.body, p) || "";
+        plain.querySelectorAll("p, li, br, tr, h3, h4").forEach((x) => x.append(" "));
+        const txt = (plain.textContent || "").replace(/\s+/g, " ").trim();
+        if (txt) next.append(el("p", "small muted", txt.length > 180 ? txt.slice(0, 177).replace(/\s+\S*$/, "") + "…" : txt));
+      }
       const row = el("div", "row-gap");
       const open = el("button", "btn primary", "Start this step"); open.type = "button"; open.onclick = () => openGuide(n);
       const dn = el("button", "btn", "Mark done"); dn.type = "button"; dn.onclick = () => { burst(dn); setStatus(n, "done"); };
@@ -3060,15 +3253,41 @@
     }
     left.append(next);
 
-    // Due today and overdue
-    const dueSec = el("section", "card");
+    // Account and install prompts, at moments they help (and never twice after "Not now").
+    const doneAny = st.tasks.some((t) => t.status === "done");
+    if (ACCOUNTS && mode === "local") {
+      const seen = lsGet("dd-acct-prompt", 0);
+      if (seen === 0 || (seen === 1 && doneAny)) {
+        const ac = el("section", "card prompt");
+        ac.append(el("h3", null, doneAny ? "Nice work. Keep it safe with a free account" : "Keep your plan safe with a free account"));
+        ac.append(el("p", "small muted", "Right now your plan lives only in this browser. With an account it's saved for you and opens on your phone and computer. Your work so far comes with you."));
+        const r = el("div", "row-gap");
+        const go = el("button", "btn primary", "Create a free account"); go.type = "button"; go.onclick = () => PLAT.showAuth("signup");
+        const no = el("button", "btn", "Not now"); no.type = "button"; no.onclick = () => { lsSet("dd-acct-prompt", doneAny ? 2 : 1); render(); };
+        r.append(go, no); ac.append(r); left.append(ac);
+      }
+    }
+    if (WEB && doneAny && PLAT.canInstall() && !lsGet("dd-install-prompt", false)) {
+      const ic = el("section", "card prompt");
+      ic.append(el("h3", null, "Put Startline on your home screen"));
+      ic.append(el("p", "small muted", PLAT.isIOS() ? "In Safari, tap the Share button, then “Add to Home Screen”. It opens like an app and works offline." : "Install it to open it like an app, in its own window, even offline."));
+      const r = el("div", "row-gap");
+      if (!PLAT.isIOS()) { const go = el("button", "btn primary", "Install"); go.type = "button"; go.onclick = async () => { await installApp(); lsSet("dd-install-prompt", true); render(); }; r.append(go); }
+      const no = el("button", "btn", PLAT.isIOS() ? "Got it" : "Not now"); no.type = "button"; no.onclick = () => { lsSet("dd-install-prompt", true); render(); };
+      r.append(no); ic.append(r); left.append(ic);
+    }
+
+    // Today's list: the rest of today's plan steps, then anything else due, then quick add.
     const todays = dayN >= 1 && dayN <= 7 ? oneOff.filter((t) => t.day === dayN && (!n || t.id !== n.id)) : [];
     const shownIds = new Set(todays.map((t) => t.id).concat(n ? [n.id] : []));
     const dueList = st.tasks.filter((t) => t.status !== "done" && t.due && t.due <= td && !shownIds.has(t.id)).sort(sortTasks);
-    const dh = el("div", "section-head"); dh.append(el("h3", null, "Due today"), el("span", "small muted", dueList.length ? dueList.length + " open" : ""));
-    dueSec.append(dh);
-    if (dueList.length) { const rows = el("div", "rows"); dueList.slice(0, 8).forEach((t) => rows.append(row(t))); dueSec.append(rows); if (dueList.length > 8) { const more = el("button", "btn sm", "See all " + dueList.length); more.type = "button"; more.onclick = () => { st.ui.quick = null; setTab("tasks"); }; dueSec.append(more); } }
-    else dueSec.append(el("p", "small muted", todays.length ? "Nothing else is due. Your plan steps for today are below." : "Nothing else is due today. Work on the next step above, or add something below."));
+    const daySec = el("section", "card");
+    const openToday = todays.filter((t) => t.status !== "done").length + dueList.length;
+    const dh = el("div", "section-head"); dh.append(el("h3", null, "Today's list"), el("span", "small muted", openToday ? openToday + " to do" : todays.length ? "All done" : ""));
+    daySec.append(dh);
+    if (todays.length) { const list = el("div", "checklist"); todays.forEach((t) => list.append(stepRow(t))); daySec.append(list); }
+    if (dueList.length) { const rows = el("div", "rows"); dueList.slice(0, 8).forEach((t) => rows.append(row(t))); daySec.append(rows); if (dueList.length > 8) { const more = el("button", "btn sm", "See all " + dueList.length); more.type = "button"; more.onclick = () => { st.ui.quick = null; setTab("tasks"); }; daySec.append(more); } }
+    if (!todays.length && !dueList.length) daySec.append(el("p", "small muted", "Nothing else is due today. Work on the next step above, or add your own task."));
     // Quick add
     const qf = el("form", "quick"); qf.autocomplete = "off";
     const qi = el("input"); qi.type = "text"; qi.id = "quickAdd"; qi.placeholder = "Add a task: “call supplier tomorrow !high”"; qi.setAttribute("aria-label", "Add a task"); qi.setAttribute("aria-describedby", "quickPreview"); qi.setAttribute("aria-keyshortcuts", "N");
@@ -3087,35 +3306,27 @@
       toast("Added, due " + fmtDue(due).toLowerCase() + ".", { undo: () => delTask(id) });
       setTimeout(() => { const x = $("#quickAdd"); if (x) x.focus(); }, 0);
     });
-    dueSec.append(qf, qp);
-    left.append(dueSec);
+    daySec.append(qf, qp);
+    left.append(daySec);
 
-    // Rest of today's plan steps (checklist)
-    if (todays.length) {
-      const cl = el("section", "card");
-      const left2 = todays.filter((t) => t.status !== "done").length;
-      const ch = el("div", "section-head"); ch.append(el("h3", null, "Also on day " + dayN + " of your plan"), el("span", "small muted", left2 ? left2 + " to do" : "All done"));
-      cl.append(ch);
-      const list = el("div", "checklist"); todays.forEach((t) => list.append(stepRow(t))); cl.append(list);
-      left.append(cl);
+    // This week: activity, gentle (no streak to lose). Shown once something has been finished.
+    if (doneAny) {
+      const wk = el("section", "card");
+      wk.append(el("h3", null, "Your last 7 days"));
+      const doneDays = {}; st.tasks.forEach((t) => { if (t.status === "done" && t.doneAt) doneDays[t.doneAt] = (doneDays[t.doneAt] || 0) + 1; });
+      const dots = el("div", "dots"); let active = 0;
+      for (let i = 6; i >= 0; i--) {
+        const d = addDays(td, -i); const c = doneDays[d] || 0; if (c) active++;
+        const dot = el("div", "dot" + (c ? " on" : "") + (i === 0 ? " now" : ""));
+        const label = parse(d).toLocaleDateString(undefined, { weekday: "short" });
+        dot.setAttribute("role", "img"); dot.setAttribute("aria-label", fmtDay(d) + ": " + (c ? c + " task" + (c > 1 ? "s" : "") + " done" : "nothing marked done"));
+        dot.title = dot.getAttribute("aria-label");
+        dot.append(el("i"), el("span", null, label.slice(0, 2)));
+        dots.append(dot);
+      }
+      wk.append(dots, el("p", "small muted", "You finished tasks on " + active + " of the last 7 days. Any day you finish one counts."));
+      right.append(wk);
     }
-
-    // This week: activity, gentle (no streak to lose)
-    const wk = el("section", "card");
-    wk.append(el("h3", null, "Your last 7 days"));
-    const doneDays = {}; st.tasks.forEach((t) => { if (t.status === "done" && t.doneAt) doneDays[t.doneAt] = (doneDays[t.doneAt] || 0) + 1; });
-    const dots = el("div", "dots"); let active = 0;
-    for (let i = 6; i >= 0; i--) {
-      const d = addDays(td, -i); const c = doneDays[d] || 0; if (c) active++;
-      const dot = el("div", "dot" + (c ? " on" : "") + (i === 0 ? " now" : ""));
-      const label = parse(d).toLocaleDateString(undefined, { weekday: "short" });
-      dot.setAttribute("role", "img"); dot.setAttribute("aria-label", fmtDay(d) + ": " + (c ? c + " task" + (c > 1 ? "s" : "") + " done" : "nothing marked done"));
-      dot.title = dot.getAttribute("aria-label");
-      dot.append(el("i"), el("span", null, label.slice(0, 2)));
-      dots.append(dot);
-    }
-    wk.append(dots, el("p", "small muted", active ? "You finished tasks on " + active + " of the last 7 days. Any day you finish one counts." : "Finish any task and today lights up. Small steps add up."));
-    right.append(wk);
 
     // Shortcuts for this plan
     const sc = el("section", "card");
@@ -3140,14 +3351,16 @@
   function welcomeCard() {
     const c = el("section", "card welcome");
     c.append(el("span", "up-tag", "Welcome to Startline"));
-    c.append(el("h2", null, "Start making money online, one step at a time"));
-    c.append(el("p", null, "Answer five quick questions and you'll get a 7-day plan for how you want to earn: dropshipping, print-on-demand, affiliate marketing, digital products, reselling, freelancing, content, courses, books, newsletters, Amazon FBA or handmade. Each step explains what to do, links to the right site and shows its sources."));
+    c.append(el("h2", null, "Start an online business, one step at a time"));
+    const names = MODELS.map((m) => m[1].replace(/ \(.*\)$/, "").toLowerCase());
+    c.append(el("p", null, "Answer five quick questions and you'll get a 7-day plan for how you want to earn: " + names.slice(0, -1).join(", ") + " or " + names.slice(-1)[0] + ". Each step explains what to do, what it costs, links to the right site and shows its sources."));
     c.append(el("p", "small muted", "No guide can promise income in a week. What this app can do is show you the real steps, the real fees and your numbers before you spend money."));
     const row = el("div", "row-gap");
     const go1 = el("button", "btn primary", "Build my plan"); go1.type = "button"; go1.onclick = () => { startSetup(false); setTab("plan"); };
-    const go2 = el("button", "btn", "Compare the 12 ways to earn"); go2.type = "button"; go2.onclick = () => { startSetup(false); setup.step = 1; setup.compare = true; setTab("plan"); };
+    const go2 = el("button", "btn", "Compare the " + MODELS.length + " ways to earn"); go2.type = "button"; go2.onclick = () => { startSetup(false); setup.step = 1; setup.compare = true; setTab("plan"); };
     const go3 = el("button", "btn", "Just open the calculators"); go3.type = "button"; go3.onclick = () => openTool("profit");
     row.append(go1, go2, go3); c.append(row);
+    if (ACCOUNTS && mode === "local") { const si = el("button", "linkish", "Already have an account? Sign in"); si.type = "button"; si.onclick = () => PLAT.showAuth("signin"); c.append(si); }
     const steps = el("ol", "small"); steps.style.margin = "0"; steps.style.paddingLeft = "1.2em";
     ["Pick how you'll earn and where.", "Follow one step at a time; each opens a short guide with the official links.", "Use the calculators to check profit before you spend.", "Track your own tasks alongside the plan."].forEach((t) => steps.append(el("li", null, t)));
     c.append(steps);
@@ -3174,6 +3387,7 @@
     if (t.status === "done") top.append(el("span", "pill ok", "Done"));
     box.append(top);
     box.append(el("h2", null, t.title));
+    const ml = stepFacts(s.id, p); if (ml) box.append(ml);
     box.append(html("div", "prose", val(s.body, p) || ""));
     const action = val(s.action, p);
     const g = choiceFor(s.id, p);
@@ -3517,48 +3731,68 @@
     $("#readDlg").showModal();
   }
 
+  // ----- Learn: what fits your plan first, everything else folded away, with search.
+  let learnQ = "";
   function renderLearn() {
     const p = st.profile;
-    const wrap = el("div"); wrap.style.display = "grid"; wrap.style.gap = "22px";
-    const s1 = el("section"); s1.style.display = "grid"; s1.style.gap = "10px";
-    const h1 = el("div", "section-head");
-    const readN = LESSONS.filter((l) => st.learn["lesson-" + l.id]).length;
-    h1.append(el("h2", null, "Lessons in this app"), el("span", "small muted", `${readN} of ${LESSONS.length} read`));
-    s1.append(h1, el("p", "small muted", "Short reads with the facts sourced. Open one, then mark it read."));
-    const g1 = el("div", "grid");
-    const lp = st.profile;
-    LESSONS.slice().sort((a, b) => (lp ? (b.fit(lp) ? 1 : 0) - (a.fit(lp) ? 1 : 0) : 0)).forEach((l) => {
+    const wrap = el("div"); wrap.style.display = "grid"; wrap.style.gap = "18px";
+    const readN = LESSONS.filter((l) => st.learn["lesson-" + l.id]).length + COURSES.filter((c) => st.learn[c.id]).length;
+    const head = el("div", "section-head"); head.append(el("h2", null, "Learn"), el("span", "small muted", readN + " of " + (LESSONS.length + COURSES.length) + " done"));
+    wrap.append(head);
+    const sf = el("div", "field"); const sl = el("label", "label", "Search lessons and courses"); sl.htmlFor = "learnQ";
+    const si = el("input"); si.type = "search"; si.id = "learnQ"; si.value = learnQ; si.placeholder = "e.g. fees, Etsy, taxes, video";
+    si.oninput = () => { learnQ = si.value; render(); };
+    sf.append(sl, si); wrap.append(sf);
+    const lessonRow = (l) => {
       const isDone = !!st.learn["lesson-" + l.id];
-      const c = el("article", "item" + (isDone ? " isdone" : ""));
-      const top = el("div", "meta"); top.append(el("span", "label", "About " + l.mins + " min")); if (lp && l.fit(lp)) top.append(el("span", "pill doing", "For your plan"));
-      c.append(top, el("h3", null, l.title));
-      const f = el("div", "foot");
-      const b = el("button", "btn sm" + (isDone ? "" : " primary"), isDone ? "Read again" : "Read"); b.type = "button"; b.onclick = () => openLesson(l.id);
-      f.append(b); if (isDone) f.append(el("span", "pill ok", "Read"));
-      c.append(f); g1.append(c);
-    });
-    s1.append(g1); wrap.append(s1);
-
-    const s2 = el("section"); s2.style.display = "grid"; s2.style.gap = "10px";
-    const h2 = el("div", "section-head"); h2.append(el("h2", null, "Free official courses"));
-    s2.append(h2, el("p", "small muted", "Run by the platforms themselves. They open in a new tab; mark them done here to keep track."));
-    const sorted = COURSES.slice().sort((a, b) => (p ? (b.fit(p) ? 1 : 0) - (a.fit(p) ? 1 : 0) : 0));
-    const g2 = el("div", "grid");
-    sorted.forEach((c) => {
+      const r = el("div", "learn-row" + (isDone ? " isdone" : ""));
+      const info = el("div"); info.append(el("b", null, l.title), el("span", "small muted", "Lesson in this app · about " + l.mins + " min"));
+      const act = el("div", "row-gap");
+      const bt = el("button", "btn sm" + (isDone ? "" : " primary"), isDone ? "Read again" : "Read"); bt.type = "button"; bt.setAttribute("aria-label", (isDone ? "Read again: " : "Read: ") + l.title); bt.onclick = () => openLesson(l.id);
+      act.append(bt); if (isDone) act.append(el("span", "pill ok", "Read"));
+      r.append(info, act); return r;
+    };
+    const courseRow = (c) => {
       const isDone = !!st.learn[c.id];
-      const card = el("article", "item" + (isDone ? " isdone" : ""));
-      const top = el("div", "meta"); top.append(el("span", "label", c.by + " · " + c.len));
-      if (p && c.fit(p)) top.append(el("span", "pill doing", "For your plan"));
-      card.append(top, el("h3", null, c.title), el("p", "small muted", c.note));
-      const f = el("div", "foot");
-      f.append(extLink({ label: "Open course", url: c.url }));
+      const r = el("div", "learn-row" + (isDone ? " isdone" : ""));
+      const info = el("div"); info.append(el("b", null, c.title), el("span", "small muted", c.by + " · " + c.len + (c.note ? " · " + c.note : "")));
+      const act = el("div", "row-gap");
+      act.append(extLink({ label: "Open course", url: c.url, name: c.title }, "btn sm"));
       if (!readOnly) {
         const lab = el("label", "toggle"); const cb = el("input"); cb.type = "checkbox"; cb.id = "course-" + c.id; cb.checked = isDone;
-        cb.onchange = () => setLearn(c.id, cb.checked); lab.append(cb, document.createTextNode("Done")); f.append(lab);
+        cb.onchange = () => setLearn(c.id, cb.checked); lab.append(cb, document.createTextNode("Done")); act.append(lab);
       }
-      card.append(f); g2.append(card);
-    });
-    s2.append(g2); wrap.append(s2);
+      r.append(info, act); return r;
+    };
+    const q = learnQ.trim().toLowerCase();
+    if (q) {
+      const words = q.split(/\s+/);
+      const hit = (t) => words.every((w) => t.toLowerCase().includes(w));
+      const ls = LESSONS.filter((l) => hit(l.title + " " + (val(l.body, p || {}) || "").replace(/<[^>]+>/g, " ")));
+      const cs = COURSES.filter((c) => hit(c.title + " " + c.by + " " + (c.note || "")));
+      const box = el("section", "card"); box.append(el("h3", null, ls.length + cs.length ? (ls.length + cs.length) + " found" : "Nothing found"));
+      const list = el("div", "learn-list"); ls.forEach((l) => list.append(lessonRow(l))); cs.forEach((c) => list.append(courseRow(c)));
+      box.append(list); wrap.append(box);
+      return wrap;
+    }
+    const fitL = p ? LESSONS.filter((l) => l.fit(p)) : [], fitC = p ? COURSES.filter((c) => c.fit(p)) : [];
+    if (fitL.length || fitC.length) {
+      const sec = el("section", "card");
+      sec.append(el("h3", null, "For your plan"), el("p", "small muted", "Short lessons with sourced facts, and free courses run by the platforms themselves (they open in a new tab)."));
+      const list = el("div", "learn-list"); fitL.forEach((l) => list.append(lessonRow(l))); fitC.forEach((c) => list.append(courseRow(c)));
+      sec.append(list); wrap.append(sec);
+    } else wrap.append(el("p", "small muted", "Build your plan and the lessons and courses for it come first here."));
+    const restL = LESSONS.filter((l) => !fitL.includes(l)), restC = COURSES.filter((c) => !fitC.includes(c));
+    const fold = (title, key, rows) => {
+      if (!rows.length) return;
+      const d = el("details", "card fold"); d.open = !!lsGet(key, false);
+      d.addEventListener("toggle", () => lsSet(key, d.open));
+      const sm = el("summary"); sm.append(el("b", null, title), el("span", "small muted", " · " + rows.length)); d.append(sm);
+      const list = el("div", "learn-list"); rows.forEach((r) => list.append(r)); d.append(list);
+      wrap.append(d);
+    };
+    fold(p ? "More lessons" : "Lessons in this app", "dd-fold-lessons", restL.map(lessonRow));
+    fold(p ? "More free courses from the platforms" : "Free courses from the platforms", "dd-fold-courses", restC.slice().sort((x, y) => x.by.localeCompare(y.by) || x.title.localeCompare(y.title)).map(courseRow));
     return wrap;
   }
 
@@ -4551,9 +4785,16 @@
     const forYou = p ? TOOLS.filter((t) => t.fit(p)) : TOOLS.filter((t) => t.cat === "Sell" && !t.dash);
     const fy = el("section", "card");
     fy.append(el("h2", null, p ? "Sites for your plan" : "Popular places to sell"));
-    const g = el("div", "grid");
-    forYou.forEach((t) => { const c = el("article", "item"); c.append(el("h3", null, t.name), el("p", "small", t.desc)); const f = el("div", "foot"); f.append(extLink({ label: "Open", url: t.url, name: t.name })); c.append(f); g.append(c); });
-    fy.append(g);
+    const groups = {}; forYou.forEach((t) => { (groups[t.cat] = groups[t.cat] || []).push(t); });
+    Object.entries(groups).forEach(([cat, list], i) => {
+      const g = el("div", "site-rows");
+      list.forEach((t) => { const a = extLink({ label: t.name, url: t.url, name: t.name }, "site-item"); a.append(el("span", "small muted", t.desc + (t.cost ? " · " + t.cost : ""))); g.append(a); });
+      // The first groups (where you sell, suppliers, research) stay open; the rest fold away.
+      if (i < 3) { fy.append(el("h3", "label site-group", cat), g); return; }
+      const d = el("details", "fold site-fold"); d.open = !!lsGet("dd-fold-sites-" + cat, false);
+      d.addEventListener("toggle", () => lsSet("dd-fold-sites-" + cat, d.open));
+      const sm = el("summary"); sm.append(el("b", null, cat), el("span", "small muted", " · " + list.length)); d.append(sm, g); fy.append(d);
+    });
     const all = el("button", "btn sm", "See every site and app"); all.type = "button"; all.onclick = () => openTool("directory"); fy.append(all);
     wrap.append(fy);
     return wrap;
@@ -5062,7 +5303,8 @@
     const done = oneOff.filter((t) => t.status === "done").length;
     const top = el("div", "track-top");
     const left = el("div"); left.style.display = "grid"; left.style.gap = "4px";
-    left.append(el("span", "label", dayN >= 1 && dayN <= 7 ? "Day " + dayN + " of 7" : dayN > 7 ? "Plan week finished" : "Starts " + fmtDay(p.start)));
+    const left7 = oneOff.length - done;
+    left.append(el("span", "label", dayN >= 1 && dayN <= 7 ? "Day " + dayN + " of 7" : dayN > 7 ? (left7 ? "Day " + dayN + " · " + left7 + (left7 === 1 ? " step" : " steps") + " to go" : "Plan finished") : "Starts " + fmtDay(p.start)));
     const big = el("b", "big"); const bigN = el("span"); big.append(bigN, el("span", "small muted", " / " + oneOff.length + " steps"));
     countUp(bigN, done, (v) => String(Math.round(v)), animate ? 0 : done);
     left.append(big);
