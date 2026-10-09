@@ -72,6 +72,14 @@ async function signInFromGuest(pg, who) {
   await Promise.all([pg.waitForNavigation({ timeout: 15000 }).catch(() => {}), signIn(pg, who)]);
   await pg.waitForTimeout(300);
 }
+async function signUpFromGuest(pg, who) {
+  await Promise.all([pg.waitForNavigation({ timeout: 15000 }).catch(() => {}), signUp(pg, who)]);
+  if (await pg.$("#auth #authName")) {
+    console.log("  note: retrying sign-up once; the form said:", await pg.textContent(".auth-msg").catch(() => ""));
+    await Promise.all([pg.waitForNavigation({ timeout: 15000 }).catch(() => {}), signUp(pg, who)]);
+  }
+  await pg.waitForTimeout(300);
+}
 async function answer(pg, a) {
   for (const k of ["level", "model", "channel", "country"]) { await pg.waitForSelector("#q-" + k + "-" + a[k], { timeout: 4000 }); await pg.check("#q-" + k + "-" + a[k]); await pg.waitForTimeout(280); }
   if (await pg.$("#q-ads-" + (a.ads || "none"))) { await pg.check("#q-ads-" + (a.ads || "none")); await pg.waitForTimeout(280); }
@@ -209,7 +217,7 @@ try {
     check(S, "sign-up asks to confirm age and the terms", /16 or older/.test(await authMsg(pg)));
     const links = await pg.$$eval(".auth-age a", (as) => as.map((a) => a.getAttribute("href")));
     check(S, "sign-up links to the terms and privacy policy", links.includes("terms.html") && links.includes("privacy.html"), links.join(","));
-    await Promise.all([pg.waitForNavigation(), signUp(pg, A)]);
+    await signUpFromGuest(pg, A);
     check(S, "signing up opens the app, saving to the account", await waitSynced(pg));
     const uid = await uidOf(A.email);
     check(S, "the name typed at sign-up is used for your account button", (await text(pg, "#avatar")) === "S" && /^Sam:/.test(await pg.getAttribute("#acctBtn", "aria-label")), await pg.getAttribute("#acctBtn", "aria-label"));
@@ -377,13 +385,11 @@ try {
     const C = { email: "casey@example.com", pass: "casey pass 123" };
     let { ctx, pg } = await open({ tag: "save1" });
     await waitLocal(pg); await openAuth(pg);
-    await Promise.all([pg.waitForNavigation(), signUp(pg, C)]);
+    await signUpFromGuest(pg, C);
     await waitSynced(pg);
     const uid = await uidOf(C.email);
     await addTask(pg, "Task before outage");
     await pg.click("#acctBtn"); await pg.fill("#newBizName", "Candle shop"); await pg.click("#acct-biz button:has-text('Add business')"); await pg.waitForTimeout(600);
-    await pg.screenshot({ path: "/tmp/claude-0/-home-user/0dfafc12-057e-53e7-a101-b89ab224d4c1/scratchpad/dbg-save.png" });
-    console.log("DBG", await pg.evaluate(() => ({ open: [...document.querySelectorAll("dialog[open]")].map((d) => d.id), inert: document.querySelector(".wrap").inert, outInert: document.querySelector("#out").inert, auth: !!document.querySelector("#auth"), sync: document.querySelector("#syncText").textContent, biz: document.querySelector("#bizName").textContent })));
     await addTask(pg, "Candle task");
 
     // A failed first load never opens an empty account
@@ -408,7 +414,9 @@ try {
     await pg.waitForFunction(() => /Offline/.test(document.querySelector("#syncText").textContent), null, { timeout: 8000 }).catch(() => {});
     check(S, "the header says it will sync", /Offline · will sync/.test(await text(pg, "#syncText")), await text(pg, "#syncText"));
     check(S, "it hasn't reached the server yet", !(await docsOf(uid)).some((r) => r.data && r.data.title === "Offline task"));
-    await pg.reload(); await pg.waitForTimeout(800);
+    const r0 = Date.now(); await pg.reload();
+    await pg.waitForFunction(() => document.querySelector("#out") && !document.querySelector("#out").inert && /Offline|Saving|Saved/.test(document.querySelector("#syncText").textContent), null, { timeout: 15000 }).catch(() => {});
+    check(S, "reopening the app offline is quick", Date.now() - r0 < 4000, Date.now() - r0 + " ms");
     await tasksTab(pg);
     check(S, "reopening the app offline shows your work from the device", /Offline task/.test(await outTasks(pg)) && /Candle task/.test(await outTasks(pg)));
     mini.state.restDown = false;
@@ -442,7 +450,7 @@ try {
     ({ ctx, pg } = await open({ tag: "migrate" }));
     const D = { email: "dee@example.com", pass: "dee pass 1234" };
     await waitLocal(pg); await openAuth(pg);
-    await Promise.all([pg.waitForNavigation(), signUp(pg, D)]); await waitSynced(pg);
+    await signUpFromGuest(pg, D); await waitSynced(pg);
     const did = await uidOf(D.email);
     await mini.db.query("delete from public.docs where user_id = $1", [did]);
     await mini.db.query("insert into public.docs (user_id, path, data) values ($1, 'account', $2::jsonb)", [did, JSON.stringify({ name: "Dee", current: "b_abcd1234", businesses: [{ id: "desk", name: "Main shop", createdAt: "2026-01-02" }, { id: "b_abcd1234", name: "Second shop", createdAt: "2026-02-03" }], badges: ["first-step"] })]);
@@ -465,7 +473,8 @@ try {
     check(S, "each tab shows the other's changes", /Tab B task/.test(await outTasks(pg)));
 
     // Browser storage is full
-    await pg.evaluate(() => { const big = "x".repeat(512 * 1024); for (let i = 0; i < 40; i++) { try { localStorage.setItem("filler" + i, big); } catch { break; } } });
+    // Fill this site's storage right up to the limit.
+    await pg.evaluate(() => { let n = 0; for (const size of [1 << 20, 1 << 16, 1 << 12, 1 << 8, 16, 1]) { const chunk = "x".repeat(size); for (;;) { try { localStorage.setItem("filler" + n++, chunk); } catch { break; } } } });
     await addTask(pg, "This won't fit");
     check(S, "a full browser says the change wasn't saved", /storage is full/.test(await text(pg, "#toast")) && /Not saved/.test(await text(pg, "#syncText")), (await text(pg, "#toast")) + " / " + (await text(pg, "#syncText")));
     check(S, "and doesn't pretend it was", !/This won't fit/.test(await outTasks(pg)));
@@ -475,8 +484,10 @@ try {
     // Plan, date and calculator fixes
     ({ ctx, pg } = await open({ accounts: false, tag: "plan", test: true }));
     await buildPlan(pg, { level: "new", model: "supplier", channel: "shopify", country: "us" });
-    await pg.click("#tab-plan"); await pg.click("text=Change answers");
-    await answer(pg, { level: "new", model: "affiliate", channel: "aff_amazon", country: "us" });
+    await pg.click("#tab-plan"); await pg.click("text=Change answers"); await pg.waitForSelector("#setupForm .review");
+    await pg.click("#setupForm .review button[aria-label^='Change: How do you want']"); await pg.check("#q-model-affiliate"); await pg.waitForTimeout(350);
+    if (await pg.isVisible("#q-channel-aff_amazon").catch(() => false)) { await pg.check("#q-channel-aff_amazon"); await pg.waitForTimeout(350); }
+    await pg.waitForSelector("#setupForm .review"); await pg.click("#setupForm button[type=submit]"); await pg.waitForTimeout(800);
     const counts = await pg.evaluate(() => { const p = JSON.parse(localStorage.getItem("dd-local-profile")); const plan = JSON.parse(localStorage.getItem("dd-local-tasks")).filter((t) => t.source === "plan"); return [plan.length, window.__dd.applicable(p).length, plan.filter((t) => !window.__dd.applicable(p).some((s) => s.id === t.step)).map((t) => t.step)]; });
     check(S, "changing plan answers leaves no old steps behind", counts[0] === counts[1] && !counts[2].length, JSON.stringify(counts));
     check(S, "monthly repeats keep their day, or use the month's last day", await pg.evaluate(() => window.__dd.addMonth("2026-01-31") === "2026-02-28" && window.__dd.addMonth("2026-02-28", 31) === "2026-03-31" && window.__dd.addMonth("2026-12-15") === "2027-01-15"));

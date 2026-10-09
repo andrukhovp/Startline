@@ -308,14 +308,15 @@
         lastSeen = snap.meta && snap.meta.lastSeen ? snap.meta.lastSeen : null;
       }
       const hasCopy = !!(snap && snap.meta);
-      try {
-        await pull();
-      } catch (e) {
-        if (!hasCopy) throw e; // Never open an empty account: the caller shows "Can't reach your account".
-        offline = true;
+      if (hasCopy) {
+        // Open straight away with the copy on this device; catch up with the server in the background.
+        pull().then(() => { status(); flush(); }, (e) => { offline = !!(e && e.transient) || offline; status(); flush(); });
+        status();
+        return { fromDevice: true };
       }
+      await pull(); // No copy yet: never open an empty account. If this fails, the caller shows "Can't reach your account".
       status(); flush();
-      return { fromDevice: offline };
+      return { fromDevice: false };
     })();
     return {
       ready,

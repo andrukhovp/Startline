@@ -2351,6 +2351,9 @@
     const keep = a && KEEP.includes(a.id) ? { id: a.id, v: a.value, s: a.selectionStart, e: a.selectionEnd } : null;
     const drafts = KEEP.map((id) => { const x = $("#" + id); return x ? [id, x.value] : null; }).filter(Boolean);
     const fk = !keep && a && a !== out && out.contains(a) ? focusKey(a) : null;
+    // If that control disappears (a finished task leaves the list), the one now in its place gets focus.
+    const nearSel = fk && a.classList && a.classList.length ? a.tagName.toLowerCase() + "." + CSS.escape(a.classList[0]) : null;
+    const near = nearSel ? { sel: nearSel, i: [...out.querySelectorAll(nearSel)].indexOf(a) } : null;
     out.textContent = "";
     if (st.tab === "today") out.append(renderToday());
     else if (st.tab === "plan") out.append(renderPlan());
@@ -2362,7 +2365,11 @@
     if (animate && root && !calm()) { root.classList.add("enter"); [...root.children].forEach((c, i) => c.style.setProperty("--i", Math.min(i, 8))); }
     drafts.forEach(([id, v]) => { const x = $("#" + id); if (x && !x.value && v && id !== "siteQ" && id !== "taskSearch") { x.value = v; x.dispatchEvent(new Event("input")); } });
     if (keep) { const x = $("#" + keep.id); if (x) { x.focus(); try { x.setSelectionRange(keep.s, keep.e); } catch {} } }
-    else if (fk) { const x = findByKey(out, fk); if (x) x.focus({ preventScroll: true }); else out.focus({ preventScroll: true }); }
+    else if (fk) {
+      let x = findByKey(out, fk);
+      if (!x && near && near.i >= 0) { const list = [...out.querySelectorAll(near.sel)]; x = list.length ? list[Math.min(near.i, list.length - 1)] : null; }
+      if (x) x.focus({ preventScroll: true }); else out.focus({ preventScroll: true });
+    }
   }
   // A stable name for a control, so the same control gets focus back after the screen is rebuilt.
   function focusKey(x) {
@@ -4814,6 +4821,9 @@
   function drawAccount() {
     const box = $("#acctBody"); if (!box || !st.account) return;
     const keepScroll = $("#acctDlg").scrollTop;
+    // Redrawn when something changes in the background: keep what's being typed, and the focus.
+    const typed = new Map([...box.querySelectorAll("input[id]")].map((i) => [i.id, i.value]));
+    const focusId = document.activeElement && box.contains(document.activeElement) ? document.activeElement.id : "";
     box.textContent = "";
     const name = displayName();
     // Header
@@ -4921,6 +4931,8 @@
     dz.append(dzb, dzs); box.append(dz);
     if (WEB && mode === "db") box.append(deleteAccountSection());
     const act = el("div", "actions"); act.append(el("span")); const c = el("button", "btn", "Close"); c.type = "button"; c.onclick = () => $("#acctDlg").close(); act.append(c); box.append(act);
+    typed.forEach((v, id) => { const i = box.querySelector("#" + CSS.escape(id)); if (i && v && !i.value) i.value = v; else if (i && id === "acctName" && v !== undefined) i.value = v; });
+    if (focusId) { const f = box.querySelector("#" + CSS.escape(focusId)); if (f) f.focus({ preventScroll: true }); }
     $("#acctDlg").scrollTop = keepScroll;
   }
 
