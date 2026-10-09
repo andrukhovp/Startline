@@ -521,3 +521,10 @@ kbd { font: 500 0.72rem/1 var(--mono); border: 1px solid var(--line); border-bot
   .brand-row .biz-btn { max-width: 140px; }
   .hide-xs { display: none; }
 }
+
+/* Privacy and terms pages */
+.legal { max-width: 720px; margin: 0 auto; padding: 32px 16px 64px; display: grid; gap: 14px; }
+.legal h1 { font-size: 1.6rem; }
+.legal h2 { margin-top: 12px; }
+.legal ul { margin: 0; padding-left: 20px; display: grid; gap: 8px; }
+.legal [hidden] { display: none; }

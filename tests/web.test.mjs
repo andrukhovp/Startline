@@ -118,7 +118,11 @@ try {
     check(S, "app.js makes no direct network calls", !/\bfetch\(|XMLHttpRequest|WebSocket\(|window\.open\(/.test(app));
     check(S, "app.js has no alert/confirm/prompt", !/\b(alert|confirm)\(|window\.prompt\(/.test(app));
     const idx = readFileSync(join(SITE, "index.html"), "utf8");
-    check(S, "index.html has a CSP that only allows this site, Google Fonts and Supabase", /Content-Security-Policy/.test(idx) && /script-src 'self'(;|")/.test(idx) && /connect-src 'self' https:\/\/\*\.supabase\.co/.test(idx));
+    check(S, "index.html has a CSP that only allows this site and Supabase", /Content-Security-Policy/.test(idx) && /script-src 'self'(;|")/.test(idx) && /connect-src 'self' https:\/\/\*\.supabase\.co/.test(idx) && !/googleapis|gstatic/.test(idx));
+    check(S, "fonts are served by the site itself", /fonts\/fonts\.css/.test(idx) && files.some((f) => /fonts\/.*\.woff2$/.test(f)) && files.some((f) => /fonts\/LICENSES\.txt$/.test(f)));
+    let stampOk = true; try { (await import("node:child_process")).execFileSync(process.execPath, [join(SITE, "tools/stamp.mjs"), "--check"], { stdio: "pipe" }); } catch { stampOk = false; }
+    check(S, "release stamps are up to date (run node tools/stamp.mjs)", stampOk);
+    check(S, "privacy and terms pages exist and hold no personal details", ["privacy.html", "terms.html"].every((f) => files.some((x) => x.endsWith("/" + f))) && !personal.test(readFileSync(join(SITE, "privacy.html"), "utf8") + readFileSync(join(SITE, "terms.html"), "utf8")));
     check(S, "index.html has viewport, theme colour, manifest, icons", /viewport-fit=cover/.test(idx) && /theme-color/.test(idx) && /rel="manifest"/.test(idx) && /apple-touch-icon/.test(idx));
     check(S, "no inline scripts (CSP-safe)", !/<script>(?!\s*<\/script>)/.test(idx) && !/ on[a-z]+="/.test(idx));
     check(S, ".nojekyll present for GitHub Pages", files.some((f) => f.endsWith(".nojekyll")));
@@ -146,8 +150,9 @@ try {
     check(S, "service worker installs", reg);
     await pg.reload(); await pg.waitForTimeout(500);
     check(S, "service worker controls the page after a reload", await pg.evaluate(() => !!navigator.serviceWorker.controller));
-    const cached = await pg.evaluate(async () => { const keys = await caches.keys(); const c = await caches.open(keys.find((k) => k.startsWith("startline-app"))); return (await c.keys()).map((r) => new URL(r.url).pathname); });
-    check(S, "app files are cached for offline use", ["/app.js", "/platform.js", "/styles.css", "/index.html", "/vendor/supabase.js"].every((p) => cached.includes(p)), cached.join(" "));
+    const cached = await pg.evaluate(async () => { const keys = await caches.keys(); const c = await caches.open(keys.find((k) => k.startsWith("startline-"))); return (await c.keys()).map((r) => new URL(r.url).pathname); });
+    check(S, "app files are cached for offline use", ["/app.js", "/platform.js", "/styles.css", "/index.html", "/fonts/fonts.css", "/privacy.html", "/terms.html"].every((p) => cached.includes(p)), cached.join(" "));
+    check(S, "the sign-in library isn't downloaded when accounts are off", !(await pg.evaluate(() => performance.getEntriesByType("resource").some((r) => /supabase\.js/.test(r.name)))));
     await addTask(pg, "Offline check task");
     await ctx.setOffline(true);
     await pg.reload(); await pg.waitForTimeout(800);

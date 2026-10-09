@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Startline</title>
 <meta name="description" content="Plan, learn and run an online business, step by step: 7-day plans for 12 ways to earn online, with tasks, lessons, calculators and links to the platforms you'll use.">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://*.supabase.co wss://*.supabase.co; manifest-src 'self'; worker-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://*.supabase.co wss://*.supabase.co; manifest-src 'self'; worker-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="theme-color" content="#f2f5f3" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0b1514" media="(prefers-color-scheme: dark)">
@@ -18,10 +18,9 @@
 <link rel="icon" href="icons/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="icons/icon-192.png" sizes="192x192" type="image/png">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Instrument+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="styles.css">
+<link rel="preload" href="fonts/instrument-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css?v=7df2df87e5">
+<link rel="stylesheet" href="styles.css?v=67f4a801f7">
 </head>
 <body>
 <noscript><p style="padding:24px;font:16px system-ui">Startline needs JavaScript. Turn it on in your browser settings, then reload this page.</p></noscript>
@@ -99,9 +98,8 @@
 
 <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 
-<script src="vendor/supabase.js"></script>
 <script src="config.js"></script>
-<script src="platform.js"></script>
-<script src="app.js"></script>
+<script src="platform.js?v=6f33b60584"></script>
+<script src="app.js?v=69e431faf4"></script>
 </body>
 </html>

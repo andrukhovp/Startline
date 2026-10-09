@@ -46,7 +46,7 @@
     if (window.supabase && window.supabase.createClient) return Promise.resolve(window.supabase.createClient);
     return new Promise((resolve, reject) => {
       const s = document.createElement("script");
-      s.src = "vendor/supabase.js";
+      s.src = "vendor/supabase.js?v=dff1e545f4";
       s.onload = () => (window.supabase && window.supabase.createClient ? resolve(window.supabase.createClient) : reject(new Error("no client")));
       s.onerror = () => reject(new Error("couldn't load"));
       document.head.append(s);
