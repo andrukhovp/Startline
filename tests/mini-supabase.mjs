@@ -21,9 +21,9 @@ export async function createMiniSupabase(schemaPath) {
     grant usage on schema public to anon, authenticated;
   `);
   await db.exec(readFileSync(schemaPath, "utf8"));
-  const state = { confirmEmail: false, outbox: [], failNext: null, requests: [], refresh: new Map(), siteUrl: "" };
+  const state = { confirmEmail: false, outbox: [], failNext: null, requests: [], refresh: new Map(), siteUrl: "", down: false, restDown: false, slowMs: 0 };
 
-  const userJson = (u) => ({ id: u.id, aud: "authenticated", role: "authenticated", email: u.email, email_confirmed_at: u.confirmed ? new Date().toISOString() : null, user_metadata: u.meta || {}, app_metadata: { provider: "email", providers: ["email"] }, identities: [], created_at: u.created_at, updated_at: new Date().toISOString() });
+  const userJson = (u) => ({ id: u.id, aud: "authenticated", role: "authenticated", email: u.email, email_confirmed_at: u.confirmed ? new Date().toISOString() : null, user_metadata: u.meta || {}, app_metadata: { provider: "email", providers: ["email"] }, identities: [{ provider: "email", identity_id: u.id }], created_at: u.created_at, updated_at: new Date().toISOString() });
   const sessionFor = (u) => {
     const now = Math.floor(Date.now() / 1000);
     const access_token = b64({ alg: "HS256", typ: "JWT" }) + "." + b64({ sub: u.id, email: u.email, role: "authenticated", aud: "authenticated", iat: now, exp: now + 3600, session_id: randomUUID() }) + ".sig";
@@ -50,7 +50,10 @@ export async function createMiniSupabase(schemaPath) {
     const p = url.pathname.replace(/^\/auth\/v1/, "");
     const redirect = url.searchParams.get("redirect_to") || "";
     if (p === "/signup" && method === "POST") {
-      if (await userByEmail(body.email)) return authErr(422, "user_already_exists", "User already registered");
+      const existing = await userByEmail(body.email);
+      // Like Supabase: with confirmations on, an existing email gets a look-alike answer with no identities.
+      if (existing && state.confirmEmail) return json(200, { ...userJson(existing), id: randomUUID(), identities: [] });
+      if (existing) return authErr(422, "user_already_exists", "User already registered");
       if (!body.password || body.password.length < 6) return authErr(422, "weak_password", "Password should be at least 6 characters.");
       const id = randomUUID();
       await db.query("insert into auth.users (id, email, password, confirmed, meta) values ($1, $2, $3, $4, $5)", [id, body.email, body.password, !state.confirmEmail, JSON.stringify(body.data || {})]);
@@ -109,12 +112,17 @@ export async function createMiniSupabase(schemaPath) {
       return out;
     } catch (e) { return pgErr(e, anon); }
   }
+  const splitList = (txt) => { const out = []; let cur = "", q = false; for (const ch of txt) { if (ch === '"') { q = !q; continue; } if (ch === "," && !q) { out.push(cur); cur = ""; continue; } cur += ch; } if (txt.length) out.push(cur); return out; };
   function where(url, params) {
     const conds = [];
     for (const [k, v] of url.searchParams) {
       if (!COLS.has(k)) continue;
-      const m = /^eq\.(.*)$/s.exec(v); if (!m) throw Object.assign(new Error("unsupported filter " + v), { code: "PGRST100" });
-      params.push(m[1]); conds.push(`${k} = $${params.length}`);
+      const cast = k === "updated_at" ? "::timestamptz" : k === "user_id" ? "::uuid" : "";
+      let m;
+      if ((m = /^eq\.(.*)$/s.exec(v))) { params.push(m[1]); conds.push(`${k} = $${params.length}${cast}`); }
+      else if ((m = /^(gte|gt|lte|lt)\.(.*)$/s.exec(v))) { params.push(m[2]); conds.push(`${k} ${{ gte: ">=", gt: ">", lte: "<=", lt: "<" }[m[1]]} $${params.length}${cast}`); }
+      else if ((m = /^in\.\((.*)\)$/s.exec(v))) { params.push(splitList(m[1])); conds.push(`${k}${k === "path" ? "" : "::text"} = any($${params.length}::text[])`); }
+      else throw Object.assign(new Error("unsupported filter " + v), { code: "PGRST100" });
     }
     return conds.length ? " where " + conds.join(" and ") : "";
   }
@@ -171,6 +179,9 @@ export async function createMiniSupabase(schemaPath) {
     const url = new URL(req.url());
     const method = req.method();
     if (method === "OPTIONS") return route.fulfill({ status: 200, headers: CORS, body: "" });
+    // Simulated outages: the whole service, or just the database.
+    if (state.down || (state.restDown && url.pathname.startsWith("/rest/"))) return route.abort("internetdisconnected");
+    if (state.slowMs) await new Promise((r) => setTimeout(r, state.slowMs));
     const headers = req.headers();
     const raw = req.postData();
     state.requests.push({ method, path: url.pathname + url.search, prefer: headers.prefer || "", apikey: headers.apikey || "", auth: headers.authorization ? "bearer" : "" });

@@ -1599,7 +1599,8 @@
   const today = () => iso(new Date());
   const parse = (s) => { const [y, m, d] = s.split("-").map(Number); return new Date(y, m - 1, d); };
   const addDays = (s, n) => { const d = parse(s); d.setDate(d.getDate() + n); return iso(d); };
-  const addMonth = (s) => { const d = parse(s); d.setMonth(d.getMonth() + 1); return iso(d); };
+  // Monthly: same day next month, or the month's last day when it's shorter (31 Jan -> 28/29 Feb).
+  const addMonth = (s, day) => { const [y, m, d] = s.split("-").map(Number); const last = new Date(y, m + 1, 0).getDate(); return iso(new Date(y, m, Math.min(day || d, last))); };
   const fmtDay = (s) => parse(s).toLocaleDateString(undefined, { weekday: "short", month: "short", day: "numeric" });
   const fmtDue = (s) => {
     if (!s) return "";
@@ -1657,58 +1658,90 @@
 
   // ---------------------------------------------------------------------------
   // Accounts and storage. Each person's data is private to them:
-  // signed-in viewers who can save get their own subtree in the artifact's
-  // database (data/users/<their id>/...); everyone else saves in this browser.
-  //   account                  name, businesses, current business, milestones
+  // signed-in viewers who can save get their own subtree in the database
+  // (data/users/<their id>/...); everyone else saves in this browser.
+  //   account                  your name
+  //   account/biz/<id>         one document per business (name, plan type)
+  //   account/badges/<id>      milestones reached
   //   account/saves/<id>       saved copies of a business, for restoring later
   //   profile, desk/<kind>     the first business ("desk")
   //   profile-b_x, b_x/<kind>  any other business
+  // Every business and milestone is its own document, so two devices (or two
+  // tabs) changing things at once never overwrite each other's lists. Which
+  // business is open is remembered per device.
   // ---------------------------------------------------------------------------
   const st = {
     tab: lsGet("dd-tab6", "today"),
     profile: null, profileLoaded: false,
     tasks: [], tasksLoaded: false,
-    learn: {}, products: [], links: [],
+    learn: {}, products: [], links: [], sales: [],
     editingProfile: false,
     biz: "desk", account: null, accountLoaded: false, saves: [], savesLoaded: false,
+    busy: 0, bulk: null, dirty: false,
     ui: Object.assign({ area: "all", view: "list", quick: null, q: "", showDone: false, allTools: false }, lsGet("dd-ui", {}), { quick: null, q: "" }),
   };
   const saveUi = () => lsSet("dd-ui", { area: st.ui.area, view: st.ui.view, showDone: st.ui.showDone, allTools: st.ui.allTools });
   const readOnly = false;
-  let db = null, uid = null, mode = "local", unsubs = [], accUnsubs = [], gen = 0, viewerName = "", signedIn = false;
-  const LOCAL = { tasks: "dd-local-tasks", profile: "dd-local-profile", learn: "dd-local-learn", products: "dd-local-products", links: "dd-local-links" };
+  let db = null, uid = null, mode = "loading", unsubs = [], accUnsubs = [], gen = 0, viewerName = "", signedIn = false;
+  const LOCAL = { tasks: "dd-local-tasks", profile: "dd-local-profile", learn: "dd-local-learn", products: "dd-local-products", links: "dd-local-links", sales: "dd-local-sales" };
   const ACC_LOCAL = "dd-local-account", SAVES_LOCAL = "dd-local-saves";
-  const KINDS = ["tasks", "learn", "products", "links"];
+  const KINDS = ["tasks", "learn", "products", "links", "sales"];
   const base = () => "data/users/" + uid;
   const bizDoc = () => (st.biz === "desk" ? "desk" : st.biz);
   const profPath = () => base() + "/" + (st.biz === "desk" ? "profile" : "profile-" + st.biz);
   const lkey = (kind) => LOCAL[kind] + (st.biz === "desk" ? "" : ":" + st.biz);
   const col = (kind) => db.doc(base() + "/" + bizDoc()).collection(kind);
+  const emptyOf = (kind) => (kind === "learn" ? {} : kind === "profile" ? null : []);
 
   // ----- Save status in the header
-  const sync = { pending: 0, last: null, error: false, failAt: 0 };
+  const sync = { pending: 0, last: null, error: false, failAt: 0, web: { pending: 0, offline: false } };
   function drawSync() {
     const box = $("#saveMode"); if (!box) return;
-    box.classList.toggle("saving", sync.pending > 0); box.classList.toggle("error", sync.error && !sync.pending);
-    $("#syncText").textContent = sync.pending > 0 ? "Saving…" : sync.error ? "Not saved" : mode === "db" ? "Saved to your account" : "Saved in this browser";
-    box.title = (mode === "db" ? (WEB ? "Private to you, on every device where you sign in." : "Private to you, on every device where you're signed in to claude.ai.") : WEB ? (ACCOUNTS ? "Kept only in this browser. Create an account to keep it safe and use it on your other devices." : "Kept only in this browser.") : "Kept only in this browser. Sign in to claude.ai to keep it in your account.") + (sync.last ? " Last saved at " + new Date(sync.last).toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" }) + "." : "");
+    const waiting = mode === "db" && sync.web.pending > 0, off = mode === "db" && sync.web.offline;
+    box.classList.toggle("saving", sync.pending > 0 || (waiting && !off) || mode === "loading");
+    box.classList.toggle("error", sync.error && !sync.pending);
+    box.classList.toggle("offline", off && !sync.error);
+    $("#syncText").textContent = mode === "loading" ? "Loading…" : sync.pending > 0 ? "Saving…" : sync.error ? "Not saved" : off ? (waiting ? "Offline · will sync" : "Offline") : waiting ? "Saving…" : mode === "db" ? "Saved to your account" : "Saved in this browser";
+    box.title = (off ? "No connection. Your changes are kept on this device and sent to your account when you're back online."
+      : mode === "db" ? (WEB ? "Private to you, on every device where you sign in." : "Private to you, on every device where you're signed in to claude.ai.")
+      : WEB ? (ACCOUNTS ? "Kept only in this browser. Create a free account to keep it safe and use it on your other devices." : "Kept only in this browser.") : "Kept only in this browser. Sign in to claude.ai to keep it in your account.")
+      + (sync.last ? " Last saved at " + new Date(sync.last).toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" }) + "." : "");
     if ($("#acctDlg") && $("#acctDlg").open) drawAcctStatus();
   }
   const noteLocalSave = () => { sync.last = Date.now(); sync.error = false; drawSync(); };
+  document.addEventListener("startline:sync", (e) => { sync.web = e.detail || sync.web; if (!sync.web.pending && !sync.web.offline) sync.last = Date.now(); drawSync(); });
+  document.addEventListener("startline:sync-error", (e) => {
+    const c = e.detail && e.detail.code; sync.failAt = Date.now();
+    toast(c === "quota_exceeded" ? "Your account's storage is full. Delete old saves or finished tasks, then try again." : "A change couldn't be saved to your account, so it was undone.", { error: true });
+  });
+  // Browser storage can be full; say so instead of pretending it saved.
+  function lsWrite(k, v) {
+    if (lsSet(k, v)) return true;
+    sync.error = true; sync.failAt = Date.now(); drawSync();
+    toast("This browser's storage is full, so that change wasn't saved. Delete old saves, export a backup" + (ACCOUNTS ? ", or create a free account." : "."), { error: true });
+    return false;
+  }
+  function notReady() { toast("Still loading your work. Try again in a moment."); return false; }
 
   function loadLocal() {
     st.tasks = lsGet(lkey("tasks"), []); st.profile = lsGet(lkey("profile"), null);
-    st.learn = lsGet(lkey("learn"), {}); st.products = lsGet(lkey("products"), []); st.links = lsGet(lkey("links"), []);
+    st.learn = lsGet(lkey("learn"), {}); st.products = lsGet(lkey("products"), []); st.links = lsGet(lkey("links"), []); st.sales = lsGet(lkey("sales"), []);
+    KINDS.forEach((k) => { if (!st[k] || typeof st[k] !== "object") st[k] = emptyOf(k); });
     st.tasksLoaded = st.profileLoaded = true;
   }
   function saveLocalAll() {
     KINDS.concat("profile").forEach((k) => lsSet(lkey(k), st[k]));
-    lsSet(ACC_LOCAL, st.account); lsSet(SAVES_LOCAL, st.saves);
+    lsSet(ACC_LOCAL, { ...st.account, current: st.biz }); lsSet(SAVES_LOCAL, st.saves);
   }
   function stopSubs() { unsubs.concat(accUnsubs).forEach((u) => { try { u(); } catch {} }); unsubs = []; accUnsubs = []; }
   function switchToLocal(why) {
     if (mode === "local") return;
-    mode = "local"; stopSubs(); saveLocalAll(); drawSync(); drawHeader();
+    mode = "local"; stopSubs();
+    // Work already saved in this browser is never overwritten by the account's copy.
+    if (lsGet(ACC_LOCAL, null) || lsGet(LOCAL.tasks, null) || lsGet(LOCAL.profile, null)) {
+      st.account = normAccount(lsGet(ACC_LOCAL, null)); st.biz = st.account.current; st.saves = lsGet(SAVES_LOCAL, []); loadLocal(); render();
+    } else saveLocalAll();
+    drawSync(); drawHeader();
     if (why) toast(why);
   }
   async function dbTry(fn) {
@@ -1720,61 +1753,157 @@
       if (e && e.code === "quota_exceeded") toast("Storage is full. Delete some old saves or finished tasks, then try again.", { error: true });
       else toast("That change didn't save. Check your connection and try again.", { error: true });
       return null;
-    } finally { sync.pending--; sync.last = Date.now(); drawSync(); }
+    } finally { sync.pending--; if (!sync.error) sync.last = Date.now(); drawSync(); }
+  }
+  function applyTo(kind, store, id, data) {
+    if (kind === "learn") { if (data) store[id] = data; else delete store[id]; return store; }
+    const i = store.findIndex((x) => x.id === id);
+    if (data == null) { if (i >= 0) store.splice(i, 1); } else if (i >= 0) store[i] = { id, ...data }; else store.push({ id, ...data });
+    return store;
   }
   function localPut(kind, id, data) {
-    if (kind === "learn") { if (data) st.learn[id] = data; else delete st.learn[id]; }
-    else { const arr = st[kind]; const i = arr.findIndex((x) => x.id === id); if (data == null) { if (i >= 0) arr.splice(i, 1); } else if (i >= 0) arr[i] = { id, ...data }; else arr.push({ id, ...data }); }
-    lsSet(lkey(kind), st[kind]); noteLocalSave(); onData(kind);
+    if (st.bulk) { applyTo(kind, st[kind], id, data); st.bulk.log.push([kind, lkey(kind), id, data]); return true; }
+    // Re-read what's stored first, so changes made in another open tab are kept.
+    const stored = lsGet(lkey(kind), emptyOf(kind));
+    const fresh = applyTo(kind, stored && typeof stored === "object" ? stored : emptyOf(kind), id, data);
+    if (!lsWrite(lkey(kind), fresh)) return false;
+    st[kind] = fresh; noteLocalSave(); onData(kind); return true;
+  }
+  // Many changes at once (building a plan, importing, restoring, deleting):
+  // the screen is redrawn once at the end, and in this browser everything is
+  // written in one go. Switching business waits until it's finished.
+  async function bulk(fn) {
+    st.busy++;
+    const own = !st.bulk && mode === "local";
+    if (own) st.bulk = { log: [] };
+    let failed = false, out;
+    try { out = await fn(); }
+    finally {
+      if (own) {
+        const b = st.bulk; st.bulk = null;
+        const byKey = new Map();
+        b.log.forEach(([kind, key, id, data]) => { if (!byKey.has(key)) byKey.set(key, { kind, ops: [] }); byKey.get(key).ops.push([id, data]); });
+        byKey.forEach(({ kind, ops }, key) => {
+          const stored = lsGet(key, emptyOf(kind));
+          const fresh = stored && typeof stored === "object" ? stored : emptyOf(kind);
+          ops.forEach(([id, data]) => applyTo(kind, fresh, id, data));
+          if (!lsWrite(key, fresh)) failed = true;
+        });
+        loadLocal(); if (!failed && byKey.size) noteLocalSave();
+      }
+      st.busy--;
+      if (!st.busy) { st.dirty = false; updateTabBadge(); render(); scheduleBadges(); }
+    }
+    if (failed) throw Object.assign(new Error("Some changes weren't saved"), { code: "quota_exceeded" });
+    return out;
   }
   async function putDoc(kind, id, data) {
-    if (mode === "db") { const ok = await dbTry(() => col(kind).doc(id).set(data)); if (ok !== false) return; }
-    localPut(kind, id, data);
+    if (mode === "loading") return notReady();
+    if (mode === "db") { const ok = await dbTry(() => col(kind).doc(id).set(data)); if (ok !== false) return ok === true; }
+    return localPut(kind, id, data);
   }
   async function delDoc(kind, id) {
-    if (mode === "db") { const ok = await dbTry(() => col(kind).doc(id).delete()); if (ok !== false) return; }
-    localPut(kind, id, null);
+    if (mode === "loading") return notReady();
+    if (mode === "db") { const ok = await dbTry(() => col(kind).doc(id).delete()); if (ok !== false) return ok === true; }
+    return localPut(kind, id, null);
   }
   const putTask = (id, data) => putDoc("tasks", id, data);
   const delTask = (id) => delDoc("tasks", id);
   async function clearProfile() {
-    if (mode === "db") { const ok = await dbTry(() => db.doc(profPath()).delete()); if (ok !== false) return; }
-    st.profile = null; lsSet(lkey("profile"), null); noteLocalSave(); onData("profile");
+    if (mode === "loading") return notReady();
+    if (mode === "db") { const ok = await dbTry(() => db.doc(profPath()).delete()); if (ok !== false) return ok === true; }
+    if (!lsWrite(lkey("profile"), null)) return false;
+    st.profile = null; noteLocalSave(); onData("profile"); return true;
   }
   async function saveProfile(p) {
-    if (mode === "db") { const ok = await dbTry(() => db.doc(profPath()).set(p)); if (ok !== false) { noteBizPlan(p); return; } }
-    st.profile = p; lsSet(lkey("profile"), p); noteLocalSave(); onData("profile"); noteBizPlan(p);
+    if (mode === "loading") return notReady();
+    if (mode === "db") { const ok = await dbTry(() => db.doc(profPath()).set(p)); if (ok !== false) { if (ok) noteBizPlan(p); return ok === true; } }
+    if (!lsWrite(lkey("profile"), p)) return false;
+    st.profile = p; noteLocalSave(); onData("profile"); noteBizPlan(p); return true;
   }
   const setLearn = (id, done) => (done ? putDoc("learn", id, { done: true, at: today() }) : delDoc("learn", id));
   const saveProduct = (id, data) => putDoc("products", id, data);
   const deleteProduct = (id) => delDoc("products", id);
 
   // ----- Account: your name, your businesses, milestones
-  const newBizEntry = (id, name) => ({ id, name, createdAt: today(), model: "", channel: "" });
+  const okBizId = (id) => typeof id === "string" && /^(desk|b_[\w-]{4,40})$/.test(id);
+  const newBizEntry = (id, name) => ({ id, name, createdAt: today(), model: "", channel: "", order: Date.now() });
+  function cleanBiz(id, b) {
+    b = b || {};
+    return { id, name: String(b.name || "Business").trim().slice(0, 60) || "Business", createdAt: /^\d{4}-\d{2}-\d{2}$/.test(b.createdAt || "") ? b.createdAt : today(),
+      model: MODEL_NAME[b.model] ? b.model : "", channel: typeof b.channel === "string" ? b.channel.slice(0, 30) : "", order: Number(b.order) || 0 };
+  }
+  const bizRank = (b) => (b.id === "desk" ? -1 : b.order || 0);
+  // The browser's account record, and old single-document account records.
   function normAccount(a) {
     const out = { name: "", current: "desk", businesses: [], badges: [] };
     if (a && typeof a === "object") {
       out.name = typeof a.name === "string" ? a.name.trim().slice(0, 60) : "";
-      out.badges = Array.isArray(a.badges) ? a.badges.filter((x) => typeof x === "string").slice(0, 50) : [];
-      out.businesses = (Array.isArray(a.businesses) ? a.businesses : []).filter((b) => b && typeof b.id === "string" && /^(desk|b_[\w-]{4,40})$/.test(b.id))
-        .map((b) => ({ id: b.id, name: String(b.name || "Business").trim().slice(0, 60) || "Business", createdAt: /^\d{4}-\d{2}-\d{2}$/.test(b.createdAt || "") ? b.createdAt : today(), model: MODEL_NAME[b.model] ? b.model : "", channel: typeof b.channel === "string" ? b.channel.slice(0, 30) : "" }));
+      out.badges = Array.isArray(a.badges) ? [...new Set(a.badges.filter((x) => typeof x === "string"))].slice(0, 50) : [];
+      out.businesses = (Array.isArray(a.businesses) ? a.businesses : []).filter((b) => b && okBizId(b.id)).map((b, i) => cleanBiz(b.id, { order: i, ...b }));
       out.current = typeof a.current === "string" ? a.current : "desk";
     }
-    if (!out.businesses.length) out.businesses.push(newBizEntry("desk", "My business"));
+    if (!out.businesses.length) out.businesses.push(cleanBiz("desk", { name: "My business" }));
+    out.businesses.sort((x, y) => bizRank(x) - bizRank(y));
     if (!out.businesses.some((b) => b.id === out.current)) out.current = out.businesses[0].id;
     return out;
   }
+  // Signed in: the account is assembled from its separate documents.
+  const acc = { name: "", biz: new Map(), badges: new Set() };
+  function buildAccount() {
+    const list = [...acc.biz.values()].sort((x, y) => bizRank(x) - bizRank(y));
+    if (!list.length) list.push(cleanBiz("desk", { name: "My business" }));
+    st.account = { name: acc.name || "", businesses: list, badges: [...acc.badges], current: st.biz };
+  }
   const curBiz = () => (st.account && st.account.businesses.find((b) => b.id === st.biz)) || newBizEntry(st.biz, "My business");
-  async function saveAccount(a) {
-    st.account = normAccount(a); drawHeader();
-    if (mode === "db") { const ok = await dbTry(() => db.doc(base() + "/account").set(st.account)); if (ok !== false) return; }
-    lsSet(ACC_LOCAL, st.account); noteLocalSave();
+  const currentKey = () => "dd-current:" + uid;
+  async function accDoc(path, data) { return dbTry(() => (data === undefined ? db.doc(base() + "/" + path).delete() : db.doc(base() + "/" + path).set(data))); }
+  function localAccount(fn) {
+    if (mode === "loading") return notReady();
+    const a = normAccount(lsGet(ACC_LOCAL, null)); fn(a);
+    a.businesses.sort((x, y) => bizRank(x) - bizRank(y));
+    if (!lsWrite(ACC_LOCAL, a)) return false;
+    st.account = { ...a, current: st.biz }; noteLocalSave(); drawHeader(); return true;
+  }
+  async function setName(name) {
+    const n = String(name || "").trim().slice(0, 60);
+    if (mode === "db") { acc.name = n; buildAccount(); drawHeader(); const ok = await accDoc("account", { name: n, v: 2 }); if (ok !== false) return ok === true; }
+    return localAccount((a) => { a.name = n; });
+  }
+  async function putBiz(id, patch) {
+    if (mode === "db") {
+      const b = cleanBiz(id, { ...(acc.biz.get(id) || {}), ...patch });
+      acc.biz.set(id, b); buildAccount(); drawHeader();
+      const { id: _, ...doc } = b;
+      const ok = await accDoc("account/biz/" + id, doc); if (ok !== false) return ok === true;
+    }
+    return localAccount((a) => {
+      const i = a.businesses.findIndex((x) => x.id === id);
+      if (i >= 0) a.businesses[i] = cleanBiz(id, { ...a.businesses[i], ...patch }); else a.businesses.push(cleanBiz(id, patch));
+    });
+  }
+  async function removeBiz(id) {
+    if (mode === "db") { acc.biz.delete(id); buildAccount(); drawHeader(); const ok = await accDoc("account/biz/" + id, undefined); if (ok !== false) return ok === true; }
+    return localAccount((a) => { a.businesses = a.businesses.filter((x) => x.id !== id); });
+  }
+  async function addBadges(ids) {
+    if (!ids.length) return true;
+    if (mode === "db") {
+      ids.forEach((id) => acc.badges.add(id)); buildAccount();
+      let ok = true; for (const id of ids) ok = (await accDoc("account/badges/" + id, { at: Date.now() })) !== null && ok;
+      return ok;
+    }
+    return localAccount((a) => { a.badges = [...new Set(a.badges.concat(ids))].slice(0, 50); });
+  }
+  function setCurrent(id) {
+    if (mode === "db") { lsSet(currentKey(), id); return true; }
+    return localAccount((a) => { a.current = id; });
   }
   function noteBizPlan(p) {
     if (!st.account) return;
     const b = curBiz(); const model = (p && p.model) || "", channel = (p && p.channel) || "";
     if (b.model === model && b.channel === channel) return;
-    saveAccount({ ...st.account, businesses: st.account.businesses.map((x) => (x.id === st.biz ? { ...x, model, channel } : x)) });
+    putBiz(st.biz, { model, channel });
   }
   function initials(name) { const w = String(name || "").trim().split(/\s+/).filter(Boolean); return w.length ? (w[0][0] + (w.length > 1 ? w[w.length - 1][0] : "")).toUpperCase() : "?"; }
   const displayName = () => (st.account && st.account.name) || viewerName || "";
@@ -1796,21 +1925,47 @@
     sub(col("learn"), (snap) => { st.learn = Object.fromEntries(snap.docs.map((d) => [d.id, d.data()])); onData("learn"); });
     sub(col("products"), (snap) => { st.products = snap.docs.map((d) => ({ id: d.id, ...d.data() })); onData("products"); });
     sub(col("links"), (snap) => { st.links = snap.docs.map((d) => ({ id: d.id, ...d.data() })); onData("links"); });
+    sub(col("sales"), (snap) => { st.sales = snap.docs.map((d) => ({ id: d.id, ...d.data() })); onData("sales"); });
     sub(db.doc(profPath()), (snap) => {
       const p = snap.exists ? snap.data() : null;
       const changed = JSON.stringify(p) !== JSON.stringify(st.profile) || !st.profileLoaded;
       st.profile = p; st.profileLoaded = true; if (changed) onData("profile");
     });
   }
-  function subscribeAccount() {
+  function subscribeAccount(first) {
     const sub = (ref, fn) => accUnsubs.push(ref.onSnapshot((snap) => { if (mode === "db") fn(snap); }, () => {}));
     sub(db.doc(base() + "/account"), (snap) => {
-      if (!snap.exists) return;
-      const a = normAccount(snap.data()); a.current = st.biz; st.account = a; drawHeader(); onData("account");
+      const d = snap.exists ? snap.data() : null;
+      acc.name = d && typeof d.name === "string" ? d.name.trim().slice(0, 60) : "";
+      if (first) first("name", d); accountChanged();
+    });
+    sub(db.doc(base() + "/account").collection("biz"), (snap) => {
+      acc.biz = new Map(snap.docs.filter((d) => okBizId(d.id)).map((d) => [d.id, cleanBiz(d.id, d.data())]));
+      if (first) first("biz"); accountChanged();
+    });
+    sub(db.doc(base() + "/account").collection("badges"), (snap) => {
+      acc.badges = new Set(snap.docs.map((d) => d.id));
+      if (first) first("badges"); accountChanged();
     });
     sub(db.doc(base() + "/account").collection("saves"), (snap) => {
       st.saves = snap.docs.map((d) => ({ id: d.id, ...d.data() })).sort((x, y) => (y.at || 0) - (x.at || 0)); st.savesLoaded = true; onData("saves");
     });
+  }
+  function accountChanged() {
+    if (!st.accountLoaded) return;
+    buildAccount();
+    // The open business was deleted on another device.
+    if (!st.busy && !st.account.businesses.some((b) => b.id === st.biz)) { switchBiz(st.account.businesses[0].id, { quiet: true, force: true }); toast("That business was deleted on another device."); }
+    drawHeader(); onData("account");
+  }
+  // Older versions kept the whole account in one document; split it up once.
+  async function migrateAccount(old) {
+    const a = normAccount(old);
+    for (const b of a.businesses) if (!acc.biz.has(b.id)) await putBiz(b.id, b);
+    const missing = a.badges.filter((id) => !acc.badges.has(id));
+    if (missing.length) await addBadges(missing);
+    await accDoc("account", { name: a.name, v: 2 }); acc.name = a.name;
+    if (a.current && !lsGet(currentKey(), null)) lsSet(currentKey(), a.current);
   }
   async function startStorage() {
     db = await claudeUse("db");
@@ -1822,51 +1977,96 @@
     if (user && user.can) { try { if ((await user.can("data.write")) === false) canWrite = false; } catch {} }
     if (!db || !uid || !canWrite) {
       mode = "local"; st.account = normAccount(lsGet(ACC_LOCAL, null)); st.biz = st.account.current; st.accountLoaded = true;
-      st.saves = lsGet(SAVES_LOCAL, []); st.savesLoaded = true; loadLocal(); afterStart(); return;
+      st.saves = lsGet(SAVES_LOCAL, []); if (!Array.isArray(st.saves)) st.saves = []; st.savesLoaded = true; loadLocal(); afterStart(); return;
     }
     mode = "db";
-    let acc = null; try { const snap = await db.doc(base() + "/account").get(); acc = snap && snap.exists ? snap.data() : null; } catch {}
-    st.account = normAccount(acc); st.biz = st.account.current; st.accountLoaded = true;
-    subscribeAccount(); subscribeBiz(); afterStart();
+    let old = null;
+    await new Promise((resolve) => {
+      const seen = new Set();
+      subscribeAccount((part, data) => {
+        seen.add(part);
+        if (part === "name" && data && Array.isArray(data.businesses) && data.v !== 2) old = data;
+        if (seen.size === 3) resolve();
+      });
+      setTimeout(resolve, 6000);
+    });
+    if (old) await migrateAccount(old);
+    else if (!acc.biz.size) await putBiz("desk", { name: "My business", order: 0 });
+    buildAccount();
+    const saved = lsGet(currentKey(), null);
+    st.biz = st.account.businesses.some((b) => b.id === saved) ? saved : st.account.businesses[0].id;
+    st.account.current = st.biz; st.accountLoaded = true;
+    subscribeBiz(); afterStart();
   }
-  function afterStart() { drawSync(); drawHeader(); updateTabBadge(); render(true); if (mode === "db" && WEB) setTimeout(offerBrowserWork, 900); }
+  // Ask the browser not to clear this site's storage when space runs low.
+  // (Firefox asks the person, so it's only requested once there's a plan worth keeping.)
+  function keepStorage() {
+    try { if (navigator.storage && navigator.storage.persist) navigator.storage.persisted().then((yes) => { if (!yes) navigator.storage.persist(); }).catch(() => {}); } catch {}
+  }
+  function afterStart() {
+    const out = $("#out"); if (out) out.inert = false;
+    drawSync(); drawHeader(); updateTabBadge(); render(true);
+    if (mode === "db" && WEB) setTimeout(offerBrowserWork, 900);
+  }
+  // Other tabs in this browser: show their changes instead of overwriting them.
+  window.addEventListener("storage", (e) => {
+    if (mode !== "local" || !e.key) return;
+    if (e.key === ACC_LOCAL) {
+      const a = normAccount(lsGet(ACC_LOCAL, null)); st.account = { ...a, current: st.biz };
+      if (!a.businesses.some((b) => b.id === st.biz)) switchBiz(a.businesses[0].id, { quiet: true, force: true });
+      drawHeader(); onData("account"); return;
+    }
+    if (e.key === SAVES_LOCAL) { st.saves = lsGet(SAVES_LOCAL, []); onData("saves"); return; }
+    const kind = KINDS.concat("profile").find((k) => e.key === lkey(k)); if (!kind) return;
+    const v = lsGet(e.key, emptyOf(kind));
+    st[kind] = kind === "profile" ? v : v && typeof v === "object" ? v : emptyOf(kind);
+    onData(kind);
+  });
 
   // ----- Businesses
   const whenLoaded = () => new Promise((res) => { const t0 = Date.now(); const tick = () => ((st.tasksLoaded && st.profileLoaded) || Date.now() - t0 > 4000 ? res() : setTimeout(tick, 40)); tick(); });
   async function switchBiz(id, opts = {}) {
     if (!st.account || !st.account.businesses.some((b) => b.id === id)) return;
-    st.biz = id;
-    st.tasks = []; st.learn = {}; st.products = []; st.links = []; st.profile = null; st.tasksLoaded = st.profileLoaded = false;
+    if (st.busy && !opts.force) { toast("One moment: still finishing the last change."); return; }
+    st.biz = id; st.account.current = id;
+    st.tasks = []; st.learn = {}; st.products = []; st.links = []; st.sales = []; st.profile = null; st.tasksLoaded = st.profileLoaded = false;
     startSetup(false); st.editingProfile = false; ev.aiText = ""; ev.aiPrompt = "";
     if (mode === "db") subscribeBiz(); else loadLocal();
-    await saveAccount({ ...st.account, current: id });
-    updateTabBadge();
+    setCurrent(id);
+    updateTabBadge(); drawHeader();
     if (!opts.quiet) { setTab("today"); toast("Switched to " + curBiz().name + "."); }
   }
   async function createBiz(name) {
     const id = "b_" + newId();
-    await saveAccount({ ...st.account, businesses: st.account.businesses.concat(newBizEntry(id, name.trim().slice(0, 60) || "New business")) });
-    await switchBiz(id, { quiet: true });
+    if (!(await putBiz(id, newBizEntry(id, name.trim().slice(0, 60) || "New business")))) return;
+    await switchBiz(id, { quiet: true, force: true });
     setTab("today"); toast("Created " + curBiz().name + ". Answer five questions to build its plan.");
   }
   async function renameBiz(id, name) {
-    const n = name.trim().slice(0, 60); if (!n) return;
-    await saveAccount({ ...st.account, businesses: st.account.businesses.map((b) => (b.id === id ? { ...b, name: n } : b)) });
+    const n = name.trim().slice(0, 60); if (!n) return false;
+    return putBiz(id, { name: n });
   }
   async function deleteBiz(id) {
-    const list = st.account.businesses; if (list.length < 2) return;
+    const list = st.account.businesses; if (list.length < 2) return false;
     const back = st.biz === id ? list.find((b) => b.id !== id).id : st.biz;
-    if (st.biz !== id) await switchBiz(id, { quiet: true });
-    await whenLoaded(); await resetAll();
-    await saveAccount({ ...st.account, businesses: st.account.businesses.filter((b) => b.id !== id), current: back });
-    await switchBiz(back, { quiet: true });
+    try {
+      await bulk(async () => {
+        if (st.biz !== id) await switchBiz(id, { quiet: true, force: true });
+        await whenLoaded(); await resetAll();
+      });
+    } catch { await switchBiz(back, { quiet: true, force: true }); return false; }
+    await removeBiz(id);
+    await switchBiz(back, { quiet: true, force: true });
     render(true);
+    return true;
   }
 
   // ----- Saves: copies of a business you can restore later
-  const SAVE_MAX = 30, SAVE_MAX_LOCAL = 10;
-  function saveSummary() { return { tasks: st.tasks.length, done: st.tasks.filter((t) => t.status === "done").length, products: st.products.length, links: st.links.length, model: (st.profile && st.profile.model) || "" }; }
+  const SAVE_MAX = 30, SAVE_MAX_LOCAL = 10, LOCAL_SAVE_BUDGET = 2000000;
+  function saveSummary() { return { tasks: st.tasks.length, done: st.tasks.filter((t) => t.status === "done").length, products: st.products.length, links: st.links.length, sales: st.sales.length, model: (st.profile && st.profile.model) || "" }; }
+  const localSaves = () => { const v = lsGet(SAVES_LOCAL, []); return Array.isArray(v) ? v : []; };
   async function makeSave(name, auto) {
+    if (mode === "loading") return notReady() || null;
     const data = JSON.stringify(exportData());
     if (data.length > 800000) { toast("This business is too big to keep a copy here. Use Export a backup instead."); return null; }
     if (st.saves.length >= (mode === "db" ? SAVE_MAX : SAVE_MAX_LOCAL)) {
@@ -1877,35 +2077,52 @@
     const when = new Date().toLocaleString(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
     const doc = { name: String(name || "").trim().slice(0, 80) || "Saved " + when, at: Date.now(), biz: st.biz, bizName: curBiz().name, auto: !!auto, summary: saveSummary(), data };
     if (mode === "db") { const ok = await dbTry(() => db.doc(base() + "/account").collection("saves").doc(id).set(doc)); if (ok === true) return id; if (ok === null) return null; }
-    const next = [{ id, ...doc }].concat(st.saves).slice(0, SAVE_MAX_LOCAL);
-    if (!lsSet(SAVES_LOCAL, next)) { toast("This browser's storage is full. Delete an old save, or export a backup instead."); return null; }
+    const next = [{ id, ...doc }].concat(localSaves().filter((x) => x.id !== id)).slice(0, SAVE_MAX_LOCAL);
+    if (JSON.stringify(next).length > LOCAL_SAVE_BUDGET) { toast("Saves kept in this browser are limited to about 2 MB in total. Delete an old save, or export a backup instead."); return null; }
+    if (!lsWrite(SAVES_LOCAL, next)) return null;
     st.saves = next; noteLocalSave(); onData("saves"); return id;
   }
   async function removeSave(id) {
-    if (mode === "db") { const ok = await dbTry(() => db.doc(base() + "/account").collection("saves").doc(id).delete()); if (ok !== false) return; }
-    st.saves = st.saves.filter((x) => x.id !== id); lsSet(SAVES_LOCAL, st.saves); noteLocalSave(); onData("saves");
+    if (mode === "db") { const ok = await dbTry(() => db.doc(base() + "/account").collection("saves").doc(id).delete()); if (ok !== false) return ok === true; }
+    const next = localSaves().filter((x) => x.id !== id);
+    if (!lsWrite(SAVES_LOCAL, next)) return false;
+    st.saves = next; noteLocalSave(); onData("saves"); return true;
   }
   async function putSaveBack(s) {
     const { id, ...doc } = s;
-    if (mode === "db") { const ok = await dbTry(() => db.doc(base() + "/account").collection("saves").doc(id).set(doc)); if (ok !== false) return; }
-    st.saves = [s].concat(st.saves.filter((x) => x.id !== id)).sort((x, y) => (y.at || 0) - (x.at || 0)); lsSet(SAVES_LOCAL, st.saves); noteLocalSave(); onData("saves");
+    if (mode === "db") { const ok = await dbTry(() => db.doc(base() + "/account").collection("saves").doc(id).set(doc)); if (ok !== false) return ok === true; }
+    const next = [s].concat(localSaves().filter((x) => x.id !== id)).sort((x, y) => (y.at || 0) - (x.at || 0)).slice(0, SAVE_MAX_LOCAL);
+    if (!lsWrite(SAVES_LOCAL, next)) return false;
+    st.saves = next; noteLocalSave(); onData("saves"); return true;
   }
   async function restoreSave(s) {
     let data; try { data = JSON.parse(s.data); } catch { toast("That save couldn't be read."); return false; }
     if (!(await makeSave("Before restoring “" + s.name + "”", true))) return false;
-    await whenLoaded(); await resetAll();
-    await importData(data);
+    try {
+      await bulk(async () => { await whenLoaded(); await resetAll(); await importData(data); });
+    } catch { toast("The restore couldn't finish because storage is full. Your work from before is kept as a save.", { error: true }); return false; }
     render(true); toast("Restored “" + s.name + "”. Your work from before is kept as a save.");
     return true;
   }
   async function deleteEverything() {
-    for (const b of st.account.businesses.slice()) { await switchBiz(b.id, { quiet: true }); await whenLoaded(); await resetAll(); }
+    const keep = st.account.businesses.slice();
+    try {
+      await bulk(async () => {
+        for (const b of keep) { await switchBiz(b.id, { quiet: true, force: true }); await whenLoaded(); await resetAll(); }
+      });
+    } catch { return false; }
     for (const s of st.saves.slice()) await removeSave(s.id);
-    st.biz = "desk";
-    if (mode === "db") { await dbTry(() => db.doc(base() + "/account").delete()); st.account = normAccount(null); }
-    else { st.account = normAccount(null); lsSet(ACC_LOCAL, null); }
-    await switchBiz("desk", { quiet: true });
+    if (mode === "db") {
+      for (const b of keep) if (b.id !== "desk") await removeBiz(b.id);
+      await putBiz("desk", { name: "My business", model: "", channel: "", order: 0 });
+      for (const id of [...acc.badges]) await accDoc("account/badges/" + id, undefined);
+      acc.badges = new Set();
+      await setName("");
+    } else if (!lsWrite(ACC_LOCAL, normAccount(null))) return false;
+    st.account = mode === "db" ? (buildAccount(), st.account) : normAccount(null);
+    await switchBiz("desk", { quiet: true, force: true });
     drawHeader(); render(true);
+    return true;
   }
 
   // ---------------------------------------------------------------------------
@@ -2029,14 +2246,15 @@
       repeat: s.repeat || "none", createdAt: Date.now(), doneAt: null, source: "plan", step: s.id, day: s.day,
     };
   }
-  async function syncPlan(p) {
+  async function syncPlan(p) { return bulk(() => syncPlanNow(p)); }
+  async function syncPlanNow(p) {
     const steps = applicable(p);
     const wanted = new Set(steps.map((s) => s.id));
     const have = new Set(st.tasks.filter((t) => t.source === "plan").map((t) => t.step));
     for (const s of steps) if (!have.has(s.id)) await putTask("plan-" + s.id + "-" + newId(), stepTask(s, p, p.start));
-    for (const t of st.tasks) if (t.source === "plan" && !wanted.has(t.step) && t.status !== "done") await delTask(t.id);
+    for (const t of st.tasks.slice()) if (t.source === "plan" && !wanted.has(t.step) && t.status !== "done") await delTask(t.id);
     // Titles that depend on answers (e.g. the platform name) follow the current answers.
-    for (const t of st.tasks) {
+    for (const t of st.tasks.slice()) {
       if (t.source !== "plan" || !STEP[t.step] || !wanted.has(t.step)) continue;
       const title = val(STEP[t.step].title, p);
       if (t.title !== title && t.status !== "done") await putTask(t.id, { ...strip(t), title });
@@ -2044,8 +2262,8 @@
   }
   async function restartPlan() {
     const p = { ...st.profile, start: today() };
-    await saveProfile(p);
-    for (const t of st.tasks) if (t.source === "plan" && t.status !== "done") await putTask(t.id, { ...strip(t), due: addDays(p.start, (t.day || 1) - 1) });
+    if (!(await saveProfile(p))) return;
+    await bulk(async () => { for (const t of st.tasks.slice()) if (t.source === "plan" && t.status !== "done") await putTask(t.id, { ...strip(t), due: addDays(p.start, (t.day || 1) - 1) }); });
     toast("Plan dates now start today.");
   }
 
@@ -2056,22 +2274,24 @@
     const base = t.due && t.due > today() ? t.due : today();
     if (t.repeat === "daily") return addDays(base, 1);
     if (t.repeat === "weekly") return addDays(base, 7);
-    if (t.repeat === "monthly") return addMonth(base);
+    if (t.repeat === "monthly") return addMonth(base, t.repeatDay || (t.due ? Number(t.due.slice(8)) : 0));
     return null;
   }
   async function setStatus(t, status, opts = {}) {
     if (readOnly) return;
     const was = t.status;
     const before = strip(st.tasks.find((x) => x.id === t.id) || t);
-    await putTask(t.id, { ...strip(t), status, doneAt: status === "done" ? today() : null });
-    if (status === "done" && was !== "done") maybeCelebrate(t);
     let spawned = null, due = null;
-    if (status === "done" && was !== "done" && t.repeat && t.repeat !== "none") {
-      due = nextDue(t);
-      spawned = (t.source === "plan" ? "plan-" + t.step + "-" : "custom-") + newId();
-      await putTask(spawned, { ...strip(t), status: "todo", due, doneAt: null, createdAt: Date.now() });
-    }
-    const undo = async () => { await putTask(t.id, before); if (spawned) await delTask(spawned); };
+    const repeats = status === "done" && was !== "done" && t.repeat && t.repeat !== "none";
+    if (repeats) { due = nextDue(t); spawned = (t.source === "plan" ? "plan-" + t.step + "-" : "custom-") + newId(); }
+    // Reopening a repeating task removes the next copy it made, if that copy hasn't been started.
+    const made = was === "done" && status !== "done" && t.next ? st.tasks.find((x) => x.id === t.next && x.status === "todo") : null;
+    const ok = await putTask(t.id, { ...strip(t), status, doneAt: status === "done" ? today() : null, next: spawned || (made ? null : t.next || null) });
+    if (!ok) return false;
+    if (made) await delTask(made.id);
+    if (status === "done" && was !== "done") maybeCelebrate(t);
+    if (repeats) await putTask(spawned, { ...strip(t), status: "todo", due, doneAt: null, next: null, createdAt: Date.now(), repeatDay: t.repeatDay || (t.due ? Number(t.due.slice(8)) : null) });
+    const undo = async () => { await putTask(t.id, before); if (spawned) await delTask(spawned); if (made) await putTask(made.id, strip(made)); };
     if (opts.quiet) return undo;
     if (spawned) toast("Done. The next one is due " + fmtDue(due).toLowerCase() + ".", { undo });
     else if (status === "done") toast("Marked done.", { undo });
@@ -2085,6 +2305,7 @@
   // Rendering
   // ---------------------------------------------------------------------------
   function onData(kind) {
+    if (st.busy) { st.dirty = true; return; }
     updateTabBadge();
     if (kind === "account" || kind === "saves") { if ($("#acctDlg") && $("#acctDlg").open) drawAccount(); if (kind === "account" && st.tab === "today") render(); return; }
     scheduleBadges();
@@ -2095,6 +2316,7 @@
     else if (kind === "profile" && t === "tools") renderToolsDirectory();
     else if (kind === "products") drawSaved();
     else if (kind === "links" && t === "sites") render();
+    else if (kind === "sales" && (t === "today" || t === "tools")) render();
   }
   function updateTabBadge() {
     const td = today();
@@ -2128,6 +2350,7 @@
     const a = document.activeElement;
     const keep = a && KEEP.includes(a.id) ? { id: a.id, v: a.value, s: a.selectionStart, e: a.selectionEnd } : null;
     const drafts = KEEP.map((id) => { const x = $("#" + id); return x ? [id, x.value] : null; }).filter(Boolean);
+    const fk = !keep && a && a !== out && out.contains(a) ? focusKey(a) : null;
     out.textContent = "";
     if (st.tab === "today") out.append(renderToday());
     else if (st.tab === "plan") out.append(renderPlan());
@@ -2139,6 +2362,18 @@
     if (animate && root && !calm()) { root.classList.add("enter"); [...root.children].forEach((c, i) => c.style.setProperty("--i", Math.min(i, 8))); }
     drafts.forEach(([id, v]) => { const x = $("#" + id); if (x && !x.value && v && id !== "siteQ" && id !== "taskSearch") { x.value = v; x.dispatchEvent(new Event("input")); } });
     if (keep) { const x = $("#" + keep.id); if (x) { x.focus(); try { x.setSelectionRange(keep.s, keep.e); } catch {} } }
+    else if (fk) { const x = findByKey(out, fk); if (x) x.focus({ preventScroll: true }); else out.focus({ preventScroll: true }); }
+  }
+  // A stable name for a control, so the same control gets focus back after the screen is rebuilt.
+  function focusKey(x) {
+    if (x.id) return "#" + x.id;
+    if (x.dataset && x.dataset.fk) return "fk:" + x.dataset.fk;
+    return x.tagName + "|" + (x.getAttribute("role") || "") + "|" + (x.getAttribute("aria-label") || "") + "|" + (x.textContent || "").trim().slice(0, 60);
+  }
+  function findByKey(root, k) {
+    if (k.startsWith("#")) return root.querySelector(k.replace(/([^\w#-])/g, "\\$1"));
+    if (k.startsWith("fk:")) return [...root.querySelectorAll("[data-fk]")].find((x) => x.dataset.fk === k.slice(3)) || null;
+    return [...root.querySelectorAll("button, a[href], input, select, textarea, [tabindex]")].find((x) => focusKey(x) === k) || null;
   }
 
   // ----- Setup questions
@@ -2286,9 +2521,10 @@
       const prof = { level: a.level, model: a.model, channel: a.channel, country: a.country, ads: a.ads, start: (st.profile && st.profile.start) || today(), choices: (st.profile && st.profile.choices) || {} };
       save.disabled = true; save.textContent = "Building…";
       const first = !st.profile;
-      await saveProfile(prof);
+      if (!(await saveProfile(prof))) { save.disabled = false; save.textContent = first ? "Build my plan" : "Update my plan"; return; }
       st.profile = prof; st.editingProfile = false; setup.draft = null;
-      await syncPlan(prof);
+      try { await syncPlan(prof); } catch {}
+      keepStorage();
       ensureFeeDefaults(true);
       toast(first ? "Your plan is ready. Here's your first step." : "Your plan is updated.");
       if (first) setTab("today"); else render();
@@ -2370,7 +2606,7 @@
 
   function stepRow(t, showDue) {
     const r = el("div", "step" + (t.status === "done" ? " done" : ""));
-    const c = el("button", "check"); c.type = "button"; c.setAttribute("role", "checkbox");
+    const c = el("button", "check"); c.type = "button"; c.setAttribute("role", "checkbox"); c.dataset.fk = "chk:" + t.id;
     c.setAttribute("aria-checked", String(t.status === "done")); c.setAttribute("aria-label", "Mark done: " + t.title);
     c.innerHTML = CHECK_SVG; c.disabled = readOnly; c.onclick = () => { if (t.status !== "done") { burst(c); c.classList.add("pop"); } toggleDone(t); };
     const main = el("button", "main"); main.type = "button";
@@ -2773,7 +3009,7 @@
     const order = planOrder();
     const oneOff = order.filter((t) => !STEP[t.step].ongoing);
     const done = oneOff.filter((t) => t.status === "done").length;
-    const dayN = Math.floor((parse(td) - parse(p.start)) / 864e5) + 1;
+    const dayN = Math.round((parse(td) - parse(p.start)) / 864e5) + 1;
 
     const head = el("div", "hello");
     const h = el("div"); h.style.display = "grid"; h.style.gap = "4px";
@@ -2839,7 +3075,7 @@
       const r = parseQuick(qi.value); if (!r.title) { qi.focus(); return; }
       qi.value = ""; upd();
       const id = "custom-" + newId();
-      const due = r.due || td;
+      const due = r.due || today();
       await putTask(id, { title: r.title, area: r.area || lsGet("dd-lastArea", "orders"), prio: r.prio || "med", due, status: "todo", product: "", supplier: "", ref: "", notes: "", repeat: "none", createdAt: Date.now(), doneAt: null, source: "custom" });
       toast("Added, due " + fmtDue(due).toLowerCase() + ".", { undo: () => delTask(id) });
       setTimeout(() => { const x = $("#quickAdd"); if (x) x.focus(); }, 0);
@@ -3101,7 +3337,7 @@
     const chips = el("div", "chips"); chips.setAttribute("role", "group"); chips.setAttribute("aria-label", "Filter by area");
     const counts = {}; open.forEach((t) => (counts[t.area] = (counts[t.area] || 0) + 1));
     [["all", "All", open.length], ...AREAS.filter(([k]) => counts[k]).map(([k, v]) => [k, v, counts[k]])].forEach(([k, v, n]) => {
-      const b = el("button", "chip"); b.type = "button"; b.setAttribute("aria-pressed", String(u.area === k));
+      const b = el("button", "chip"); b.type = "button"; b.setAttribute("aria-pressed", String(u.area === k)); b.dataset.fk = "area:" + k;
       b.append(el("span", null, v), el("span", "n", String(n)));
       b.onclick = () => { u.area = k; saveUi(); render(); };
       chips.append(b);
@@ -3159,7 +3395,8 @@
   }
   function metaLine(t) {
     const m = el("div", "meta");
-    const p = el("span", "prio " + (t.prio || "med")); p.title = "Priority: " + ({ high: "High", med: "Medium", low: "Low" }[t.prio] || "Medium"); m.append(p);
+    const pw = ({ high: "High", med: "Medium", low: "Low" }[t.prio] || "Medium") + " priority";
+    const p = el("span", "prio " + (t.prio || "med")); p.title = pw; p.append(el("span", "sr-only", pw)); m.append(p);
     m.append(el("span", "tag", AREA[t.area] || "Other"));
     if (t.source === "plan") m.append(el("span", "tag guide", t.day && !(STEP[t.step] && STEP[t.step].ongoing) ? "Plan · Day " + t.day : "Plan"));
     if (t.status === "doing") m.append(el("span", "pill doing", "In progress"));
@@ -3178,7 +3415,7 @@
   }
   function row(t) {
     const r = el("div", "row" + (t.status === "done" ? " done" : ""));
-    const c = el("button", "check"); c.type = "button"; c.setAttribute("role", "checkbox");
+    const c = el("button", "check"); c.type = "button"; c.setAttribute("role", "checkbox"); c.dataset.fk = "chk:" + t.id;
     c.setAttribute("aria-checked", String(t.status === "done")); c.setAttribute("aria-label", "Mark done: " + t.title);
     c.innerHTML = CHECK_SVG; c.disabled = readOnly; c.onclick = () => { if (t.status !== "done") { burst(c); c.classList.add("pop"); } toggleDone(t); };
     const main = el("button", "main"); main.type = "button";
@@ -3237,9 +3474,10 @@
     const data = { ...strip(t), title: $("#fTitle").value.trim() || t.title, area: $("#fArea").value, prio: $("#fPrio").value,
       due: $("#fDue").value || null, product: $("#fProduct").value.trim(), supplier: $("#fSupplier").value.trim(),
       ref: $("#fRef").value.trim(), repeat: $("#fRepeat").value, notes: $("#fNotes").value };
-    $("#editDlg").close();
-    if (status !== t.status) await setStatus({ id: t.id, ...data }, status);
-    else { await putTask(t.id, data); toast("Saved."); }
+    let ok;
+    if (status !== t.status) ok = (await setStatus({ id: t.id, ...data }, status)) !== false;
+    else { ok = await putTask(t.id, data); if (ok) toast("Saved."); }
+    if (ok) $("#editDlg").close();
   });
   $("#delBtn").onclick = async () => {
     const t = editing; $("#editDlg").close();
@@ -3727,7 +3965,9 @@
           const roy = rate * Pp - Pc;
           oLine(out, "Royalty rate", Math.round(rate * 100) + "%");
           oBig(out, "Royalty per copy", money(roy), roy > 0 ? "pos" : "neg");
-          oLine(out, "Lowest list price KDP allows", money(Pc / rate));
+          // 60% from $9.99, 50% below: the lowest price is the printing cost divided by the rate that applies at that price.
+          const m60 = Pc / 0.6, m50 = Pc / 0.5, lowest = m60 >= 9.99 ? m60 : m50 < 9.99 ? m50 : 9.99;
+          oLine(out, "Lowest list price KDP allows", money(lowest));
           if (goal && roy > 0) oLine(out, "Paperbacks a month for your goal", Math.ceil(goal / roy).toLocaleString());
         }
       }
@@ -4345,7 +4585,8 @@
     uf.append(ul2, us); form.append(uf);
     const calc = () => {
       out.textContent = "";
-      const order = CV.dOrder || today(), H = nv("handling") ?? 0, a = nv("shipMin"), b = nv("shipMax") ?? nv("shipMin"), unit = CV.dUnit || "calendar";
+      const days = (v) => (v == null ? v : Math.max(0, Math.min(365, Math.round(v))));
+      const order = CV.dOrder || today(), H = days(nv("handling")) ?? 0, a = days(nv("shipMin")), b = days(nv("shipMax")) ?? a, unit = CV.dUnit || "calendar";
       if (a == null && b == null) { out.append(el("p", "muted", "Enter the supplier's shipping time to see your delivery window.")); return; }
       const lo = a ?? b, hi = b ?? a;
       const shipDate = addBiz(order, H), first = deliverBy(order, H, lo, unit), last = deliverBy(order, H, hi, unit);
@@ -4526,7 +4767,7 @@
     const have = new Set(st.account.badges);
     const fresh = BADGES.filter(([id, , , test]) => !have.has(id) && test());
     if (!fresh.length) { badgeReady = true; return; }
-    await saveAccount({ ...st.account, badges: st.account.badges.concat(fresh.map((b) => b[0])) });
+    await addBadges(fresh.map((b) => b[0]));
     if (badgeReady) { justEarned = fresh.map((b) => b[0]); toast("Milestone reached: " + fresh.map((b) => b[1]).join(", ") + ". See it in your account."); }
     badgeReady = true;
   }
@@ -4592,7 +4833,7 @@
     const ni = el("input"); ni.type = "text"; ni.id = "acctName"; ni.maxLength = 60; ni.value = st.account.name || ""; ni.placeholder = viewerName || "What should the app call you?"; ni.setAttribute("aria-label", "Your name");
     const nb = el("button", "btn primary", "Save name"); nb.type = "submit";
     nf.append(ni, nb); ns.append(nf, el("p", "small muted", "Shown only to you, in your greeting and on your account button."));
-    nf.addEventListener("submit", async (e) => { e.preventDefault(); await saveAccount({ ...st.account, name: ni.value }); toast(ni.value.trim() ? "Saved. Hi, " + ni.value.trim() + "." : "Name cleared."); drawAccount(); if (st.tab === "today") render(); });
+    nf.addEventListener("submit", async (e) => { e.preventDefault(); if (!(await setName(ni.value))) return; toast(ni.value.trim() ? "Saved. Hi, " + ni.value.trim() + "." : "Name cleared."); drawAccount(); if (st.tab === "today") render(); });
     box.append(ns);
     // Businesses
     const bs = el("section", "acct-sec"); bs.id = "acct-biz";
@@ -4619,7 +4860,7 @@
         const del = el("button", "btn sm danger", "Delete"); del.type = "button"; del.setAttribute("aria-label", "Delete " + b.name);
         del.onclick = async () => {
           if (!del.classList.contains("armed")) { del.classList.add("armed"); del.textContent = "Delete its plan and tasks"; return; }
-          del.disabled = true; del.textContent = "Deleting…"; await deleteBiz(b.id); toast("Deleted " + b.name + "."); drawAccount();
+          del.disabled = true; del.textContent = "Deleting…"; const ok = await deleteBiz(b.id); toast(ok ? "Deleted " + b.name + "." : "Couldn't delete " + b.name + ". Try again.", ok ? {} : { error: true }); drawAccount();
         };
         act.append(del);
       }
@@ -4675,7 +4916,7 @@
     const dzb = el("button", "btn sm danger", "Delete everything…"); dzb.type = "button"; dzb.style.justifySelf = "start";
     dzb.onclick = async () => {
       if (!dzb.classList.contains("armed")) { dzb.classList.add("armed"); dzb.textContent = "Yes, delete everything"; dzs.textContent = "Export a backup first if you might want any of it back."; return; }
-      dzb.disabled = true; dzs.textContent = "Deleting…"; await deleteEverything(); dzs.textContent = "Everything was deleted."; drawAccount();
+      dzb.disabled = true; dzs.textContent = "Deleting…"; const ok = await deleteEverything(); dzs.textContent = ok ? "Everything was deleted." : "Not everything could be deleted. Try again."; drawAccount();
     };
     dz.append(dzb, dzs); box.append(dz);
     if (WEB && mode === "db") box.append(deleteAccountSection());
@@ -4689,9 +4930,17 @@
     const r = el("div", "row-gap acct-sign");
     if (mode === "db") {
       const so = el("button", "btn sm", "Sign out"); so.type = "button"; so.id = "signOutBtn";
-      so.onclick = async () => { so.disabled = true; so.textContent = "Signing out…"; await PLAT.signOut(); };
+      so.onclick = async () => {
+        const waiting = PLAT.pendingCount();
+        if (waiting && !so.classList.contains("armed")) {
+          so.classList.add("armed", "danger"); so.textContent = "Sign out anyway";
+          toast((waiting === 1 ? "1 change hasn't" : waiting + " changes haven't") + " reached your account yet (no connection). Signing out now loses " + (waiting === 1 ? "it." : "them."), { error: true });
+          return;
+        }
+        so.disabled = true; so.textContent = "Signing out…"; await PLAT.signOut({ force: true });
+      };
       r.append(so);
-      if (browserWork().businesses.length) { const bw = el("button", "btn sm", "Copy this browser's work into your account"); bw.type = "button"; bw.onclick = () => { $("#acctDlg").close(); offerBrowserWork(true); }; r.append(bw); }
+      if (browserWork().businesses.length && lsGet(answeredKey(), null) !== "copied") { const bw = el("button", "btn sm", "Copy this browser's work into your account"); bw.type = "button"; bw.onclick = () => { $("#acctDlg").close(); offerBrowserWork(true); }; r.append(bw); }
     } else {
       const ca = el("button", "btn sm primary", "Create an account or sign in"); ca.type = "button"; ca.id = "createAcctBtn";
       ca.onclick = () => { $("#acctDlg").close(); PLAT.showAuth("signup"); };
@@ -4761,24 +5010,27 @@
     d.showModal(); go.focus();
   }
   async function copyBrowserWork(w) {
-    let n = 0;
-    for (const b of w.businesses) {
-      await whenLoaded();
-      const empty = !st.profile && !st.tasks.length && !st.products.length && !st.links.length && !Object.keys(st.learn).length;
-      if (empty && st.account.businesses.length === 1 && n === 0) await renameBiz(st.biz, b.name);
-      else {
-        const id = "b_" + newId();
-        await saveAccount({ ...st.account, businesses: st.account.businesses.concat(newBizEntry(id, b.name)) });
-        await switchBiz(id, { quiet: true }); await whenLoaded();
+    let n = 0, failed = 0;
+    await bulk(async () => {
+      for (const b of w.businesses) {
+        await whenLoaded();
+        const empty = !st.profile && !st.tasks.length && !st.products.length && !st.links.length && !st.sales.length && !Object.keys(st.learn).length;
+        if (empty && st.account.businesses.length === 1 && n === 0) { if (!(await renameBiz(st.biz, b.name))) failed++; }
+        else {
+          const id = "b_" + newId();
+          if (!(await putBiz(id, newBizEntry(id, b.name)))) { failed++; continue; }
+          await switchBiz(id, { quiet: true, force: true }); await whenLoaded();
+        }
+        const r = await importData(b.data); failed += r.failed || 0; n++;
       }
-      await importData(b.data); n++;
-    }
-    for (const s of w.saves.slice(0, SAVE_MAX)) {
-      if (!s || typeof s.id !== "string" || typeof s.data !== "string" || st.saves.some((x) => x.id === s.id) || st.saves.length >= SAVE_MAX) continue;
-      await putSaveBack(s);
-    }
-    const badges = [...new Set(st.account.badges.concat(w.badges.filter((x) => typeof x === "string")))];
-    await saveAccount({ ...st.account, name: st.account.name || String(w.name || "").slice(0, 60), badges });
+      for (const s of w.saves.slice(0, SAVE_MAX)) {
+        if (!s || typeof s.id !== "string" || typeof s.data !== "string" || st.saves.some((x) => x.id === s.id) || st.saves.length >= SAVE_MAX) continue;
+        if (!(await putSaveBack(s))) failed++;
+      }
+      if (!st.account.name && w.name) await setName(String(w.name).slice(0, 60));
+      await addBadges(w.badges.filter((x) => typeof x === "string" && !st.account.badges.includes(x)));
+    });
+    if (failed) throw new Error("Some of it didn't copy");
     setTab("today"); render(true);
     return n;
   }
@@ -4964,7 +5216,7 @@
   applyTheme(lsGet(THEME_KEY, "system"));
   function exportData() {
     return { app: "startline", format: 1, exportedAt: new Date().toISOString(), business: curBiz().name, profile: st.profile || null,
-      tasks: st.tasks, learn: Object.entries(st.learn).map(([id, v]) => ({ id, ...v })), products: st.products, links: st.links, calculators: CV };
+      tasks: st.tasks, learn: Object.entries(st.learn).map(([id, v]) => ({ id, ...v })), products: st.products, links: st.links, sales: st.sales, calculators: CV };
   }
   async function saveExport(status) {
     const json = JSON.stringify(exportData(), null, 1);
@@ -4980,33 +5232,43 @@
   const clean = (v, n = 2000) => (typeof v === "string" ? v.slice(0, n) : "");
   async function importData(obj) {
     if (!obj || (obj.app !== "startline" && obj.app !== "dropship-desk")) throw new Error("That file isn't a Startline backup.");
-    let n = { tasks: 0, learn: 0, products: 0, links: 0 };
+    let n = { tasks: 0, learn: 0, products: 0, links: 0, sales: 0, failed: 0 };
     const okId = (id) => typeof id === "string" && /^[\w-]{1,120}$/.test(id);
+    const put = async (kind, id, data) => { if (await putDoc(kind, id, data)) return true; n.failed++; return false; };
+    // A plan step that's already in this business isn't added twice; a finished one stays finished.
+    const planHas = new Map(st.tasks.filter((x) => x.source === "plan" && x.step).map((x) => [x.step, x]));
     for (const t of Array.isArray(obj.tasks) ? obj.tasks.slice(0, 2000) : []) {
       if (!t || !okId(t.id) || !clean(t.title)) continue;
-      await putTask(t.id, { title: clean(t.title, 300), area: AREA[t.area] ? t.area : "orders", prio: PRIO_RANK[t.prio] != null ? t.prio : "med",
+      const have = t.source === "plan" && STEP[t.step] ? planHas.get(t.step) : null;
+      if (have && have.id !== t.id) {
+        if (t.status === "done" && have.status !== "done") { if (await put("tasks", have.id, { ...strip(have), status: "done", doneAt: /^\d{4}-\d{2}-\d{2}$/.test(t.doneAt || "") ? t.doneAt : today() })) n.tasks++; }
+        continue;
+      }
+      if (await put("tasks", t.id, { title: clean(t.title, 300), area: AREA[t.area] ? t.area : "orders", prio: PRIO_RANK[t.prio] != null ? t.prio : "med",
         due: /^\d{4}-\d{2}-\d{2}$/.test(t.due || "") ? t.due : null, status: STATUSES.some(([k]) => k === t.status) ? t.status : "todo",
         product: clean(t.product, 200), supplier: clean(t.supplier, 200), ref: clean(t.ref, 200), notes: clean(t.notes),
         repeat: ["none", "daily", "weekly", "monthly"].includes(t.repeat) ? t.repeat : "none", createdAt: Number(t.createdAt) || Date.now(),
         doneAt: /^\d{4}-\d{2}-\d{2}$/.test(t.doneAt || "") ? t.doneAt : null, source: t.source === "plan" && STEP[t.step] ? "plan" : "custom",
-        ...(t.source === "plan" && STEP[t.step] ? { step: t.step, day: Number(t.day) || STEP[t.step].day } : {}) });
-      n.tasks++;
+        ...(t.source === "plan" && STEP[t.step] ? { step: t.step, day: Number(t.day) || STEP[t.step].day } : {}) })) n.tasks++;
     }
-    for (const l of Array.isArray(obj.learn) ? obj.learn : []) { if (l && okId(l.id)) { await putDoc("learn", l.id, { done: true, at: /^\d{4}-\d{2}-\d{2}$/.test(l.at || "") ? l.at : today() }); n.learn++; } }
-    for (const x of Array.isArray(obj.links) ? obj.links.slice(0, 500) : []) { const u = x && safeUrl(x.url); if (u && okId(x.id)) { await putDoc("links", x.id, { name: clean(x.name, 120) || new URL(u).hostname, url: u, addedAt: today() }); n.links++; } }
+    for (const l of Array.isArray(obj.learn) ? obj.learn.slice(0, 500) : []) { if (l && okId(l.id) && (await put("learn", l.id, { done: true, at: /^\d{4}-\d{2}-\d{2}$/.test(l.at || "") ? l.at : today() }))) n.learn++; }
+    for (const x of Array.isArray(obj.links) ? obj.links.slice(0, 500) : []) { const u = x && safeUrl(x.url); if (u && okId(x.id) && (await put("links", x.id, { name: clean(x.name, 120) || new URL(u).hostname, url: u, addedAt: today() }))) n.links++; }
     const num = (v) => (v == null || v === "" || !isFinite(Number(v)) ? null : Number(v));
     for (const x of Array.isArray(obj.products) ? obj.products.slice(0, 500) : []) {
       if (!x || !okId(x.id) || !clean(x.name)) continue;
-      await saveProduct(x.id, { name: clean(x.name, 200), link: safeUrl(x.link) || "", source: clean(x.source, 40), price: num(x.price), cost: num(x.cost), ship: num(x.ship), minDays: num(x.minDays), maxDays: num(x.maxDays),
-        shipsFrom: clean(x.shipsFrom, 10), profit: num(x.profit), margin: num(x.margin), breakEven: num(x.breakEven), bad: num(x.bad) || 0, warn: num(x.warn) || 0, fee: clean(x.fee, 40), savedAt: /^\d{4}-\d{2}-\d{2}$/.test(x.savedAt || "") ? x.savedAt : today() });
-      n.products++;
+      if (await put("products", x.id, { name: clean(x.name, 200), link: safeUrl(x.link) || "", source: clean(x.source, 40), price: num(x.price), cost: num(x.cost), ship: num(x.ship), minDays: num(x.minDays), maxDays: num(x.maxDays),
+        shipsFrom: clean(x.shipsFrom, 10), profit: num(x.profit), margin: num(x.margin), breakEven: num(x.breakEven), bad: num(x.bad) || 0, warn: num(x.warn) || 0, fee: clean(x.fee, 40), savedAt: /^\d{4}-\d{2}-\d{2}$/.test(x.savedAt || "") ? x.savedAt : today() })) n.products++;
+    }
+    for (const x of Array.isArray(obj.sales) ? obj.sales.slice(0, 5000) : []) {
+      if (!x || !okId(x.id) || !/^\d{4}-\d{2}-\d{2}$/.test(x.date || "") || num(x.amount) == null) continue;
+      if (await put("sales", x.id, { date: x.date, amount: num(x.amount), fees: num(x.fees) || 0, costs: num(x.costs) || 0, qty: Math.max(1, Math.round(num(x.qty) || 1)), item: clean(x.item, 120), platform: clean(x.platform, 40), note: clean(x.note, 500), currency: /^[A-Z]{3}$/.test(x.currency || "") ? x.currency : "", at: Number(x.at) || Date.now() })) n.sales++;
     }
     const p = obj.profile;
     if (p && MODEL_NAME[p.model] && (CHANNELS[p.model] || []).some((c) => c[0] === p.channel) && ["new", "store", "selling"].includes(p.level) && ["us", "uk", "other"].includes(p.country)) {
       const choices = {};
       Object.entries(p.choices && typeof p.choices === "object" ? p.choices : {}).forEach(([g, id]) => { if (CHOICES[g] && CHOICES[g].items.includes(id)) choices[g] = id; });
-      await saveProfile({ level: p.level, model: p.model, channel: p.channel, country: p.country, ads: p.ads === "some" ? "some" : "none", start: /^\d{4}-\d{2}-\d{2}$/.test(p.start || "") ? p.start : today(), choices });
-      n.profile = true;
+      if (!(await saveProfile({ level: p.level, model: p.model, channel: p.channel, country: p.country, ads: p.ads === "some" ? "some" : "none", start: /^\d{4}-\d{2}-\d{2}$/.test(p.start || "") ? p.start : today(), choices }))) n.failed++;
+      else n.profile = true;
     }
     return n;
   }
@@ -5015,6 +5277,7 @@
     for (const id of Object.keys(st.learn)) await delDoc("learn", id);
     for (const x of st.products.slice()) await deleteProduct(x.id);
     for (const x of st.links.slice()) await delDoc("links", x.id);
+    for (const x of st.sales.slice()) await delDoc("sales", x.id);
     await clearProfile();
   }
   function openSettings(focus) {
@@ -5044,8 +5307,11 @@
       if (f.size > 5e6) { status.textContent = "That file is too big to be a backup."; return; }
       status.textContent = "Importing…";
       try {
-        const n = await importData(JSON.parse(await f.text()));
-        status.textContent = "Imported " + n.tasks + " tasks, " + n.products + " saved products, " + n.links + " sites and " + n.learn + " finished lessons and courses" + (n.profile ? ", plus your plan answers." : ".");
+        const obj = JSON.parse(await f.text());
+        if (!obj || (obj.app !== "startline" && obj.app !== "dropship-desk")) throw new Error("That file isn't a Startline backup.");
+        if (st.tasks.length || st.profile) await makeSave("Before importing " + f.name.slice(0, 40), true);
+        const n = await bulk(() => importData(obj));
+        status.textContent = "Imported " + n.tasks + " tasks, " + n.products + " saved products, " + n.links + " sites, " + n.sales + " sales and " + n.learn + " finished lessons and courses" + (n.profile ? ", plus your plan answers." : ".") + (n.failed ? " " + n.failed + " couldn't be saved." : "") + (st.saves.some((x) => x.name.startsWith("Before importing")) ? " Your work from before is kept as a save." : "");
         render();
       } catch (e) { status.textContent = e && e.message && !/JSON/.test(e.message) ? e.message : "That file couldn't be read. Choose a backup exported from this app."; }
       fileIn.value = "";
@@ -5054,7 +5320,7 @@
     const rs = el("button", "btn sm danger", "Delete this business's data…"); rs.type = "button";
     rs.onclick = async () => {
       if (!rs.classList.contains("armed")) { rs.classList.add("armed"); rs.textContent = "Yes, delete its plan, tasks, products and sites"; status.textContent = "This can't be undone. Save a copy or export a backup first if you might want it back."; return; }
-      rs.disabled = true; status.textContent = "Deleting…"; await resetAll(); status.textContent = "Everything in " + curBiz().name + " was deleted."; startSetup(false); render();
+      rs.disabled = true; status.textContent = "Deleting…"; try { await bulk(() => resetAll()); } catch { status.textContent = "Not everything could be deleted."; rs.disabled = false; return; } status.textContent = "Everything in " + curBiz().name + " was deleted."; startSetup(false); render();
     };
     da.append(rs); box.append(da);
     // Installing the web app
@@ -5098,11 +5364,18 @@
   $("#bizBtn").onclick = () => openAccount("biz");
   updateAiBtn(); drawSync();
   if (WEB) document.addEventListener("startline:install", () => { if ($("#setDlg").open && !$("#set-install button")) openSettings("install"); });
+  // Nothing can be changed until your saved work has loaded.
+  $("#out").inert = true;
+  // Every window gets a spoken name from its heading.
+  document.querySelectorAll("dialog").forEach((d) => {
+    const show = d.showModal.bind(d);
+    d.showModal = () => { const h = d.querySelector("h2"); if (h) { if (!h.id) h.id = d.id + "-title"; d.setAttribute("aria-labelledby", h.id); } show(); };
+  });
   setTab(TABS.includes(st.tab) ? st.tab : "today");
   startStorage();
   claudeUse("sample").then((s) => { sample = s; updateAiBtn(); if (st.tab === "tools") renderTool(); });
   claudeUse("downloads").then((d) => { downloads = d; });
   // Test hook for the automated checks; inert unless a test sets the flag first.
-  if (window.__ddTest) window.__dd = { S, GUIDE, STEP, LESSONS, COURSES, TOOLS, TOOL_LIST, CHANNELS, MODELS, QUESTIONS, FEES, DEFAULT_FEE, ADS_MODELS, val, parseQuick, today, addDays, applicable, O, CHOICES, STEP_CHOICE, choiceFor, optItems, planChoiceGroups };
+  if (window.__ddTest) window.__dd = { S, GUIDE, STEP, LESSONS, COURSES, TOOLS, TOOL_LIST, CHANNELS, MODELS, QUESTIONS, FEES, DEFAULT_FEE, ADS_MODELS, val, parseQuick, today, addDays, addMonth, applicable, O, CHOICES, STEP_CHOICE, choiceFor, optItems, planChoiceGroups };
   setInterval(() => { if (document.visibilityState === "visible" && (st.tab === "plan" || st.tab === "tasks" || st.tab === "today") && !anyDialog() && !typing(document.activeElement)) render(); }, 60 * 60 * 1000);
 })();

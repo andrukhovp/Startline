@@ -9,6 +9,11 @@
  * row-level security keeps private to each account. It also adds what a
  * stand-alone app needs: the sign-in screen, password reset, sign-out,
  * account deletion, installing, and offline support.
+ *
+ * Saving works offline-first: every account keeps a copy of its documents on
+ * the device (IndexedDB), changes are queued on the device and sent when
+ * there is a connection, and the app never opens an empty account because
+ * the server couldn't be reached.
  */
 (() => {
   "use strict";
@@ -19,9 +24,7 @@
   const recovering = urlHash.get("type") === "recovery";
   const linkError = urlHash.get("error_description") || urlHash.get("error") || "";
   if (linkError) history.replaceState(null, "", location.pathname + location.search);
-  const createClient = window.__startlineCreateClient || (window.supabase && window.supabase.createClient);
-  const sb = configured && createClient ? createClient(CFG.supabaseUrl, CFG.supabaseAnonKey, { auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true } }) : null;
-  const GUEST_KEY = "sl-guest";
+  let sb = null;
   const ls = {
     get: (k) => { try { return localStorage.getItem(k); } catch { return null; } },
     set: (k, v) => { try { localStorage.setItem(k, v); } catch {} },
@@ -32,76 +35,232 @@
   const here = () => location.origin + location.pathname;
   let reloading = false;
   const reload = () => { if (reloading) return; reloading = true; location.reload(); };
+  const emit = (name, detail) => document.dispatchEvent(new CustomEvent(name, { detail }));
   function notice(text) {
     const t = $("#toast"); if (!t) return;
     t.textContent = text; t.hidden = false; setTimeout(() => { t.hidden = true; }, 3500);
   }
+  // The sign-in library is only downloaded when accounts are switched on.
+  function loadClient() {
+    if (window.__startlineCreateClient) return Promise.resolve(window.__startlineCreateClient);
+    if (window.supabase && window.supabase.createClient) return Promise.resolve(window.supabase.createClient);
+    return new Promise((resolve, reject) => {
+      const s = document.createElement("script");
+      s.src = "vendor/supabase.js";
+      s.onload = () => (window.supabase && window.supabase.createClient ? resolve(window.supabase.createClient) : reject(new Error("no client")));
+      s.onerror = () => reject(new Error("couldn't load"));
+      document.head.append(s);
+    });
+  }
+
+  // ---------------------------------------------------------------------------
+  // The copy kept on this device: documents as last confirmed by the server,
+  // changes still waiting to be sent, and when we last checked. Keyed by
+  // account, so two people sharing a device never see each other's work.
+  // ---------------------------------------------------------------------------
+  function deviceStore(uid) {
+    const SEP = "\u0001";
+    const key = (p) => uid + SEP + p;
+    const range = () => IDBKeyRange.bound(uid + SEP, uid + SEP + "￿");
+    let dbp = null;
+    const open = () => dbp || (dbp = new Promise((resolve, reject) => {
+      if (!window.indexedDB) { reject(new Error("no IndexedDB")); return; }
+      const r = indexedDB.open("startline", 1);
+      r.onupgradeneeded = () => { const d = r.result; ["docs", "outbox", "meta"].forEach((n) => { if (!d.objectStoreNames.contains(n)) d.createObjectStore(n); }); };
+      r.onsuccess = () => resolve(r.result);
+      r.onerror = () => reject(r.error);
+      r.onblocked = () => reject(new Error("blocked"));
+    }));
+    const run = (names, mode, fn) => open().then((d) => new Promise((resolve, reject) => {
+      const t = d.transaction(names, mode);
+      const out = fn(...names.map((n) => t.objectStore(n)));
+      t.oncomplete = () => resolve(out);
+      t.onerror = () => reject(t.error);
+      t.onabort = () => reject(t.error);
+    }));
+    let chain = Promise.resolve();
+    const later = (fn) => (chain = chain.then(fn, fn).catch(() => {}));
+    const pairs = (keysReq, valsReq) => keysReq.result.map((k, i) => [String(k).slice(uid.length + 1), valsReq.result[i]]);
+    return {
+      async load() {
+        try {
+          const r = await run(["docs", "outbox", "meta"], "readonly", (d, o, m) => ({ dk: d.getAllKeys(range()), dv: d.getAll(range()), ok: o.getAllKeys(range()), ov: o.getAll(range()), meta: m.get(uid) }));
+          return { docs: new Map(pairs(r.dk, r.dv)), outbox: new Map(pairs(r.ok, r.ov)), meta: r.meta.result || null };
+        } catch { return null; }
+      },
+      queue: (p, v) => later(() => run(["outbox"], "readwrite", (o) => o.put(v, key(p)))),
+      unqueue: (p) => later(() => run(["outbox"], "readwrite", (o) => o.delete(key(p)))),
+      commit: (list, meta) => later(() => run(["docs", "meta"], "readwrite", (d, m) => {
+        list.forEach(([p, v]) => (v === null ? d.delete(key(p)) : d.put(v, key(p))));
+        if (meta) m.put(meta, uid);
+      })),
+      clear: () => later(() => run(["docs", "outbox", "meta"], "readwrite", (d, o, m) => { d.delete(range()); o.delete(range()); m.delete(uid); })),
+      idle: () => chain,
+    };
+  }
 
   // ---------------------------------------------------------------------------
   // Documents. The app uses paths like "data/users/<id>/desk/tasks/t1"; each
-  // row stores the part after "data/users/<id>/". All of this person's rows
-  // are kept in memory, so reads are instant and work offline; writes go to
-  // the server straight away and are undone on screen if they fail.
+  // row stores the part after "data/users/<id>/".
   // ---------------------------------------------------------------------------
+  let syncState = { pending: 0, offline: false };
   function makeDb(uid) {
     const PREFIX = "data/users/" + uid + "/";
-    const cache = new Map();
+    const store = deviceStore(uid);
+    const cache = new Map();   // what the app sees: server copy + changes not yet sent
+    const server = new Map();  // last copy confirmed by the server
+    const pending = new Map(); // path -> { data (null = delete), seq }
+    const ver = new Map();     // path -> change counter, for cheap change detection
     const listeners = new Set();
+    let seq = 0, lastSeen = null, offline = false, sending = false, pulling = false, retryTimer = null, backoff = 2000, lastAuthTry = 0;
     const rel = (p) => (typeof p === "string" && p.startsWith(PREFIX) && p.length > PREFIX.length ? p.slice(PREFIX.length) : null);
-    const fail = (e, code) => {
-      const status = e && (e.status || e.statusCode);
-      const c = code || (e && (e.code === "42501" || status === 401 || status === 403) ? "not_granted" : e && e.code === "23514" ? "quota_exceeded" : "unavailable");
-      const x = new Error((e && e.message) || c); x.code = c; return x;
+    const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+    const setCache = (p, v) => {
+      if (v === undefined || v === null) { if (!cache.has(p)) return false; cache.delete(p); }
+      else { if (cache.has(p) && same(cache.get(p), v)) return false; cache.set(p, v); }
+      ver.set(p, (ver.get(p) || 0) + 1); return true;
     };
     let timer = null;
     const notify = () => { clearTimeout(timer); timer = setTimeout(() => listeners.forEach((fn) => { try { fn(); } catch (e) { console.error(e); } }), 0); };
-    let writes = 0, inFlight = 0, stamp = null;
-    async function fetchAll() {
-      const fresh = new Map(); let from = 0;
+    const status = () => { syncState = { pending: pending.size, offline }; emit("startline:sync", syncState); };
+    const transient = (res) => { const s = res && res.status; return !s || s >= 500 || s === 408 || s === 429; };
+    const authProblem = (res) => { const s = res && res.status, c = res && res.error && res.error.code; return s === 401 || c === "PGRST301" || c === "PGRST303"; };
+    const codeOf = (res) => { const c = res && res.error && res.error.code; return c === "23514" ? "quota_exceeded" : c === "42501" || (res && res.status === 403) ? "not_granted" : "invalid_argument"; };
+    const failure = (res) => { const x = new Error((res && res.error && res.error.message) || "unavailable"); x.transient = transient(res) || authProblem(res); return x; };
+
+    // ----- Reading from the server
+    async function pages(build) {
+      const out = []; let from = 0;
       for (;;) {
-        const { data, error } = await sb.from("docs").select("path,data").eq("user_id", uid).order("path").range(from, from + 999);
-        if (error) throw fail(error);
-        (data || []).forEach((r) => fresh.set(r.path, r.data));
-        if (!data || data.length < 1000) break;
-        from += 1000;
+        const res = await build().range(from, from + 499);
+        if (res.error) throw failure(res);
+        out.push(...(res.data || []));
+        if (!res.data || res.data.length < 500) return out;
+        from += 500;
       }
-      return fresh;
     }
-    // Load everything, unless one of our own writes happened meanwhile (the
-    // copy on screen is then newer than what came back).
-    async function loadAll() {
-      const before = writes;
-      const fresh = await fetchAll();
-      if (before !== writes || inFlight) return false;
-      cache.clear(); fresh.forEach((v, k) => cache.set(k, v)); notify();
-      return true;
-    }
-    // A cheap check for changes made on another device: the row count and the
-    // newest change time. Only when either moved is everything fetched again.
-    async function checkForChanges() {
-      if (inFlight) return;
-      const { data, count, error } = await sb.from("docs").select("updated_at", { count: "exact" }).eq("user_id", uid).order("updated_at", { ascending: false }).limit(1);
-      if (error) return;
-      const next = (count || 0) + "|" + ((data && data[0] && data[0].updated_at) || "");
-      if (stamp !== null && next !== stamp && (await loadAll().catch(() => false)) === false) return;
-      stamp = next;
-    }
-    async function write(p, data) {
-      const r = rel(p); if (r == null) throw fail(null, "invalid_argument");
-      const prev = cache.has(r) ? cache.get(r) : undefined;
-      if (data === undefined) cache.delete(r); else cache.set(r, JSON.parse(JSON.stringify(data)));
-      writes++; inFlight++; notify();
+    // Only what changed since the last check is downloaded; the row count
+    // tells us whether anything was deleted (or missed) since then.
+    async function pull() {
+      if (pulling) return; pulling = true;
       try {
-        const { error } = data === undefined
-          ? await sb.from("docs").delete().eq("user_id", uid).eq("path", r)
-          : await sb.from("docs").upsert({ user_id: uid, path: r, data: cache.get(r) });
-        if (error) { if (prev === undefined) cache.delete(r); else cache.set(r, prev); notify(); throw fail(error); }
-      } finally { inFlight--; }
+        const since = lastSeen ? new Date(Date.parse(lastSeen) - 5000).toISOString() : null;
+        const rows = await pages(() => { let q = sb.from("docs").select("path,data,updated_at").eq("user_id", uid); if (since) q = q.gte("updated_at", since); return q.order("path"); });
+        const head = await sb.from("docs").select("path", { count: "exact", head: true }).eq("user_id", uid);
+        if (head.error) throw failure(head);
+        const known = new Set(server.keys()); rows.forEach((r) => known.add(r.path));
+        let all = null;
+        if (head.count !== known.size) {
+          all = new Set((await pages(() => sb.from("docs").select("path").eq("user_id", uid).order("path"))).map((r) => r.path));
+          const have = new Set(rows.map((r) => r.path));
+          const missing = [...all].filter((p) => !server.has(p) && !have.has(p));
+          for (let i = 0; i < missing.length; i += 100) {
+            const res = await sb.from("docs").select("path,data,updated_at").eq("user_id", uid).in("path", missing.slice(i, i + 100));
+            if (res.error) throw failure(res);
+            rows.push(...(res.data || []));
+          }
+        }
+        applyServer(rows, all);
+        offline = false;
+      } finally { pulling = false; }
+    }
+    function applyServer(rows, all) {
+      let changed = false; const commits = [];
+      rows.forEach((r) => {
+        if (!lastSeen || r.updated_at > lastSeen) lastSeen = r.updated_at;
+        if (server.has(r.path) && same(server.get(r.path), r.data)) return;
+        server.set(r.path, r.data); commits.push([r.path, r.data]);
+        if (!pending.has(r.path)) changed = setCache(r.path, r.data) || changed;
+      });
+      if (all) [...server.keys()].forEach((p) => {
+        if (all.has(p)) return;
+        server.delete(p); commits.push([p, null]);
+        if (!pending.has(p)) changed = setCache(p, undefined) || changed;
+      });
+      store.commit(commits, { lastSeen, at: Date.now() });
+      if (changed) notify();
+    }
+
+    // ----- Sending changes
+    function scheduleRetry() {
+      clearTimeout(retryTimer);
+      retryTimer = setTimeout(() => { flush(); }, backoff);
+      backoff = Math.min(backoff * 2, 60000);
+    }
+    function refreshAuth() {
+      if (Date.now() - lastAuthTry < 15000) return; lastAuthTry = Date.now();
+      sb.auth.refreshSession().then(({ data }) => { if (data && data.session) { session = data.session; flush(); } }).catch(() => {});
+    }
+    function confirm(items) {
+      const commits = [];
+      items.forEach((b) => {
+        if (b.data === null) server.delete(b.path); else server.set(b.path, b.data);
+        commits.push([b.path, b.data]);
+        const cur = pending.get(b.path);
+        if (cur && cur.seq === b.seq) { pending.delete(b.path); store.unqueue(b.path); }
+      });
+      store.commit(commits, null);
+    }
+    function drop(b, code) {
+      const cur = pending.get(b.path);
+      if (cur && cur.seq === b.seq) {
+        pending.delete(b.path); store.unqueue(b.path);
+        if (setCache(b.path, server.has(b.path) ? server.get(b.path) : undefined)) notify();
+      }
+      emit("startline:sync-error", { code });
+    }
+    async function send(items) {
+      const ups = items.filter((b) => b.data !== null), dels = items.filter((b) => b.data === null);
+      if (ups.length) {
+        const res = await sb.from("docs").upsert(ups.map((b) => ({ user_id: uid, path: b.path, data: b.data })));
+        if (res.error || res.status === 0) return res;
+        confirm(ups);
+      }
+      if (dels.length) {
+        const res = await sb.from("docs").delete().eq("user_id", uid).in("path", dels.map((b) => b.path));
+        if (res.error || res.status === 0) return res;
+        confirm(dels);
+      }
+      return null;
+    }
+    async function flush() {
+      if (sending || !pending.size || !sb) return;
+      sending = true; clearTimeout(retryTimer);
+      try {
+        while (pending.size) {
+          const batch = [...pending.entries()].slice(0, 50).map(([path, e]) => ({ path, data: e.data, seq: e.seq }));
+          let res;
+          try { res = await send(batch); } catch { res = { status: 0, error: { message: "network" } }; }
+          if (!res) { offline = false; backoff = 2000; continue; }
+          if (transient(res) || authProblem(res)) { offline = true; if (authProblem(res)) refreshAuth(); scheduleRetry(); return; }
+          // A change the server will never accept: find which one, undo it, carry on.
+          for (const b of batch) {
+            if (!pending.has(b.path) || pending.get(b.path).seq !== b.seq) continue;
+            let one;
+            try { one = await send([b]); } catch { one = { status: 0, error: {} }; }
+            if (!one) continue;
+            if (transient(one) || authProblem(one)) { offline = true; scheduleRetry(); return; }
+            drop(b, codeOf(one));
+          }
+        }
+      } finally { sending = false; status(); }
+    }
+
+    // ----- What the app calls
+    async function write(p, data) {
+      const r = rel(p);
+      if (r == null) { const e = new Error("Path outside your account"); e.code = "invalid_argument"; throw e; }
+      const v = data === undefined ? null : JSON.parse(JSON.stringify(data));
+      pending.set(r, { data: v, seq: ++seq });
+      if (setCache(r, v)) notify();
+      store.queue(r, v);
+      status();
+      flush();
     }
     const snapOf = (r) => ({ id: r.split("/").pop(), exists: cache.has(r), data: () => (cache.has(r) ? JSON.parse(JSON.stringify(cache.get(r))) : undefined), metadata: {} });
     function watch(compute, next) {
       let last = null;
-      const fn = () => { const s = compute(); if (s.key === last) return; last = s.key; next(s.snap); };
+      const fn = () => { const s = compute(); if (s.key === last) return; last = s.key; next(s.snap()); };
       listeners.add(fn); setTimeout(fn, 0);
       return () => listeners.delete(fn);
     }
@@ -113,7 +272,7 @@
         update: (data) => write(p, Object.assign({}, r != null ? cache.get(r) : null, data)),
         delete: () => write(p, undefined),
         get: async () => snapOf(r),
-        onSnapshot: (next) => watch(() => ({ key: JSON.stringify(cache.has(r) ? cache.get(r) : null), snap: snapOf(r) }), next),
+        onSnapshot: (next) => watch(() => ({ key: (cache.has(r) ? "1:" : "0:") + (ver.get(r) || 0), snap: () => snapOf(r) }), next),
         collection: (c) => colRef(p + "/" + c),
       };
     }
@@ -123,34 +282,65 @@
       return {
         path: p, doc: (id) => docRef(p + "/" + id),
         onSnapshot: (next) => watch(() => {
-          const ks = keys(); const list = ks.map(snapOf);
-          return { key: JSON.stringify(ks.map((k) => [k, cache.get(k)])), snap: { docs: list, size: list.length, empty: !list.length, docChanges: () => [], metadata: {} } };
+          const ks = keys();
+          return { key: ks.map((k) => k + ":" + (ver.get(k) || 0)).join("|"), snap: () => { const list = ks.map(snapOf); return { docs: list, size: list.length, empty: !list.length, docChanges: () => [], metadata: {} }; } };
         }, next),
       };
     }
-    // Pick up changes from your other devices: when you come back to the
-    // app, when the connection returns, and every 30 seconds while it's open.
-    const check = () => { if (document.visibilityState === "visible") checkForChanges().catch(() => {}); };
+
+    // Check for changes from other devices: when you come back to the app,
+    // when the connection returns, and every 30 seconds while it's open.
+    const check = () => {
+      if (document.visibilityState !== "visible") return;
+      flush();
+      if (!sending) pull().then(() => { status(); }, (e) => { if (e && e.transient) { offline = true; status(); } });
+    };
     document.addEventListener("visibilitychange", check);
-    window.addEventListener("online", check);
+    window.addEventListener("online", () => { backoff = 2000; refreshAuth(); check(); });
     window.addEventListener("focus", check);
     setInterval(check, 30000);
-    const ready = loadAll().then(() => checkForChanges());
-    return { ready, api: Object.freeze({ doc: docRef, collection: colRef }) };
+
+    const ready = (async () => {
+      const snap = await store.load();
+      if (snap) {
+        snap.docs.forEach((v, k) => { server.set(k, v); cache.set(k, v); });
+        snap.outbox.forEach((v, k) => { pending.set(k, { data: v, seq: ++seq }); setCache(k, v); });
+        lastSeen = snap.meta && snap.meta.lastSeen ? snap.meta.lastSeen : null;
+      }
+      const hasCopy = !!(snap && snap.meta);
+      try {
+        await pull();
+      } catch (e) {
+        if (!hasCopy) throw e; // Never open an empty account: the caller shows "Can't reach your account".
+        offline = true;
+      }
+      status(); flush();
+      return { fromDevice: offline };
+    })();
+    return {
+      ready,
+      api: Object.freeze({ doc: docRef, collection: colRef }),
+      flush, pendingCount: () => pending.size, offline: () => offline,
+      clear: async () => { await store.idle(); await store.clear(); await store.idle(); },
+    };
   }
 
   // ---------------------------------------------------------------------------
   // The sign-in screen
   // ---------------------------------------------------------------------------
-  let session = null;
+  let session = null, currentDb = null;
   let gateResolve, gateDone = false;
   const gate = new Promise((r) => (gateResolve = r));
   const openGate = (v) => { if (gateDone) return; gateDone = true; gateResolve(v); };
+  let lockedByAuth = false;
   function lockApp(locked) {
+    lockedByAuth = locked;
     [".wrap", "#bnav"].forEach((s) => { const n = $(s); if (n) n.inert = locked; });
-    document.querySelectorAll("dialog[open]").forEach((d) => d.close());
+    if (locked) document.querySelectorAll("dialog[open]").forEach((d) => d.close());
   }
-  const TITLES = { signin: "Sign in", signup: "Create your account", reset: "Reset your password", newpass: "Choose a new password", check: "Check your email" };
+  const standalone = () => (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) || window.navigator.standalone === true;
+  const isIOS = () => /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  const TITLES = { signin: "Sign in", signup: "Create your free account", reset: "Reset your password", newpass: "Choose a new password", check: "Check your email", unreachable: "Can't reach your account" };
   const BUTTONS = { signin: "Sign in", signup: "Create account", reset: "Send reset link" };
   function friendly(er) {
     const m = String((er && er.message) || "");
@@ -160,16 +350,20 @@
     if (/rate limit|too many|security purposes/i.test(m)) return "Too many tries. Wait a minute, then try again.";
     if (/weak|pwned|leaked/i.test(m)) return "Choose a stronger password: longer, and not one used on other sites.";
     if (/not authorized|signups not allowed|signup is disabled/i.test(m)) return "New accounts can't be created on this site right now.";
-    if (/fetch|network|load failed/i.test(m)) return "Can't reach the server. Check your connection and try again.";
+    if (/fetch|network|load failed|couldn't load/i.test(m)) return "Can't reach the server. Check your connection and try again.";
     return m || "That didn't work. Try again.";
   }
+  // Views that may be closed to go back to the app (the person opened them).
+  const closable = (view) => gateDone && !["newpass", "unreachable"].includes(view);
   function authScreen(view = "signin", note = "") {
     let box = $("#auth");
     if (!box) {
       box = el("div", "auth"); box.id = "auth";
       box.setAttribute("role", "dialog"); box.setAttribute("aria-modal", "true"); box.setAttribute("aria-labelledby", "authTitle");
+      box.addEventListener("keydown", (e) => { if (e.key === "Escape" && box.dataset.closable === "1") { e.preventDefault(); closeAuth(); } });
       document.body.append(box);
     }
+    box.dataset.closable = closable(view) ? "1" : "";
     lockApp(true);
     box.textContent = "";
     const card = el("div", "auth-card");
@@ -186,6 +380,7 @@
         const b = el("button", null, l); b.type = "button"; b.setAttribute("aria-pressed", String(view === k)); b.onclick = () => authScreen(k); seg.append(b);
       });
       card.append(seg);
+      if (view === "signup") card.append(el("p", "small muted", "Free. Your plan, tasks and saves follow you to every device where you sign in."));
     }
     if (note) card.append(el("p", "small auth-note", note));
     const msg = el("p", "small auth-msg"); msg.setAttribute("role", "alert");
@@ -196,13 +391,22 @@
     };
     if (view === "signin" || view === "signup" || view === "reset") {
       const form = el("form", "auth-form"); form.noValidate = true;
-      let nameIn = null, passIn = null;
+      let nameIn = null, passIn = null, ageIn = null;
       if (view === "signup") { const [f, i] = field("authName", "Your name (optional)", "text", "nickname", { maxLength: 60 }); nameIn = i; form.append(f); }
       const [fe, emailIn] = field("authEmail", "Email", "email", "email", { required: true, inputMode: "email", spellcheck: false });
       form.append(fe);
       if (view !== "reset") {
         const [fp, i] = field("authPass", view === "signup" ? "Password (at least 8 characters)" : "Password", "password", view === "signup" ? "new-password" : "current-password", { required: true, minLength: 8 });
         passIn = i; form.append(fp);
+      }
+      if (view === "signup") {
+        const w = el("div", "field toggle auth-age");
+        ageIn = el("input"); ageIn.type = "checkbox"; ageIn.id = "authAge";
+        const l = el("label", null, "I'm 16 or older, and I agree to the "); l.htmlFor = "authAge";
+        const tl = el("a", null, "terms"); tl.href = "terms.html"; tl.target = "_blank"; tl.rel = "noopener";
+        const pl = el("a", null, "privacy policy"); pl.href = "privacy.html"; pl.target = "_blank"; pl.rel = "noopener";
+        l.append(tl, " and ", pl, ".");
+        w.append(ageIn, l); form.append(w);
       }
       const go = el("button", "btn primary", BUTTONS[view]); go.type = "submit";
       form.append(go, msg);
@@ -211,6 +415,7 @@
         const email = emailIn.value.trim(), pass = passIn ? passIn.value : "";
         if (!/^\S+@\S+\.\S+$/.test(email)) { msg.textContent = "Enter your email address."; emailIn.focus(); return; }
         if (passIn && pass.length < 8) { msg.textContent = view === "signup" ? "Use at least 8 characters for your password." : "Enter your password."; passIn.focus(); return; }
+        if (ageIn && !ageIn.checked) { msg.textContent = "To create an account, confirm you're 16 or older and agree to the terms."; ageIn.focus(); return; }
         go.disabled = true; go.textContent = view === "reset" ? "Sending…" : "One moment…";
         try {
           if (view === "signin") {
@@ -222,6 +427,9 @@
             const { data, error } = await sb.auth.signUp({ email, password: pass, options: { data: name ? { display_name: name } : {}, emailRedirectTo: here() } });
             if (error) throw error;
             if (data.session) await signedIn(data.session);
+            // With email confirmation on, Supabase answers the same way whether or
+            // not the email already has an account, so the message covers both.
+            else if (data.user && Array.isArray(data.user.identities) && data.user.identities.length === 0) authScreen("check", "If " + email + " doesn't have an account yet, we sent it a link to confirm. If you already have one, sign in or reset your password.");
             else authScreen("check", "We sent a link to " + email + ". Open it to confirm your account. If it doesn't arrive in a few minutes, check your spam folder.");
           } else {
             const { error } = await sb.auth.resetPasswordForEmail(email, { redirectTo: here() });
@@ -236,12 +444,15 @@
       card.append(form);
       if (view === "signin") { const fg = el("button", "linkish", "Forgot your password?"); fg.type = "button"; fg.onclick = () => authScreen("reset"); card.append(fg); }
       if (view === "reset") { const back = el("button", "linkish", "Back to sign in"); back.type = "button"; back.onclick = () => authScreen("signin"); card.append(back); }
-      if (CFG.googleSignIn && view !== "reset") {
+      // Google sends people back to the browser, not to an app installed on iPhone, so it's only offered elsewhere.
+      if (CFG.googleSignIn && view !== "reset" && !(isIOS() && standalone())) {
         card.append(el("div", "auth-or", "or"));
         const g = el("button", "btn", "Continue with Google"); g.type = "button";
         g.onclick = async () => {
-          const { error } = await sb.auth.signInWithOAuth({ provider: "google", options: { redirectTo: here() } });
-          if (error) msg.textContent = "Google sign-in isn't available right now.";
+          try {
+            const { error } = await sb.auth.signInWithOAuth({ provider: "google", options: { redirectTo: here() } });
+            if (error) throw error;
+          } catch { msg.textContent = "Google sign-in isn't available right now. Try email instead."; }
         };
         card.append(g);
       }
@@ -263,44 +474,71 @@
       card.append(form);
     } else if (view === "check") {
       const back = el("button", "btn", "Back to sign in"); back.type = "button"; back.onclick = () => authScreen("signin"); card.append(back);
+    } else if (view === "unreachable") {
+      card.append(el("p", null, "Startline couldn't load your account, so it hasn't opened it. Nothing in your account was changed."));
+      card.append(el("p", "small muted", "Check your connection and try again. If it keeps happening, the service may be paused or down for a while."));
+      const row = el("div", "auth-actions");
+      const again = el("button", "btn primary", "Try again"); again.type = "button";
+      again.onclick = () => { again.disabled = true; again.textContent = "Trying…"; signedIn(session); };
+      const out = el("button", "btn", "Sign out"); out.type = "button";
+      out.onclick = () => { platform.signOut({ force: true }); };
+      row.append(again, out); card.append(row);
     }
-    if (view !== "newpass") {
+    if (closable(view)) {
       const guest = el("div", "auth-guest");
-      const gb = el("button", "linkish", "Use Startline without an account"); gb.type = "button";
-      gb.onclick = () => { ls.set(GUEST_KEY, "1"); closeAuth(); openGate(null); };
-      guest.append(gb, el("span", "small muted", "Your work stays in this browser only. You can create an account later and bring it with you."));
+      const gb = el("button", "linkish", "Not now"); gb.type = "button";
+      gb.onclick = () => closeAuth();
+      guest.append(gb, el("span", "small muted", "Keep using Startline without an account. Your work stays in this browser."));
       card.append(guest);
     }
     box.append(card);
-    const first = card.querySelector("input") || h;
+    const first = card.querySelector("input") || card.querySelector(".auth-actions button") || h;
     setTimeout(() => first.focus(), 30);
   }
   function closeAuth() { const box = $("#auth"); if (box) box.remove(); lockApp(false); }
   async function signedIn(s) {
     session = s;
-    ls.del(GUEST_KEY);
     // Already running without an account: start again, signed in.
     if (gateDone) { reload(); return; }
-    closeAuth();
     const db = makeDb(s.user.id);
-    try { await db.ready; } catch {}
-    openGate({ db: db.api, uid: s.user.id });
+    try {
+      const how = await db.ready;
+      currentDb = db;
+      closeAuth();
+      openGate({ db: db.api, uid: s.user.id, fromDevice: how.fromDevice });
+    } catch {
+      authScreen("unreachable");
+    }
+  }
+  // Offline with an expired sign-in: the session is still stored on the device
+  // (supabase-js keeps it when a refresh fails for lack of a connection).
+  function storedSession() {
+    try {
+      const k = (sb.auth && sb.auth.storageKey) || "sb-" + new URL(CFG.supabaseUrl).hostname.split(".")[0] + "-auth-token";
+      const v = JSON.parse(localStorage.getItem(k) || "null");
+      const s = v && (v.currentSession || v);
+      return s && s.user && s.user.id && s.refresh_token ? s : null;
+    } catch { return null; }
   }
 
   async function boot() {
-    if (!sb) { openGate(null); return; }
+    if (!configured) { openGate(null); return; }
+    try { const createClient = await loadClient(); sb = createClient(CFG.supabaseUrl, CFG.supabaseAnonKey, { auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true } }); }
+    catch { openGate(null); return; }
     sb.auth.onAuthStateChange((event, s) => {
-      if (event === "PASSWORD_RECOVERY") { session = s; authScreen("newpass"); }
+      if (event === "PASSWORD_RECOVERY") { session = s; if (!$("#authNewPass")) authScreen("newpass"); }
       else if (event === "SIGNED_OUT" && gateDone && session) reload();
-      else if (s) session = s;
+      else if (s) { session = s; if (currentDb && event === "TOKEN_REFRESHED") currentDb.flush(); }
     });
-    const { data } = await sb.auth.getSession();
-    const s = data && data.session;
+    let s = null;
+    try { const { data } = await sb.auth.getSession(); s = data && data.session; } catch {}
     if (recovering && s) { session = s; authScreen("newpass"); return; }
     if (s) { await signedIn(s); return; }
-    if (linkError) { authScreen("signin", /expired|invalid/i.test(linkError) ? "That link has expired or was already used. Sign in, or ask for a new link." : "That link didn't work: " + linkError); return; }
-    if (ls.get(GUEST_KEY) === "1") { openGate(null); return; }
-    authScreen("signin");
+    const kept = storedSession();
+    if (kept && !navigator.onLine) { await signedIn(kept); return; }
+    // Everyone starts in the app; signing in is offered from there.
+    openGate(null);
+    if (linkError) authScreen("signin", /expired|invalid/i.test(linkError) ? "That link has expired or was already used. Sign in, or ask for a new link." : "That link didn't work: " + linkError);
   }
 
   // ---------------------------------------------------------------------------
@@ -308,7 +546,8 @@
   // ---------------------------------------------------------------------------
   const downloads = Object.freeze({
     save: async ({ filename, data }) => {
-      const blob = data instanceof Blob ? data : new Blob([data], { type: /\.json$/i.test(filename) ? "application/json" : "text/plain" });
+      const type = /\.json$/i.test(filename) ? "application/json" : /\.ics$/i.test(filename) ? "text/calendar" : /\.csv$/i.test(filename) ? "text/csv" : "text/plain";
+      const blob = data instanceof Blob ? data : new Blob([data], { type });
       const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = filename;
       document.body.append(a); a.click();
       setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
@@ -339,30 +578,36 @@
   // What the app uses when it runs as a web app
   // ---------------------------------------------------------------------------
   let installEvent = null;
-  window.addEventListener("beforeinstallprompt", (e) => { e.preventDefault(); installEvent = e; document.dispatchEvent(new Event("startline:install")); });
-  window.addEventListener("appinstalled", () => { installEvent = null; document.dispatchEvent(new Event("startline:install")); });
-  const standalone = () => (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) || window.navigator.standalone === true;
-  const isIOS = () => /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
-  function forgetSession() {
+  window.addEventListener("beforeinstallprompt", (e) => { e.preventDefault(); installEvent = e; emit("startline:install"); });
+  window.addEventListener("appinstalled", () => { installEvent = null; emit("startline:install"); });
+  async function endSession() {
+    reloading = true;
+    try { await sb.auth.signOut({ scope: "local" }); } catch {}
+    try { if (currentDb) await currentDb.clear(); } catch {}
     try { Object.keys(localStorage).filter((k) => /^sb-.*-auth-token/.test(k)).forEach((k) => localStorage.removeItem(k)); } catch {}
+    // Things typed into the tools stay on a shared computer otherwise.
+    ["dd-calc2", "dd-recent"].forEach(ls.del);
+    location.reload();
   }
-  window.startlinePlatform = Object.freeze({
-    accounts: !!sb,
+  const platform = Object.freeze({
+    accounts: configured,
     email: () => (session && session.user && session.user.email) || "",
-    showAuth: (view) => authScreen(view || "signup"),
-    signOut: async () => {
-      reloading = true;
-      try { await sb.auth.signOut(); } catch {}
-      forgetSession(); location.reload();
+    showAuth: (view) => { if (sb) authScreen(view || "signup"); },
+    pendingCount: () => (currentDb ? currentDb.pendingCount() : 0),
+    syncState: () => syncState,
+    retrySync: () => { if (currentDb) currentDb.flush(); },
+    signOut: async (opts = {}) => {
+      if (!opts.force && currentDb && currentDb.pendingCount()) return { pending: currentDb.pendingCount() };
+      await endSession();
+      return { done: true };
     },
     deleteAccount: async () => {
       const { error } = await sb.rpc("delete_my_account");
       if (error) throw error;
-      reloading = true;
-      try { await sb.auth.signOut({ scope: "local" }); } catch {}
-      forgetSession(); location.reload();
+      await endSession();
     },
     canInstall: () => !standalone() && (!!installEvent || isIOS()),
+    isIOS, standalone,
     install: async () => {
       if (installEvent) {
         const ev = installEvent; installEvent = null;
@@ -373,6 +618,7 @@
       return isIOS() ? "ios" : "unavailable";
     },
   });
+  window.startlinePlatform = platform;
 
   // Offline support and updates (service workers need https or localhost).
   const swOk = "serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost" || location.hostname === "127.0.0.1");
@@ -392,7 +638,9 @@
           const w = reg.installing; if (!w) return;
           w.addEventListener("statechange", () => { if (w.state === "installed" && navigator.serviceWorker.controller) offer(w); });
         });
-        setInterval(() => reg.update().catch(() => {}), 60 * 60 * 1000);
+        const look = () => reg.update().catch(() => {});
+        setInterval(look, 60 * 60 * 1000);
+        document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") look(); });
       }).catch(() => {});
       let had = !!navigator.serviceWorker.controller;
       navigator.serviceWorker.addEventListener("controllerchange", () => { if (had) reload(); had = true; });

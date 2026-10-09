@@ -381,6 +381,12 @@ kbd { font: 500 0.72rem/1 var(--mono); border: 1px solid var(--line); border-bot
 .sync i { width: 8px; height: 8px; border-radius: 50%; background: var(--ok); flex: none; }
 .sync.saving i { background: var(--signal); }
 .sync.error i { background: var(--late); }
+.sync.offline i { background: var(--warn); }
+.sr-only { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.auth-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.auth-age { align-items: flex-start; }
+.auth-age input { margin-top: 4px; }
+#out[inert] { opacity: .7; }
 .avatar { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font: 600 0.78rem/1 var(--display); color: var(--on-accent); background: var(--accent); border: 2px solid var(--surface); box-shadow: 0 0 0 1px var(--line); flex: none; }
 .avatar.lg { width: 56px; height: 56px; font-size: 1.1rem; }
 .avatar svg { width: 60%; height: 60%; }

@@ -29,8 +29,9 @@ mini.state.siteUrl = BASE;
 const CONFIG = 'window.STARTLINE_CONFIG = { supabaseUrl: "https://test.supabase.co", supabaseAnonKey: "test-publishable-key", googleSignIn: false };';
 
 const browser = await chromium.launch();
-async function open({ accounts = true, sw = "block", vp = { width: 1280, height: 900 }, scheme = "light", url = BASE, tag = "page" } = {}) {
-  const ctx = await browser.newContext({ viewport: vp, colorScheme: scheme, serviceWorkers: sw });
+async function open({ accounts = true, sw = "block", vp = { width: 1280, height: 900 }, scheme = "light", url = BASE, tag = "page", test = false, tz, clock } = {}) {
+  const ctx = await browser.newContext({ viewport: vp, colorScheme: scheme, serviceWorkers: sw, ...(tz ? { timezoneId: tz } : {}) });
+  if (test) await ctx.addInitScript(() => { window.__ddTest = true; });
   await ctx.route(/fonts\.(googleapis|gstatic)\.com/, (r) => r.abort());
   if (accounts) {
     await ctx.route(/\/config\.js$/, (r) => r.fulfill({ contentType: "application/javascript", body: CONFIG }));
@@ -38,6 +39,7 @@ async function open({ accounts = true, sw = "block", vp = { width: 1280, height:
   }
   await ctx.addInitScript(() => { document.addEventListener("securitypolicyviolation", (e) => { (window.__csp = window.__csp || []).push(e.violatedDirective + " " + e.blockedURI); }); });
   const pg = await ctx.newPage();
+  if (clock) await pg.clock.install({ time: new Date(clock) });
   pg.on("pageerror", (e) => pageErrors.push(tag + ": " + String(e)));
   pg.on("console", (m) => { if (m.type() === "error" && !/fonts\.g|ERR_FAILED|ERR_NAME|net::|Failed to load resource/.test(m.text())) consoleErrors.push(tag + ": " + m.text()); });
   await pg.goto(url); await pg.waitForTimeout(300);
@@ -53,12 +55,29 @@ async function axe(pg, label) {
 }
 const text = (pg, sel) => pg.textContent(sel).catch(() => "");
 const authMsg = (pg) => text(pg, ".auth-msg");
-async function signUp(pg, { name = "", email, pass }) {
+async function signUp(pg, { name = "", email, pass }, { age = true } = {}) {
   if (!(await pg.$("#authName"))) await pg.click(".auth-seg button:has-text('Create account')");
   if (name) await pg.fill("#authName", name);
   await pg.fill("#authEmail", email); await pg.fill("#authPass", pass);
+  await pg.setChecked("#authAge", age);
   await pg.click(".auth-form button[type=submit]");
 }
+const waitLocal = (pg) => pg.waitForFunction(() => /Saved in this browser/.test(document.querySelector("#syncText").textContent), null, { timeout: 8000 }).then(() => true, () => false);
+// Accounts are offered from inside the app: Account > Create an account or sign in.
+async function openAuth(pg) {
+  await pg.click("#acctBtn"); await pg.waitForSelector("#createAcctBtn"); await pg.click("#createAcctBtn"); await pg.waitForSelector("#auth #authEmail");
+}
+async function signInFromGuest(pg, who) {
+  await waitLocal(pg); await openAuth(pg); await pg.click(".auth-seg button:has-text('Sign in')");
+  await Promise.all([pg.waitForNavigation({ timeout: 15000 }).catch(() => {}), signIn(pg, who)]);
+  await pg.waitForTimeout(300);
+}
+async function answer(pg, a) {
+  for (const k of ["level", "model", "channel", "country"]) { await pg.waitForSelector("#q-" + k + "-" + a[k], { timeout: 4000 }); await pg.check("#q-" + k + "-" + a[k]); await pg.waitForTimeout(280); }
+  if (await pg.$("#q-ads-" + (a.ads || "none"))) { await pg.check("#q-ads-" + (a.ads || "none")); await pg.waitForTimeout(280); }
+  await pg.waitForSelector("#setupForm .review"); await pg.click("#setupForm button[type=submit]"); await pg.waitForTimeout(600);
+}
+async function buildPlan(pg, a) { await waitLocal(pg); await pg.click("#out .btn.primary"); await pg.waitForTimeout(300); await answer(pg, a); }
 async function signIn(pg, { email, pass }) {
   if (await pg.$("#authName")) await pg.click(".auth-seg button:has-text('Sign in')");
   await pg.fill("#authEmail", email); await pg.fill("#authPass", pass);
@@ -165,30 +184,40 @@ try {
     const S = "Accounts";
     const A = { name: "Sam", email: "sam@example.com", pass: "correct horse 1" };
     let { ctx, pg } = await open({ tag: "acct1" });
-    await pg.waitForSelector("#auth");
-    check(S, "first visit shows the sign-in screen", /Sign in/.test(await text(pg, "#authTitle")));
+    await waitLocal(pg);
+    check(S, "first visit opens the app straight away, with no sign-in wall", !(await pg.$("#auth")));
+    await openAuth(pg);
+    check(S, "'Create an account' opens the sign-up form", /Create your free account/.test(await text(pg, "#authTitle")));
     check(S, "the app behind it can't be reached", await pg.evaluate(() => document.querySelector(".wrap").inert === true));
-    check(S, "cursor starts in the email box", await pg.evaluate(() => document.activeElement && document.activeElement.id === "authEmail"));
-    for (let i = 0; i < 12; i++) await pg.keyboard.press("Tab");
-    check(S, "Tab stays inside the sign-in screen", await pg.evaluate(() => !!(document.activeElement && document.activeElement.closest("#auth"))));
+    await pg.waitForTimeout(150);
+    check(S, "cursor starts in the first box", await pg.evaluate(() => document.activeElement && document.activeElement.id === "authName"));
+    for (let i = 0; i < 14; i++) await pg.keyboard.press("Tab");
+    check(S, "Tab stays inside the sign-up screen", await pg.evaluate(() => !!(document.activeElement && document.activeElement.closest("#auth"))));
+    await axe(pg, "create-account screen");
+    await pg.keyboard.press("Escape");
+    check(S, "Escape closes it and returns to the app", !(await pg.$("#auth")) && (await pg.evaluate(() => !document.querySelector(".wrap").inert)));
+    await openAuth(pg); await pg.click(".auth-seg button:has-text('Sign in')");
     await axe(pg, "sign-in screen (light)");
     await pg.click(".auth-form button[type=submit]");
     check(S, "asks for an email", /Enter your email/.test(await authMsg(pg)));
     await signIn(pg, { email: "nobody@example.com", pass: "whatever123" }); await pg.waitForTimeout(400);
     check(S, "wrong email or password gets a clear message", /don't match/.test(await authMsg(pg)), await authMsg(pg));
     await pg.click(".auth-seg button:has-text('Create account')");
-    await axe(pg, "create-account screen");
-    await signUp(pg, { name: A.name, email: A.email, pass: "short" });
+    await signUp(pg, { ...A, pass: "short" });
     check(S, "short password is refused before sending", /at least 8/.test(await authMsg(pg)));
-    await signUp(pg, A);
+    await signUp(pg, A, { age: false });
+    check(S, "sign-up asks to confirm age and the terms", /16 or older/.test(await authMsg(pg)));
+    const links = await pg.$$eval(".auth-age a", (as) => as.map((a) => a.getAttribute("href")));
+    check(S, "sign-up links to the terms and privacy policy", links.includes("terms.html") && links.includes("privacy.html"), links.join(","));
+    await Promise.all([pg.waitForNavigation(), signUp(pg, A)]);
     check(S, "signing up opens the app, saving to the account", await waitSynced(pg));
-    check(S, "sign-in screen is gone and the app is usable", !(await pg.$("#auth")) && (await pg.evaluate(() => !document.querySelector(".wrap").inert)));
     const uid = await uidOf(A.email);
     check(S, "the name typed at sign-up is used for your account button", (await text(pg, "#avatar")) === "S" && /^Sam:/.test(await pg.getAttribute("#acctBtn", "aria-label")), await pg.getAttribute("#acctBtn", "aria-label"));
     await addTask(pg, "Call the supplier");
     let rows = await docsOf(uid);
     const t = rows.find((r) => /^desk\/tasks\//.test(r.path));
     check(S, "a new task is stored in the database under your account", t && t.data.title === "Call the supplier", JSON.stringify(rows.map((r) => r.path)));
+    check(S, "each business is its own document", rows.some((r) => r.path === "account/biz/desk"), JSON.stringify(rows.map((r) => r.path)));
     check(S, "requests carry the publishable key and your sign-in", mini.state.requests.filter((r) => r.path.startsWith("/rest/")).every((r) => r.apikey === "test-publishable-key" && r.auth === "bearer"));
     const st0 = await pg.evaluate(() => Object.keys(localStorage).filter((k) => /^dd-local-tasks/.test(k)).length);
     check(S, "signed-in work isn't written to browser storage", st0 === 0);
@@ -203,48 +232,34 @@ try {
 
     // A second device
     const d2 = await open({ tag: "acct2", vp: { width: 390, height: 844 } });
-    await d2.pg.waitForSelector("#auth");
-    await signIn(d2.pg, A);
+    await signInFromGuest(d2.pg, A);
     check(S, "signing in on another device works", await waitSynced(d2.pg));
     await tasksTab(d2.pg);
     check(S, "the other device sees the same tasks", /Call the supplier/.test(await outTasks(d2.pg)));
     await addTask(d2.pg, "Order samples");
-    await pg.evaluate(() => window.dispatchEvent(new Event("focus"))); await pg.waitForTimeout(800);
+    await pg.evaluate(() => window.dispatchEvent(new Event("focus"))); await pg.waitForTimeout(900);
     check(S, "a change on one device shows up on the other when you come back to it", /Order samples/.test(await outTasks(pg)));
     await d2.ctx.close();
-
-    // A save that fails is undone on screen
-    mini.state.failNext = { status: 503, code: "PGRST000", message: "Service unavailable" };
-    await addTask(pg, "This one fails");
-    await pg.waitForTimeout(400);
-    check(S, "a failed save says so", /didn't save/.test(await text(pg, "#toast")), await text(pg, "#toast"));
-    check(S, "a failed save is undone on screen", !/This one fails/.test(await outTasks(pg)));
 
     // Sign out
     await pg.click("#acctBtn"); await pg.waitForSelector("#signOutBtn");
     await Promise.all([pg.waitForNavigation(), pg.click("#signOutBtn")]); await pg.waitForTimeout(300);
-    check(S, "signing out returns to the sign-in screen", !!(await pg.$("#auth")));
-    check(S, "signing out forgets the session in this browser", await pg.evaluate(() => !Object.keys(localStorage).some((k) => /auth-token/.test(k))));
-    await signIn(pg, { email: A.email, pass: A.pass });
+    check(S, "signing out returns to the app without an account", !(await pg.$("#auth")) && (await waitLocal(pg)));
+    check(S, "signing out forgets the session and the device copy", await pg.evaluate(async () => !Object.keys(localStorage).some((k) => /auth-token/.test(k)) && (await new Promise((res) => { const r = indexedDB.open("startline"); r.onsuccess = () => { const t = r.result.transaction("docs").objectStore("docs").count(); t.onsuccess = () => res(t.result === 0); }; r.onerror = () => res(true); }))));
+    await signInFromGuest(pg, A);
     check(S, "signing back in works", await waitSynced(pg));
     await collectCsp(pg, "acct1"); await ctx.close();
 
     // From no account to an account: bring the browser's work along
     ({ ctx, pg } = await open({ tag: "move" }));
-    await pg.waitForSelector("#auth");
-    await pg.click(".auth-guest .linkish");
-    await pg.waitForFunction(() => /Saved in this browser/.test(document.querySelector("#syncText").textContent));
-    check(S, "'Use without an account' opens the app in this browser", !(await pg.$("#auth")));
+    await waitLocal(pg);
     await addTask(pg, "Guest task one"); await addTask(pg, "Guest task two");
     await pg.click("#acctBtn"); await pg.waitForSelector("#createAcctBtn");
     check(S, "account window offers to create an account", /without an account/.test(await text(pg, "#acctBody")));
     await axe(pg, "account window (no account)");
-    await pg.click("#createAcctBtn"); await pg.waitForSelector("#auth #authName");
-    await pg.reload(); await pg.waitForTimeout(300);
-    check(S, "choosing guest mode is remembered", !(await pg.$("#auth")));
-    await pg.click("#acctBtn"); await pg.click("#createAcctBtn"); await pg.waitForSelector("#auth");
-    await Promise.all([pg.waitForNavigation(), signIn(pg, A)]);
-    check(S, "signing in from guest mode switches to the account", await waitSynced(pg));
+    await pg.keyboard.press("Escape");
+    await signInFromGuest(pg, A);
+    check(S, "signing in from the app switches to the account", await waitSynced(pg));
     await pg.waitForSelector("#moveDlg[open]", { timeout: 5000 }).catch(() => {});
     const offer = await text(pg, "#moveDlg");
     check(S, "offers to bring this browser's work into the account", /1 business, 2 tasks/.test(offer), offer.slice(0, 200));
@@ -252,12 +267,16 @@ try {
     await pg.click("#moveGo"); await pg.waitForTimeout(1500);
     check(S, "copying confirms what it did", /Copied 1 business/.test(await text(pg, "#toast")), await text(pg, "#toast"));
     rows = await docsOf(uid);
-    const acct = rows.find((r) => r.path === "account").data;
-    const nb = acct.businesses.find((b) => b.id !== "desk");
-    check(S, "the browser's business is added next to the account's own", acct.businesses.length === 2 && !!nb, JSON.stringify(acct.businesses));
-    check(S, "its tasks are in the account", nb && rows.filter((r) => r.path.startsWith(nb.id + "/tasks/")).map((r) => r.data.title).sort().join("|") === "Guest task one|Guest task two");
+    const bizDocs = rows.filter((r) => r.path.startsWith("account/biz/"));
+    const nb = bizDocs.find((r) => r.path !== "account/biz/desk");
+    const nbId = nb && nb.path.split("/").pop();
+    check(S, "the browser's business is added next to the account's own", bizDocs.length === 2 && !!nb, JSON.stringify(bizDocs.map((r) => r.path)));
+    check(S, "its tasks are in the account", nbId && rows.filter((r) => r.path.startsWith(nbId + "/tasks/")).map((r) => r.data.title).sort().join("|") === "Guest task one|Guest task two");
     check(S, "the account's own business is untouched", rows.some((r) => r.path.startsWith("desk/tasks/") && r.data.title === "Call the supplier"));
     check(S, "the copy in this browser is kept", await pg.evaluate(() => (JSON.parse(localStorage.getItem("dd-local-tasks") || "[]")).length === 2));
+    await pg.click("#acctBtn"); await pg.waitForSelector("#acctDlg[open]");
+    check(S, "the copy button goes away once copied", !(await pg.$("text=Copy this browser's work into your account")));
+    await pg.keyboard.press("Escape");
     await pg.reload(); await pg.waitForTimeout(1600);
     check(S, "doesn't ask again after copying", !(await pg.$("#moveDlg")));
     await collectCsp(pg, "move"); await ctx.close();
@@ -266,9 +285,14 @@ try {
     mini.state.confirmEmail = true;
     const B = { email: "lee@example.com", pass: "another pass 2" };
     ({ ctx, pg } = await open({ tag: "confirm" }));
-    await pg.waitForSelector("#auth");
-    await signUp(pg, B); await pg.waitForTimeout(400);
-    check(S, "with email confirmation on, sign-up says to check your email", /Check your email/.test(await text(pg, "#authTitle")) && /lee@example\.com/.test(await text(pg, ".auth-note")));
+    await waitLocal(pg); await openAuth(pg);
+    await signUp(pg, B);
+    await pg.waitForFunction(() => /Check your email/.test((document.querySelector("#authTitle") || {}).textContent || ""), null, { timeout: 6000 }).catch(() => {});
+    check(S, "with email confirmation on, sign-up says to check your email", /Check your email/.test(await text(pg, "#authTitle")) && /We sent a link to lee@example\.com/.test(await text(pg, ".auth-note")), await text(pg, ".auth-note"));
+    await pg.click(".auth-card > .btn:has-text('Back to sign in')");
+    await signUp(pg, B);
+    await pg.waitForFunction(() => /Check your email/.test((document.querySelector("#authTitle") || {}).textContent || ""), null, { timeout: 6000 }).catch(() => {});
+    check(S, "signing up again with the same email doesn't claim a new account", /If lee@example\.com doesn't have an account yet/.test(await text(pg, ".auth-note")), await text(pg, ".auth-note"));
     await pg.click(".auth-card > .btn:has-text('Back to sign in')");
     await signIn(pg, B); await pg.waitForTimeout(400);
     check(S, "signing in before confirming explains why it can't", /Confirm your email first/.test(await authMsg(pg)), await authMsg(pg));
@@ -284,7 +308,7 @@ try {
 
     // Forgot password
     ({ ctx, pg } = await open({ tag: "reset" }));
-    await pg.waitForSelector("#auth");
+    await waitLocal(pg); await openAuth(pg); await pg.click(".auth-seg button:has-text('Sign in')");
     await pg.click("text=Forgot your password?");
     check(S, "'Forgot your password?' opens the reset form", /Reset your password/.test(await text(pg, "#authTitle")));
     await pg.fill("#authEmail", A.email); await pg.click(".auth-form button[type=submit]"); await pg.waitForTimeout(400);
@@ -300,10 +324,10 @@ try {
     check(S, "confirms the password changed", /password was changed/.test(await text(pg, "#toast")), await text(pg, "#toast"));
     await pg.click("#acctBtn"); await pg.waitForSelector("#signOutBtn");
     await Promise.all([pg.waitForNavigation(), pg.click("#signOutBtn")]); await pg.waitForTimeout(300);
-    await signIn(pg, A); await pg.waitForTimeout(500);
+    await openAuth(pg); await signIn(pg, A); await pg.waitForTimeout(500);
     check(S, "the old password no longer works", /don't match/.test(await authMsg(pg)));
     A.pass = "brand new pass 3";
-    await signIn(pg, A);
+    await Promise.all([pg.waitForNavigation(), signIn(pg, A)]);
     check(S, "the new password works", await waitSynced(pg));
     await collectCsp(pg, "reset"); await ctx.close();
 
@@ -316,7 +340,7 @@ try {
 
     // Install
     ({ ctx, pg } = await open({ tag: "install" }));
-    await pg.waitForSelector("#auth"); await signIn(pg, A); await waitSynced(pg);
+    await signInFromGuest(pg, A); await waitSynced(pg);
     await pg.evaluate(() => { const e = new Event("beforeinstallprompt", { cancelable: true }); e.prompt = () => { window.__prompted = true; }; e.userChoice = Promise.resolve({ outcome: "accepted", platform: "web" }); window.dispatchEvent(e); });
     await pg.click("#setBtn"); await pg.waitForSelector("#set-install button");
     await pg.click("#set-install button"); await pg.waitForTimeout(400);
@@ -330,20 +354,151 @@ try {
     await pg.click("#delAcctBtn");
     check(S, "deleting the account asks you to confirm first", /Yes, delete my account/.test(await text(pg, "#delAcctBtn")));
     await Promise.all([pg.waitForNavigation(), pg.click("#delAcctBtn")]); await pg.waitForTimeout(400);
-    check(S, "after deleting, you're back at the sign-in screen", !!(await pg.$("#auth")));
+    check(S, "after deleting, you're back in the app without an account", !(await pg.$("#auth")) && (await waitLocal(pg)));
     check(S, "the account and all its data are gone from the database", !(await mini.userByEmail(A.email)) && (await docsOf(uid)).length === 0);
     const other = await uidOf(B.email);
     check(S, "other accounts are untouched", (await docsOf(other)).length > 0);
-    await signIn(pg, A); await pg.waitForTimeout(400);
+    await openAuth(pg); await signIn(pg, A); await pg.waitForTimeout(400);
     check(S, "a deleted account can't sign in", /don't match/.test(await authMsg(pg)));
     await collectCsp(pg, "install"); await ctx.close();
 
     // Phone size and dark mode
     ({ ctx, pg } = await open({ tag: "mobile", vp: { width: 360, height: 740 }, scheme: "dark" }));
-    await pg.waitForSelector("#auth");
+    await waitLocal(pg); await openAuth(pg);
     const fits = await pg.evaluate(() => { const c = document.querySelector(".auth-card").getBoundingClientRect(); return c.left >= 0 && c.right <= innerWidth && document.documentElement.scrollWidth <= innerWidth; });
-    check(S, "sign-in screen fits a 360px phone", fits);
-    await axe(pg, "sign-in screen (phone, dark)");
+    check(S, "sign-up screen fits a 360px phone", fits);
+    await axe(pg, "sign-up screen (phone, dark)");
+    await ctx.close();
+  }
+
+  // ------------------------------------------------------------------ saving
+  if (only === "all" || only === "saving") {
+    const S = "Saving";
+    const C = { email: "casey@example.com", pass: "casey pass 123" };
+    let { ctx, pg } = await open({ tag: "save1" });
+    await waitLocal(pg); await openAuth(pg);
+    await Promise.all([pg.waitForNavigation(), signUp(pg, C)]);
+    await waitSynced(pg);
+    const uid = await uidOf(C.email);
+    await addTask(pg, "Task before outage");
+    await pg.click("#acctBtn"); await pg.fill("#newBizName", "Candle shop"); await pg.click("#acct-biz button:has-text('Add business')"); await pg.waitForTimeout(600);
+    await pg.screenshot({ path: "/tmp/claude-0/-home-user/0dfafc12-057e-53e7-a101-b89ab224d4c1/scratchpad/dbg-save.png" });
+    console.log("DBG", await pg.evaluate(() => ({ open: [...document.querySelectorAll("dialog[open]")].map((d) => d.id), inert: document.querySelector(".wrap").inert, outInert: document.querySelector("#out").inert, auth: !!document.querySelector("#auth"), sync: document.querySelector("#syncText").textContent, biz: document.querySelector("#bizName").textContent })));
+    await addTask(pg, "Candle task");
+
+    // A failed first load never opens an empty account
+    const d2 = await open({ tag: "save2" });
+    const before = (await docsOf(uid)).length;
+    mini.state.restDown = true;
+    await signInFromGuest(d2.pg, C);
+    await d2.pg.waitForSelector("#auth", { timeout: 8000 }).catch(() => {});
+    check(S, "when the account can't be loaded, it says so instead of opening an empty account", /Can't reach your account/.test(await text(d2.pg, "#authTitle")), await text(d2.pg, "#authTitle"));
+    mini.state.restDown = false;
+    check(S, "nothing in the account was changed", (await docsOf(uid)).length === before);
+    await d2.pg.click(".auth-actions button:has-text('Try again')");
+    check(S, "'Try again' opens the account once it's reachable", await waitSynced(d2.pg));
+    await d2.pg.click("#acctBtn"); await d2.pg.waitForSelector("#acctDlg[open]");
+    check(S, "both businesses are there", /Candle shop/.test(await text(d2.pg, "#acctBody")) && /My business/.test(await text(d2.pg, "#acctBody")));
+    await d2.pg.keyboard.press("Escape");
+
+    // Changes made without a connection wait on the device
+    mini.state.restDown = true;
+    await addTask(pg, "Offline task");
+    check(S, "a change made offline stays on screen", /Offline task/.test(await outTasks(pg)));
+    await pg.waitForFunction(() => /Offline/.test(document.querySelector("#syncText").textContent), null, { timeout: 8000 }).catch(() => {});
+    check(S, "the header says it will sync", /Offline · will sync/.test(await text(pg, "#syncText")), await text(pg, "#syncText"));
+    check(S, "it hasn't reached the server yet", !(await docsOf(uid)).some((r) => r.data && r.data.title === "Offline task"));
+    await pg.reload(); await pg.waitForTimeout(800);
+    await tasksTab(pg);
+    check(S, "reopening the app offline shows your work from the device", /Offline task/.test(await outTasks(pg)) && /Candle task/.test(await outTasks(pg)));
+    mini.state.restDown = false;
+    await pg.evaluate(() => window.dispatchEvent(new Event("online")));
+    check(S, "back online, the change is sent", await waitSynced(pg));
+    check(S, "and reaches the server", (await docsOf(uid)).some((r) => r.data && r.data.title === "Offline task"));
+
+    // Two devices change the account at once
+    await d2.pg.click("#acctBtn"); await d2.pg.fill("#newBizName", "Etsy shop"); await d2.pg.click("#acct-biz button:has-text('Add business')"); await d2.pg.waitForTimeout(600);
+    await pg.click("#acctBtn"); await pg.fill("#acctName", "Casey"); await pg.click("#acct-name button[type=submit]"); await pg.waitForTimeout(600);
+    await pg.keyboard.press("Escape");
+    const rows = await docsOf(uid);
+    check(S, "a business added on one device and a name saved on another both stick", rows.filter((r) => r.path.startsWith("account/biz/")).length === 3 && (rows.find((r) => r.path === "account") || {}).data?.name === "Casey", JSON.stringify(rows.filter((r) => r.path.startsWith("account")).map((r) => r.path + "=" + JSON.stringify(r.data).slice(0, 60))));
+    await pg.evaluate(() => window.dispatchEvent(new Event("focus"))); await pg.waitForTimeout(900);
+    await pg.click("#acctBtn");
+    check(S, "the other device's new business appears", /Etsy shop/.test(await text(pg, "#acctBody")));
+    await pg.keyboard.press("Escape");
+    await d2.ctx.close();
+
+    // Signing out with changes not yet sent asks first
+    mini.state.restDown = true;
+    await addTask(pg, "Unsent task");
+    await pg.click("#acctBtn"); await pg.waitForSelector("#signOutBtn"); await pg.click("#signOutBtn"); await pg.waitForTimeout(300);
+    check(S, "signing out with unsent changes asks first", /Sign out anyway/.test(await text(pg, "#signOutBtn")) && !!(await pg.$("#signOutBtn")));
+    mini.state.restDown = false;
+    await pg.keyboard.press("Escape");
+    await pg.evaluate(() => window.dispatchEvent(new Event("online"))); await waitSynced(pg);
+    await collectCsp(pg, "save1"); await ctx.close();
+
+    // Older accounts (one document) are split up on first sign-in
+    ({ ctx, pg } = await open({ tag: "migrate" }));
+    const D = { email: "dee@example.com", pass: "dee pass 1234" };
+    await waitLocal(pg); await openAuth(pg);
+    await Promise.all([pg.waitForNavigation(), signUp(pg, D)]); await waitSynced(pg);
+    const did = await uidOf(D.email);
+    await mini.db.query("delete from public.docs where user_id = $1", [did]);
+    await mini.db.query("insert into public.docs (user_id, path, data) values ($1, 'account', $2::jsonb)", [did, JSON.stringify({ name: "Dee", current: "b_abcd1234", businesses: [{ id: "desk", name: "Main shop", createdAt: "2026-01-02" }, { id: "b_abcd1234", name: "Second shop", createdAt: "2026-02-03" }], badges: ["first-step"] })]);
+    await ctx.close();
+    ({ ctx, pg } = await open({ tag: "migrate2" }));
+    await signInFromGuest(pg, D); await waitSynced(pg); await pg.waitForTimeout(800);
+    const drows = await docsOf(did);
+    check(S, "an older account's businesses become separate documents", ["account/biz/desk", "account/biz/b_abcd1234", "account/badges/first-step"].every((p) => drows.some((r) => r.path === p)), JSON.stringify(drows.map((r) => r.path)));
+    check(S, "the account record is upgraded and keeps the name", (drows.find((r) => r.path === "account") || {}).data?.v === 2 && (drows.find((r) => r.path === "account") || {}).data?.name === "Dee");
+    check(S, "the business that was open stays open", /Second shop/.test(await text(pg, "#bizName")), await text(pg, "#bizName"));
+    await ctx.close();
+
+    // Two tabs without an account
+    ({ ctx, pg } = await open({ accounts: false, tag: "tabs" }));
+    const pg2 = await ctx.newPage(); await pg2.goto(BASE); await pg2.waitForTimeout(400);
+    await addTask(pg, "Tab A task"); await addTask(pg2, "Tab B task");
+    const both = await pg.evaluate(() => JSON.parse(localStorage.getItem("dd-local-tasks") || "[]").map((t) => t.title));
+    check(S, "two open tabs don't overwrite each other's tasks", both.includes("Tab A task") && both.includes("Tab B task"), both.join("|"));
+    await pg.waitForTimeout(400); await tasksTab(pg);
+    check(S, "each tab shows the other's changes", /Tab B task/.test(await outTasks(pg)));
+
+    // Browser storage is full
+    await pg.evaluate(() => { const big = "x".repeat(512 * 1024); for (let i = 0; i < 40; i++) { try { localStorage.setItem("filler" + i, big); } catch { break; } } });
+    await addTask(pg, "This won't fit");
+    check(S, "a full browser says the change wasn't saved", /storage is full/.test(await text(pg, "#toast")) && /Not saved/.test(await text(pg, "#syncText")), (await text(pg, "#toast")) + " / " + (await text(pg, "#syncText")));
+    check(S, "and doesn't pretend it was", !/This won't fit/.test(await outTasks(pg)));
+    await pg.evaluate(() => { Object.keys(localStorage).filter((k) => k.startsWith("filler")).forEach((k) => localStorage.removeItem(k)); });
+    await ctx.close();
+
+    // Plan, date and calculator fixes
+    ({ ctx, pg } = await open({ accounts: false, tag: "plan", test: true }));
+    await buildPlan(pg, { level: "new", model: "supplier", channel: "shopify", country: "us" });
+    await pg.click("#tab-plan"); await pg.click("text=Change answers");
+    await answer(pg, { level: "new", model: "affiliate", channel: "aff_amazon", country: "us" });
+    const counts = await pg.evaluate(() => { const p = JSON.parse(localStorage.getItem("dd-local-profile")); const plan = JSON.parse(localStorage.getItem("dd-local-tasks")).filter((t) => t.source === "plan"); return [plan.length, window.__dd.applicable(p).length, plan.filter((t) => !window.__dd.applicable(p).some((s) => s.id === t.step)).map((t) => t.step)]; });
+    check(S, "changing plan answers leaves no old steps behind", counts[0] === counts[1] && !counts[2].length, JSON.stringify(counts));
+    check(S, "monthly repeats keep their day, or use the month's last day", await pg.evaluate(() => window.__dd.addMonth("2026-01-31") === "2026-02-28" && window.__dd.addMonth("2026-02-28", 31) === "2026-03-31" && window.__dd.addMonth("2026-12-15") === "2027-01-15"));
+    await pg.click("#tab-tools"); await pg.selectOption("#toolSelect", "royalty").catch(async () => { await pg.click(".hub-nav button:has-text('Book royalties')"); });
+    await pg.waitForSelector("#n-bkPrint"); await pg.fill("#n-bkPaper", "12"); await pg.fill("#n-bkPrint", "4"); await pg.waitForTimeout(200);
+    check(S, "the book calculator's lowest price follows KDP's 50%/60% rule", /Lowest list price KDP allows\s*\$8\.00/.test(await outTasks(pg)), (await outTasks(pg)).match(/Lowest[^\n]*\n?[^\n]*/)?.[0]);
+    await pg.selectOption("#toolSelect", "delivery").catch(async () => { await pg.click(".hub-nav button:has-text('Delivery dates')"); });
+    await pg.waitForSelector("#n-handling");
+    const t0 = Date.now(); await pg.fill("#n-handling", "100000"); await pg.waitForTimeout(100); await pg.evaluate(() => 1);
+    check(S, "a huge number in the delivery tool doesn't freeze the app", Date.now() - t0 < 2500, Date.now() - t0 + " ms");
+    await pg.reload(); const t1 = Date.now(); await pg.waitForFunction(() => document.querySelector("#out").children.length > 0, null, { timeout: 5000 }).catch(() => {});
+    check(S, "and the app still opens quickly afterwards", Date.now() - t1 < 4000, Date.now() - t1 + " ms");
+    await tasksTab(pg);
+    const chk = await pg.$("#out button.check"); await chk.focus(); await pg.keyboard.press("Space"); await pg.waitForTimeout(500);
+    check(S, "ticking a task with the keyboard keeps your place", await pg.evaluate(() => !!(document.activeElement && document.activeElement.dataset && /^chk:/.test(document.activeElement.dataset.fk || ""))), await pg.evaluate(() => document.activeElement && document.activeElement.outerHTML.slice(0, 80)));
+    await ctx.close();
+
+    // Day N of the plan after the spring clock change (New York, 8 March 2026)
+    ({ ctx, pg } = await open({ accounts: false, tag: "dst", tz: "America/New_York", clock: "2026-03-06T12:00:00-05:00" }));
+    await buildPlan(pg, { level: "new", model: "digital", channel: "etsy", country: "us" });
+    await pg.clock.setSystemTime(new Date("2026-03-09T12:00:00-04:00")); await pg.reload(); await pg.waitForTimeout(500);
+    check(S, "the plan's day count is right after the clocks change", /Day 4 of 7/i.test(await outTasks(pg)), (await outTasks(pg)).slice(0, 120));
     await ctx.close();
   }
 } catch (e) {
