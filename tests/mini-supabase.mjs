@@ -132,6 +132,12 @@ export async function createMiniSupabase(schemaPath) {
     if (url.pathname === "/rest/v1/rpc/delete_my_account" && method === "POST") {
       return asRole(headers, async (tx) => { await tx.query("select public.delete_my_account()"); return { status: 204, headers: {}, body: "" }; });
     }
+    if (url.pathname === "/rest/v1/feedback" && method === "POST") {
+      return asRole(headers, async (tx) => {
+        for (const r of [].concat(JSON.parse(raw || "[]"))) await tx.query("insert into public.feedback (kind, model, day, answer, message) values ($1, $2, $3, $4, $5)", [r.kind, r.model ?? null, r.day ?? null, r.answer ?? null, r.message ?? null]);
+        return { status: 201, headers: {}, body: "" };
+      });
+    }
     if (url.pathname !== "/rest/v1/docs") return { status: 404, headers: {}, body: "{}" };
     return asRole(headers, async (tx) => {
       if (method === "GET" || method === "HEAD") {

@@ -607,6 +607,16 @@
       if (error) throw error;
       await endSession();
     },
+    // Cookieless visit counts (config.analytics): only a page path or event name is sent, never anything typed.
+    track: (name) => {
+      const A = CFG.analytics || {};
+      if (A.provider !== "goatcounter" || !/^[a-z0-9-]+$/i.test(A.code || "")) return;
+      new Image().src = "https://" + A.code + ".goatcounter.com/count?p=" + encodeURIComponent(name) + (name.startsWith("/") ? "" : "&e=true") + "&rnd=" + Date.now().toString(36);
+    },
+    // Anonymous feedback (supabase/schema.sql: an insert-only table), or an email address to write to.
+    canSendFeedback: () => !!sb,
+    sendFeedback: async (row) => { const { error } = await sb.from("feedback").insert(row); if (error) throw error; },
+    contactEmail: () => (typeof CFG.contactEmail === "string" && /^[^@\s]+@[^@\s]+$/.test(CFG.contactEmail) ? CFG.contactEmail : ""),
     canInstall: () => !standalone() && (!!installEvent || isIOS()),
     isIOS, standalone,
     install: async () => {
@@ -620,6 +630,7 @@
     },
   });
   window.startlinePlatform = platform;
+  platform.track(location.pathname || "/");
 
   // Offline support and updates (service workers need https or localhost).
   const swOk = "serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost" || location.hostname === "127.0.0.1");

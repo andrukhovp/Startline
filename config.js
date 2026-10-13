@@ -9,5 +9,5 @@ window.STARTLINE_CONFIG = {
   operatorName: "",      // e.g. "Startline project"
   contactEmail: "",      // e.g. a dedicated address for this site
   // Optional visitor statistics without cookies (see README.md, "Visitor statistics").
-  analytics: { provider: "", code: "" },  // provider: "goatcounter" or "cloudflare"
+  analytics: { provider: "", code: "" },  // provider: "goatcounter"; code: your GoatCounter site code
 };

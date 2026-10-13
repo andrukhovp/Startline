@@ -68,6 +68,12 @@ x = await tryq(`select * from public.docs`);
 ok("signed-out visitors can't read the table", !!x.e || x.r.rows.length === 0, x.e ? x.e.message : x.r.rows.length);
 x = await tryq(`select public.delete_my_account()`);
 ok("signed-out visitors can't call delete_my_account", !!x.e, x.e && x.e.message);
+x = await tryq(`insert into public.feedback (kind, model, day, answer) values ('checkin', 'supplier', 8, 'not-yet')`);
+ok("signed-out visitors can send a check-in", !x.e, x.e && x.e.message);
+x = await tryq(`select * from public.feedback`);
+ok("nobody can read feedback through the API", !!x.e, x.e ? "" : x.r.rows.length);
+x = await tryq(`insert into public.feedback (kind, message) values ('feedback', $1)`, ["x".repeat(2001)]);
+ok("feedback over 2,000 characters refused", !!x.e);
 // Row cap (lowered here so the test is quick)
 await db.exec(`reset role;`);
 await db.exec(sql.replace("25000", "5"));

@@ -1,6 +1,6 @@
 # Startline
 
-Plan, learn and run an online business, step by step. Startline has 7-day plans for 12 ways to earn online (dropshipping, print on demand, affiliate marketing and more), with tasks, lessons, courses, calculators and links to the platforms you'll use. Every fact links to its source.
+Plan, learn and run an online business, step by step. Startline has 7-day plans, with an optional second week, for 18 ways to earn online (dropshipping, print on demand, affiliate marketing, selling your own things, tutoring, stream clipping, UGC and more) in the US, UK, EU, Canada, Australia, India, the Philippines, Nigeria, Brazil and elsewhere. It has tasks, lessons, courses, calculators, a sales log, calendar reminders and links to the platforms you'll use. Every fact links to its source, and nothing in it promises income.
 
 It runs in any modern browser on phones, tablets and computers, and can be installed like an app. It works offline once it has loaded.
 
@@ -26,7 +26,7 @@ At this point Startline works for everyone, with work saved in each person's bro
 Accounts use [Supabase](https://supabase.com), which has a free plan. You need to do this once.
 
 1. **Create a project.** Sign in at [supabase.com/dashboard](https://supabase.com/dashboard) and create a new project.
-2. **Create the database table.** In the project, open **SQL Editor**, start a new query, paste everything from [`supabase/schema.sql`](supabase/schema.sql) and run it. It creates one table, locks every row to the account that owns it, caps how much one account can store, and adds the "Delete my account" function. Running it again is safe.
+2. **Create the database table.** In the project, open **SQL Editor**, start a new query, paste everything from [`supabase/schema.sql`](supabase/schema.sql) and run it. It creates the table for saved work, locks every row to the account that owns it, caps how much one account can store, and adds the "Delete my account" function. It also creates an insert-only `feedback` table for anonymous feedback and check-ins (see below). Running it again is safe.
 3. **Tell Supabase where the app lives.** Open **Authentication > URL Configuration**:
    - **Site URL**: your Pages address, for example `https://<your-github-username>.github.io/<repository-name>/`
    - **Redirect URLs**: add the same address followed by `**`, for example `https://<your-github-username>.github.io/<repository-name>/**`. Email confirmation and password-reset links only open addresses on this list.
@@ -54,6 +54,18 @@ In Supabase, open **Authentication > Sign In / Providers > Google** and follow t
 - **Custom Supabase domain:** if your project uses a custom domain instead of `*.supabase.co`, add it to the `connect-src` list in the Content-Security-Policy line at the top of `index.html`.
 - **Deleting accounts:** people can delete their own account in the app (Account > Delete my account). You can also delete users in the Supabase dashboard under **Authentication > Users**; their saved data is removed with them.
 
+## Privacy and terms pages
+
+`privacy.html` and `terms.html` are plain-language pages linked from the sign-up form. Fill in `operatorName` and `contactEmail` in `config.js` so they say who runs the site and how to reach them. Use a project name and a dedicated address, not personal ones.
+
+## Feedback and check-ins
+
+With accounts turned on, people can send feedback from **Settings > Send feedback**, and from day 7 the Today screen asks once, "how's it going?" (made money / not yet / stopped). Both are anonymous: only the message or answer, the way they're earning and the plan day are stored, with no user id or email. Read them in the Supabase dashboard under **Table Editor > feedback**; nobody can read them through the app or the API. Without accounts, Settings shows an "Email feedback" link if `contactEmail` is set.
+
+## Visitor statistics (optional)
+
+Startline can count visits and a few milestones (plan built, first step done, week 2 added) with [GoatCounter](https://www.goatcounter.com), which uses no cookies and doesn't identify people. Nothing anyone types is sent. Create a GoatCounter site, then set `analytics: { provider: "goatcounter", code: "your-site-code" }` in `config.js`. The privacy page then mentions it automatically.
+
 ## Try it on your computer
 
 Any static web server works. With Node.js installed:
@@ -78,9 +90,13 @@ Then open <http://localhost:8080/>. To use accounts locally, add `http://localho
 | `vendor/supabase.js` | [supabase-js](https://github.com/supabase/supabase-js) 2.117.1, MIT licence (see `vendor/supabase-js.LICENSE`) |
 | `supabase/schema.sql` | Database setup for accounts |
 | `tools/build-artifact.mjs` | Builds the single-file version that runs inside claude.ai |
+| `tools/stamp.mjs` | Adds release stamps (`?v=…`) so browsers fetch changed files; run it after editing any file |
+| `privacy.html`, `terms.html`, `legal.js` | The privacy and terms pages, filled in from `config.js` |
+| `fonts/` | Self-hosted fonts (Unbounded, Instrument Sans, DM Mono; OFL licences in `fonts/LICENSES.txt`) |
+| `robots.txt` | Lets search engines index the site |
 | `tests/` | Automated checks: the database rules, and the app end to end in a real browser |
 
-When you change `sw.js` itself, bump its `VERSION` so browsers pick up the new worker. Changes to every other file reach people automatically: the app's files are fetched fresh whenever there's a connection.
+After changing any file, run `node tools/stamp.mjs`. It updates the release stamps in `index.html` and `sw.js`, so installed copies pick up the new files; the checks fail if you forget.
 
 ## Run the checks
 

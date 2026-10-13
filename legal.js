@@ -10,5 +10,5 @@
   document.querySelectorAll("[data-if-accounts]").forEach((n) => { n.hidden = !(C.supabaseUrl && C.supabaseAnonKey); });
   document.querySelectorAll("[data-if-google]").forEach((n) => { n.hidden = !C.googleSignIn; });
   document.querySelectorAll("[data-if-analytics]").forEach((n) => { n.hidden = !(C.analytics && C.analytics.provider); });
-  document.querySelectorAll("[data-analytics-name]").forEach((n) => { n.textContent = ({ goatcounter: "GoatCounter", cloudflare: "Cloudflare Web Analytics" })[C.analytics && C.analytics.provider] || "a visitor-statistics service"; });
+  document.querySelectorAll("[data-analytics-name]").forEach((n) => { n.textContent = ({ goatcounter: "GoatCounter" })[C.analytics && C.analytics.provider] || "a visitor-statistics service"; });
 })();

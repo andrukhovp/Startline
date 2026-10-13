@@ -565,3 +565,7 @@ details.fold[open] > summary { margin-bottom: 8px; }
 details.fold.realistic { border-top: 1px solid var(--line); padding-top: 10px; }
 details.fold.realistic .prose ul { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; }
 .note .sources { margin-top: 8px; }
+/* Sales log */
+.sales-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.sales-list li { display: flex; gap: 10px; align-items: center; justify-content: space-between; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: 6px; }
+.sales-list li span { flex: 1 1 12em; min-width: 0; overflow-wrap: anywhere; }

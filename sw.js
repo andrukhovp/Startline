@@ -7,16 +7,16 @@
  * one matching set; when a new release is found, the app offers to reload.
  * Your account's requests (Supabase) are never cached here.
  */
-const VERSION = "00fe25c83e";
+const VERSION = "19b70b35f5";
 const CACHE = "startline-" + VERSION;
 const SHELL = [
   "./",
   "index.html",
   "config.js",
-  "styles.css?v=3556f88dd5",
+  "styles.css?v=dc7f513e6d",
   "fonts/fonts.css?v=7df2df87e5",
-  "platform.js?v=6f33b60584",
-  "app.js?v=438539fe11",
+  "platform.js?v=ba0e658e8a",
+  "app.js?v=e732b8ec82",
   "manifest.webmanifest",
   "privacy.html",
   "terms.html",

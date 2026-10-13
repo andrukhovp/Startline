@@ -32,6 +32,7 @@
     cbpDeMinimisRule: ["Federal Register: indefinite suspension of the de minimis exemption (June 24, 2026)", "https://www.federalregister.gov/documents/full_text/html/2026/06/24/2026-12670.html"],
     shopPayoutsUS: ["Shopify Help: Shopify Payments payouts in the United States", "https://help.shopify.com/en/manual/payments/shopify-payments/supported-countries/united-states/payouts"],
     stripePricing: ["Stripe: pricing and fees", "https://stripe.com/pricing"],
+    etsySearchHow: ["Etsy Seller Handbook: how Etsy search works", "https://www.etsy.com/seller-handbook/article/375461474487"],
     bankrate: ["Bankrate: side hustle survey (2025)", "https://www.bankrate.com/loans/small-business/side-hustles-survey/"],
     bankratePR: ["Bankrate: fewer Americans have a side hustle in 2025 (press release)", "https://www.bankrate.com/press-releases/fewer-americans-have-a-side-hustle-in-2025/"],
     linktreeReport: ["Linktree: 2022 Creator Report", "https://linktr.ee/creator-report/"],
@@ -330,6 +331,224 @@
     shopifyAdmin: ["Shopify admin", "https://admin.shopify.com/"],
     metaAds: ["Meta Ads Manager", "https://adsmanager.facebook.com/"],
     ttAds: ["TikTok Ads Manager", "https://ads.tiktok.com/"],
+    adobeStockContrib: ["Adobe Stock Contributor", "https://contributor.stock.adobe.com/"],
+    adobeStockRoyalty: ["Adobe Stock Help: royalty rates for contributors", "https://helpx.adobe.com/stock/contributor/payments-earnings/royalties-pricing/royalty-rates-assets.html"],
+    adobeStockRoyaltyEx: ["Adobe Stock Help: contributor payment guidelines", "https://helpx.adobe.com/stock/contributor/help/royalty-details.html"],
+    adobeStockPayout: ["Adobe Stock Help: contributor payment requirements", "https://helpx.adobe.com/stock/contributor/help/getting-paid.html"],
+    adobeStockPayoutReq: ["Adobe Stock Help: request a payment", "https://helpx.adobe.com/stock/contributor/payments-earnings/payment-taxes/request-payment-content.html"],
+    adobeStockProviders: ["Adobe Stock Help: payment providers FAQ", "https://helpx.adobe.com/stock/contributor/payments-earnings/payment-taxes/payment-providers-payouts-faq.html"],
+    adobeStockGuidelines: ["Adobe Stock Help: contributor guidelines", "https://helpx.adobe.com/stock/contributor/get-started/manage-your-account/account-submission-guidelines.html"],
+    adobeStockSignup: ["Adobe Stock Help: sign up as a contributor", "https://helpx.adobe.com/stock/contributor/get-started/manage-your-account/sign-up-as-a-stock-contributor.html"],
+    adobeStockAI: ["Adobe Stock Help: generative AI content guidelines", "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"],
+    adobeStockAISubmit: ["Adobe Stock Help: submit AI-generated content", "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/submit-generative-ai-content.html"],
+    adobeStockModel: ["Adobe Stock Help: model release requirements", "https://helpx.adobe.com/stock/contributor/content-policies-guidelines/model-property-releases/model-release-requirements.html"],
+    adobeStockProperty: ["Adobe Stock Help: property release requirements", "https://helpx.adobe.com/stock/contributor/content-policies-guidelines/model-property-releases/property-release-requirements.html"],
+    adobeStockIP: ["Adobe Stock Help: intellectual property guidelines", "https://helpx.adobe.com/stock/contributor/get-started/manage-your-account/intellectual-property-violation.html"],
+    adobeStockKeywords: ["Adobe Stock Help: titles and keywords", "https://helpx.adobe.com/stock/contributor/content-policies-guidelines/metadata/tips-effective-titles-keywords.html"],
+    adobeStockReorder: ["Adobe Stock Help: reorder keywords", "https://helpx.adobe.com/stock/contributor/content-policies-guidelines/metadata/change-order-keywords.html"],
+    adobeStockPhotoReq: ["Adobe Stock Help: photo submission requirements", "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-photos/technical-legal-requirements-photo-submission.html"],
+    adobeStockVideoReq: ["Adobe Stock Help: video submission requirements", "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-videos/technical-requirements-for-video-submissions.html"],
+    ssSubmit: ["Shutterstock Contributor", "https://submit.shutterstock.com/"],
+    ssSignup: ["Shutterstock Help: how to sign up as a contributor", "https://submit.shutterstock.com/help/en/articles/10617443-how-do-i-sign-up-to-become-a-shutterstock-contributor"],
+    ssSell: ["Shutterstock Help: how do I sell my work?", "https://submit.shutterstock.com/help/en/articles/10617495-how-do-i-sell-my-work-on-shutterstock"],
+    ssAge: ["Shutterstock Help: is there a minimum age?", "https://submit.shutterstock.com/help/en/articles/10594572-is-there-a-minimum-age-for-contributors"],
+    ssGuidelines: ["Shutterstock Help: account and content submission guidelines", "https://submit.shutterstock.com/help/en/articles/10594696-contributor-account-and-content-submission-guidelines"],
+    ssLevels: ["Shutterstock Help: contributor earnings structure FAQ", "https://submit.shutterstock.com/help/en/articles/10594653-contributor-earnings-structure-faq"],
+    ssPerDownload: ["Shutterstock Help: how much will I earn per download?", "https://submit.shutterstock.com/help/en/articles/10594609-how-much-will-i-earn-per-download"],
+    ssPayouts: ["Shutterstock: contributor earnings schedule", "https://submit.shutterstock.com/payouts?language=en"],
+    ssGetPaid: ["Shutterstock Help: how do I get paid?", "https://submit.shutterstock.com/help/en/articles/10617435-how-do-i-get-paid-for-my-work"],
+    ssPaySettings: ["Shutterstock Help: change your payment settings", "https://submit.shutterstock.com/help/en/articles/10594632-how-do-i-change-my-payment-settings"],
+    ssPayMethod: ["Shutterstock Help: set up your payment method", "https://submit.shutterstock.com/help/en/articles/12135709-how-do-i-set-up-or-fix-my-earnings-payment-method"],
+    ssAI: ["Shutterstock Help: content policy update on AI-generated content", "https://submit.shutterstock.com/help/en/articles/10594622-content-policy-updates-ai-generated-content"],
+    ssAIFaq: ["Shutterstock Help: AI-generated content contributor FAQ", "https://submit.shutterstock.com/help/en/articles/10594676-ai-generated-content-on-shutterstock-contributor-faq"],
+    ssNonLicensable: ["Shutterstock Help: rejected as Non-Licensable Content", "https://submit.shutterstock.com/help/en/articles/10594633-why-was-my-content-rejected-as-non-licensable-content"],
+    ssModel: ["Shutterstock Help: model release requirements", "https://submit.shutterstock.com/help/en/articles/12135904-what-are-the-requirements-for-model-releases"],
+    ssProperty: ["Shutterstock Help: property release rejections", "https://submit.shutterstock.com/help/en/articles/12136608-why-was-my-content-rejected-for-property-release-issues"],
+    ssWrongRelease: ["Shutterstock Help: rejected for Wrong Release", "https://submit.shutterstock.com/help/en/articles/10617500-why-was-my-content-rejected-for-wrong-release"],
+    ssTrademark: ["Shutterstock Help: trademark rejections", "https://submit.shutterstock.com/help/en/articles/12136473-why-was-my-content-rejected-for-trademark-issues"],
+    ssKeywords: ["Shutterstock Help: description and keyword best practices", "https://submit.shutterstock.com/help/en/articles/10594702-description-and-keyword-best-practices"],
+    ssImageReq: ["Shutterstock Help: technical requirements for images", "https://submit.shutterstock.com/help/en/articles/10617390-what-are-the-technical-requirements-for-images"],
+    ssVideoReq: ["Shutterstock Help: technical requirements for video", "https://submit.shutterstock.com/help/en/articles/10594637-what-are-the-technical-requirements-for-video"],
+    canvaCreators: ["Canva: Canva Creators", "https://www.canva.com/creators/"],
+    canvaCreatorsHelp: ["Canva Help: about the Canva Creators program", "https://www.canva.com/help/canva-creators-program/"],
+    canvaCreatorsPay: ["Canva Help: setting up payments for Canva Creators", "https://www.canva.com/help/set-up-payout-details/"],
+    canvaContribAgree: ["Canva: Contributor Agreement", "https://www.canva.com/policies/contributor-agreement/"],
+    canvaContribUpdate: ["Canva Help: updates to the Contributor Agreement (Jan 2026)", "https://www.canva.com/help/updates-to-contributor-agreement-jan-2026/"],
+    cmOpen: ["Creative Market Help: open a shop", "https://support.creativemarket.com/hc/en-us/articles/201251700-Open-a-Shop-on-Creative-Market"],
+    cmSales: ["Creative Market Help: shop sales and analytics", "https://support.creativemarket.com/hc/en-us/articles/201193714-All-About-Shop-Sales-Analytics"],
+    cmPayouts: ["Creative Market Help: taxes and payouts", "https://support.creativemarket.com/hc/en-us/articles/115004015634-Shop-Owner-Guide-to-Taxes-Payouts"],
+    fbmSellerPolicy: ["Facebook: Marketplace Seller Protection Policy", "https://www.facebook.com/legal/merchant_policies"],
+    fbmCommerce: ["Facebook: Commerce Policies", "https://www.facebook.com/policies_center/commerce/"],
+    fbmPurchaseProt: ["Facebook Help: how Purchase Protection works on Marketplace", "https://www.facebook.com/help/228307904608701"],
+    fbScams: ["Facebook Help: avoiding scams on Facebook", "https://www.facebook.com/help/1674717642789671"],
+    offerupFree: ["OfferUp Help: what is OfferUp?", "https://help.offerup.com/hc/en-us/articles/360031989092-Is-OfferUp-free-to-use-"],
+    offerupLimits: ["OfferUp Help: free listing limits", "https://help.offerup.com/hc/en-us/articles/13072929390228-About-free-listing-limits"],
+    offerupShipEnd: ["OfferUp Help: nationwide shipping ending", "https://help.offerup.com/hc/en-us/articles/41043186552980-Nationwide-shipping-ending"],
+    offerupTerms: ["OfferUp: Terms of Service", "https://offerup.com/terms"],
+    offerupPosting: ["OfferUp Help: posting rules", "https://help.offerup.com/hc/en-us/articles/360031988292"],
+    offerupSafety: ["OfferUp Help: safety tips for meeting up", "https://help.offerup.com/hc/en-us/articles/360032330891-Safety-tips-for-meeting-up"],
+    offerupSpots: ["OfferUp Help: Community MeetUp Spots", "https://help.offerup.com/hc/en-us/articles/360032335691-About-Community-MeetUp-Spots"],
+    offerupScams: ["OfferUp Help: common buying and selling scams", "https://help.offerup.com/hc/en-us/articles/360035054931-Common-buying-and-selling-scams"],
+    vintedFree: ["Vinted Help: is using Vinted free?", "https://www.vinted.co.uk/help/373-is-selling-on-vinted-free"],
+    vintedBP: ["Vinted Help: Buyer Protection", "https://www.vinted.co.uk/help/550-buyer-protection"],
+    vintedPaid: ["Vinted Help: getting paid for a completed sale", "https://www.vinted.co.uk/help/4/235-getting-paid-for-a-completed-sale"],
+    vintedWithdraw: ["Vinted Help: how to withdraw earnings", "https://www.vinted.co.uk/help/68-how-to-withdraw-earnings"],
+    vintedAge: ["Vinted Help: verify your age", "https://www.vinted.co.uk/help/1057"],
+    vintedTerms: ["Vinted: User Terms and Conditions", "https://www.vinted.co.uk/terms_and_conditions"],
+    vintedHow: ["Vinted: how it works", "https://www.vinted.co.uk/how_it_works"],
+    depopFees: ["Depop Help: seller fees and charges", "https://www.depop.com/help/seller-fees-and-charges/"],
+    depopNewsUS: ["Depop: removing selling fees in the United States", "https://news.depop.com/company-news/depop-removes-selling-fees-in-the-united-states-evolves-fee-structure/"],
+    depopNewsUK: ["Depop: zero selling fees on Depop", "https://news.depop.com/company-news/evolving-our-fee-structure-with-zero-selling-fees-on-depop/"],
+    ebayUkSellerFees: ["eBay UK Seller Centre: seller fees", "https://www.ebay.co.uk/sellercentre/selling/start-selling/fees?targetgroup=C2C"],
+    ebayUkBP: ["eBay UK: Buyer Protection, information for sellers", "https://www.ebay.co.uk/help/selling/selling/pricing-items/buyer-protection-information-sellers?id=5595"],
+    ebayUkBizPolicy: ["eBay UK: business seller policy", "https://www.ebay.co.uk/help/policies/selling-policies/business-seller-policy?id=4710"],
+    ebayUkBizAcct: ["eBay UK Seller Centre: business accounts", "https://www.ebay.co.uk/sellercentre/selling/start-selling/create-ebay-business-account"],
+    ebayUnderage: ["eBay: underage user policy", "https://www.ebay.com/help/policies/identity-policies/underage-user-policy?id=4233"],
+    ftcSelling: ["FTC: selling stuff online? Here's how to avoid a scam", "https://consumer.ftc.gov/consumer-alerts/2022/07/selling-stuff-online-heres-how-avoid-scam"],
+    ftcFakeCheck: ["FTC: how to spot, avoid and report fake check scams", "https://consumer.ftc.gov/articles/how-spot-avoid-and-report-fake-check-scams"],
+    irs1099kCommon: ["IRS: Form 1099-K FAQs, common situations", "https://www.irs.gov/newsroom/form-1099-k-faqs-common-situations"],
+    irsHobby: ["IRS: hobby or business? What to know about that side hustle", "https://www.irs.gov/newsroom/hobby-or-business-heres-what-to-know-about-that-side-hustle"],
+    hmrcPlatformData: ["GOV.UK: no tax changes for online sellers", "https://www.gov.uk/government/news/no-tax-changes-for-online-sellers"],
+    ftcJobScams: ["FTC: job scams", "https://consumer.ftc.gov/articles/job-scams"],
+    ftcReship: ["FTC: can you unbox the signs of a reshipping scam?", "https://consumer.ftc.gov/consumer-alerts/2025/12/can-you-unbox-signs-reshipping-scam"],
+    ftcJobText: ["FTC: that job offer text is probably a scam", "https://consumer.ftc.gov/consumer-alerts/2026/04/job-offer-text-probably-scam"],
+    ftcCoaching: ["FTC: how to spot and avoid business coaching scams", "https://consumer.ftc.gov/consumer-alerts/2026/04/how-spot-and-avoid-business-coaching-scams"],
+    reportFraud: ["FTC: ReportFraud.ftc.gov", "https://reportfraud.ftc.gov/"],
+    dolMinWage: ["US Department of Labor: questions and answers about the minimum wage", "https://www.dol.gov/agencies/whd/minimum-wage/faq"],
+    dolStateMin: ["US Department of Labor: state minimum wage laws", "https://www.dol.gov/agencies/whd/minimum-wage/state"],
+    dolOutside: ["US Department of Labor: Fact Sheet #17F, outside sales employees", "https://www.dol.gov/agencies/whd/fact-sheets/17f-overtime-outside-sales"],
+    irsWorker: ["IRS: independent contractor (self-employed) or employee?", "https://www.irs.gov/businesses/small-businesses-self-employed/independent-contractor-self-employed-or-employee"],
+    irsTc762: ["IRS: Topic 762, independent contractor vs. employee", "https://www.irs.gov/taxtopics/tc762"],
+    irsSS8: ["IRS: instructions for Form SS-8", "https://www.irs.gov/pub/irs-pdf/iss8.pdf"],
+    ukNmwWho: ["GOV.UK: who gets the minimum wage", "https://www.gov.uk/national-minimum-wage/who-gets-the-minimum-wage"],
+    ukNmwElig: ["GOV.UK: calculating the minimum wage, eligibility", "https://www.gov.uk/guidance/calculating-the-minimum-wage/eligibility-for-the-minimum-wage"],
+    ukNmwCalc: ["GOV.UK: calculating the minimum wage", "https://www.gov.uk/guidance/calculating-the-minimum-wage"],
+    hmrcNmwTime: ["HMRC manual: NMWM07040, time work", "https://www.gov.uk/hmrc-internal-manuals/national-minimum-wage-manual/nmwm07040"],
+    blsSalesRep: ["BLS Occupational Outlook Handbook: wholesale and manufacturing sales representatives", "https://www.bls.gov/ooh/sales/wholesale-and-manufacturing-sales-representatives.htm"],
+    liScams: ["LinkedIn Help: recognize and report scams", "https://www.linkedin.com/help/linkedin/answer/a1336387"],
+    liReportJob: ["LinkedIn Help: reporting jobs", "https://www.linkedin.com/help/linkedin/answer/a513290"],
+    liVerify: ["LinkedIn Help: verification badge on job posts", "https://www.linkedin.com/help/linkedin/answer/a1492056"],
+    liOpen: ["LinkedIn Help: let recruiters know you're Open to Work", "https://www.linkedin.com/help/linkedin/answer/a507508"],
+    liAlerts: ["LinkedIn Help: job alerts", "https://www.linkedin.com/help/linkedin/answer/a511279"],
+    indeedSafe: ["Indeed: guidelines for a safe job search", "https://support.indeed.com/hc/en-us/articles/216354123-Guidelines-for-a-Safe-Job-Search"],
+    preplyCommission: ["Preply Help: Preply commission model", "https://help.preply.com/en/articles/4171383-preply-commission-model"],
+    preplyPaid: ["Preply Help: when and how you get paid for lessons", "https://help.preply.com/en/articles/4171348-when-and-how-you-get-paid-for-lessons"],
+    preplyRegister: ["Preply Help: register to teach on Preply", "https://help.preply.com/en/articles/4175138-register-to-teach-on-preply"],
+    preplyId: ["Preply Help: identity verification guidelines", "https://help.preply.com/en/articles/4175176-identity-verification-guidelines"],
+    preplyTeach: ["Preply: teach online", "https://preply.com/en/teach"],
+    preplyTerms: ["Preply: Terms of Service", "https://termsofuse.preply.com/terms_of_use/en_TermsOfService.pdf"],
+    preplyConduct: ["Preply: User Code of Conduct", "https://termsofuse.preply.com/terms_of_use/en_UserCodeOfConduct.pdf"],
+    italkiCommission: ["italki Help: how does italki charge a commission?", "https://support.italki.com/hc/en-us/articles/206352068-How-does-italki-charge-a-commission"],
+    italkiTypes: ["italki Help: Professional Teacher vs Community Tutor", "https://support.italki.com/hc/en-us/articles/900002978766-Difference-between-Professional-Teacher-and-Community-Tutor"],
+    italkiPro: ["italki Help: how to become a Professional Teacher", "https://support.italki.com/hc/en-us/articles/206352058-How-do-I-become-a-Professional-Teacher-What-are-the-requirements-for-certificates"],
+    italkiLang: ["italki Help: language requirements for teaching", "https://support.italki.com/hc/en-us/articles/206352078-What-are-the-language-requirements-for-teaching-on-italki-"],
+    italkiOpen: ["italki Help: is my language open for application?", "https://support.italki.com/hc/en-us/articles/115001499873-What-is-the-Application-Process-"],
+    italkiVideo: ["italki Help: introduction video guidelines", "https://support.italki.com/hc/en-us/articles/206352028-Introduction-video-guidelines-and-requirements"],
+    italkiWithdraw: ["italki Help: how do I get paid and what's the withdrawal fee?", "https://support.italki.com/hc/en-us/articles/210002367-How-do-I-get-paid-and-what-s-the-withdrawal-fee"],
+    italkiTos: ["italki: Terms of Service", "https://www.italki.com/en/tos"],
+    italkiParents: ["italki Help: a guide for parents", "https://support.italki.com/hc/en-us/articles/6732554220825-For-parents-your-guide-to-kids-learning-on-italki"],
+    italkiApply: ["italki: apply to teach", "https://teach.italki.com/en/application"],
+    camblyTutors: ["Cambly: teach English online", "https://www.cambly.com/english/tutors"],
+    camblyApply: ["Cambly Help: applying to become a tutor", "https://studentsupport.cambly.com/hc/en-us/articles/44522545417485-Applying-to-become-a-tutor"],
+    camblyAddendum: ["Cambly: Tutor Addendum", "https://www.cambly.com/web/en/tutor/agreement_doc"],
+    camblyKidsPrivacy: ["Cambly Kids Privacy Policy", "https://www.cambly.com/legal/kids_privacy_policy"],
+    wyzantFee: ["Wyzant Support: fee structure for tutors", "https://support.wyzant.com/tutors/tutor-payments/what-is-the-fee-structure-for-tutors-listed-on-wyzant/"],
+    wyzantStudentFee: ["Wyzant Support: the service fee charged to students", "https://support.wyzant.com/tutors/tutor-payments/what-is-the-service-fee-charged-to-students/"],
+    wyzantPayPolicy: ["Wyzant Support: tutor payment policies", "https://support.wyzant.com/tutors/tutor-payments/tutor-payment-policies/"],
+    wyzantWhenPaid: ["Wyzant Support: when will I be paid?", "https://support.wyzant.com/tutors/tutor-payments/when-will-i-be-paid/"],
+    wyzantSchedule: ["Wyzant Support: tutor payment schedule update, July 2025", "https://support.wyzant.com/tutors/tutor-payments/tutor-payment-schedule-update-july-2025/"],
+    wyzantCash: ["Wyzant Support: can I pay my tutor with cash?", "https://support.wyzant.com/hc/en-us/articles/115001993346-Can-I-pay-my-tutor-with-cash"],
+    wyzantReg: ["Wyzant Support: tutor registration FAQs", "https://support.wyzant.com/tutors/tutor-account/tutor-registration-faqs/"],
+    wyzantBg: ["Wyzant Support: background check policy", "https://support.wyzant.com/tutors/tutor-account/background-check-policy/"],
+    wyzantVet: ["Wyzant Support: how does Wyzant vet tutors?", "https://support.wyzant.com/students-parents/find-a-tutor/how-does-wyzant-vet-tutors/"],
+    wyzantHow: ["Wyzant: how it works for tutors", "https://www.wyzant.com/howitworks/tutors"],
+    outschoolTeach: ["Outschool: teach online", "https://outschool.com/teach"],
+    outschoolAddendum: ["Outschool: Teacher Addendum", "https://outschool.com/pages/teacher-addendum"],
+    outschoolEarnings: ["Outschool Help: teacher earnings and payments policy", "https://support.outschool.com/en/articles/2382129-teacher-earnings-and-payments-policy"],
+    outschoolRefunds: ["Outschool Help: refund policies for teachers", "https://support.outschool.com/en/articles/4626081-refund-policies-for-teachers"],
+    outschoolProspective: ["Outschool Help: prospective educator FAQ", "https://support.outschool.com/en/articles/16057-prospective-educator-faq"],
+    outschoolBecoming: ["Outschool Help: becoming an educator on Outschool", "https://support.outschool.com/en/articles/1638033-becoming-an-educator-on-outschool"],
+    outschoolId: ["Outschool Help: teacher identity verification", "https://support.outschool.com/en/articles/4705479-teacher-identity-verification"],
+    outschoolBg: ["Outschool Help: educator background checks", "https://support.outschool.com/en/articles/2701506-educator-background-checks"],
+    outschoolSafety: ["Outschool: Trust & Safety", "https://outschool.com/safety"],
+    outschoolPersonal: ["Outschool Help: when teachers may share personal information", "https://support.outschool.com/en/articles/9901053-when-teachers-may-share-their-personal-information"],
+    outschoolRecordings: ["Outschool Help: sharing recorded classes", "https://support.outschool.com/en/articles/1746910-sharing-recorded-classes-with-learners-and-parents"],
+    outschoolStrikes: ["Outschool Help: the Trust & Safety strike system for teachers", "https://support.outschool.com/en/articles/11084107-understanding-the-trust-safety-strike-system-for-teachers"],
+    whopCrDocs: ["Whop Docs: Content Rewards", "https://docs.whop.com/memberships-and-access/third-party-apps/content-rewards"],
+    whopDiscover: ["Whop: Content Rewards campaigns", "https://whop.com/discover/content-rewards/"],
+    whopCrTerms: ["Content Rewards: creator terms of service", "https://b4e0vdqv6zgqeqj4pfgm.apps.whop.com/terms"],
+    whopCrBrandTerms: ["Content Rewards: organization (brand) terms of service", "https://b4e0vdqv6zgqeqj4pfgm.apps.whop.com/brands-terms"],
+    whopCrOldTerms: ["Whop: Content Rewards Terms of Service", "https://whop.com/content-rewards-terms-of-service/"],
+    whopFtc: ["Whop: FTC guidelines for clippers", "https://whop.com/ftc/"],
+    whopPayouts: ["Whop Docs: set up payouts", "https://docs.whop.com/manage-your-business/manage-payouts/set-up-payouts"],
+    whopFees: ["Whop Docs: fees", "https://docs.whop.com/fees"],
+    whopTos: ["Whop: Terms of Service", "https://whop.com/tos/"],
+    twitchClips: ["Twitch Help: how to create, edit and share clips", "https://help.twitch.tv/s/article/how-to-use-clips?language=en_US"],
+    twitchClipSettings: ["Twitch Help: clips settings", "https://help.twitch.tv/s/article/clips-settings?language=en_US"],
+    twitchTos: ["Twitch: Terms of Service", "https://www.twitch.tv/p/en/legal/terms-of-service/"],
+    twitchDmca: ["Twitch: DMCA Guidelines", "https://www.twitch.tv/p/en/legal/dmca-guidelines/"],
+    twitchDmcaFaq: ["Twitch Help: DMCA & copyright FAQs", "https://help.twitch.tv/s/article/dmca-and-copyright-faqs?language=en_US"],
+    twitchCopyCamp: ["Twitch Creator Camp: copyrights and your channel", "https://www.twitch.tv/creatorcamp/en/learn-the-basics/copyrights-and-your-channel/"],
+    twitchCopyReport: ["Twitch Safety: 2024 Copyright Transparency Report", "https://safety.twitch.tv/s/article/2024-Copyright-Transparency-Report?language=en_US"],
+    twitchAffJoin: ["Twitch Help: joining the Affiliate program", "https://help.twitch.tv/s/article/joining-the-affiliate-program?language=en_US"],
+    twitchAffFaq: ["Twitch Help: Affiliate program FAQ", "https://help.twitch.tv/s/article/twitch-affiliate-program-faq?language=en_US"],
+    twitchMonAll: ["Twitch Blog: Monetization for All (2026)", "https://blog.twitch.tv/en/2026/05/13/monetization-for-all/"],
+    twitchOnboard: ["Twitch Help: Affiliate onboarding guide", "https://help.twitch.tv/s/article/affiliate-onboarding-guide?language=en_US"],
+    twitchPaid: ["Twitch Help: when am I getting paid?", "https://help.twitch.tv/s/article/when-am-i-getting-paid?language=en_US"],
+    twitchPartner: ["Twitch Help: Partner Program overview (revenue shares)", "https://help.twitch.tv/s/article/partner-program-overview?language=en_US"],
+    twitchPlus: ["Twitch Help: Plus Program", "https://help.twitch.tv/s/article/plus-program?language=en_US"],
+    twitchMonetization: ["Twitch Help: about monetization on Twitch", "https://help.twitch.tv/s/article/streamer-benefits?language=en_US"],
+    twitchAdRev: ["Twitch Blog: the Ad Revenue Upgrade", "https://blog.twitch.tv/en/2022/06/14/bigger-ad-payouts-to-more-creators-the-ad-revenue-upgrade/"],
+    twitchParents: ["Twitch Safety: guide for parents and educators", "https://safety.twitch.tv/s/article/Guide-Parents-Educators?language=en_US"],
+    twitchMsa: ["Twitch: Monetized Streamer Agreement", "https://www.twitch.tv/p/en/legal/monetized-streamer-agreement/"],
+    twitchSponsor: ["Twitch Blog: sponsorships are now available to Affiliates (Aug 2026)", "https://blog.twitch.tv/en/2026/08/20/sponsorships-are-now-available-to-affiliates/"],
+    ytReused: ["YouTube Help: channel monetization policies (reused content)", "https://support.google.com/youtube/answer/1311392?hl=en"],
+    ytShortsMon: ["YouTube Help: Shorts monetization policies", "https://support.google.com/youtube/answer/12504220?hl=en"],
+    ytStrikes: ["YouTube Help: copyright strike basics", "https://support.google.com/youtube/answer/2814000?hl=en"],
+    ytClaims: ["YouTube Help: learn about Content ID claims", "https://support.google.com/youtube/answer/6013276?hl=en"],
+    ytRemix: ["YouTube Help: create Shorts with remixed content", "https://support.google.com/youtube/answer/10623810?hl=en"],
+    ytEditShort: ["YouTube Help: create Shorts from your videos", "https://support.google.com/youtube/answer/12836917?hl=en"],
+    ytPermissions: ["YouTube Help: channel permissions", "https://support.google.com/youtube/answer/9481328?hl=en"],
+    ytPaidPromo: ["YouTube Help: add paid product placements, sponsorships and endorsements", "https://support.google.com/youtube/answer/154235?hl=en"],
+    ytLiveStart: ["YouTube Help: get started with live streaming", "https://support.google.com/youtube/answer/2474026?hl=en"],
+    ytLiveMobile: ["YouTube Help: create a live stream on mobile", "https://support.google.com/youtube/answer/9228390?hl=en"],
+    ytLiveRestrict: ["YouTube Help: avoid restrictions on live streaming", "https://support.google.com/youtube/answer/2853834?hl=en"],
+    ytEncoder: ["YouTube Help: create a live stream with an encoder", "https://support.google.com/youtube/answer/2907883?hl=en"],
+    ytLiveTips: ["YouTube Help: live streaming tips", "https://support.google.com/youtube/answer/12917058?hl=en"],
+    ytSuperElig: ["YouTube Help: Super Chat and Super Stickers eligibility", "https://support.google.com/youtube/answer/9277801?hl=en"],
+    ytSuperManage: ["YouTube Help: manage Super Chat and Super Stickers", "https://support.google.com/youtube/answer/7288782?hl=en"],
+    ytCommerce: ["YouTube Help: Commerce Products monetization policies", "https://support.google.com/youtube/answer/13195878?hl=en"],
+    ttOriginality: ["TikTok Creator Academy: originality policy", "https://www.tiktok.com/creator-academy/article/tiktok-originality-policy"],
+    ttIP: ["TikTok: Intellectual Property Policy", "https://www.tiktok.com/legal/page/global/copyright-policy/en"],
+    ttBranded: ["TikTok: Branded Content Policy", "https://www.tiktok.com/legal/page/global/bc-policy/en"],
+    ttDisclose: ["TikTok Ads Help: the commercial content disclosure setting", "https://ads.tiktok.com/help/article/about-the-content-disclosure-setting-for-creators"],
+    ttOneSignup: ["TikTok Ads Help: how creators can sign up for TikTok One", "https://ads.tiktok.com/help/article/how-creators-can-sign-up-for-tiktok-one"],
+    ttOneSupport: ["TikTok Support: TikTok One", "https://support.tiktok.com/en/business-and-creator/tiktok-one/creator-marketing"],
+    ttOneAcademy: ["TikTok Creator Academy: TikTok One", "https://www.tiktok.com/creator-academy/article/tiktok-one"],
+    ttOnePay: ["TikTok Ads Help: how creators set up payment for TikTok One", "https://ads.tiktok.com/help/article/how-creators-can-set-up-payment-for-tiktok-one"],
+    ttOneTerms: ["TikTok One Creator Program Terms", "https://ads.tiktok.com/help/article/tiktok-one-creator-program-terms?lang=en"],
+    ttSpark: ["TikTok Ads Help: Spark Ads creation guide", "https://ads.tiktok.com/help/article/spark-ads-creation-guide"],
+    igRecs: ["Instagram Help: recommendations on Instagram", "https://help.instagram.com/313829416281232/"],
+    igReach: ["Instagram for Creators: tips for improving your reach", "https://creators.instagram.com/blog/tips-for-improving-your-reach"],
+    capcutShorts: ["CapCut: how to make a YouTube Short on PC", "https://www.capcut.com/resource/how-to-make-youtube-shorts-on-pc"],
+    capcutReframe: ["CapCut: auto reframe", "https://www.capcut.com/tools/auto-reframe"],
+    obs: ["OBS Studio", "https://obsproject.com/"],
+    billoFaq: ["Billo: for creators", "https://billo.app/for-creators/"],
+    billoStart: ["Billo Help: getting started guide for creators", "https://help.billo.app/en/articles/5766115-for-creators-getting-started-guide"],
+    billoPaid: ["Billo Help: how and when you'll get paid", "https://help.billo.app/en/articles/5830098-for-creators-how-and-when-you-ll-get-paid"],
+    billoPremium: ["Billo Help: becoming a Premium Creator", "https://help.billo.app/en/articles/6230554-for-creators-how-to-become-a-premium-creator"],
+    billoTerms: ["Billo: Terms of Service for Creators", "https://billo.app/terms-of-service-creators/"],
+    insenseCreators: ["Insense: for creators", "https://insense.pro/for-creators"],
+    insenseFaq: ["Insense: FAQ", "https://insense.pro/faq"],
+    insensePay: ["Insense Help: how payments work on Insense", "https://help-creators.insense.pro/4551"],
+    insenseTerms: ["Insense: Terms of Service for Creators", "https://insense.pro/terms-of-service-for-creators"],
+    amzInfInfo: ["Amazon: Influencer and Associate programs", "https://www.amazon.com/shop/info"],
+    amzInfGuideAssoc: ["Amazon Associates: guide to the Amazon Influencer Program", "https://affiliate-program.amazon.com/resource-center/the-amazon-associates-guide-to-the-amazon-influencer-program"],
+    amzInfUpload: ["Amazon Associates Help: uploading videos to your storefront", "https://affiliate-program.amazon.com/help/node/topic/GKZN7G85Q4XGX29C"],
+    amzInfFaq: ["Amazon: Influencer FAQs, video shorts", "https://www.amazon.com/b?ie=UTF8&node=21423476011"],
+    amzInfRules: ["Amazon: Influencer content guidelines, video shorts", "https://www.amazon.com/b?ie=UTF8&node=21423477011"],
+    ftcGuides: ["FTC: Guides Concerning the Use of Endorsements and Testimonials", "https://www.ftc.gov/system/files/ftc_gov/pdf/P204500%20Guides%20Concerning%20Endors%20and%20Testimonials.pdf"],
+    ftcReviewsRule: ["FTC: Consumer Reviews and Testimonials Rule, questions and answers", "https://www.ftc.gov/business-guidance/resources/consumer-reviews-testimonials-rule-questions-answers"],
   };
   const link = (k, label) => ({ label: label || S[k][0], url: S[k][1] });
 
@@ -356,6 +575,12 @@
     ["newsletter", "Newsletter", "Paid subscriptions and sponsorships"],
     ["fba", "Amazon FBA (own brand)", "Buy stock, Amazon stores and ships it"],
     ["handmade", "Handmade products", "Things you make yourself"],
+    ["stock", "Sell photos, videos and templates", "Stock sites license your work to many buyers"],
+    ["declutter", "Sell your own things", "A quick, low-risk first sale from things you already own"],
+    ["salesjob", "Remote sales jobs", "Get paid to sell a company's products online"],
+    ["tutor", "Online tutoring", "Teach a subject or language over video"],
+    ["clipping", "Stream clipping", "Short clips from creators' long videos, with permission"],
+    ["ugc", "UGC creator", "Product videos brands use in their own ads"],
   ];
   const ADS_MODELS = ["supplier", "pod", "digital", "courses", "fba", "handmade"];
   const MODEL_NAME = Object.fromEntries(MODELS.map(([k, v]) => [k, v]));
@@ -365,6 +590,13 @@
     gumroad: "Gumroad", payhip: "Payhip", mercari: "Mercari", poshmark: "Poshmark",
     fiverr: "Fiverr", upwork: "Upwork", direct: "Own clients", yt: "YouTube", tt_creator: "TikTok Creator Rewards",
     teachable: "Teachable", thinkific: "Thinkific", kdp: "Amazon KDP", substack: "Substack", beehiiv: "beehiiv", amz_fba: "Amazon FBA",
+    adobe_stock: "Adobe Stock", shutterstock: "Shutterstock", canva_creators: "Canva Creators",
+    fbm: "Facebook Marketplace", offerup: "OfferUp", vinted: "Vinted", depop: "Depop", ebay_own: "eBay",
+    employee: "Employee role", contract: "Commission-based contract",
+    preply: "Preply", italki: "italki", cambly: "Cambly", wyzant: "Wyzant", outschool: "Outschool",
+    whop: "Content Rewards (Whop)", hire: "Clip editor for hire",
+    billo: "Billo", insense: "Insense", tt_one: "TikTok One", amz_inf: "Amazon Influencer", ugc_direct: "Own brand clients",
+    twitch: "Twitch", yt_live: "YouTube Live",
   };
   const CHANNELS = {
     supplier: [["shopify", "My own store (Shopify)", "Your website and checkout"], ["tiktok", "TikTok Shop", "US rules, fast shipping"], ["ebay", "eBay", "Wholesale supplier needed"], ["amazon", "Amazon", "You're seller of record"]],
@@ -373,12 +605,18 @@
     digital: [["etsy", "Etsy", "Made or designed by you"], ["shopify", "My own store (Shopify)", "With a downloads app"], ["gumroad", "Gumroad", "No monthly fee"], ["payhip", "Payhip", "Free plan available"]],
     resell: [["ebay", "eBay", "Huge audience"], ["mercari", "Mercari", "No listing fees"], ["poshmark", "Poshmark", "Clothing and more"]],
     freelance: [["fiverr", "Fiverr", "Clients buy your packages"], ["upwork", "Upwork", "You send proposals"], ["direct", "My own clients", "Referrals, social, your own site"]],
-    creator: [["yt", "YouTube", "Partner Program from 500 subscribers"], ["tt_creator", "TikTok Creator Rewards", "10,000 followers needed"]],
+    creator: [["yt", "YouTube", "Partner Program from 500 subscribers"], ["tt_creator", "TikTok Creator Rewards", "10,000 followers needed"], ["twitch", "Twitch (live)", "Affiliate from 25 followers"], ["yt_live", "YouTube Live", "16+; 50 subscribers on mobile"]],
     courses: [["teachable", "Teachable", "7-day free trial"], ["thinkific", "Thinkific", "30-day free trial"], ["payhip", "Payhip", "Free plan available"]],
     books: [["kdp", "Amazon KDP", "eBooks and paperbacks"]],
     newsletter: [["substack", "Substack", "Free; 10% of paid revenue"], ["beehiiv", "beehiiv", "Free up to 2,500 subscribers"]],
     fba: [["amz_fba", "Amazon FBA", "Professional plan needed"]],
     handmade: [["etsy", "Etsy", "Made by you, your own photos"], ["shopify", "My own store (Shopify)", "Your website and checkout"]],
+    stock: [["adobe_stock", "Adobe Stock", "33% per photo licence, 35% per video"], ["shutterstock", "Shutterstock", "15% to 40% per download; no AI uploads"], ["canva_creators", "Canva Creators", "Apply first; paid from a royalty pool"]],
+    declutter: [["fbm", "Facebook Marketplace", "Local pickup; shipping in the US"], ["offerup", "OfferUp", "Local pickup only (US)"], ["vinted", "Vinted", "No seller fees (UK and Europe)"], ["depop", "Depop", "No selling fee in the US and UK"], ["ebay_own", "eBay", "UK private sellers: no final value fee"]],
+    salesjob: [["employee", "Employee role", "Salary or hourly pay, often plus commission"], ["contract", "Commission-based contract", "Self-employed; paid only when you sell"]],
+    tutor: [["preply", "Preply", "You set your rate; 18% to 33% commission"], ["italki", "italki", "Languages; no commission on trials"], ["cambly", "Cambly", "English; set pay per minute"], ["wyzant", "Wyzant", "US residents; you keep 75%"], ["outschool", "Outschool", "Classes for children; you keep 70%"]],
+    clipping: [["whop", "Clipping campaigns (Whop)", "Paid per 1,000 verified views; 18+"], ["hire", "Clip editor for a creator", "Fiverr, Upwork or direct"]],
+    ugc: [["billo", "Billo", "US, Canada, UK; no following needed"], ["insense", "Insense", "Apply to brand briefs"], ["tt_one", "TikTok One", "18+; usually 1,000+ followers"], ["amz_inf", "Amazon Influencer videos", "Associates account and a following"], ["ugc_direct", "My own brand clients", "You pitch brands yourself"]],
   };
   const SHIP = (p) => p.model === "supplier" || p.model === "pod";
   // Countries with their own business-basics step. "eu" covers EU-wide rules;
@@ -454,8 +692,31 @@
     payhip: "Payhip: Free plan takes 5% per sale, Plus ($29/month) 2%, Pro ($99/month) 0%. PayPal or Stripe processing is charged on top at their standard rates.",
     mercari: "Mercari: no listing fee; a 10% selling fee on the item price plus any shipping the buyer pays.",
     poshmark: "Poshmark (US): a flat $2.95 on sales under $15, and 20% on sales of $15 or more. No listing or monthly fees.",
+    adobe_stock: "Adobe Stock pays contributors 33% of the net price for photos, vectors and illustrations, and 35% for videos. You can request a payout from US$25.",
+    shutterstock: "Shutterstock pays 15% to 40% per download depending on your level for the calendar year (everyone restarts at level 1 on 1 January), and at least $0.10 per download.",
+    canva_creators: "Canva pays Creators each month from a royalty pool, shared out by how often your templates or elements are used.",
+    fbm: "Facebook Marketplace (US shipped sales): Meta's Seller Protection Policy lists 10% per transaction (minimum $0.80) on the full amount including shipping and tax; other Meta pages give a different rate, so check the fee shown when you list.",
+    offerup: "OfferUp: no fees or commission on in-person sales. Most categories share 200 free listings a month; past the limits you'd need a paid subscription.",
+    vinted: "Vinted: no fees for sellers to list or sell. Buyers pay a mandatory Buyer Protection fee at checkout.",
+    depop: "Depop (US and UK sellers): no selling fee. Payment processing is 3.3% + $0.45 (US) or 2.9% + £0.30 (UK) on the item, shipping and tax.",
+    ebay_uk: "eBay UK private sellers: no final value fee except in motors, and 300 free listings a month. Buyers pay a Buyer Protection fee on top.",
+    preply: "Preply keeps 100% of your first (trial) lesson with each new student. On other lessons it keeps 33% of your rate at first, 28% after 20 hours taught, falling to 18% after 400 hours.",
+    italki: "italki: no commission on trial lessons. Otherwise 21% on single lessons, 19% on 5-lesson packages, 17% on 10-lesson, 15% on 15- or 20-lesson, and 30% on group classes.",
+    cambly: "Cambly pays a set rate: $0.17 a minute ($10.20 an hour) on Cambly, and $0.20 a minute ($12 an hour) on Cambly Kids.",
+    wyzant: "Wyzant keeps a flat 25% platform fee, so you receive 75% of your hourly rate. There's no platform fee on students you refer yourself.",
+    outschool: "Outschool keeps 30% of each enrollment, so you receive 70% of the class price. Listing classes is free.",
+    whop: "Content Rewards: each campaign sets its pay per 1,000 views, its budget and any per-clip maximum. Brands pay the platform fee (10%, or 8% if verified). Some Whop withdrawal methods charge a fee, such as $2.50 per instant bank deposit.",
+    hire: "Clip editing for a creator: no platform fee if they pay you directly (card processing still costs money). Fiverr keeps 20% of each order; Upwork's fee is 0% to 15% per contract.",
+    billo: "Billo: each job shows a fixed payout before you apply, and it can't be negotiated. Approved videos are paid by PayPal twice a month.",
+    insense: "Insense: the brand's payment is held when you're hired and released to your Insense wallet after approval. Insense may take a percentage when it transfers your fees; its terms don't state the rate.",
+    twitch: "Twitch: subscriptions split 50/50 after taxes and payment fees (60/40 or 70/30 in the Plus Program), $0.01 per Bit cheered, and a share of ad revenue. Minimum payout $50 ($100 by wire).",
+    yt_live: "YouTube Super Chat and Super Stickers: you keep 70% after local sales tax and iOS App Store fees; YouTube covers card fees.",
   };
-  const FEE_SRC = { shopify: "shopPricing", etsy: "etsyFees", ebay: "ebayFees", tiktok: "ttsHome", amazon: "amzPricing", gumroad: "gumroad", payhip: "payhip", mercari: "mercariFees", poshmark: "poshFees" };
+  const FEE_SRC = { shopify: "shopPricing", etsy: "etsyFees", ebay: "ebayFees", tiktok: "ttsHome", amazon: "amzPricing", gumroad: "gumroad", payhip: "payhip", mercari: "mercariFees", poshmark: "poshFees", adobe_stock: "adobeStockRoyalty", shutterstock: "ssLevels", canva_creators: "canvaCreators", fbm: "fbmSellerPolicy", offerup: "offerupFree", vinted: "vintedFree", depop: "depopFees", ebay_uk: "ebayUKPrivate", preply: "preplyCommission", italki: "italkiCommission", cambly: "camblyTutors", wyzant: "wyzantFee", outschool: "outschoolAddendum", whop: "whopCrBrandTerms", hire: "fiverrVsUpwork", billo: "billoStart", insense: "insenseTerms", twitch: "twitchPartner", yt_live: "ytSuperManage" };
+  // eBay fees differ for UK private sellers; the declutter steps use these.
+  const dcFee = (p) => (p.channel === "ebay_own" ? FEE_TEXT[p.country === "uk" ? "ebay_uk" : "ebay"] : FEE_TEXT[p.channel]);
+  const dcFeeSrc = (p) => (p.channel === "ebay_own" ? (p.country === "uk" ? ["ebayUKPrivate", "ebayUkBP"] : ["ebayFees"]) : [FEE_SRC[p.channel]]);
+  const PICKUP = (p) => p.channel === "fbm" || p.channel === "offerup";
 
   const DISCLOSE_TEXT = (p) => ul([
     "Put the disclosure next to the recommendation, where people can't miss it. A note only in your bio or profile, at the end of a post, or behind a “more” tap isn't enough.",
@@ -468,7 +729,7 @@
 
   const GUIDE = [
     // ======== Shared: business basics (every way of making money)
-    { id: "d1-legal-us", day: 2, area: "legal", prio: "med", when: (p) => p.country === "us",
+    { id: "d1-legal-us", day: 2, area: "legal", prio: "med", when: (p) => p.country === "us" && !(p.model === "salesjob" && p.channel === "employee"),
       title: "Sort out the business basics (US)",
       body: () => ul([
         "Most selling and freelancing platforms need you to be 18, or the age of majority where you live if that's higher. Under 18, some let a parent or guardian own the account; they're then responsible for it, and the payouts go to them.",
@@ -481,7 +742,7 @@
       ]) + '<p class="small muted">General information from the SBA and IRS, not legal or tax advice.</p>',
       links: [link("sbaLicense", "Licenses and permits (SBA)"), link("irsEin", "Get an EIN (IRS)"), link("irsSE", "Self-employment tax")], src: ["sbaStructure", "sbaLicense", "irsEin", "irs1099kFaq", "irs1099k", "irsSE", "irsEst"] },
 
-    { id: "d1-legal-uk", day: 2, area: "legal", prio: "med", when: (p) => p.country === "uk",
+    { id: "d1-legal-uk", day: 2, area: "legal", prio: "med", when: (p) => p.country === "uk" && !(p.model === "salesjob" && p.channel === "employee"),
       title: "Check what HMRC needs from you (UK)",
       body: (p) => ul([
         "Most selling and freelancing platforms need you to be 18, or the age of majority where you live if that's higher. Under 18, some let a parent or guardian own the account; they're then responsible for it, and the payouts go to them.",
@@ -497,7 +758,7 @@
       links: [link("hmrcOnline", "Check if you need to tell HMRC"), link("hmrcAllow", "Trading allowance")],
       src: (p) => ["hmrcAllow", "hmrcOnline", "hmrc3000", "taxHustles", "hmrcPlatformSeller", "hmrcExcluded", "hmrcSellersNews"].concat(sellsGoods(p) ? ["govReturns", "govDistance", "ukCCRegs"] : []) },
 
-    { id: "d1-legal-eu", day: 2, area: "legal", prio: "med", when: (p) => p.country === "eu",
+    { id: "d1-legal-eu", day: 2, area: "legal", prio: "med", when: (p) => p.country === "eu" && !(p.model === "salesjob" && p.channel === "employee"),
       title: "Check the business basics in your EU country",
       body: (p) => ul([
         AGE_LINE,
@@ -511,7 +772,7 @@
       links: [link("euStart", "Your Europe: starting a business")],
       src: (p) => ["euStart", "euSmeVat", "euDac7"].concat(sellsGoods(p) ? ["euReturns", "euGuarantee", "euGpsr"] : []) },
 
-    { id: "d1-legal-ca", day: 2, area: "legal", prio: "med", when: (p) => p.country === "ca",
+    { id: "d1-legal-ca", day: 2, area: "legal", prio: "med", when: (p) => p.country === "ca" && !(p.model === "salesjob" && p.channel === "employee"),
       title: "Sort out the business basics (Canada)",
       body: (p) => ul([
         AGE_LINE,
@@ -523,7 +784,7 @@
       links: [link("caSoleProp", "Registering a sole proprietorship"), link("caT2125", "Form T2125")],
       src: (p) => ["caSoleProp", "caBN", "caT2125"].concat(sellsGoods(p) ? ["caConsumer"] : []) },
 
-    { id: "d1-legal-au", day: 2, area: "legal", prio: "med", when: (p) => p.country === "au",
+    { id: "d1-legal-au", day: 2, area: "legal", prio: "med", when: (p) => p.country === "au" && !(p.model === "salesjob" && p.channel === "employee"),
       title: "Sort out the business basics (Australia)",
       body: (p) => ul([
         AGE_LINE,
@@ -535,7 +796,7 @@
       links: [link("auAbnApply", "Register for an ABN"), link("auBizName", "Business names (ASIC)")],
       src: (p) => ["auAbnSole", "auAbnApply", "auBizName", "auIncome"].concat(sellsGoods(p) ? ["auAccc"] : []) },
 
-    { id: "d1-legal-in", day: 2, area: "legal", prio: "med", when: (p) => p.country === "in",
+    { id: "d1-legal-in", day: 2, area: "legal", prio: "med", when: (p) => p.country === "in" && !(p.model === "salesjob" && p.channel === "employee"),
       title: "Sort out the business basics (India)",
       body: (p) => ul([
         AGE_LINE,
@@ -546,7 +807,7 @@
       links: [link("inUdyam", "Udyam registration"), link("inItr", "Income tax for business income")],
       src: (p) => ["inUdyam", "inItr"].concat(sellsGoods(p) ? ["inEcomRules"] : []) },
 
-    { id: "d1-legal-ph", day: 2, area: "legal", prio: "med", when: (p) => p.country === "ph",
+    { id: "d1-legal-ph", day: 2, area: "legal", prio: "med", when: (p) => p.country === "ph" && !(p.model === "salesjob" && p.channel === "employee"),
       title: "Register with the BIR (Philippines)",
       body: (p) => ul([
         AGE_LINE,
@@ -560,7 +821,7 @@
       links: [link("phBirOnline", "BIR guide for online sellers"), link("phDti", "DTI business names")],
       src: (p) => ["phBir91", "phBirOnline", "phBir38", "phBir8", "phDti", "ph8pct"].concat(sellsGoods(p) ? ["phNoReturn", "phIta"] : []) },
 
-    { id: "d1-legal-ng", day: 2, area: "legal", prio: "med", when: (p) => p.country === "ng",
+    { id: "d1-legal-ng", day: 2, area: "legal", prio: "med", when: (p) => p.country === "ng" && !(p.model === "salesjob" && p.channel === "employee"),
       title: "Sort out the business basics (Nigeria)",
       body: (p) => ul([
         AGE_LINE,
@@ -572,7 +833,7 @@
       links: [link("ngTaxId", "Get a Tax ID"), link("ngCac", "Register a business name")],
       src: (p) => ["ngTaxId", "ngCac", "ngPit", "ngTaxAdmin"].concat(sellsGoods(p) ? ["ngFccpc"] : []) },
 
-    { id: "d1-legal-br", day: 2, area: "legal", prio: "med", when: (p) => p.country === "br",
+    { id: "d1-legal-br", day: 2, area: "legal", prio: "med", when: (p) => p.country === "br" && !(p.model === "salesjob" && p.channel === "employee"),
       title: "Sort out the business basics (Brazil)",
       body: (p) => ul([
         AGE_LINE,
@@ -584,7 +845,7 @@
       links: [link("brMei", "Register as an MEI")],
       src: (p) => ["brCarne", "brMei", "brMeiLimit"].concat(sellsGoods(p) ? ["brArrep"] : []) },
 
-    { id: "d1-legal-other", day: 2, area: "legal", prio: "med", when: (p) => p.country === "other",
+    { id: "d1-legal-other", day: 2, area: "legal", prio: "med", when: (p) => p.country === "other" && !(p.model === "salesjob" && p.channel === "employee"),
       title: "Check your country's rules for selling online",
       body: () => "<p>Look up how your country handles registering a small business and paying tax on online income. If you sell into the EU, VAT rules can differ from normal retail. Shopify recommends talking to a lawyer about the laws where you operate and sell.</p><p>Most selling and freelancing platforms need you to be 18, or the age of majority where you live if that's higher. Under 18, some let a parent or guardian own the account; they're then responsible for it, and the payouts go to them.</p>",
       links: [link("shopDrop", "Shopify's legal notes")], src: ["shopDrop"] },
@@ -1196,11 +1457,11 @@
     { id: "cr1-how", day: 1, area: "learning", prio: "high", when: (p) => p.model === "creator" && p.level === "new",
       title: "Read: how creators get paid",
       body: () => "<p>A short lesson in this app: platform payout programs, sponsorships, affiliate links and the rules for each.</p>",
-      action: { label: "Open the lesson", go: "lesson:creator" } },
+      action: (p) => ({ label: "Open the lesson", go: ["twitch", "yt_live"].includes(p.channel) ? "lesson:live" : "lesson:creator" }) },
 
-    { id: "cr1-program", day: 1, area: "legal", prio: "high", when: (p) => p.model === "creator",
-      title: (p) => (p.channel === "yt" ? "Know the YouTube Partner Program requirements" : "Know the TikTok Creator Rewards requirements"),
-      body: (p) => (p.channel === "yt" ? ul([
+    { id: "cr1-program", day: 1, area: "legal", prio: "high", when: (p) => p.model === "creator" && p.channel !== "twitch",
+      title: (p) => (p.channel !== "tt_creator" ? "Know the YouTube Partner Program requirements" : "Know the TikTok Creator Rewards requirements"),
+      body: (p) => (p.channel !== "tt_creator" ? ul([
         "Fan funding and Shopping: 500 subscribers, 3 public uploads in the last 90 days, and either 3,000 watch hours in 12 months or 3 million Shorts views in 90 days. This doesn't change in 2027.",
         "Ad revenue: 1,000 subscribers and either 4,000 watch hours in 12 months or 10 million Shorts views in 90 days.",
         "From February 1, 2027, new applicants for ad revenue need 1,000 subscribers and either 8,000 watch hours in the last 365 days or 20 million Shorts views in the last 90 days. Channels already in the program keep their place.",
@@ -1215,8 +1476,8 @@
         "A video starts earning after 1,000 qualified For You views. Payment is monthly once you pass $50 (US terms).",
         p.country === "eu" ? "In the EU, only Germany and France are on TikTok's list of eligible countries." : ["ca", "au", "in", "ph", "ng"].includes(p.country) ? COUNTRY_NAME[p.country] + " isn't on TikTok's list of eligible countries, so you can't join from there." : p.country === "other" ? "Check TikTok's list of eligible countries for where you live." : "",
       ])) + checked,
-      links: (p) => (p.channel === "yt" ? [link("ytYppJoin", "YouTube Partner Program")] : [link("ttRewardsAcademy", "Creator Rewards Program")]),
-      src: (p) => (p.channel === "yt" ? ["ytYpp", "ytBlog", "ytYppChanges", "ytBlog2027", "adsenseAge", "adsenseUnder18"] : ["ttRewards", "ttRewardsAcademy", "ttRewardsTerms"]) },
+      links: (p) => (p.channel !== "tt_creator" ? [link("ytYppJoin", "YouTube Partner Program")] : [link("ttRewardsAcademy", "Creator Rewards Program")]),
+      src: (p) => (p.channel !== "tt_creator" ? ["ytYpp", "ytBlog", "ytYppChanges", "ytBlog2027", "adsenseAge", "adsenseUnder18"] : ["ttRewards", "ttRewardsAcademy", "ttRewardsTerms"]) },
 
     { id: "cr2-niche", day: 2, area: "research", prio: "high", when: (p) => p.model === "creator" && p.level !== "selling",
       title: "Pick a topic and a format you can repeat every week",
@@ -1226,7 +1487,7 @@
       ]),
       action: { label: "Open the trend and demand check", go: "tools:trends" } },
 
-    { id: "cr3-batch", day: 3, area: "content", prio: "high", when: (p) => p.model === "creator",
+    { id: "cr3-batch", day: 3, area: "content", prio: "high", when: (p) => p.model === "creator" && !["twitch", "yt_live"].includes(p.channel),
       title: "Plan and film 5 videos in one session",
       body: (p) => ul([
         "Write a hook, three points and an ending for each video, then film them together.",
@@ -1235,7 +1496,7 @@
       ]),
       action: { label: "Draft hooks with AI", go: "tools:hooks" }, src: (p) => (p.channel === "tt_creator" ? ["ttRewards"] : ["ytYpp"]) },
 
-    { id: "cr4-post", day: 4, area: "marketing", prio: "high", when: (p) => p.model === "creator",
+    { id: "cr4-post", day: 4, area: "marketing", prio: "high", when: (p) => p.model === "creator" && !["twitch", "yt_live"].includes(p.channel),
       title: "Post on a schedule you can keep",
       body: () => "<p>Pick posting days you can keep for months, not just this week. Reply to comments in the first hours after posting.</p>" },
 
@@ -1249,7 +1510,7 @@
       body: () => "<p>Platform payouts, sponsorships, affiliate links and your own products (digital products, courses, merch) all add up. The creator income calculator shows how they combine.</p>",
       action: { label: "Open the creator income calculator", go: "tools:creator" } },
 
-    { id: "cr7-review", day: 7, area: "finance", prio: "high", when: (p) => p.model === "creator",
+    { id: "cr7-review", day: 7, area: "finance", prio: "high", when: (p) => p.model === "creator" && !["twitch", "yt_live"].includes(p.channel),
       title: "Read your analytics and decide what to make next",
       body: (p) => "<p>In " + (p.channel === "yt" ? "YouTube Studio" : "TikTok Studio") + ", find which videos kept viewers watching longest and which brought followers. Make more of those.</p>" },
 
@@ -1561,7 +1822,7 @@
     // ======== Ongoing (repeat)
     { id: "on-orders", day: 7, ongoing: true, repeat: "daily", area: "orders", prio: "high", when: (p) => SHIP(p) || p.model === "resell" || p.model === "handmade",
       title: "Process new orders and add tracking", body: () => "<p>Ship or send new orders, confirm tracking, and follow up on any order without movement.</p>" },
-    { id: "on-inbox", day: 7, ongoing: true, repeat: "daily", area: "support", prio: "med", when: (p) => !["affiliate", "creator", "books", "newsletter", "freelance"].includes(p.model),
+    { id: "on-inbox", day: 7, ongoing: true, repeat: "daily", area: "support", prio: "med", when: (p) => !["affiliate", "creator", "books", "newsletter", "freelance", "stock", "salesjob", "tutor", "clipping", "ugc"].includes(p.model),
       title: "Answer customer messages", body: () => "<p>Reply to every message. For late orders, send a delay notice with a new date and the option to cancel for a full refund.</p>", action: { label: "Open message templates", go: "tools:messages" }, src: ["ftcMail"] },
     { id: "on-post", day: 7, ongoing: true, repeat: "daily", area: "content", prio: "high", when: (p) => p.model === "affiliate",
       title: "Post one piece of content with a clear disclosure", body: DISCLOSE_TEXT, src: ["ftcInfluencer"] },
@@ -1569,7 +1830,7 @@
       title: "List 3 new items", body: () => "<p>Consistent listing is how a reselling shop grows. Price each item from recent sold listings.</p>" },
     { id: "on-pitch", day: 7, ongoing: true, repeat: "daily", area: "marketing", prio: "high", when: (p) => p.model === "freelance",
       title: "Reply to clients and send new proposals or pitches", body: () => "<p>Reply to every client message the same day, and spend some time each day finding the next job.</p>" },
-    { id: "on-create", day: 7, ongoing: true, repeat: "daily", area: "content", prio: "high", when: (p) => ["creator", "newsletter", "books", "courses"].includes(p.model),
+    { id: "on-create", day: 7, ongoing: true, repeat: "daily", area: "content", prio: "high", when: (p) => ["creator", "newsletter", "books", "courses"].includes(p.model) && !["twitch", "yt_live"].includes(p.channel),
       title: (p) => ({ creator: "Make or post today's video", newsletter: "Work on the next issue", books: "Write today's words", courses: "Make one piece of course or marketing content" })[p.model],
       body: () => "<p>Small, steady output beats occasional big pushes. Keep to the schedule you chose.</p>" },
     { id: "on-make", day: 7, ongoing: true, repeat: "weekly", area: "content", prio: "med", when: (p) => p.model === "digital" || p.model === "pod" || p.model === "handmade",
@@ -1582,10 +1843,1131 @@
         p.country === "uk" ? "HMRC: keep your records for at least 5 years after the 31 January Self Assessment deadline for that tax year." : "",
         p.channel === "shopify" ? "Check for chargebacks. On Shopify Payments you get 7 to 21 days to respond; Shopify charges $15 per US chargeback and returns it if you win. Add your messages with the customer and the policies they agreed to." : "",
         p.channel === "direct" ? "Check for Stripe disputes. You usually have 5 to 21 days to send evidence, and if you miss the deadline the customer wins." : "",
-      ]), action: (p) => ({ label: "Open the calculator", go: "tools:" + ({ affiliate: "affiliate", freelance: "rate", books: "royalty", newsletter: "recurring", creator: "creator", resell: "maxbuy" }[p.model] || "profit") }),
+      ]), action: (p) => {
+        // No calculator fits a sales job or stock royalties.
+        const t = { affiliate: "affiliate", freelance: "rate", books: "royalty", newsletter: "recurring", creator: "creator", resell: "maxbuy", tutor: "rate", clipping: "rate", ugc: "rate", stock: null, salesjob: null }[p.model];
+        return t === null ? null : { label: "Open the calculator", go: "tools:" + (t || "profit") };
+      },
       src: (p) => [].concat(p.country === "us" ? ["irsRecords"] : [], p.country === "uk" ? ["hmrcRecords"] : [], p.channel === "shopify" ? ["shopChargeback"] : [], p.channel === "direct" ? ["stripeDisputes", "stripePricing"] : []) },
     { id: "on-supplier", day: 7, ongoing: true, repeat: "weekly", area: "suppliers", prio: "low", when: (p) => SHIP(p),
       title: "Check supplier stock, prices and delivery times", body: () => "<p>Update your prices and the delivery time you show customers if anything changed.</p>" },
+    // ======== Stock photos, videos and templates
+    { id: "st1-how", day: 1, area: "learning", prio: "high", when: (p) => p.model === "stock" && p.level === "new",
+      title: "Read: how selling stock photos, videos and templates works",
+      body: () => "<p>A short lesson in this app: how stock sites pay you, what they accept, and the release and AI rules that get files rejected.</p>",
+      action: { label: "Open the lesson", go: "lesson:stock" } },
+
+    { id: "st1-rules", day: 1, area: "legal", prio: "high", when: (p) => p.model === "stock",
+      title: (p) => ({ adobe_stock: "Check you can join Adobe Stock, then sign up", shutterstock: "Check you can join Shutterstock, then sign up", canva_creators: "Check what Canva Creators asks for before you apply" })[p.channel],
+      body: (p) => ({
+        adobe_stock: ul([
+          "You must be 18 or older and accept the Contributor Agreement. You sign in with a free Adobe account (Adobe ID).",
+          "Your name, email and country must be accurate and match your legal documents. Adobe warns you can't change your country later.",
+          "Before you can use the Contributor portal, verify your email address and a phone number that no other account uses.",
+          "Without a valid tax form, Adobe withholds up to 30% of your earnings, depending on where you live.",
+        ]),
+        shutterstock: ul([
+          "You must be 18 or older. Parents can't open an account for a child or submit a child's work under their own name.",
+          "Opening an account and submitting work is free. Register under your full legal or business name, not a nickname.",
+          "You need a valid tax form on file before you can submit content or be paid.",
+          "Upload only work you made or own the copyright to. Don't share a PayPal, Payoneer or Skrill account with another contributor.",
+        ]),
+        canva_creators: ul([
+          "You have to apply and be approved. Canva's application is built around a portfolio of your best work.",
+          "Canva said that as of 2025 it isn't taking new applications for Element Creators (photos, graphics, video, audio). Check which Creator types are open before you start.",
+          "Contributors must be over 18, or the legal age to sign an agreement where they live.",
+          "Everything you submit must be your own original work. AI-generated content isn't permitted.",
+        ]),
+      })[p.channel] + checked,
+      links: (p) => ({ adobe_stock: [link("adobeStockContrib", "Adobe Stock Contributor")], shutterstock: [link("ssSubmit", "Shutterstock Contributor")], canva_creators: [link("canvaCreators", "Canva Creators")] })[p.channel],
+      src: (p) => ({ adobe_stock: ["adobeStockGuidelines", "adobeStockSignup", "adobeStockPayout"], shutterstock: ["ssAge", "ssSignup", "ssSell", "ssGuidelines"], canva_creators: ["canvaCreators", "canvaCreatorsHelp", "canvaContribAgree", "canvaContribUpdate"] })[p.channel] },
+
+    { id: "st1-realistic", day: 1, area: "learning", prio: "med", when: (p) => p.model === "stock",
+      title: "Know what's realistic before you start",
+      body: (p) => ({
+        adobe_stock: ul([
+          "You get 33% of the net price for photos, vectors and illustrations, and 35% for video.",
+          "Adobe's own example: a $29.99 monthly plan that covers 10 photos pays the contributor about $0.99 per photo.",
+          "You can ask for a payout once you have $25 and your first sale is at least 45 days old. Adobe says payouts usually take 8 to 10 business days.",
+        ]),
+        shutterstock: ul([
+          "Everyone restarts at level 1 on 1 January. Levels pay 15% to 40% per download and rise with downloads in that calendar year.",
+          "Level 2 starts at 101 image downloads in the year (11 for video). The top level needs more than 25,000.",
+          "Each download pays at least $0.10. You're paid monthly once you pass your payout minimum ($25 is the lowest you can set).",
+        ]),
+        canva_creators: ul([
+          "Canva pays from a monthly royalty pool, split by how often your designs are used. Templates earn from Free and Pro use; elements only from Pro use.",
+          "Canva keeps the monthly pool figures confidential, so there's no official rate per use.",
+          "Payouts go out by the 15th of the month once you reach US$10 (US$25 by wire transfer), always in US dollars.",
+        ]),
+      })[p.channel] + '<p class="small muted">Earnings per download are small and vary with what each buyer paid. Acceptance doesn\'t guarantee sales.</p>' + checked,
+      src: (p) => ({ adobe_stock: ["adobeStockRoyalty", "adobeStockRoyaltyEx", "adobeStockPayout", "adobeStockProviders"], shutterstock: ["ssLevels", "ssPayouts", "ssPerDownload", "ssPaySettings"], canva_creators: ["canvaCreators", "canvaCreatorsHelp", "canvaCreatorsPay"] })[p.channel] },
+
+    { id: "st2-ai", day: 2, area: "legal", prio: "high", when: (p) => p.model === "stock",
+      title: (p) => ({ adobe_stock: "Know Adobe Stock's rules for AI-generated work", shutterstock: "Know that Shutterstock doesn't accept AI-generated work", canva_creators: "Know that Canva doesn't accept AI-generated content" })[p.channel],
+      body: (p) => ({
+        adobe_stock: ul([
+          "Adobe accepts generative AI images, vectors and videos, but you must tick “Created using generative AI tools” on every one.",
+          "Check that your AI tool's licence allows commercial stock use. Adobe says it can't advise you on this.",
+          "Don't name artists, real people, fictional characters or brands in prompts, titles or keywords, and don't put “generative AI” in the title.",
+          "AI content can't be submitted as editorial. If a generated person or place isn't based on a real one, tick “People and Property are fictional”.",
+          "Many versions of the same prompt count as spam.",
+        ]),
+        shutterstock: ul([
+          "Shutterstock's policy: it “will not allow AI-generated content to be submitted by contributors for licensing”.",
+          "Files that appear to be made with AI are rejected as non-licensable content.",
+          "Its reason: contributors must prove they own what they submit, and ownership of AI output can't be given to one person.",
+          "Shutterstock's own AI image tool is for its customers. Contributors are paid from its Contributor Fund when their work is used to train AI.",
+        ]),
+        canva_creators: ul([
+          "Canva's Contributor Agreement: what you submit must be your own original work, “with human authorship as the creative source”. AI-generated content isn't permitted.",
+          "Canva's January 2026 update says content may be reviewed, including with automated tools.",
+        ]),
+      })[p.channel],
+      links: (p) => ({ adobe_stock: [link("adobeStockAI", "Adobe's generative AI guidelines")], shutterstock: [link("ssAI", "Shutterstock's AI policy")], canva_creators: [link("canvaContribAgree", "Canva Contributor Agreement")] })[p.channel],
+      src: (p) => ({ adobe_stock: ["adobeStockAI", "adobeStockAISubmit"], shutterstock: ["ssAI", "ssAIFaq", "ssNonLicensable"], canva_creators: ["canvaContribAgree", "canvaContribUpdate"] })[p.channel] },
+
+    { id: "st2-releases", day: 2, area: "legal", prio: "high", when: (p) => p.model === "stock" && p.channel !== "canva_creators",
+      title: "Know when you need a model or property release",
+      body: (p) => (p.channel === "adobe_stock" ? ul([
+        "Every identifiable person needs their own signed model release, even if their face isn't shown. Group releases aren't accepted; a parent or guardian signs for a child.",
+        "Crowds where no one can be identified, and back views with no recognisable features, don't need one.",
+        "Recognisable private property, modern buildings, artwork (including public murals and your own art) and distinctive products need a property release signed by the owner.",
+        "A plain building with nothing distinctive, or a public landscape with nothing private in it, doesn't need a property release.",
+        "Adobe's advice when in doubt: get a release, or edit out the protected part.",
+      ]) : ul([
+        "Every recognisable person in commercial content needs a valid model release, even if the model is you. Every release must include the model's date of birth.",
+        "Upload each release as its own JPEG file, up to 20 MB.",
+        "Artwork, designs and other recognisable intellectual property need a property release that includes a picture of the property.",
+        "Some artwork isn't accepted even with a release. A wrong or unneeded release is also a reason for rejection.",
+      ])),
+      links: (p) => (p.channel === "adobe_stock" ? [link("adobeStockModel", "Model releases"), link("adobeStockProperty", "Property releases")] : [link("ssModel", "Model release requirements")]),
+      src: (p) => (p.channel === "adobe_stock" ? ["adobeStockModel", "adobeStockProperty"] : ["ssModel", "ssProperty", "ssWrongRelease"]) },
+
+    { id: "st3-research", day: 3, area: "research", prio: "high", when: (p) => p.model === "stock" && p.level !== "selling",
+      title: "Choose subjects buyers search for",
+      body: (p) => ul([
+        p.channel === "canva_creators" ? "Browse Canva's template library for the kind of design you want to make, such as social posts or presentations, and note what's missing." : "Search the site as if you were a buyer. Note what already exists for your subject and where good, fresh files are missing.",
+        "Pick subjects you can make without logos, famous buildings or people who haven't signed a release.",
+        "Use the trend and demand check to compare a few subjects.",
+      ]),
+      action: { label: "Open the trend and demand check", go: "tools:trends" } },
+
+    { id: "st3-tech", day: 3, area: "content", prio: "high", when: (p) => p.model === "stock" && p.channel !== "canva_creators",
+      title: "Check the file requirements before you shoot",
+      body: (p) => (p.channel === "adobe_stock" ? ul([
+        "Photos: JPEG in sRGB colour, between 4 and 100 megapixels (at least 1,600 × 2,400 pixels), up to 45 MB.",
+        "No watermarks, timestamps or branding. Images should be sharp and well lit. Don't over-compress or enlarge files.",
+        "Videos: 5 to 60 seconds long, up to 3.9 GB, at a standard size such as 1920 × 1080 or 3840 × 2160. Don't upscale from your camera's resolution.",
+      ]) : ul([
+        "Images: JPEG (recommended) or TIFF, at least 4 megapixels. Multiply width by height: 2,000 × 2,400 pixels is 4.8 MP.",
+        "The browser upload limit for photos is 50 MB. Still frames taken from video generally aren't accepted.",
+        "Videos: up to 4 GB, at one of Shutterstock's listed HD or 4K sizes.",
+      ])),
+      src: (p) => (p.channel === "adobe_stock" ? ["adobeStockPhotoReq", "adobeStockVideoReq"] : ["ssImageReq", "ssVideoReq"]) },
+
+    { id: "st4-make", day: 4, area: "content", prio: "high", when: (p) => p.model === "stock",
+      title: (p) => (p.channel === "canva_creators" ? "Make 3 to 5 portfolio templates" : "Shoot or make your first 10 files"),
+      body: (p) => (p.channel === "canva_creators" ? ul([
+        "Make a few templates that show your best design work in the area you chose.",
+        "Use only your own work, and fonts and images you have the right to use. AI-generated content isn't permitted.",
+        "Put them online, for example on Behance or Dribbble, so you can link to them in your application.",
+      ]) : ul([
+        "Shoot or create 10 files around your chosen subject. Vary angles and framing; many near-copies can count as spam.",
+        "Get any model or property releases signed at the shoot, before you upload.",
+        "Keep logos and brand names out of the frame, or plan to remove them when you edit.",
+      ])),
+      src: (p) => (p.channel === "canva_creators" ? ["canvaCreators", "canvaContribAgree"] : p.channel === "adobe_stock" ? ["adobeStockAI", "adobeStockModel", "adobeStockIP"] : ["ssModel", "ssTrademark"]) },
+
+    { id: "st4-trademarks", day: 4, area: "legal", prio: "high", when: (p) => p.model === "stock" && p.channel !== "canva_creators",
+      title: "Remove logos, brand names and other people's artwork",
+      body: (p) => (p.channel === "adobe_stock" ? ul([
+        "Adobe Stock doesn't accept content showing trademarks or trade dress. Remove logos, for example on shirts and shoes, before you submit.",
+        "Some products are recognisable even without a logo and can't be accepted, such as Rubik's Cubes, Apple devices and Lego sets.",
+        "Public transport often has trademarked signs, maps and logos; remove those too.",
+        "Keep brand names, artist names and trademarks out of titles and keywords.",
+      ]) : ul([
+        "Shutterstock doesn't accept trademarks or logos in commercial content or in titles and keywords, because buyers may use your file in ads or product branding.",
+        "Remove the mark before you submit. A file with a trademark can go in as editorial only if it meets Shutterstock's editorial standards.",
+        "Editorial illustrations, vectors and animations can't contain trademarks at all.",
+      ])),
+      src: (p) => (p.channel === "adobe_stock" ? ["adobeStockIP", "adobeStockProperty", "adobeStockKeywords"] : ["ssTrademark"]) },
+
+    { id: "st5-keywords", day: 5, area: "listings", prio: "high", when: (p) => p.model === "stock" && p.channel !== "canva_creators",
+      title: "Write titles and keywords",
+      body: (p) => (p.channel === "adobe_stock" ? ul([
+        "Add up to 49 keywords. Adobe's search gives most weight to the first 10, so put your best ones first, including the main words from your title.",
+        "Keep titles to about 70 characters or they may be cut. Write the title and keywords in one language.",
+        "Leave out trademarked names, camera details, people's names and the type of file.",
+        "Adobe can suggest up to 25 keywords automatically. Check them and add your own.",
+      ]) : ul([
+        "Add between 7 and 50 keywords, in English. Scientific names and place names are exceptions.",
+        "Repeating keywords or adding unrelated ones counts as spam.",
+        "Leave logos and brand names out of titles and keywords.",
+      ])),
+      action: { label: "Draft it with AI", go: "tools:describe" },
+      src: (p) => (p.channel === "adobe_stock" ? ["adobeStockKeywords"] : ["ssKeywords", "ssTrademark"]) },
+
+    { id: "st5-submit", day: 5, area: "listings", prio: "high", when: (p) => p.model === "stock",
+      title: (p) => (p.channel === "canva_creators" ? "Send your Canva Creators application" : "Upload and submit your first batch"),
+      body: (p) => ({
+        adobe_stock: ul([
+          "Upload in the Contributor portal, add titles and keywords, attach each release, and tick the AI label if it applies.",
+          "Every file is reviewed before it goes on sale. You can reorder keywords later, but not while files are being reviewed.",
+        ]),
+        shutterstock: ul([
+          "Upload your files, add descriptions and keywords, and attach the right release to each file that needs one.",
+          "Every file is reviewed. A wrong or unneeded release, a visible trademark or AI-made content are all reasons for rejection.",
+        ]),
+        canva_creators: ul([
+          "Apply on Canva's Creators page with links to your portfolio.",
+          "Canva reviews every application. Once accepted, you get its Review Guidelines, and each design is reviewed before it's published.",
+        ]),
+      })[p.channel],
+      links: (p) => ({ adobe_stock: [link("adobeStockContrib", "Adobe Stock Contributor")], shutterstock: [link("ssSubmit", "Shutterstock Contributor")], canva_creators: [link("canvaCreators", "Apply to Canva Creators")] })[p.channel],
+      src: (p) => ({ adobe_stock: ["adobeStockAISubmit", "adobeStockReorder"], shutterstock: ["ssWrongRelease", "ssTrademark", "ssNonLicensable"], canva_creators: ["canvaCreators", "canvaCreatorsHelp"] })[p.channel] },
+
+    { id: "st6-payout", day: 6, area: "finance", prio: "high", when: (p) => p.model === "stock",
+      title: "Set up your tax form and payout method",
+      body: (p) => ({
+        adobe_stock: ul([
+          "Link a PayPal, Payoneer or Skrill account. Payoneer is for contributors outside the US.",
+          "You can request a payout once you have at least $25 and 45 days have passed since your first sale. Your balance then resets to zero.",
+          "Without a valid tax form, Adobe withholds up to 30%, depending on your country.",
+        ]),
+        shutterstock: ul([
+          "Choose PayPal, Skrill or Payoneer; bank transfers and cheques aren't offered. A new PayPal or Skrill account can take about 72 hours to be accepted.",
+          "Earnings are added up at the start of each month and usually sent between the 7th and 15th. Balances under your minimum roll over.",
+          "Payout changes made after the month ends apply from the next month.",
+        ]),
+        canva_creators: ul([
+          "Once accepted, set up payouts in Settings › Payments. Payouts are handled by Trolley, by bank transfer, PayPal or Payoneer.",
+          "Submit a W-8 or W-9 tax form. Canva can't pay you without it.",
+          "Royalties are paid in US dollars by the 15th of each month once you reach US$10 (US$25 for wire transfers).",
+        ]),
+      })[p.channel] + checked,
+      src: (p) => ({ adobe_stock: ["adobeStockPayout", "adobeStockPayoutReq", "adobeStockProviders"], shutterstock: ["ssGetPaid", "ssPayMethod", "ssPaySettings"], canva_creators: ["canvaCreatorsPay", "canvaCreatorsHelp"] })[p.channel] },
+
+    { id: "st6-rejections", day: 6, area: "listings", prio: "med", when: (p) => p.model === "stock" && p.channel !== "canva_creators",
+      title: "Read any rejection reasons and fix the cause",
+      body: (p) => (p.channel === "adobe_stock" ? ul([
+        "Check each rejected file against Adobe's rules on releases, trademarks and AI labels before you resubmit.",
+        "When in doubt, Adobe advises getting a release or editing out the protected part.",
+      ]) : ul([
+        "Trademark: remove the logo and resubmit, or submit it as editorial if it meets the editorial rules.",
+        "Property release: check the form is complete and readable, lists the property type and includes a picture of the property.",
+        "Non-licensable content includes files that appear to be AI-made; don't resubmit those.",
+      ])),
+      src: (p) => (p.channel === "adobe_stock" ? ["adobeStockProperty", "adobeStockIP", "adobeStockAI"] : ["ssTrademark", "ssProperty", "ssNonLicensable"]) },
+
+    { id: "st7-review", day: 7, area: "finance", prio: "high", when: (p) => p.model === "stock",
+      title: "Review what was accepted and plan your next batch",
+      body: (p) => ul([
+        ({ adobe_stock: "Click your available balance in the Contributor portal to open the Insights page with your sales.",
+           shutterstock: "Check your level: it counts only this calendar year's downloads and resets to level 1 on 1 January.",
+           canva_creators: "If your application is still being reviewed, keep adding to your portfolio. Once accepted, see which designs are used most." })[p.channel],
+        "Make more of the subjects that were accepted; drop ones rejected for reasons you can't fix.",
+      ]),
+      src: (p) => ({ adobe_stock: ["adobeStockPayoutReq"], shutterstock: ["ssLevels"], canva_creators: ["canvaCreators"] })[p.channel] },
+
+    // ongoing (add next to the other on-* steps)
+    { id: "on-stock-batch", day: 7, ongoing: true, repeat: "weekly", area: "content", prio: "high", when: (p) => p.model === "stock",
+      title: (p) => (p.channel === "canva_creators" ? "Make and submit a new template" : "Upload a new batch of files"),
+      body: () => "<p>Regular uploads build your portfolio. Vary subjects and angles: near-identical files and keyword spam can be rejected.</p>",
+      src: (p) => (p.channel === "adobe_stock" ? ["adobeStockAI"] : p.channel === "shutterstock" ? ["ssKeywords"] : []) },
+    { id: "on-stock-keywords", day: 7, ongoing: true, repeat: "weekly", area: "listings", prio: "low", when: (p) => p.model === "stock" && p.channel !== "canva_creators",
+      title: "Improve titles and keywords on files that don't sell",
+      body: (p) => "<p>" + (p.channel === "adobe_stock" ? "You can reorder keywords after upload, so move your strongest ones into the first 10." : "Check each keyword describes what's in the file; unrelated keywords count as spam.") + "</p>",
+      src: (p) => (p.channel === "adobe_stock" ? ["adobeStockReorder", "adobeStockKeywords"] : ["ssKeywords"]) },
+    // ======== Sell your own things
+    { id: "dc1-how", day: 1, area: "learning", prio: "high", when: (p) => p.model === "declutter" && p.level === "new",
+      title: "Read: selling your own things online",
+      body: () => "<p>A short lesson in this app: what each platform charges, how to stay safe meeting buyers, and when selling turns into a business.</p>",
+      action: { label: "Open the lesson", go: "lesson:declutter" } },
+
+    { id: "dc1-account", day: 1, area: "store", prio: "high", when: (p) => p.model === "declutter" && p.level === "new",
+      title: (p) => "Set up " + CHANNEL_NAME[p.channel] + " and check what it charges",
+      body: (p) => ul(({
+        fbm: [
+          "For shipped sales, Meta's US Seller Protection Policy lists a fee of 10% per transaction, minimum $0.80, worked out on the whole amount including shipping and tax.",
+          "Meta starts your payment for a shipped order 5 days after delivery is confirmed.",
+          "Seller Protection is only available in the US, for items that sell for $500 or less.",
+          "Local pickups and deals arranged in Messenger aren't covered by Marketplace Purchase Protection.",
+        ],
+        offerup: [
+          "OfferUp doesn't charge fees or take a commission on in-person sales.",
+          "Most categories share 200 free listings a month. Cars and trucks, and motorcycles, get 1 each; appliances and phones 15; furniture, jewelry and tools 25. More needs a paid subscription.",
+          "OfferUp doesn't process payments in the app: the buyer pays you at the meetup.",
+        ],
+        vinted: [
+          "Vinted charges sellers nothing to upload or sell an item. Buyers pay a mandatory Buyer Protection fee at checkout.",
+          "An order completes when the buyer confirms it's fine, or 2 days after delivery if they don't report a problem. Then the money moves to your available balance.",
+          "Withdrawing to your bank can take up to 5 business days, and Vinted may ask you to verify your identity first.",
+        ],
+        depop: [
+          "Sellers based in the US or UK pay no Depop selling fee. Payment processing is 3.3% + $0.45 in the US, or 2.9% + £0.30 in the UK.",
+          "Processing is charged on the item price plus shipping and any tax, and is taken before your money is paid out.",
+          "Boosted listings are optional and cost 12% of the sale.",
+          "Buyers pay their own marketplace fee of up to 5% plus up to $1 (US) or £1 (UK).",
+        ],
+        ebay_own: p.country === "uk" ? [
+          "UK private sellers pay no final value fee or regulatory operating fee in any category except motors.",
+          "You get 300 free listings a month. Fees apply beyond that, for optional listing upgrades, or when you post to an overseas address.",
+          "Buyers pay a Buyer Protection fee on top of your price: £0.10 per item plus 7% of the price up to £20, 4% from £20 to £300, and 2% from £300 to £4,000.",
+        ] : [
+          FEE_TEXT.ebay,
+          "Without an eBay Store subscription, your first 250 listings each month have no insertion fee; after that it's $0.35 per listing.",
+          "Payment processing is included in eBay's fees.",
+        ],
+      })[p.channel]) + checked,
+      links: (p) => ({ fbm: [link("fbmSellerPolicy")], offerup: [link("offerupFree"), link("offerupLimits")], vinted: [link("vintedFree"), link("vintedPaid")], depop: [link("depopFees")], ebay_own: [link(p.country === "uk" ? "ebayUkSellerFees" : "ebayFees")] })[p.channel],
+      src: (p) => ({ fbm: ["fbmSellerPolicy", "fbmPurchaseProt"], offerup: ["offerupFree", "offerupLimits", "offerupSafety"], vinted: ["vintedFree", "vintedBP", "vintedPaid", "vintedWithdraw"], depop: ["depopFees", "depopNewsUS", "depopNewsUK"], ebay_own: p.country === "uk" ? ["ebayUkSellerFees", "ebayUKPrivate", "ebayUkBP"] : ["ebayFees"] })[p.channel] },
+
+    { id: "dc1-rules", day: 1, area: "legal", prio: "high", when: (p) => p.model === "declutter",
+      title: (p) => "Check " + CHANNEL_NAME[p.channel] + "'s rules on who can sell and what",
+      body: (p) => ul(({
+        fbm: [
+          "Marketplace is meant for people selling to each other. Services, subscriptions, digital products and rentals aren't allowed.",
+          "Banned items include weapons, ammunition, alcohol, tobacco, drugs, prescription and medical products, supplements and animals.",
+          "Also banned: used cosmetics, recalled products, counterfeits, and anything stolen.",
+          "Event tickets, gift cards and vouchers can be sold only by approved sellers.",
+        ],
+        offerup: [
+          "Since September 23, 2025, new OfferUp listings can't offer shipping, so every sale is local pickup. OfferUp says it has no plans to bring nationwide shipping back.",
+          "Any attempt to avoid a fee OfferUp charges, such as a listing fee, is against its terms.",
+          "Read OfferUp's posting rules for the items it doesn't allow before you list.",
+        ],
+        vinted: [
+          "You must be 18 or older to have your own Vinted account, and Vinted may ask for ID to prove it. Under-18s need a parent or guardian to set up and oversee an account.",
+          "Vinted can ban an account whose owner can't verify their age.",
+        ],
+        depop: [
+          "The no-selling-fee offer covers sellers based in the US, UK and Australia. Sellers elsewhere still pay a 10% selling fee.",
+          "Check Depop's terms and prohibited items before you list.",
+        ],
+        ebay_own: [
+          "You must be at least 18 to use eBay, because buying and selling there forms a contract.",
+          p.country === "uk" ? "A private account is for selling things you no longer want. If you buy items to resell, or make items to sell, eBay requires you to register as a business seller." : "",
+          p.country === "uk" ? "If you agree a sale outside eBay with a buyer you met there, eBay can still charge you a final value fee." : "",
+        ],
+      })[p.channel]),
+      links: (p) => ({ fbm: [link("fbmCommerce")], offerup: [link("offerupPosting"), link("offerupShipEnd")], vinted: [link("vintedAge")], depop: [link("depopFees")], ebay_own: p.country === "uk" ? [link("ebayUkBizPolicy")] : [link("ebayUnderage")] })[p.channel],
+      src: (p) => ({ fbm: ["fbmCommerce"], offerup: ["offerupShipEnd", "offerupTerms"], vinted: ["vintedTerms", "vintedAge"], depop: ["depopFees"], ebay_own: p.country === "uk" ? ["ebayUnderage", "ebayUkBizPolicy", "ebayUkBizAcct", "ebayUKPrivate"] : ["ebayUnderage"] })[p.channel] },
+
+    { id: "dc2-pick", day: 2, area: "research", prio: "high", when: (p) => p.model === "declutter" && p.level !== "selling",
+      title: "Choose your first 5 to 10 things to sell",
+      body: () => ul([
+        "Start with things that are clean, complete and working, and that you're happy to let go of.",
+        "Skip anything your platform bans, anything that might be fake, and anything that's been recalled.",
+        "Choose a few items you can price easily because the same thing has sold recently.",
+      ]) },
+
+    { id: "dc2-price", day: 2, area: "research", prio: "high", when: (p) => p.model === "declutter",
+      title: "Price each item from what similar items sold for",
+      body: (p) => ul([
+        "Search eBay and filter for sold items: sold prices are what buyers really paid, not what sellers hope for.",
+        "Compare items in the same condition, and set the lowest price you'd accept before anyone makes an offer.",
+        dcFee(p),
+      ]),
+      action: { label: "Open the trend and demand check", go: "tools:trends" }, src: (p) => dcFeeSrc(p) },
+
+    { id: "dc3-photos", day: 3, area: "content", prio: "high", when: (p) => p.model === "declutter",
+      title: "Photograph and measure each item",
+      body: () => ul([
+        "Use daylight and a plain background. Show every side, any labels, and any flaws.",
+        "Use your own photos of the actual item, never pictures copied from elsewhere.",
+        "Measure it and note the brand, model or size, colour and real condition.",
+      ]) },
+
+    { id: "dc3-list", day: 3, area: "listings", prio: "high", when: (p) => p.model === "declutter",
+      title: "Write and publish your listings",
+      body: (p) => ul([
+        "Title: brand, item type, size or model, and colour. Description: condition, measurements, flaws, and how the buyer gets it.",
+        "Mention every flaw, so the buyer knows exactly what they're getting.",
+        PICKUP(p) ? "Give a general area for pickup, not your home address. OfferUp advises keeping your phone number, email and address out of messages." : "",
+      ]),
+      action: { label: "Write the description with AI", go: "tools:describe" }, src: (p) => (PICKUP(p) ? ["offerupSafety"] : []) },
+
+    { id: "dc4-scams", day: 4, area: "support", prio: "high", when: (p) => p.model === "declutter",
+      title: "Learn the scams that target sellers",
+      body: (p) => ul([
+        "<b>Overpayment</b>: a “buyer” pays more than your price, often by check, and asks you to send back the difference. The check bounces weeks later, and you lose the money and the item.",
+        "A bank saying a check has “cleared” doesn't mean it's good. Cashier's and certified checks can be fake too.",
+        "<b>Fake payment notices</b>: check the money is in your own account before you hand over or post anything. Don't follow payment links in emails; log in yourself.",
+        "<b>Verification codes</b>: never share a code sent to your phone. Scammers use it to set up a Google Voice number linked to yours.",
+        "Scammers rush you and try to move the chat to email or other apps. Keep messages in the platform's app.",
+        p.channel === "offerup" ? "OfferUp says buyers who offer more than your price and want to pay through another app first are very likely scammers." : "",
+        p.country === "us" ? "Report scams to the platform and to the FTC at ReportFraud.ftc.gov." : "Report scams to the platform.",
+      ]),
+      links: [link("ftcSelling", "FTC: avoid scams when selling online")],
+      src: (p) => ["ftcSelling", "ftcFakeCheck", "fbScams"].concat(p.channel === "offerup" ? ["offerupSafety", "offerupScams"] : []) },
+
+    { id: "dc4-meet", day: 4, area: "orders", prio: "high", when: (p) => p.model === "declutter" && PICKUP(p),
+      title: "Plan safe meetups for local pickup",
+      body: (p) => "<p>OfferUp's safety advice works for any local sale:</p>" + ul([
+        "Meet in a busy, well-lit public place in the daytime, not at your home.",
+        "OfferUp's Community MeetUp Spots have lighting and video cameras around the clock; most are outside local businesses or police stations.",
+        "Bring a friend or family member. If you go alone, tell someone you trust where you're going.",
+        "For large items, meet first at a public spot and share the pickup address only once you feel comfortable.",
+        "Turn down last-minute changes of place; scammers use them to lure people somewhere unsafe.",
+        "Get paid before you hand the item over. OfferUp advises sellers to accept cash only.",
+        p.country === "us" ? "If you feel unsafe, don't go. In an emergency, call 911." : "If it doesn't feel safe, don't go.",
+        p.channel === "fbm" ? "Local pickups aren't covered by Marketplace Purchase Protection." : "OfferUp doesn't check or monitor MeetUp Spots, so use your own judgment too.",
+      ]),
+      links: [link("offerupSafety", "OfferUp: safety tips for meeting up"), link("offerupSpots", "Community MeetUp Spots")],
+      src: (p) => ["offerupSafety", "offerupSpots"].concat(p.channel === "fbm" ? ["fbmPurchaseProt"] : ["offerupTerms"]) },
+
+    { id: "dc5-ship", day: 5, area: "orders", prio: "med", when: (p) => p.model === "declutter" && p.channel !== "offerup",
+      title: (p) => (p.channel === "fbm" ? "Decide on local pickup, shipping, or both" : "Get ready to post sold items"),
+      body: (p) => ul([
+        p.channel === "fbm" ? "If you offer shipping (US), get the item to the carrier within 7 calendar days of the sale, or Meta may cancel the order." : "",
+        p.channel === "vinted" ? "The buyer pays for postage. Use the prepaid label Vinted gives you when an item sells." : "",
+        "Have packaging ready so you can post the day an item sells, and keep proof of postage and tracking.",
+      ]),
+      src: (p) => (p.channel === "fbm" ? ["fbmSellerPolicy"] : p.channel === "vinted" ? ["vintedHow"] : []) },
+
+    { id: "dc5-reply", day: 5, area: "support", prio: "med", when: (p) => p.model === "declutter",
+      title: "Reply to messages and offers quickly",
+      body: () => "<p>Reply the same day, and know your lowest price for each item before an offer comes in. Keep the conversation in the app until the sale is done.</p>",
+      action: { label: "Open message templates", go: "tools:messages" } },
+
+    { id: "dc6-tax", day: 6, area: "legal", prio: "med", when: (p) => p.model === "declutter",
+      title: "Know when selling becomes a business",
+      body: (p) => ul(p.country === "us" ? [
+        "Selling your own things for less than you paid isn't taxable income, even if a platform sends you a Form 1099-K. You can't deduct the loss either.",
+        "If you sell a personal item for more than you paid for it, the profit is taxable.",
+        "Platforms must send a Form 1099-K once you pass $20,000 and 200 transactions in a year, and may send one below that. Keep a note of what you paid for valuable items.",
+        "Buying things to resell for profit is different: that profit is income, and the IRS looks at whether you run it like a business. The Reselling plan covers the business basics.",
+      ] : p.country === "uk" ? [
+        "Selling your own unwanted things usually means no Income Tax. If one item, or a set, sells for more than £6,000, you may owe Capital Gains Tax.",
+        "Platforms send HMRC details of sellers with 30 or more sales, or about £1,700, in a year, and tell you when they do. That alone doesn't mean you owe tax.",
+        "Buying things to resell for profit, or making things to sell, usually counts as trading. Over £1,000 of trading income in a tax year means telling HMRC.",
+      ] : [
+        "Check how your country taxes occasional sales of your own things compared with buying items to resell.",
+      ]) + '<p class="small muted">General information from the IRS and HMRC, not tax advice.</p>',
+      links: (p) => (p.country === "us" ? [link("irs1099kCommon", "IRS: Form 1099-K common situations"), link("irsHobby", "IRS: hobby or business")] : p.country === "uk" ? [link("hmrcOnline", "Check if you need to tell HMRC")] : []),
+      src: (p) => (p.country === "us" ? ["irs1099kCommon", "irs1099kFaq", "irsHobby"] : p.country === "uk" ? ["hmrcOnline", "hmrcPlatformData", "hmrcAllow"] : []) },
+
+    { id: "dc7-review", day: 7, area: "finance", prio: "high", when: (p) => p.model === "declutter",
+      title: "Review what sold and decide on the rest",
+      body: () => ul([
+        "Write down what each sale brought in after fees and postage.",
+        "For items with views but no offers, lower the price or retake the main photo.",
+        "Decide what to relist, donate or keep.",
+      ]),
+      action: { label: "Open the profit calculator", go: "tools:profit" } },
+
+    // Ongoing (add to the "Ongoing (repeat)" block)
+    { id: "on-dc-handover", day: 7, ongoing: true, repeat: "daily", area: "orders", prio: "high", when: (p) => p.model === "declutter",
+      title: (p) => (PICKUP(p) ? "Arrange pickups for sold items" : "Post sold items and add tracking"),
+      body: (p) => "<p>" + (PICKUP(p) ? "Agree a public meeting place and time, and take payment before you hand anything over." : "Post each sold item promptly and keep proof of postage.") + "</p>" },
+    { id: "on-dc-list", day: 7, ongoing: true, repeat: "weekly", area: "listings", prio: "med", when: (p) => p.model === "declutter",
+      title: "List a few more things you don't use",
+      body: () => "<p>Clear one cupboard or room a week. Price each item from recent sold listings.</p>" },
+    // ======== Remote sales jobs
+    { id: "sj1-how", day: 1, area: "learning", prio: "high", when: (p) => p.model === "salesjob" && p.level === "new",
+      title: "Read: how remote sales jobs work",
+      body: () => "<p>A short lesson in this app: how sales pay works, employee versus contractor, and the scams that target people looking for remote work.</p>",
+      action: { label: "Open the lesson", go: "lesson:salesjob" } },
+
+    { id: "sj1-status", day: 1, area: "legal", prio: "high", when: (p) => p.model === "salesjob",
+      title: "Know the difference between an employee and a contractor",
+      body: (p) => ul(p.country === "us" ? [
+        "The IRS decides from the real working relationship, not the job title or contract: who controls how you work, who pays your costs, and whether the work is ongoing.",
+        "If it's unclear, you or the company can file Form SS-8 to ask the IRS. It's free, but a decision can take six months or more.",
+        "Employees covered by federal law must get at least $7.25 an hour, or their state's minimum if it's higher.",
+        "Federal law exempts “outside sales” staff from minimum wage, but selling by phone, mail or internet from a base doesn't count as outside sales.",
+        p.channel === "contract" ? "As a contractor you're self-employed: self-employment tax applies once your net earnings reach $400 in a year." : "",
+      ] : p.country === "uk" ? [
+        "Workers must get at least the National Minimum Wage for the hours they work, even if they aren't paid by the hour. Genuinely self-employed people aren't entitled to it.",
+        "HMRC treats commission-only work done to set hours as time work, which the minimum wage covers.",
+        "Being called self-employed doesn't settle it. Signs of real self-employment include choosing who you work for and controlling your own hours, breaks and holidays.",
+        p.channel === "contract" ? "If you're genuinely self-employed and your trading income goes over £1,000 in a tax year, you must tell HMRC." : "",
+      ] : [
+        "Check your country's rules on minimum pay, and on employee versus self-employed status, before you accept commission-only work.",
+      ]) + '<p class="small muted">General information from government sources, not legal or tax advice.</p>',
+      links: (p) => (p.country === "us" ? [link("irsWorker", "IRS: contractor or employee?"), link("dolStateMin", "State minimum wages")] : p.country === "uk" ? [link("ukNmwWho", "Who gets the minimum wage")] : []),
+      src: (p) => (p.country === "us" ? ["irsWorker", "irsTc762", "irsSS8", "dolMinWage", "dolStateMin", "dolOutside"].concat(p.channel === "contract" ? ["irsSE"] : []) : p.country === "uk" ? ["ukNmwWho", "ukNmwElig", "ukNmwCalc", "hmrcNmwTime"].concat(p.channel === "contract" ? ["hmrcAllow"] : []) : []) },
+
+    { id: "sj2-scams", day: 2, area: "legal", prio: "high", when: (p) => p.model === "salesjob",
+      title: "Learn the job scams before you apply",
+      body: (p) => ul([
+        "Honest employers never ask you to pay to get a job: not for training, starter kits, certifications or equipment.",
+        "If an “employer” sends a check and asks you to send some of it on, or buy gift cards with it, it's a scam. The check bounces, and your bank takes the full amount back from you.",
+        "Receiving packages and reshipping them is never a real job. The goods are often bought with stolen cards.",
+        "Ignore unexpected job texts and WhatsApp or Telegram messages. Recruiters generally email from a company address, not Gmail or Yahoo.",
+        "Be careful if someone offers you a job without talking to you first, or only interviews by chat.",
+        "Never send or receive money for an employer, and don't send bank or card details by email or chat.",
+        p.country === "us" ? "Report job scams to the job site and to the FTC at ReportFraud.ftc.gov." : "Report job scams to the job site.",
+      ]),
+      links: [link("ftcJobScams", "FTC: job scams"), link("indeedSafe", "Indeed: safe job search"), link("liScams", "LinkedIn: recognize scams")],
+      src: (p) => ["ftcJobScams", "ftcFakeCheck", "ftcReship", "ftcJobText", "indeedSafe", "liScams"].concat(p.country === "us" ? ["reportFraud"] : []) },
+
+    { id: "sj2-courses", day: 2, area: "learning", prio: "high", when: (p) => p.model === "salesjob",
+      title: "Be wary of paid “closing” courses and sales coaching",
+      body: (p) => ul([
+        "The FTC says programs that promise guaranteed income, big returns for little work, or a “proven system” to make money are likely scams.",
+        "If a coach asks you to pay even more to succeed, stop and talk to someone you trust. Pressure to buy now is a very strong sign of a scam.",
+        "Success stories and online reviews can be made up.",
+        "Before you pay for any course, search its name with “complaint”, “review” or “scam”.",
+        p.country === "us" ? "Anyone selling you a work-at-home business opportunity in the US must give you a one-page disclosure document at least 7 days before you sign or pay." : "",
+      ]),
+      action: { label: "Open the scams lesson", go: "lesson:scams" },
+      src: (p) => ["ftcScam", "ftcCoaching"].concat(p.country === "us" ? ["ftcBizOppRule"] : []) },
+
+    { id: "sj3-cv", day: 3, area: "content", prio: "high", when: (p) => p.model === "salesjob" && p.level !== "selling",
+      title: "Write a one-page CV and update your LinkedIn profile",
+      body: () => ul([
+        "List any work where you dealt with customers, sold, or persuaded people: retail, hospitality, call centres, volunteering or clubs.",
+        "Add results you can back up, such as targets met or customers helped. Never invent numbers.",
+        "Use the same job titles and dates on your CV and on LinkedIn.",
+        "LinkedIn's Open to Work setting can show recruiters only, or everyone, that you're looking. LinkedIn says it can't guarantee people at your current company won't see it.",
+      ]),
+      action: { label: "Draft your CV summary with AI", go: "tools:describe" },
+      links: [link("liOpen", "LinkedIn: Open to Work")], src: ["liOpen"] },
+
+    { id: "sj4-search", day: 4, area: "research", prio: "high", when: (p) => p.model === "salesjob",
+      title: "Search for remote sales roles",
+      body: (p) => ul([
+        "Search job titles such as “sales development representative”, “inside sales”, “appointment setter” and “customer success”, together with “remote”.",
+        "On LinkedIn, turn on a job alert for your search. Alerts are daily by default, and you can have up to 20.",
+        p.channel === "employee" ? "Look for postings that state a base salary or hourly rate as well as commission." : "For commission-only roles, check what you'd sell, the commission rate, and when commission is paid.",
+        "Check the job also appears on the company's own website, and contact the company using details you found yourself.",
+        "Some LinkedIn job posts carry a verification badge. A badge doesn't mean the job is right for you, and no badge doesn't prove a job is fake.",
+      ]),
+      links: [link("liAlerts", "LinkedIn: job alerts"), link("indeedSafe", "Indeed: safe job search")],
+      src: ["liAlerts", "liVerify", "indeedSafe", "ftcJobScams"] },
+
+    { id: "sj5-practice", day: 5, area: "learning", prio: "med", when: (p) => p.model === "salesjob",
+      title: "Practise a short sales call",
+      body: () => ul([
+        "Write a 30-second opening: who you are, why you're calling, and one question about the other person's needs.",
+        "Practise asking open questions and listening more than you talk.",
+        "Practise a polite reply to “not interested”, and ending with a clear next step, such as a booked follow-up.",
+        "Record yourself or role-play with a friend, then improve one thing at a time.",
+      ]),
+      action: { label: "Role-play a call with AI", go: "tools:helper" } },
+
+    { id: "sj6-apply", day: 6, area: "marketing", prio: "high", when: (p) => p.model === "salesjob",
+      title: "Apply to 5 roles that pass your checks",
+      body: () => ul([
+        "Match the top of your CV to each posting's main requirements.",
+        "Keep a simple list: company, role, how pay works, date applied, and next step.",
+        "Indeed's warning signs during hiring: pressure to hand over your details today, or a request to download software.",
+      ]),
+      src: ["indeedSafe"] },
+
+    { id: "sj6-offer", day: 6, area: "legal", prio: "high", when: (p) => p.model === "salesjob",
+      title: "Check any offer before you say yes",
+      body: (p) => ul([
+        "Get it in writing: base pay or hourly rate, commission rate and when it's paid, hours, and whether you're an employee or a contractor.",
+        "Real employers give you time to consider an offer. Pressure to decide now is a warning sign, so talk to someone you trust first.",
+        p.channel === "contract" ? "If the company would set your hours and control how you work, check your status again: that's a sign of a worker or employee, not self-employment." : "",
+      ]),
+      src: (p) => ["ftcJobScams"].concat(p.channel === "contract" ? (p.country === "uk" ? ["ukNmwElig"] : p.country === "us" ? ["irsWorker"] : []) : []) },
+
+    { id: "sj7-review", day: 7, area: "finance", prio: "med", when: (p) => p.model === "salesjob",
+      title: "Review your applications and what to improve",
+      body: () => "<p>Note which applications got replies and which job titles suit you best. Follow up once, politely, on applications older than a week, and drop any role that failed your scam checks.</p>" },
+
+    // Ongoing (add to the "Ongoing (repeat)" block)
+    { id: "on-sj-apply", day: 7, ongoing: true, repeat: "daily", area: "marketing", prio: "high", when: (p) => p.model === "salesjob",
+      title: "Apply to one or two checked roles and reply to recruiters",
+      body: () => "<p>Check each posting against the scam signs before you apply, and reply to genuine recruiters the same day.</p>" },
+    { id: "on-sj-practice", day: 7, ongoing: true, repeat: "weekly", area: "learning", prio: "med", when: (p) => p.model === "salesjob",
+      title: "Practise one call and update your CV",
+      body: () => "<p>Role-play one call, and add anything new you've learned or achieved to your CV and LinkedIn profile.</p>",
+      action: { label: "Role-play a call with AI", go: "tools:helper" } },
+    // ======== Online tutoring
+    { id: "tu1-how", day: 1, area: "learning", prio: "high", when: (p) => p.model === "tutor" && p.level === "new",
+      title: "Read: how online tutoring works",
+      body: () => "<p>A short lesson in this app: what each platform keeps, when you get paid, and the rules for teaching children.</p>",
+      action: { label: "Open the lesson", go: "lesson:tutor" } },
+
+    { id: "tu1-rules", day: 1, area: "legal", prio: "high", when: (p) => p.model === "tutor",
+      title: (p) => "Check you can teach on " + CHANNEL_NAME[p.channel],
+      body: (p) => ul(({
+        preply: [
+          "You must be at least 18. Preply reviews applications within 5 business days and may turn down subjects few students are looking for.",
+          "Preply can't accept residents of Iran, Sudan, Cuba, Syria, North Korea or Crimea.",
+          "Before you can withdraw earnings, you must verify your identity with a passport or other government ID.",
+        ],
+        italki: [
+          "italki's terms say users must be 18 or older.",
+          "You need native or C2-level ability in each language you teach. Applications open and close by language, so check yours is open first.",
+          "Community Tutors need no teaching certificate and charge $5 to $120 a lesson. Professional Teachers must prove teaching training, such as CELTA or a 120-hour TEFL, and charge $10 to $120.",
+          "A 1 to 3 minute introduction video is required, and you must speak every language you want to teach in it.",
+        ],
+        cambly: [
+          "Cambly asks for native English speakers aged 18 or over with a strong internet connection. Teaching experience and certificates help but aren't required.",
+          "You must apply on a laptop or desktop computer in Google Chrome, not on a phone or tablet.",
+          "Cambly says it's temporarily limiting new tutors, so applications may take longer than usual.",
+          "Tutors are independent contractors, and Cambly doesn't guarantee any number of students or amount of income.",
+        ],
+        wyzant: [
+          "You must be at least 18, live in the United States and have a valid Social Security number. You don't need to be a certified teacher.",
+          "Each subject needs a short quiz or written qualifications. Wyzant replies within 3 to 10 business days.",
+          "No background check is needed to join, but a student or parent can order one. You then have 7 days to authorise it, and must pass to keep tutoring.",
+        ],
+        outschool: [
+          "You must be at least 18 and live for at least 6 months a year in one of the 50 US states, Canada, Mexico, the UK, Australia, New Zealand, South Korea or Spain.",
+          "No teaching credential is needed, but you need a PayPal account, reliable internet and good written and spoken English.",
+          "Every educator must pass ID verification and a criminal background check before teaching, and renew the background check every year.",
+        ],
+      })[p.channel]) + checked,
+      links: (p) => ({ preply: [link("preplyRegister")], italki: [link("italkiTypes"), link("italkiOpen")], cambly: [link("camblyApply")], wyzant: [link("wyzantReg")], outschool: [link("outschoolBecoming"), link("outschoolBg")] })[p.channel],
+      src: (p) => ({ preply: ["preplyRegister", "preplyId"], italki: ["italkiTos", "italkiLang", "italkiOpen", "italkiTypes", "italkiPro", "italkiVideo"], cambly: ["camblyTutors", "camblyApply", "camblyAddendum"], wyzant: ["wyzantReg", "wyzantBg"], outschool: ["outschoolBecoming", "outschoolProspective", "outschoolId", "outschoolBg"] })[p.channel] },
+
+    { id: "tu1-pay", day: 1, area: "finance", prio: "high", when: (p) => p.model === "tutor",
+      title: (p) => "Understand how " + CHANNEL_NAME[p.channel] + " pays you",
+      body: (p) => ul([FEE_TEXT[p.channel]].concat(({
+        preply: [
+          "Most lessons are confirmed automatically about 15 minutes after they end in the Preply Classroom, or 72 hours after outside it. Your share then goes to your Preply balance.",
+          "You withdraw from your balance to Wise, Payoneer, PayPal or Skrill; how long it takes depends on the method.",
+        ],
+        italki: [
+          "Earnings are held as italki Credits (10 credits = $1). The minimum withdrawal is $30.",
+          "italki charges no withdrawal fee, but PayPal, Payoneer and the other providers may.",
+        ],
+        cambly: [
+          "Cambly pays weekly once you're owed at least $20, unless you choose payouts every 2 or 4 weeks.",
+          "Cambly doesn't withhold tax from your pay; you handle your own.",
+        ],
+        wyzant: [
+          "Wyzant pays by direct deposit on the 1st and 15th of each month. Submit each lesson at least 5 business days before a payday, and within 14 days of the lesson.",
+          "Wyzant doesn't allow taking payment directly from students: no cash, checks, payment apps or PayPal invoices.",
+        ],
+        outschool: [
+          "Outschool pays you through PayPal after a class starts.",
+          "If a family is refunded after you've been paid, Outschool asks you to return your 70% share.",
+        ],
+      })[p.channel])) + checked,
+      src: (p) => ({ preply: ["preplyCommission", "preplyPaid"], italki: ["italkiCommission", "italkiWithdraw"], cambly: ["camblyTutors", "camblyAddendum"], wyzant: ["wyzantFee", "wyzantSchedule", "wyzantWhenPaid", "wyzantPayPolicy", "wyzantCash"], outschool: ["outschoolAddendum", "outschoolTeach", "outschoolEarnings", "outschoolRefunds"] })[p.channel] },
+
+    { id: "tu2-subject", day: 2, area: "research", prio: "high", when: (p) => p.model === "tutor" && p.level !== "selling",
+      title: "Choose what you'll teach, and to whom",
+      body: (p) => ul([
+        p.channel === "cambly" ? "On Cambly you teach English. Decide whether you'll teach adults, children on Cambly Kids, or both." : "Pick one subject or language and one group of learners, such as adult beginners, exam students or one school age range.",
+        "Search the platform for tutors teaching the same thing. Note their prices, reviews and how they describe their lessons.",
+        "Choose something you can teach well now, and back it up with qualifications or experience you can show.",
+      ]) },
+
+    { id: "tu2-children", day: 2, area: "legal", prio: "high", when: (p) => p.model === "tutor",
+      title: "Know the rules for teaching children",
+      body: (p) => ul(({
+        preply: [
+          "Preply's terms: learners aged 13 to 17 may use Preply only with a parent or guardian supervising, and no one under 13 may use it.",
+          "Preply's code of conduct bans exploiting children and asking anyone under 18 for personal data.",
+        ],
+        italki: [
+          "italki accounts must belong to adults. A parent can book lessons for a child and handles payment, scheduling and messages with the teacher.",
+        ],
+        cambly: [
+          "Cambly Kids lessons are video-recorded, and messages between tutor and child are kept, so Cambly can review them.",
+          "When a child starts a call, the tutor sees the child's first name. Don't ask for any more personal details.",
+        ],
+        wyzant: [
+          "A student or parent can order a background check on you. It covers criminal convictions and the sex offender registry, and Wyzant only learns whether you passed.",
+        ],
+        outschool: [
+          "Keep all contact on Outschool. Share personal details only in Outschool's listed exceptions, and then only with the parent, never the learner.",
+          "Don't share Zoom links outside Outschool, take payment off the platform, or meet learners in person except at Outschool-sponsored events.",
+          "Classes are recorded and kept for 90 days. Never download a recording or share it beyond enrolled families.",
+          "All Outschool educators are mandatory reporters and must follow local rules on reporting suspected abuse or neglect.",
+          "Inappropriate contact with a learner means immediate removal, and three Trust & Safety strikes also mean removal.",
+        ],
+      })[p.channel].concat(["Keep every lesson and message on the platform, and follow its rules for under-18s exactly."])),
+      links: (p) => ({ preply: [link("preplyConduct")], italki: [link("italkiParents")], cambly: [link("camblyKidsPrivacy")], wyzant: [link("wyzantBg")], outschool: [link("outschoolSafety"), link("outschoolPersonal")] })[p.channel],
+      src: (p) => ({ preply: ["preplyTerms", "preplyConduct"], italki: ["italkiTos", "italkiParents"], cambly: ["camblyKidsPrivacy"], wyzant: ["wyzantBg"], outschool: ["outschoolPersonal", "outschoolSafety", "outschoolRecordings", "outschoolStrikes"] })[p.channel] },
+
+    { id: "tu3-profile", day: 3, area: "listings", prio: "high", when: (p) => p.model === "tutor",
+      title: "Write your tutor profile",
+      body: (p) => ul([
+        "Lead with who you help and what they'll be able to do after your lessons. List only qualifications you can prove.",
+        "Don't promise grades, exam passes, or fluency by a certain date.",
+        p.channel === "preply" ? "Preply recommends a profile photo, uploaded certificates, a description, your calendar and time zone, and your rate." : "",
+        p.channel === "italki" ? "In your video, look into the camera, don't read from a script, and film in landscape (16:9). Leave out contact details, adverts and unlicensed music." : "",
+      ]),
+      action: { label: "Draft your profile with AI", go: "tools:describe" },
+      src: (p) => (p.channel === "preply" ? ["preplyRegister"] : p.channel === "italki" ? ["italkiVideo"] : []) },
+
+    { id: "tu4-price", day: 4, area: "finance", prio: "high", when: (p) => p.model === "tutor",
+      title: (p) => (p.channel === "cambly" ? "Plan the hours you'll teach" : "Set a rate that covers the platform's cut and tax"),
+      body: (p) => ul([
+        FEE_TEXT[p.channel],
+        p.channel === "wyzant" ? "Students pay a 9% fee on top, so they see a higher price than the rate you set." : "",
+        p.channel === "outschool" ? "Parents also pay a separate marketplace fee, which isn't part of your 70%." : "",
+        p.channel === "cambly" ? "Cambly sets the pay per minute, so your income depends on how many minutes you teach." : "Count preparation and messages as working time when you work out your real hourly rate.",
+        p.country === "us" && (p.channel === "cambly" || p.channel === "wyzant") ? "Cambly and Wyzant treat tutors as independent contractors, so US self-employment tax (15.3% on 92.35% of net earnings) applies on top of income tax." : "Set money aside for tax from every payout; check your country's rules for self-employed income.",
+      ]),
+      action: { label: "Open the freelance rate calculator", go: "tools:rate" },
+      src: (p) => [FEE_SRC[p.channel]].concat(p.channel === "wyzant" ? ["wyzantStudentFee", "wyzantVet"] : p.channel === "outschool" ? ["outschoolAddendum"] : p.channel === "cambly" ? ["camblyAddendum"] : []).concat(p.country === "us" && (p.channel === "cambly" || p.channel === "wyzant") ? ["irsSE"] : []) },
+
+    { id: "tu5-lesson", day: 5, area: "content", prio: "high", when: (p) => p.model === "tutor",
+      title: (p) => (p.channel === "outschool" ? "Plan your first class" : "Plan a first lesson you can repeat"),
+      body: (p) => ul([
+        "Plan a quick check of the learner's level and goals, one useful thing they can do by the end, and a clear next step.",
+        "Test your camera, microphone and internet connection before every lesson.",
+        p.channel === "preply" ? "Your first lesson with each new student is a trial. Preply keeps all of it, and offers the student a free replacement if they aren't happy." : "",
+        p.channel === "italki" ? "You can offer trial lessons; italki takes no commission on them." : "",
+      ]),
+      src: (p) => (p.channel === "preply" ? ["preplyCommission"] : p.channel === "italki" ? ["italkiCommission"] : []) },
+
+    { id: "tu6-promote", day: 6, area: "marketing", prio: "med", when: (p) => p.model === "tutor",
+      title: "Open your calendar and get your first bookings",
+      body: (p) => ul([
+        "Open times when your learners are free, in their time zone, and reply to messages and booking requests quickly.",
+        p.channel === "wyzant" ? "For students you refer to Wyzant yourself, there's no platform fee: you get 100% of your rate." : "",
+        p.channel === "outschool" ? "Listing classes is free; Outschool takes its 30% only when families enroll." : "",
+        p.channel === "wyzant" || p.channel === "outschool" ? "Keep payment on the platform: " + CHANNEL_NAME[p.channel] + " doesn't allow taking payment from students or families directly." : "",
+      ]),
+      src: (p) => (p.channel === "wyzant" ? ["wyzantFee", "wyzantCash"] : p.channel === "outschool" ? ["outschoolTeach", "outschoolPersonal"] : []) },
+
+    { id: "tu7-review", day: 7, area: "finance", prio: "high", when: (p) => p.model === "tutor",
+      title: "Review bookings, reviews and your real hourly rate",
+      body: (p) => ul([
+        "Add up the hours you spent teaching, preparing and messaging, and compare them with what reached your balance after the platform's cut.",
+        "Ask regular learners what helps them most, and adjust your lessons.",
+        p.channel === "preply" ? "Preply's commission falls as your total hours grow: 28% after 20 hours, down to 18% after 400." : "",
+      ]),
+      action: { label: "Open the freelance rate calculator", go: "tools:rate" },
+      src: (p) => (p.channel === "preply" ? ["preplyCommission"] : []) },
+
+    // Ongoing (add to the "Ongoing (repeat)" block)
+    { id: "on-tu-teach", day: 7, ongoing: true, repeat: "daily", area: "support", prio: "high", when: (p) => p.model === "tutor",
+      title: "Teach booked lessons and reply to learners",
+      body: () => "<p>Be on time for every lesson, reply to messages the same day, and keep all contact on the platform.</p>" },
+    { id: "on-tu-plan", day: 7, ongoing: true, repeat: "weekly", area: "content", prio: "med", when: (p) => p.model === "tutor",
+      title: "Prepare next week's lessons and update your calendar",
+      body: () => "<p>Plan materials for each regular learner, and open or close times so your calendar shows only hours you can really teach.</p>" },
+    // ======== Stream clipping
+    { id: "cl1-how", day: 1, area: "learning", prio: "high", when: (p) => p.model === "clipping" && p.level === "new",
+      title: "Read: how stream clipping works and what's allowed",
+      body: () => "<p>A short lesson in this app: the two ways clippers get paid, why you need permission, and why platform payout programs rarely pay for clips of other people's videos.</p>",
+      action: { label: "Open the lesson", go: "lesson:clipping" }, src: ["whopCrDocs", "ytReused", "ttRewards"] },
+
+    { id: "cl1-permission", day: 1, area: "legal", prio: "high", when: (p) => p.model === "clipping",
+      title: "Only clip creators who allow it or who hired you",
+      body: () => ul([
+        "A streamer's videos belong to them. Clip someone only if they run a clipping campaign, hired you, or told you in writing that you may post their clips.",
+        "Twitch's Terms let other users reuse a streamer's content only as needed for Twitch's own sharing features. They don't say you may repost clips elsewhere to earn money, so ask.",
+        "On Twitch, streamers choose who can clip them (everyone, followers, subscribers or nobody), and can delete every clip of their channel.",
+        "Clipping campaigns make you promise your clip breaks nobody's rights, music included. Twitch deletes clips where it detects copyrighted audio.",
+        "Copyright takedowns bring strikes. Three YouTube strikes within 90 days can get your channel terminated, and TikTok bans accounts that repeatedly infringe.",
+      ]) + '<p class="small muted">General information from platform terms, not legal advice.</p>',
+      links: [link("twitchClipSettings", "Twitch clip settings"), link("ytStrikes", "YouTube copyright strikes")],
+      src: ["twitchTos", "twitchClipSettings", "whopCrTerms", "twitchCopyCamp", "ytStrikes", "ttIP"] },
+
+    { id: "cl1-whop", day: 1, area: "store", prio: "high", when: (p) => p.model === "clipping" && p.channel === "whop",
+      title: "Check you can join Content Rewards and connect your accounts",
+      body: () => ul([
+        "You must be 18 or older. Under-18s aren't allowed even with a parent's consent; accounts found to be under 18 are closed and pending money can be withheld.",
+        "Content Rewards runs on Whop. You can connect Instagram (Professional or Creator accounts only), a Facebook Page you run, TikTok, YouTube and X.",
+        "The connection is read-only: it proves a post is yours and reads its views. Some campaigns won't accept a clip without a connected account.",
+        "To withdraw money from Whop you must pass identity checks: your details, a linked bank account and an ID upload.",
+      ]) + checked,
+      links: [link("whopDiscover", "Browse Content Rewards campaigns"), link("whopCrTerms", "Creator terms")],
+      src: ["whopCrTerms", "whopPayouts", "whopTos"] },
+
+    { id: "cl1-hire", day: 1, area: "store", prio: "high", when: (p) => p.model === "clipping" && p.channel === "hire",
+      title: "Decide where you'll find creators to edit for",
+      body: () => ul([
+        "<b>Fiverr</b>: you must be 18 or legally able to sign a contract; 13 to 17-year-olds only through an account a parent or guardian owns and manages. Fiverr keeps 20% of each order.",
+        "<b>Upwork</b>: you must be 18, or the age of majority where you live if that's higher. Its fee is 0% to 15% per contract.",
+        "<b>Direct</b>: no platform fee, but you find every creator yourself and agree the work and payment in writing.",
+      ]) + checked,
+      links: [link("fiverrHow", "How Fiverr works"), link("upworkFee", "Upwork fees")],
+      src: ["fiverrMinors", "fiverrVsUpwork", "upworkEligible", "upworkFee"] },
+
+    { id: "cl2-payouts", day: 2, area: "legal", prio: "high", when: (p) => p.model === "clipping",
+      title: "Know why platform payouts rarely pay for clips",
+      body: () => ul([
+        "YouTube doesn't share Shorts revenue on unedited clips of others' films or shows, reuploads of other creators' videos, or compilations with nothing original added.",
+        "YouTube's reused-content rule applies even if the original creator gave permission, and breaking it can remove monetisation from your whole channel.",
+        "TikTok Creator Rewards doesn't treat as original anything copied from others with only slight changes, such as speed-ups, filters, fixed text or stickers.",
+        "Instagram may not recommend content that's mostly repurposed with minor edits, reposts, or videos carrying someone else's watermark.",
+        "So in this model the campaign or the creator pays you, not the platform's payout program.",
+      ]) + checked,
+      links: [link("ytShortsMon", "YouTube Shorts monetization policies"), link("ttOriginality", "TikTok originality policy")],
+      src: ["ytShortsMon", "ytReused", "ttRewards", "ttOriginality", "igRecs", "igReach"] },
+
+    { id: "cl2-campaign", day: 2, area: "research", prio: "high", when: (p) => p.model === "clipping" && p.channel === "whop",
+      title: "Pick 1 or 2 campaigns and read every rule",
+      body: () => ul([
+        "Each campaign sets its own pay per 1,000 views and a total budget, and chooses which platforms it accepts.",
+        "Check the limits: a brand can set a minimum a clip must earn before it's paid, and the most one clip can earn.",
+        "On per-post campaigns, if your clip misses the minimum views within the brand's monitoring period, that payout goes back to the budget.",
+        "Read what the clip must show or say. The brand approves or rejects every submission.",
+      ]),
+      links: [link("whopDiscover", "Content Rewards campaigns")], src: ["whopCrDocs", "whopCrTerms"] },
+
+    { id: "cl2-creators", day: 2, area: "research", prio: "high", when: (p) => p.model === "clipping" && p.channel === "hire" && p.level !== "selling",
+      title: "List 10 creators you could edit clips for",
+      body: () => ul([
+        "Start with creators whose streams or videos you already watch, so you know what their best moments look like.",
+        "Note whether they already post Shorts, TikToks or Reels, and how often.",
+        "On Twitch, streamers decide who can clip them. If a channel has clipping turned off, treat that as a reason to ask before you touch their content.",
+      ]),
+      src: ["twitchClipSettings"] },
+
+    { id: "cl3-tools", day: 3, area: "content", prio: "high", when: (p) => p.model === "clipping",
+      title: "Set up your clipping tools",
+      body: (p) => ul([
+        "<b>Twitch Clips</b>: you can download clips you made, and streamers can download any clip of their channel, in landscape or portrait.",
+        "<b>YouTube “Edit into a Short”</b>: turns up to 60 seconds of a public long video into a Short. Only the channel that uploaded the video can use it.",
+        "<b>YouTube Remix › Cut</b>: adds a segment of another YouTube video to your Short. The Short credits and links the original.",
+        "<b>CapCut</b>: the desktop app has “Long video to shorts”, auto captions, and auto reframe for vertical video (reframe isn't offered in every region).",
+        p.channel === "hire" ? "Working on a creator's YouTube channel? Ask them to add you in YouTube Studio › Settings › Permissions rather than sharing a password." : "",
+      ]),
+      links: [link("twitchClips", "Twitch clips guide"), link("ytEditShort", "Make Shorts from your videos"), link("capcutShorts", "CapCut long video to shorts")],
+      src: (p) => ["twitchClips", "ytEditShort", "ytRemix", "capcutShorts", "capcutReframe"].concat(p.channel === "hire" ? ["ytPermissions"] : []) },
+
+    { id: "cl4-clips", day: 4, area: "content", prio: "high", when: (p) => p.model === "clipping",
+      title: (p) => (p.channel === "whop" ? "Make your first 3 campaign clips" : "Make 3 sample clips"),
+      body: (p) => ul([
+        p.channel === "whop" ? "Follow the campaign brief exactly: what to show, captions, tags and length. A clip that misses the brief can be rejected." : "Use footage you're allowed to use: a creator who said yes, an open clipping campaign, or your own recordings.",
+        "Make each clip stand on its own: start on the moment, add captions, and frame it vertically.",
+        "Add your own editing, such as captions, context or commentary. Clips with nothing added can't earn platform payouts and may not be recommended.",
+        "Use only music you have the rights to. Copyrighted audio can get a clip muted, claimed or removed.",
+      ]),
+      action: { label: "Draft hooks with AI", go: "tools:hooks" },
+      src: (p) => (p.channel === "whop" ? ["whopCrDocs"] : []).concat(["ytShortsMon", "igRecs", "ytClaims", "twitchCopyCamp"]) },
+
+    { id: "cl5-disclose", day: 5, area: "legal", prio: "high", when: (p) => p.model === "clipping",
+      title: "Label paid clips as ads",
+      body: (p) => ul([
+        "If you're paid to post a clip on your own account, disclose it. Whop's guide says to do this whenever you're paid or expect to be.",
+        "Say “Ad” or “Paid partnership” in the first seconds, show it as on-screen text, and put #Ad near the start of the caption.",
+        "Turn on TikTok's “Disclose commercial content” setting; undisclosed branded videos may not be shown in For You. On YouTube, tick the paid-promotion box.",
+        p.channel === "whop" ? "Content Rewards can reject a clip, and withhold its payment, if the disclosure is missing." : "If the creator posts your clips on their channel, any sponsor segment still needs their disclosure. Point those out when you deliver.",
+      ]),
+      links: [link("ftcInfluencer", "FTC: Disclosures 101"), link("whopFtc", "Whop's disclosure guide")],
+      src: (p) => ["ftcInfluencer", "whopFtc", "ttBranded", "ttDisclose", "ytPaidPromo"].concat(p.channel === "whop" ? ["whopCrOldTerms", "whopCrTerms"] : []) },
+
+    { id: "cl5-submit", day: 5, area: "marketing", prio: "high", when: (p) => p.model === "clipping" && p.channel === "whop",
+      title: "Post your clips and submit the links",
+      body: () => ul([
+        "Post each clip publicly on a platform the campaign accepts, then submit its public link.",
+        "Submissions go through automatic checks and the brand's review. Views are counted through the platforms' own systems, not from what you report.",
+        "Never buy views, likes or followers, or team up with others to inflate them. The penalty is a permanent ban, with one appeal.",
+        "When a brand approves your clip, you give it a permanent, worldwide licence to use it, including in paid ads.",
+      ]),
+      src: ["whopCrTerms", "whopCrBrandTerms"] },
+
+    { id: "cl5-pitch", day: 5, area: "marketing", prio: "high", when: (p) => p.model === "clipping" && p.channel === "hire",
+      title: "Offer your clipping service to 5 to 10 creators",
+      body: (p) => ul([
+        "Send a short message with one sample clip, what you'd deliver each week, and your price.",
+        "Don't post a creator's content on your own account as a “free sample” without asking first.",
+        "On Fiverr or Upwork, describe the package: clips per week, length, captions, revisions and delivery time.",
+        p.country === "us" ? "If you email businesses, follow CAN-SPAM: an honest subject line, your postal address, and an opt-out you honour within 10 business days." : "",
+      ]),
+      src: (p) => (p.country === "us" ? ["canSpam"] : []) },
+
+    { id: "cl6-agree", day: 6, area: "legal", prio: "high", when: (p) => p.model === "clipping" && p.channel === "hire",
+      title: "Put the job and the permissions in writing",
+      body: () => ul([
+        "Agree in writing: how many clips, how long, where they're posted and by whom, revisions, deadlines and price.",
+        "Get written permission to use their footage, and ask whether you may show the clips in your portfolio.",
+        "For YouTube, ask to be added in Studio's Permissions. Editors can upload and publish but can't manage permissions; Editor (Limited) also can't see revenue.",
+        "Get footage from the creator, or from clips of their channel that they download from Twitch.",
+      ]),
+      links: [link("ytPermissions", "YouTube channel permissions")], src: ["ytPermissions", "twitchClips"] },
+
+    { id: "cl6-payout", day: 6, area: "finance", prio: "high", when: (p) => p.model === "clipping" && p.channel === "whop",
+      title: "Set up withdrawals and know when money arrives",
+      body: () => ul([
+        "Approved payouts are held while views are checked for fraud. On per-1,000-views campaigns, views earn for 7 days, then there's a 3-day hold: about 10 days after approval.",
+        "The money then reaches your balance. Withdrawing needs identity checks, and Whop's docs give a $10 minimum withdrawal where one applies.",
+        "Withdrawal fees depend on the method; for example, $2.50 per instant bank deposit. Check the fee before you choose one.",
+        "A clip that's removed, or found to use fake views, can have its payment stopped or reversed.",
+      ]) + checked,
+      links: [link("whopPayouts", "Whop: set up payouts")], src: ["whopCrBrandTerms", "whopCrTerms", "whopPayouts", "whopFees"] },
+
+    { id: "cl7-review", day: 7, area: "finance", prio: "high", when: (p) => p.model === "clipping",
+      title: (p) => (p.channel === "whop" ? "Review approvals, views and earnings" : "Review replies, jobs and your hourly rate"),
+      body: (p) => (p.channel === "whop"
+        ? "<p>Note which clips were approved or rejected and why, the verified views on each, and what you earned for the hours spent. Make more of what got approved.</p>"
+        : "<p>Count replies and jobs from your outreach. Compare what you earned with the hours you worked; if the hourly rate is too low, raise your price or tighten the package.</p>"),
+      action: { label: "Open the freelance rate calculator", go: "tools:rate" } },
+
+    // ongoing
+    { id: "on-clip", day: 7, ongoing: true, repeat: "daily", area: "content", prio: "high", when: (p) => p.model === "clipping",
+      title: (p) => (p.channel === "whop" ? "Make, post and submit today's clips" : "Make or deliver today's clips"),
+      body: (p) => "<p>" + (p.channel === "whop" ? "Check each campaign still has budget left before you clip for it, and follow its latest rules." : "Deliver on the dates you agreed, and reply to creators' messages the same day.") + "</p>" },
+
+    { id: "on-clip-check", day: 7, ongoing: true, repeat: "weekly", area: "legal", prio: "med", when: (p) => p.model === "clipping",
+      title: "Check for copyright claims, strikes and rule changes",
+      body: () => "<p>Look for claims or strikes in YouTube Studio and notices in TikTok and Instagram. Take down anything you no longer have permission to post, and re-read campaign rules, which can change.</p>",
+      src: ["ytStrikes", "ytClaims", "ttIP"] },
+    // ======== UGC creator
+    { id: "u1-how", day: 1, area: "learning", prio: "high", when: (p) => p.model === "ugc" && p.level === "new",
+      title: "Read: how UGC work pays and what's allowed",
+      body: () => "<p>A short lesson in this app: who pays UGC creators, who owns the videos afterwards, and the honesty rules for product videos.</p>",
+      action: { label: "Open the lesson", go: "lesson:ugc" }, src: ["billoStart", "insensePay", "ftcEndorse"] },
+
+    { id: "u1-elig", day: 1, area: "legal", prio: "high", when: (p) => p.model === "ugc",
+      title: (p) => (p.channel === "ugc_direct" ? "Know what you need before working with brands directly" : "Check you qualify for " + CHANNEL_NAME[p.channel]),
+      body: (p) => ({
+        billo: ul([
+          "You must live in the United States, Canada or the United Kingdom and be at least 18. You don't need experience or a social media following.",
+          "Brands ship the product to you at no cost. A standard job is a video you upload in the Billo app; posting it on your own accounts is an optional extra.",
+          "Videos are due within 5 days of the product arriving.",
+        ]),
+        insense: ul([
+          "You must be over the age of majority where you live and able to sign a binding contract.",
+          "Insense's FAQ lists 22 countries where it works with creators, including the US, UK, Canada and Australia. Check it for yours.",
+          "Insense looks for a portfolio of UGC videos showing you can speak on camera or do a voiceover, with good picture and sound.",
+        ]),
+        tt_one: ul([
+          "You must be 18 or older (the age can differ by region), TikTok One must be available where you live, and you must follow TikTok's Community Guidelines and Branded Content Policy.",
+          "TikTok One's help page gives 1,000 followers as the usual minimum and lets each project add more; an older TikTok page lists 10,000. The app shows whether you qualify.",
+          "To check: Profile › TikTok Studio › Monetization › Creator Marketplace › Check eligibility, then Join.",
+        ]),
+        amz_inf: ul([
+          "You need an Amazon Associates account first. The Influencer Program is open only in some countries, and you must meet Amazon's thresholds before you're accepted.",
+          "Amazon's own guide says that without an established social media following the program probably isn't right for you yet; you can apply later.",
+          "Accepted influencers get a storefront page on Amazon and can upload shoppable product videos.",
+        ]),
+        ugc_direct: ul([
+          "No platform checks you or holds the money, so you write the agreement: what you'll make, how the brand may use it, the price, the deadline and revisions.",
+          "Most brands pay against an invoice. Card payments through Stripe cost 2.9% + 30¢ for US cards.",
+          "Many platforms and brands need you to be 18 or the age of majority. Check before you pitch.",
+        ]),
+      })[p.channel] + checked,
+      links: (p) => ({ billo: [link("billoFaq", "Billo for creators")], insense: [link("insenseCreators", "Insense for creators")], tt_one: [link("ttOneSignup", "Sign up for TikTok One")], amz_inf: [link("amzInfInfo", "Amazon Influencer Program")], ugc_direct: [] })[p.channel],
+      src: (p) => ({ billo: ["billoFaq", "billoStart"], insense: ["insenseTerms", "insenseFaq", "insenseCreators"], tt_one: ["ttOneSignup", "ttOneSupport", "ttOneAcademy"], amz_inf: ["amzAssocPolicies", "amzInfGuideAssoc", "amzInfInfo"], ugc_direct: ["stripePricing"] })[p.channel] },
+
+    { id: "u2-rights", day: 2, area: "legal", prio: "high", when: (p) => p.model === "ugc",
+      title: "Understand who can use your videos, where and for how long",
+      body: (p) => ({
+        billo: ul([
+          "Once a brand accepts your video, the rights pass to the brand unless agreed otherwise. It can run it in paid ads, share it on social media and edit it.",
+          "You can't repost it on your own channels without the brand's written consent. Billo may show it in your portfolio on its platform.",
+        ]),
+        insense: ul([
+          "You keep ownership, but you give Insense a permanent licence to pass to the brand for organic and paid use in digital marketing and connected TV.",
+          "Running your video as Meta Partnership Ads or TikTok Spark Ads is agreed between you and the brand. Put how long in writing.",
+          "If a brand makes AI content from your video, you can withdraw the licence for it by objecting within 14 days.",
+        ]),
+        tt_one: ul([
+          "A brand can ask to run your post as a Spark Ad. You create an authorization code in the post's ad settings, valid for 7, 30, 60 or 365 days.",
+          "Agree how long the brand may use your post before you share a code. It can only be extended before it expires.",
+        ]),
+        amz_inf: ul([
+          "Your videos appear on your storefront. Placement on product pages isn't guaranteed and depends on the video clearly featuring the product.",
+          "Upload each video only once, and don't reuse the product page's own photos or videos.",
+        ]),
+        ugc_direct: ul([
+          "Put usage rights in every deal: where the brand may use your content (its own pages, paid ads), for how long, and whether it may edit it.",
+          "Price paid-ad use and longer usage separately rather than including them by default.",
+        ]),
+      })[p.channel],
+      src: (p) => ({ billo: ["billoTerms"], insense: ["insenseTerms"], tt_one: ["ttSpark"], amz_inf: ["amzInfFaq", "amzInfRules"], ugc_direct: [] })[p.channel] },
+
+    { id: "u2-honest", day: 2, area: "legal", prio: "high", when: (p) => p.model === "ugc",
+      title: "Only say what's true, and disclose when you post",
+      body: (p) => ul([
+        "Endorsements must reflect your honest opinion and experience. If a video says or suggests you use the product, you must really have used it.",
+        "The FTC's 2024 rule bans fake reviews and testimonials, including ones from people who never used the product. Businesses that knowingly break it can face penalties.",
+        "The FTC's guides say that if paid actors are shown as real customers, that must be disclosed. Never pretend to be an ordinary customer if you aren't.",
+        "If a deal includes posting on your own account, disclose it clearly in the video and caption, and turn on TikTok's commercial content setting.",
+        p.channel === "amz_inf" ? "Amazon allows gifted products in your videos only if they're sold on Amazon and you clearly disclose the connection." : "",
+      ]) + '<p class="small muted">Summary of FTC guidance and platform rules, not legal advice.</p>',
+      links: [link("ftcEndorse", "FTC: Endorsement Guides Q&A"), link("ftcReviewsRule", "FTC: fake reviews rule Q&A")],
+      src: (p) => ["ftcEndorse", "ftcGuides", "ftcReviewsRule", "ftcInfluencer", "ttBranded"].concat(p.channel === "billo" ? ["billoTerms"] : p.channel === "amz_inf" ? ["amzInfRules"] : []) },
+
+    { id: "u2-ads", day: 2, area: "research", prio: "med", when: (p) => p.model === "ugc" && p.level !== "selling",
+      title: "Watch 20 current ads in a category you'd like to film",
+      body: () => ul([
+        "Search a product type in the Meta Ad Library to see ads running now on Facebook and Instagram. It doesn't show spend or sales for normal product ads.",
+        "Note how the best ones open, how long they show the product in use, and how they end. Use that as a pattern, not a script to copy.",
+      ]),
+      links: [link("metaLib", "Meta Ad Library")], src: ["metaLibHelp"] },
+
+    { id: "u3-samples", day: 3, area: "content", prio: "high", when: (p) => p.model === "ugc" && p.level !== "selling",
+      title: "Film 3 sample videos with products you already own",
+      body: (p) => ul([
+        "Pick products you've really used. Show the product in use, who it's for and one honest benefit, then end with a clear next step.",
+        "Film vertically, in good light, with clear sound. Make one with you on camera and one with a voiceover.",
+        p.channel === "amz_inf" ? "For Amazon, don't mention prices or ask viewers to follow, subscribe or comment; the video player doesn't support those actions." : "",
+        p.channel === "insense" ? "Insense looks for samples that show you speaking on camera or doing a voiceover." : "",
+      ]),
+      action: { label: "Draft hooks with AI", go: "tools:hooks" },
+      src: (p) => (p.channel === "amz_inf" ? ["amzInfRules"] : p.channel === "insense" ? ["insenseCreators"] : []) },
+
+    { id: "u4-profile", day: 4, area: "listings", prio: "high", when: (p) => p.model === "ugc",
+      title: (p) => ({ billo: "Finish your Billo profile", insense: "Finish your Insense profile and portfolio", tt_one: "Complete your TikTok One profile", amz_inf: "Set up your storefront and upload your first videos", ugc_direct: "Publish your portfolio page and rate card" })[p.channel],
+      body: (p) => (p.channel === "amz_inf" ? ul([
+        "Upload in Creator Hub on a computer or in the Amazon Shopping app: an .mp4 or .mov under 5GB, a title, the products you show (up to 10) and a thumbnail.",
+        "Every video is reviewed first, which typically takes 2 business days. You can feature only products sold on Amazon.",
+        "Onsite commissions (from shoppers who watch your video on a product page) need a separate sign-up after a minimum number of approved videos; Amazon's pages say 3, and one says 10.",
+      ]) : ul([
+        "Put your best samples first, then a short intro and the kinds of products you can film.",
+        p.channel === "ugc_direct" ? "List what each package includes and what costs extra, such as paid-ad use, extra hooks or raw footage." : "Keep your profile details accurate; brands choose who they hire from them.",
+      ])),
+      src: (p) => (p.channel === "amz_inf" ? ["amzInfUpload", "amzInfFaq"] : []) },
+
+    { id: "u5-apply", day: 5, area: "marketing", prio: "high", when: (p) => p.model === "ugc",
+      title: (p) => ({ billo: "Apply to 5 jobs that suit you", insense: "Apply to 5 to 10 brand briefs", tt_one: "Apply to open campaigns", amz_inf: "Upload 3 more product videos", ugc_direct: "Pitch 10 brands" })[p.channel],
+      body: (p) => ({
+        billo: ul(["Each job shows its fixed payout before you apply, and you can't negotiate it.", "Read the brief: what to show and say, what to avoid, and how many videos, hooks or photos it includes."]),
+        insense: ul(["Read each brief's deliverables and usage terms before you apply.", "When a brand hires you, its payment is taken from the brand's account and held by Insense until the brand approves your content."]),
+        tt_one: ul(["Brands can also find you and invite you. Each project can add its own requirements on top of the basic ones.", "Don't invoice a brand or ask it to pay you outside TikTok One for a project."]),
+        amz_inf: ul(["Tag only products that actually appear in the video.", "A video reaches a product's page only if it clearly features that product, so give each one real screen time."]),
+        ugc_direct: ul(["Send a short, personal message with one relevant sample and your rate card.", p.country === "us" ? "If you email businesses, follow CAN-SPAM: an honest subject line, your postal address, and an opt-out you honour within 10 business days." : ""]),
+      })[p.channel],
+      src: (p) => ({ billo: ["billoStart"], insense: ["insensePay"], tt_one: ["ttOneSignup", "ttOneTerms"], amz_inf: ["amzInfUpload", "amzInfFaq"], ugc_direct: p.country === "us" ? ["canSpam"] : [] })[p.channel] },
+
+    { id: "u6-deliver", day: 6, area: "orders", prio: "high", when: (p) => p.model === "ugc",
+      title: "Deliver to the brief, on time",
+      body: (p) => ul([
+        "Confirm the brief before you film, and note the date the product arrived.",
+        ({ billo: "Billo expects videos within 5 days of the product arriving, and rates you on on-time delivery.",
+           insense: "Payment moves to your Insense wallet when the brand approves your content.",
+           tt_one: "Base pay is earned once TikTok One approves your content; revenue-share pay starts when it runs as an ad.",
+           amz_inf: "Check each upload passes review; videos that break the guidelines don't appear on Amazon.",
+           ugc_direct: "Deliver the files with the usage terms you agreed, then send your invoice." })[p.channel],
+      ]),
+      src: (p) => ({ billo: ["billoStart", "billoPremium"], insense: ["insensePay"], tt_one: ["ttOneTerms"], amz_inf: ["amzInfUpload"], ugc_direct: [] })[p.channel] },
+
+    { id: "u6-paid", day: 6, area: "finance", prio: "med", when: (p) => p.model === "ugc",
+      title: "Set up how you get paid",
+      body: (p) => ({
+        billo: ul(["Billo pays only through PayPal: add your PayPal email to your profile.", "Approved videos are paid twice a month, in the middle and at the end of the month. Payouts can't be sped up."]),
+        insense: ul(["Withdraw from your Insense wallet to PayPal (within 3 working days of asking) or a bank account (within 5 working days).", "Bank payouts may need a tax form such as a W-9 or W-8BEN. Amounts are in US dollars, and Insense may take a percentage for the transfer."]),
+        tt_one: ul(["Set up a payment account in TikTok's Rewards Center: currency, tax information where required, and a bank account or other method. TikTok reviews it first.", "Payments for projects are handled through Stripe."]),
+        amz_inf: ul(["Your earnings show in Creator Hub or the Reports tab of Associates Central.", "Amazon Associates pays about 60 days after the end of the month, once you're owed at least $10 by direct deposit."]),
+        ugc_direct: ul(["Send an invoice for each job, with the usage terms on it.", "Card payments through Stripe cost 2.9% + 30¢ for US cards."]),
+      })[p.channel] + checked,
+      src: (p) => ({ billo: ["billoPaid"], insense: ["insenseTerms", "insensePay"], tt_one: ["ttOnePay", "ttOneTerms"], amz_inf: ["amzInfFaq", "amzAssocPay"], ugc_direct: ["stripePricing"] })[p.channel] },
+
+    { id: "u7-review", day: 7, area: "finance", prio: "high", when: (p) => p.model === "ugc",
+      title: "Review approvals, ratings and pay per hour",
+      body: (p) => ul([
+        "Compare what each job paid with the hours it took, including filming, editing and revisions.",
+        p.channel === "billo" ? "Billo's Premium level needs 14 brand-approved videos, at least 5 rated, an average rating of 4.8 or higher, and an on-time score of 90% or more." : "Note which samples brands responded to, and make more like them.",
+      ]),
+      action: { label: "Open the freelance rate calculator", go: "tools:rate" }, src: (p) => (p.channel === "billo" ? ["billoPremium"] : []) },
+
+    // ongoing
+    { id: "on-ugc-apply", day: 7, ongoing: true, repeat: "daily", area: "marketing", prio: "high", when: (p) => p.model === "ugc",
+      title: (p) => (p.channel === "amz_inf" ? "Film or upload one product video" : p.channel === "ugc_direct" ? "Reply to brands and send new pitches" : "Check new briefs and apply to the ones that suit you"),
+      body: () => "<p>Reply to brand messages the same day, and only take jobs you can deliver on time.</p>" },
+
+    { id: "on-ugc-sample", day: 7, ongoing: true, repeat: "weekly", area: "content", prio: "med", when: (p) => p.model === "ugc",
+      title: "Add one new sample to your portfolio",
+      body: () => "<p>Film a new product or a new style, such as an unboxing, a how-to or a before-and-after. Replace your weakest sample.</p>" },
+    // ======== Live streaming (creator: twitch, yt_live)
+    { id: "lv1-rules", day: 1, area: "legal", prio: "high", when: (p) => p.model === "creator" && ["twitch", "yt_live"].includes(p.channel),
+      title: (p) => (p.channel === "twitch" ? "Know what it takes to be paid on Twitch" : "Know who can stream on YouTube and earn from Super Chat"),
+      body: (p) => (p.channel === "twitch" ? ul([
+        "To become an Affiliate, the first level Twitch pays, you need within the same 30 days: 25 followers, 4 hours streamed, streams on 4 different days, and an average of 3 viewers on 4 days.",
+        "“3 viewers” means 3 people watching at the same time, on average. Days below that don't count against you.",
+        "Twitch lowered these in June 2026 (from 50 followers, 8 hours and 7 days), so older guides are out of date.",
+        "Without Affiliate or Partner status, Twitch can't pay you out.",
+        "You must be 13 or older. Under the age of majority, a parent or guardian must supervise the account, and must accept the Monetized Streamer Agreement for you.",
+      ]) : ul([
+        "You must be 16 or older to live stream. Ages 13–15 can stream only with an adult visibly present and taking part.",
+        "Streaming from a phone needs at least 50 subscribers, and mobile streams have a limited audience until 1,000. Lifting that can take several weeks.",
+        "Every live stream needs a verified channel with no live-streaming restrictions in the past 90 days.",
+        "Super Chat and Super Stickers (paid messages in chat) need the YouTube Partner Program, age 18 or older, a country where they're offered, and acceptance of the Commerce Product Module.",
+        "They don't work on streams set as made for kids, age-restricted, unlisted or private.",
+      ])) + checked,
+      links: (p) => (p.channel === "twitch" ? [link("twitchAffJoin", "Twitch Affiliate requirements")] : [link("ytLiveStart", "YouTube live streaming"), link("ytSuperElig", "Super Chat eligibility")]),
+      src: (p) => (p.channel === "twitch" ? ["twitchAffJoin", "twitchAffFaq", "twitchMonAll", "twitchParents", "twitchOnboard"] : ["ytLiveRestrict", "ytLiveMobile", "ytLiveStart", "ytSuperElig", "ytCommerce"]) },
+
+    { id: "lv1-setup", day: 1, area: "store", prio: "high", when: (p) => p.model === "creator" && ["twitch", "yt_live"].includes(p.channel) && p.level === "new",
+      title: (p) => (p.channel === "twitch" ? "Secure your Twitch account and find your Achievements" : "Verify your channel and turn on live streaming"),
+      body: (p) => (p.channel === "twitch" ? ul([
+        "Turn on two-factor authentication now. Twitch requires it to start Affiliate onboarding and to receive payouts.",
+        "Track your progress in the Achievements section of your Creator Dashboard. When you qualify, Twitch emails you and shows an invite in the dashboard, usually within 1–2 days.",
+        "Onboarding has three parts: 2FA, your account details (your legal name must match your tax documents), then tax interviews and a payout method.",
+      ]) : ul([
+        "Verify your channel in YouTube Studio with your phone number, then turn on live streaming. The first time can take up to 24 hours, so do it today.",
+        "There are three ways to go live: webcam, mobile (50+ subscribers) or streaming software (an encoder).",
+        "If you're 13–17, new streams start as private on webcam and unlisted on mobile by default.",
+      ])),
+      src: (p) => (p.channel === "twitch" ? ["twitchOnboard", "twitchPaid", "twitchAffJoin", "twitchAffFaq"] : ["ytLiveStart", "ytFeatures", "ytLiveMobile", "ytLiveRestrict"]) },
+
+    { id: "lv2-copyright", day: 2, area: "legal", prio: "high", when: (p) => p.model === "creator" && ["twitch", "yt_live"].includes(p.channel),
+      title: "Know the music and copyright rules for live streams",
+      body: (p) => (p.channel === "twitch" ? ul([
+        "Don't play recorded music unless you own all the rights or have permission from every rights holder. Twitch mutes copyrighted audio it finds in past broadcasts.",
+        "Copyright takedowns bring strikes, and at 3 strikes Twitch closes the account. Twitch's Copyright School can remove one strike, once every 12 months.",
+        "Twitch can stop a live stream immediately if the claimed infringement is still going on.",
+        "Most Twitch copyright strikes in 2024 were for broadcasting sports, TV shows and films. Stream only what you have the rights to.",
+        "For game music, check the game's licence (EULA) on streaming.",
+      ]) : ul([
+        "If YouTube removes your live stream for copyright, you get a copyright strike and can't stream for 7 days; a further strike makes it 14 days.",
+        "Three copyright strikes within 90 days and your channel can be terminated.",
+        "Content ID claims, often for music, affect that video: the owner can block it, earn from it or just track it.",
+        "If your account is restricted from live streaming, you may not use another channel to stream.",
+      ])),
+      src: (p) => (p.channel === "twitch" ? ["twitchDmca", "twitchDmcaFaq", "twitchCopyReport", "twitchCopyCamp"] : ["ytStrikes", "ytClaims", "ytLiveRestrict"]) },
+
+    { id: "lv3-gear", day: 3, area: "content", prio: "high", when: (p) => p.model === "creator" && ["twitch", "yt_live"].includes(p.channel),
+      title: "Set up your streaming software and do a test",
+      body: (p) => ul([
+        "OBS Studio is free, open-source software for streaming and recording from a computer.",
+        p.channel === "yt_live" ? "YouTube suggests streaming software when you want to share your screen or use extra cameras and microphones, and recommends RTMPS for the connection." : "Decide who can clip your stream: Creator Dashboard › Settings › Stream › Clips Settings. Choose everyone, followers (with a minimum follow time), subscribers, or nobody.",
+        p.channel === "yt_live" ? "For a planned event, YouTube suggests setting up your encoder at least 2 hours ahead and starting it 15 minutes before." : "",
+        "Do a short test to check sound, picture and your internet connection before you tell anyone you're going live.",
+      ]),
+      links: (p) => [link("obs", "OBS Studio")].concat(p.channel === "yt_live" ? [link("ytEncoder", "Stream with an encoder")] : [link("twitchClipSettings", "Twitch clip settings")]),
+      src: (p) => ["obs"].concat(p.channel === "yt_live" ? ["ytEncoder", "ytLiveTips"] : ["twitchClipSettings"]) },
+
+    { id: "lv4-schedule", day: 4, area: "marketing", prio: "high", when: (p) => p.model === "creator" && ["twitch", "yt_live"].includes(p.channel),
+      title: "Pick a streaming schedule you can keep",
+      body: (p) => ul([
+        "Choose days and times you can keep for months, and tell viewers when you'll be live next.",
+        p.channel === "twitch" ? "Affiliate counts streams on 4 different days and 4 hours in total within 30 days, so several shorter streams on separate days get you there." : "Pick one repeatable format, such as a weekly Q&A, a game or a live tutorial.",
+      ]),
+      src: (p) => (p.channel === "twitch" ? ["twitchAffJoin"] : []) },
+
+    { id: "lv5-first", day: 5, area: "content", prio: "high", when: (p) => p.model === "creator" && ["twitch", "yt_live"].includes(p.channel),
+      title: "Do your first stream",
+      body: (p) => ul([
+        "Say hello to people in chat by name and tell them what's coming next.",
+        "If a brand pays you or sends free products, say so out loud during the stream and repeat it from time to time. A note in your profile isn't enough.",
+        p.channel === "yt_live" ? "For a sponsored stream, tick YouTube's paid-promotion box; it adds a disclosure label." : "",
+      ]),
+      src: (p) => ["ftcInfluencer"].concat(p.channel === "yt_live" ? ["ytPaidPromo"] : []) },
+
+    { id: "lv6-clips", day: 6, area: "marketing", prio: "med", when: (p) => p.model === "creator" && ["twitch", "yt_live"].includes(p.channel),
+      title: "Turn your best moments into short clips",
+      body: (p) => ul([
+        p.channel === "twitch" ? "You can download any clip of your channel, in landscape or portrait, and post it as a Short, TikTok or Reel." : "“Edit into a Short” turns up to 60 seconds of your own public long video into a Short.",
+        "Clips follow the same music rules. Twitch deletes clips where it detects copyrighted audio.",
+        "If other people want to clip you for money, it's your call. Agree terms with them in writing.",
+      ]),
+      action: { label: "Draft hooks with AI", go: "tools:hooks" },
+      src: (p) => (p.channel === "twitch" ? ["twitchClips", "twitchCopyCamp"] : ["ytEditShort", "twitchCopyCamp"]) },
+
+    { id: "lv7-money", day: 7, area: "finance", prio: "high", when: (p) => p.model === "creator" && ["twitch", "yt_live"].includes(p.channel),
+      title: "Know how and when you'd be paid",
+      body: (p) => (p.channel === "twitch" ? ul([
+        "Affiliates earn from subscriptions (standard split 50/50 after taxes and fees), Bits ($0.01 per Bit cheered) and a share of ad revenue.",
+        "The Plus Program gives qualifying Affiliates and Partners a better subscription split: 60/40 or 70/30.",
+        "Twitch pays about 15 days after the end of each month once you're owed $50 ($100 by wire). Smaller balances roll over to the next month.",
+        "The payment processor charges a fee for each payout; choose Hold Payouts if you'd rather be paid less often.",
+        "Since 20 August 2026, Affiliates can also take sponsorships through Twitch's Sponsorship Portal, after a self-paced certification course.",
+      ]) : ul([
+        "Super Chat and Super Stickers: you keep 70% after local sales tax and iOS App Store fees. YouTube covers card fees.",
+        "YouTube says Super Chat isn't a donation or crowdfunding tool, and money from it may be treated differently under the laws where you live.",
+        "Super Chat needs the 500-subscriber tier of the Partner Program: 3 public uploads in 90 days and 3,000 watch hours in 12 months or 3 million Shorts views in 90 days.",
+      ])) + checked,
+      action: { label: "Open the creator income calculator", go: "tools:creator" },
+      src: (p) => (p.channel === "twitch" ? ["twitchPartner", "twitchPlus", "twitchMonetization", "twitchAdRev", "twitchPaid", "twitchSponsor"] : ["ytSuperManage", "ytSuperElig", "ytYpp"]) },
+
+    { id: "lv7-review", day: 7, area: "content", prio: "med", when: (p) => p.model === "creator" && ["twitch", "yt_live"].includes(p.channel),
+      title: "Review your streams and decide what to change",
+      body: (p) => "<p>In " + (p.channel === "twitch" ? "your Creator Dashboard" : "YouTube Studio") + ", see which streams kept viewers longest and when people left. Keep what worked and test one change next week.</p>" },
+
+    // ongoing
+    { id: "on-live", day: 7, ongoing: true, repeat: "weekly", area: "content", prio: "high", when: (p) => p.model === "creator" && ["twitch", "yt_live"].includes(p.channel),
+      title: "Go live on your schedule",
+      body: () => "<p>Keep to the days you chose. Afterwards, clip the best moments and check for any copyright notices.</p>" },
   ];
   GUIDE.push({ id: "d2-tax", day: 2, area: "legal", prio: "med", when: (p) => SHIP(p) || ["digital", "handmade", "fba", "courses"].includes(p.model),
     title: "Know when sales tax or VAT applies",
@@ -1619,6 +3001,824 @@
       "Startline sells nothing. If someone asks for money or your store login to “make it work”, stop and check first.",
     ]),
     action: { label: "Open the lesson", go: "lesson:scams" }, src: ["ftcScam"] });
+  const WEEK2 = [
+    // ======== Shared: review week 1 (day 8, all 12 models)
+    { id: "w2-supplier-review", day: 8, area: "finance", prio: "high", when: (p) => p.model === "supplier",
+      title: "Put week 1's real numbers into the calculator",
+      body: (p) => ul([
+        "Copy last week's real numbers from your dashboard into the calculator in place of any guesses.",
+        "Count: orders, revenue, product and shipping cost, fees, ad spend and refunds.",
+        "Look for the one number that hurts most, such as cost per order, views with no sales, or hours not billed. Change only that one thing this week, so you can tell what made the difference.",
+        p.channel === "shopify" ? "In Analytics › Reports, “Conversion rate over time” is sessions that completed checkout ÷ sessions. Bot traffic can make it look low, so filter to human traffic." : "",
+        p.ads === "some" ? "If you ran ads, check your ad spend against your break-even in the ads calculator too." : "",
+      ]),
+      action: { label: "Open the profit calculator", go: "tools:profit" },
+      links: (p) => [p.channel === "shopify" && link("shopReports", "Shopify: conversion rate report"), p.channel === "tiktok" && link("ttAnalytics", "TikTok: how analytics work")].filter(Boolean),
+      src: (p) => ({ shopify: ["shopReports"], tiktok: ["ttAnalytics"] })[p.channel] || [] },
+
+    { id: "w2-pod-review", day: 8, area: "finance", prio: "high", when: (p) => p.model === "pod",
+      title: "Put week 1's real numbers into the calculator",
+      body: (p) => ul([
+        "Copy last week's real numbers from your dashboard into the calculator in place of any guesses.",
+        "Count: orders, revenue, product and shipping cost, fees, ad spend and refunds.",
+        "Look for the one number that hurts most, such as cost per order, views with no sales, or hours not billed. Change only that one thing this week, so you can tell what made the difference.",
+        p.channel === "shopify" ? "In Analytics › Reports, “Conversion rate over time” is sessions that completed checkout ÷ sessions. Bot traffic can make it look low, so filter to human traffic." : "",
+      ]),
+      action: { label: "Open the profit calculator", go: "tools:profit" },
+      links: (p) => [p.channel === "shopify" && link("shopReports", "Shopify: conversion rate report"), p.channel === "tiktok" && link("ttAnalytics", "TikTok: how analytics work")].filter(Boolean),
+      src: (p) => ({ shopify: ["shopReports"], tiktok: ["ttAnalytics"] })[p.channel] || [] },
+
+    { id: "w2-affiliate-review", day: 8, area: "finance", prio: "high", when: (p) => p.model === "affiliate",
+      title: "Put week 1's real numbers into the calculator",
+      body: () => ul([
+        "Copy last week's real numbers from your dashboard into the calculator in place of any guesses.",
+        "Count: clicks, orders and earnings for each piece of content.",
+        "Look for the one number that hurts most, such as cost per order, views with no sales, or hours not billed. Change only that one thing this week, so you can tell what made the difference.",
+      ]),
+      action: { label: "Open the affiliate calculator", go: "tools:affiliate" },
+      links: (p) => [p.channel === "aff_tiktok" && link("ttAnalytics", "TikTok: how analytics work")].filter(Boolean),
+      src: (p) => (p.channel === "aff_tiktok" ? ["ttAnalytics"] : []) },
+
+    { id: "w2-digital-review", day: 8, area: "finance", prio: "high", when: (p) => p.model === "digital",
+      title: "Put week 1's real numbers into the calculator",
+      body: (p) => ul([
+        "Copy last week's real numbers from your dashboard into the calculator in place of any guesses.",
+        "Count: listing views, sales and fees.",
+        "Look for the one number that hurts most, such as cost per order, views with no sales, or hours not billed. Change only that one thing this week, so you can tell what made the difference.",
+        p.channel === "shopify" ? "In Analytics › Reports, “Conversion rate over time” is sessions that completed checkout ÷ sessions. Bot traffic can make it look low, so filter to human traffic." : "",
+      ]),
+      action: { label: "Open the profit calculator", go: "tools:profit" },
+      links: (p) => [p.channel === "shopify" && link("shopReports", "Shopify: conversion rate report")].filter(Boolean),
+      src: (p) => (p.channel === "shopify" ? ["shopReports"] : []) },
+
+    { id: "w2-resell-review", day: 8, area: "finance", prio: "high", when: (p) => p.model === "resell",
+      title: "Put week 1's real numbers into the calculator",
+      body: () => ul([
+        "Copy last week's real numbers from your dashboard into the calculator in place of any guesses.",
+        "Count: items sold, sold price, fees, shipping and what you paid.",
+        "Look for the one number that hurts most, such as cost per order, views with no sales, or hours not billed. Change only that one thing this week, so you can tell what made the difference.",
+      ]),
+      action: { label: "Open the max buy price calculator", go: "tools:maxbuy" },
+      links: () => [] },
+
+    { id: "w2-freelance-review", day: 8, area: "finance", prio: "high", when: (p) => p.model === "freelance",
+      title: "Put week 1's real numbers into the calculator",
+      body: () => ul([
+        "Copy last week's real numbers from your dashboard into the calculator in place of any guesses.",
+        "Count: hours worked against hours billed, and earnings after fees.",
+        "Look for the one number that hurts most, such as cost per order, views with no sales, or hours not billed. Change only that one thing this week, so you can tell what made the difference.",
+      ]),
+      action: { label: "Open the freelance rate calculator", go: "tools:rate" },
+      links: () => [] },
+
+    { id: "w2-creator-review", day: 8, area: "finance", prio: "high", when: (p) => p.model === "creator",
+      title: "Put week 1's real numbers into the calculator",
+      body: (p) => ul([
+        "Copy last week's real numbers from your dashboard into the calculator in place of any guesses.",
+        "Count: views, watch time and followers gained.",
+        "Look for the one number that hurts most, such as cost per order, views with no sales, or hours not billed. Change only that one thing this week, so you can tell what made the difference.",
+        p.channel === "yt" ? "Audience-retention “key moments” appear only for videos at least 60 seconds long with at least 100 views, and data takes 1–2 days to process." : "",
+      ]),
+      action: { label: "Open the creator income calculator", go: "tools:creator" },
+      links: (p) => [p.channel === "yt" && link("ytRetention", "YouTube: audience retention"), p.channel === "tt_creator" && link("ttAnalytics", "TikTok: how analytics work")].filter(Boolean),
+      src: (p) => ({ yt: ["ytRetention"], tt_creator: ["ttAnalytics"] })[p.channel] || [] },
+
+    { id: "w2-courses-review", day: 8, area: "finance", prio: "high", when: (p) => p.model === "courses",
+      title: "Put week 1's real numbers into the calculator",
+      body: () => ul([
+        "Copy last week's real numbers from your dashboard into the calculator in place of any guesses.",
+        "Count: sales-page visits, sign-ups and refunds.",
+        "Look for the one number that hurts most, such as cost per order, views with no sales, or hours not billed. Change only that one thing this week, so you can tell what made the difference.",
+      ]),
+      action: { label: "Open the price calculator", go: "tools:price" },
+      links: () => [] },
+
+    { id: "w2-books-review", day: 8, area: "finance", prio: "high", when: (p) => p.model === "books",
+      title: "Put week 1's real numbers into the calculator",
+      body: () => ul([
+        "Copy last week's real numbers from your dashboard into the calculator in place of any guesses.",
+        "Count: words written, price and royalty per copy.",
+        "Look for the one number that hurts most, such as cost per order, views with no sales, or hours not billed. Change only that one thing this week, so you can tell what made the difference.",
+      ]),
+      action: { label: "Open the book royalty calculator", go: "tools:royalty" },
+      links: () => [] },
+
+    { id: "w2-newsletter-review", day: 8, area: "finance", prio: "high", when: (p) => p.model === "newsletter",
+      title: "Put week 1's real numbers into the calculator",
+      body: () => ul([
+        "Copy last week's real numbers from your dashboard into the calculator in place of any guesses.",
+        "Count: subscribers, opens and paid subscribers.",
+        "Look for the one number that hurts most, such as cost per order, views with no sales, or hours not billed. Change only that one thing this week, so you can tell what made the difference.",
+      ]),
+      action: { label: "Open the subscription income calculator", go: "tools:recurring" },
+      links: () => [] },
+
+    { id: "w2-fba-review", day: 8, area: "finance", prio: "high", when: (p) => p.model === "fba",
+      title: "Put week 1's real numbers into the calculator",
+      body: () => ul([
+        "Copy last week's real numbers from your dashboard into the calculator in place of any guesses.",
+        "Count: your supplier quotes, plus the fees from Amazon's own fee calculator.",
+        "Look for the one number that hurts most, such as cost per order, views with no sales, or hours not billed. Change only that one thing this week, so you can tell what made the difference.",
+      ]),
+      action: { label: "Open the profit calculator", go: "tools:profit" },
+      links: () => [link("fbaCalc", "Amazon: fee calculator")],
+      src: ["fbaCalc"] },
+
+    { id: "w2-handmade-review", day: 8, area: "finance", prio: "high", when: (p) => p.model === "handmade",
+      title: "Put week 1's real numbers into the calculator",
+      body: (p) => ul([
+        "Copy last week's real numbers from your dashboard into the calculator in place of any guesses.",
+        "Count: hours per item, materials and sales.",
+        "Look for the one number that hurts most, such as cost per order, views with no sales, or hours not billed. Change only that one thing this week, so you can tell what made the difference.",
+        p.channel === "shopify" ? "In Analytics › Reports, “Conversion rate over time” is sessions that completed checkout ÷ sessions. Bot traffic can make it look low, so filter to human traffic." : "",
+      ]),
+      action: { label: "Open the profit calculator", go: "tools:profit" },
+      links: (p) => [p.channel === "shopify" && link("shopReports", "Shopify: conversion rate report")].filter(Boolean),
+      src: (p) => (p.channel === "shopify" ? ["shopReports"] : []) },
+
+    // ======== Shared: capped ad test (day 12, ADS_MODELS, only if the user chose ads)
+    { id: "w2-supplier-ads", day: 12, area: "marketing", prio: "med", when: (p) => p.model === "supplier" && p.ads === "some",
+      title: "Run one small ad test with a hard spending cap",
+      body: (p) => ul([
+        "Decide the most you can afford to lose on this test before you start, and make that the budget.",
+        "An ad test tells you what a sale costs you. It doesn't guarantee any sales. Stop or change the ad if cost per sale is above your break-even from the calculator.",
+        p.channel === "shopify" ? "Meta's minimum is about $1 a day per ad set for most advertisers charged per impression. TikTok needs a campaign budget over $50 and an ad group daily budget over $20." : "",
+        p.channel === "ebay" ? "With Promoted Listings' general strategy, you choose an ad rate, which is a percentage of the sale. You pay it only if the item sells within 30 days of someone clicking your ad." : "",
+        p.channel === "amazon" ? "Sponsored Products charge per click. The minimum daily budget is $1, and the budget is averaged over the month and not paced through the day, so a small budget can go in minutes. Ads show only while the item is in stock." : "",
+        p.channel === "tiktok" ? "TikTok's ad minimums are a campaign budget over $50 and an ad group budget over $20 a day. Check the cost shown in Seller Center before switching anything on." : "",
+      ]),
+      action: { label: "Open the ads calculator", go: "tools:ads" },
+      links: (p) => ({ shopify: [link("metaAds", "Meta Ads Manager"), link("ttAds", "TikTok Ads Manager")], ebay: [link("ebayPromoted", "eBay: Promoted Listings")], amazon: [link("amzSP", "Amazon: Sponsored Products")] })[p.channel] || [],
+      src: (p) => ({ shopify: ["metaBudget", "ttBudget"], ebay: ["ebayPromoted"], amazon: ["amzAdsFaq", "amzSP"], tiktok: ["ttBudget"] })[p.channel] || [] },
+
+    { id: "w2-pod-ads", day: 12, area: "marketing", prio: "med", when: (p) => p.model === "pod" && p.ads === "some",
+      title: "Run one small ad test with a hard spending cap",
+      body: (p) => ul([
+        "Decide the most you can afford to lose on this test before you start, and make that the budget.",
+        "An ad test tells you what a sale costs you. It doesn't guarantee any sales. Stop or change the ad if cost per sale is above your break-even from the calculator.",
+        p.channel === "shopify" ? "Meta's minimum is about $1 a day per ad set for most advertisers charged per impression. TikTok needs a campaign budget over $50 and an ad group daily budget over $20." : "",
+        p.channel === "etsy" ? "Etsy Ads' minimum is $1 a day. You're charged only when someone clicks, Etsy sets the bid for you, and all sellers start with a maximum daily budget of $25." : "",
+        p.channel === "tiktok" ? "TikTok's ad minimums are a campaign budget over $50 and an ad group budget over $20 a day. Check the cost shown in Seller Center before switching anything on." : "",
+      ]),
+      action: { label: "Open the ads calculator", go: "tools:ads" },
+      links: (p) => ({ shopify: [link("metaAds", "Meta Ads Manager"), link("ttAds", "TikTok Ads Manager")], etsy: [link("etsyAds", "Etsy: set up Etsy Ads")] })[p.channel] || [],
+      src: (p) => ({ shopify: ["metaBudget", "ttBudget"], etsy: ["etsyAds"], tiktok: ["ttBudget"] })[p.channel] || [] },
+
+    { id: "w2-digital-ads", day: 12, area: "marketing", prio: "med", when: (p) => p.model === "digital" && p.ads === "some",
+      title: "Run one small ad test with a hard spending cap",
+      body: (p) => ul([
+        "Decide the most you can afford to lose on this test before you start, and make that the budget.",
+        "An ad test tells you what a sale costs you. It doesn't guarantee any sales. Stop or change the ad if cost per sale is above your break-even from the calculator.",
+        ["shopify", "gumroad", "payhip"].includes(p.channel) ? "Meta's minimum is about $1 a day per ad set for most advertisers charged per impression. TikTok needs a campaign budget over $50 and an ad group daily budget over $20." : "",
+        p.channel === "etsy" ? "Etsy Ads' minimum is $1 a day. You're charged only when someone clicks, Etsy sets the bid for you, and all sellers start with a maximum daily budget of $25." : "",
+      ]),
+      action: { label: "Open the ads calculator", go: "tools:ads" },
+      links: (p) => (p.channel === "etsy" ? [link("etsyAds", "Etsy: set up Etsy Ads")] : [link("metaAds", "Meta Ads Manager"), link("ttAds", "TikTok Ads Manager")]),
+      src: (p) => (p.channel === "etsy" ? ["etsyAds"] : ["metaBudget", "ttBudget"]) },
+
+    { id: "w2-courses-ads", day: 12, area: "marketing", prio: "med", when: (p) => p.model === "courses" && p.ads === "some",
+      title: "Run one small ad test with a hard spending cap",
+      body: () => ul([
+        "Decide the most you can afford to lose on this test before you start, and make that the budget.",
+        "An ad test tells you what a sale costs you. It doesn't guarantee any sales. Stop or change the ad if cost per sale is above your break-even from the calculator.",
+        "Meta's minimum is about $1 a day per ad set for most advertisers charged per impression. TikTok needs a campaign budget over $50 and an ad group daily budget over $20.",
+      ]),
+      action: { label: "Open the ads calculator", go: "tools:ads" },
+      links: () => [link("metaAds", "Meta Ads Manager"), link("ttAds", "TikTok Ads Manager")],
+      src: ["metaBudget", "ttBudget"] },
+
+    { id: "w2-fba-ads", day: 12, area: "marketing", prio: "med", when: (p) => p.model === "fba" && p.ads === "some",
+      title: "Run one small ad test with a hard spending cap",
+      body: () => ul([
+        "Start this test only once your stock is live at Amazon.",
+        "Decide the most you can afford to lose on this test before you start, and make that the budget.",
+        "An ad test tells you what a sale costs you. It doesn't guarantee any sales. Stop or change the ad if cost per sale is above your break-even from the calculator.",
+        "Sponsored Products charge per click. The minimum daily budget is $1, and the budget is averaged over the month and not paced through the day, so a small budget can go in minutes. Ads show only while the item is in stock.",
+      ]),
+      action: { label: "Open the ads calculator", go: "tools:ads" },
+      links: () => [link("amzSP", "Amazon: Sponsored Products")],
+      src: ["amzAdsFaq", "amzSP"] },
+
+    { id: "w2-handmade-ads", day: 12, area: "marketing", prio: "med", when: (p) => p.model === "handmade" && p.ads === "some",
+      title: "Run one small ad test with a hard spending cap",
+      body: (p) => ul([
+        "Decide the most you can afford to lose on this test before you start, and make that the budget.",
+        "An ad test tells you what a sale costs you. It doesn't guarantee any sales. Stop or change the ad if cost per sale is above your break-even from the calculator.",
+        p.channel === "shopify" ? "Meta's minimum is about $1 a day per ad set for most advertisers charged per impression. TikTok needs a campaign budget over $50 and an ad group daily budget over $20." : "",
+        p.channel === "etsy" ? "Etsy Ads' minimum is $1 a day. You're charged only when someone clicks, Etsy sets the bid for you, and all sellers start with a maximum daily budget of $25." : "",
+      ]),
+      action: { label: "Open the ads calculator", go: "tools:ads" },
+      links: (p) => (p.channel === "etsy" ? [link("etsyAds", "Etsy: set up Etsy Ads")] : [link("metaAds", "Meta Ads Manager"), link("ttAds", "TikTok Ads Manager")]),
+      src: (p) => (p.channel === "etsy" ? ["etsyAds"] : ["metaBudget", "ttBudget"]) },
+
+    // ======== Dropshipping
+    { id: "w2-supplier-listing", day: 9, area: "listings", prio: "high", when: (p) => p.model === "supplier",
+      title: "Improve your product page using the platform's own guide",
+      body: (p) => ul([
+        ...(p.channel === "shopify" ? [
+          "In the product's “Search engine listing” section, set a page title and meta description. Shopify says text over 70 characters (title) or 320 (description) may be cut off in results.",
+          "Search engines can rewrite these, and changes can take a couple of weeks to show.",
+          "Don't edit the URL handle often, or the product may drop out of search results.",
+        ] : []),
+        ...(p.channel === "ebay" ? [
+          "You need at least one photo 500 pixels on its longest side; eBay recommends about 1600.",
+          "No added text, borders or watermarks.",
+          "Fill in every item specific you can. Buyers filter by them, and a listing without the matching specific is left out of filtered results.",
+        ] : []),
+        ...(p.channel === "amazon" ? [
+          "Shoot on a white background (RGB 255, 255, 255).",
+          "Amazon prefers images over 1,000 pixels on each side so shoppers can zoom, and recommends at least 6 images.",
+        ] : []),
+        ...(p.channel === "tiktok" ? [
+          "Images must be at least 600 × 600 pixels, with a main image on white showing the front of the product.",
+          "No added logos, text or watermarks.",
+          "To reach a “Good” listing-quality rating, upload at least 5 images and fill in every required category detail.",
+        ] : []),
+      ]),
+      action: { label: "Draft the description with AI", go: "tools:describe" },
+      links: (p) => ({ shopify: [link("shopSEO", "Shopify: SEO for products")], ebay: [link("ebayPhotos", "eBay: photo tips"), link("ebaySpecifics", "eBay: item specifics")], amazon: [link("amzPhotos", "Amazon: product photo guide")], tiktok: [link("ttsQuality", "TikTok Shop: listing quality guide")] })[p.channel] || [],
+      src: (p) => ({ shopify: ["shopSEO"], ebay: ["ebayPicPolicy", "ebayPhotos", "ebaySpecifics"], amazon: ["amzPhotos"], tiktok: ["ttsListing", "ttsQuality"] })[p.channel] || [] },
+
+    { id: "w2-supplier-second", day: 10, area: "research", prio: "med", when: (p) => p.model === "supplier",
+      title: "Check and add a second product",
+      body: (p) => ul([
+        "Put the idea through the product evaluator, then do Shopify's supplier checks again: read reviews and policies, message the supplier, and order a sample.",
+        "Only list it if the delivery time works for your channel." + (p.channel === "tiktok" ? " TikTok Shop US orders must be delivered within 6 business days of Awaiting Shipment." : ""),
+        p.channel === "ebay" ? "On eBay, the item must come from your own stock or your wholesale supplier agreement." : "",
+      ]),
+      action: { label: "Open the product evaluator", go: "tools:evaluate" },
+      links: () => [link("shopSuppliers", "Shopify: choosing suppliers")],
+      src: (p) => ["shopSuppliers"].concat(p.channel === "tiktok" ? ["ttsFulfill"] : [], p.channel === "ebay" ? ["ebayDrop"] : []) },
+
+    { id: "w2-supplier-free", day: 11, area: "marketing", prio: "high", when: (p) => p.model === "supplier",
+      title: "Try one free way to reach buyers",
+      body: (p) => ul([
+        p.channel === "shopify" ? "Shopify Messaging (formerly Shopify Email) lets Basic and higher plans send 10,000 emails a month free; after that it's $1 per 1,000. Email only people who agreed to hear from you." : "",
+        p.channel === "shopify" && p.country === "us" ? "Follow CAN-SPAM. Use honest subject lines, include your postal address, and honour opt-outs within 10 business days." : "",
+        p.channel === "ebay" ? "Send an offer to interested buyers, meaning people watching the item or with it in their cart. It's free; the price must be at least 5% below Buy It Now, and eBay sends it to the 30 most recent interested buyers." : "",
+        ["tiktok", "amazon"].includes(p.channel) ? "Post 3 more product videos. Then, in TikTok Studio, check “watched full video” and where viewers dropped off." : "",
+      ]),
+      action: { label: "Draft hooks and captions with AI", go: "tools:hooks" },
+      links: (p) => ({ shopify: [link("shopEmail", "Shopify Messaging")], ebay: [link("ebayOffers", "eBay: send offers to buyers")], tiktok: [link("ttAnalytics", "TikTok: how analytics work")], amazon: [link("ttAnalytics", "TikTok: how analytics work")] })[p.channel] || [],
+      src: (p) => [].concat(p.channel === "shopify" ? ["shopEmail", "shopEmailFaq"] : [], p.channel === "shopify" && p.country === "us" ? ["canSpam"] : [], p.channel === "ebay" ? ["ebayOffers"] : [], ["tiktok", "amazon"].includes(p.channel) ? ["ttAnalytics"] : []) },
+
+    { id: "w2-supplier-cash", day: 13, area: "finance", prio: "high", when: (p) => p.model === "supplier",
+      title: "Check when your money actually arrives",
+      body: (p) => ul([
+        "You pay the supplier when you order, but your platform pays you later. Make sure you can cover supplier bills until then.",
+        p.channel === "shopify" ? "Shopify usually pays out in 3–5 business days in the US, with longer settlement for new merchants." : "",
+        p.channel === "tiktok" ? "On TikTok Shop US, new sellers are on a 31-day settlement counted from delivery." : "",
+        p.channel === "ebay" ? "eBay's holds on new or infrequent sellers are usually resolved within 30 days." : "",
+        p.channel === "amazon" ? "Amazon settles about every two weeks and typically holds money 7 days after delivery." : "",
+      ]),
+      links: (p) => ({ tiktok: [link("ttsSettle", "TikTok Shop: settlement guide")], ebay: [link("ebayHolds", "eBay: payment holds")], amazon: [link("amzPayments", "Amazon: how seller payments work")] })[p.channel] || [],
+      src: (p) => ({ shopify: ["shopPayouts"], tiktok: ["ttsSettle"], ebay: ["ebayHolds"], amazon: ["amzPayments"] })[p.channel] || [] },
+
+    // ======== Print-on-demand
+    { id: "w2-pod-listing", day: 9, area: "listings", prio: "high", when: (p) => p.model === "pod",
+      title: (p) => (p.channel === "tiktok" ? "Improve your listings" : "Improve your listings with Etsy's or Shopify's guide"),
+      body: (p) => ul([
+        ...(p.channel === "etsy" ? [
+          "Use all 13 tags, as natural multi-word phrases.",
+          "Keep titles under 15 words and start with what the item is. Move words like “perfect” or “beautiful” to the description.",
+          "Fill in every attribute that fits: a listing only appears in filtered searches if it has that attribute.",
+          "Etsy ranks partly on “listing quality”, meaning how often views turn into favourites, add-to-carts and sales. It also counts your review rating, message response rate and case rate from the past 3 months.",
+        ] : []),
+        p.channel === "shopify" ? "In the product's “Search engine listing” section, set a page title and meta description. Shopify says text over 70 characters (title) or 320 (description) may be cut off in results." : "",
+        p.channel === "tiktok" ? "Use at least 5 images, a white-background main image, and fill in every required category detail." : "",
+      ]),
+      action: { label: "Draft the description with AI", go: "tools:describe" },
+      links: (p) => ({ etsy: [link("etsySearchHow", "Etsy: how search works"), link("etsyTitles", "Etsy: listing titles")], shopify: [link("shopSEO", "Shopify: SEO for products")], tiktok: [link("ttsQuality", "TikTok Shop: listing quality guide")] })[p.channel] || [],
+      src: (p) => ({ etsy: ["etsySearchHow", "etsyTitles"], shopify: ["shopSEO"], tiktok: ["ttsQuality"] })[p.channel] || [] },
+
+    { id: "w2-pod-second", day: 10, area: "content", prio: "med", when: (p) => p.model === "pod",
+      title: "Add a second design you own",
+      body: (p) => ul([
+        "Use only artwork you made or have the rights to." + (p.channel === "etsy" ? " On Etsy, print-on-demand is allowed only for your original designs or buyer personalisation, and you must disclose the production partner." : ""),
+        "Build production time into the delivery date you show. Printful says fulfilment averages 2–5 business days for most products before shipping, and knitwear takes 7–12.",
+      ]),
+      action: { label: "Work out your delivery dates", go: "tools:delivery" },
+      links: (p) => [link("printfulTime", "Printful: fulfilment times"), p.channel === "etsy" && link("etsyDrop", "Etsy: print-on-demand rules")].filter(Boolean),
+      src: (p) => [].concat(p.channel === "etsy" ? ["etsyDrop"] : [], ["shopIP", "printfulTime"]) },
+
+    { id: "w2-pod-free", day: 11, area: "marketing", prio: "high", when: (p) => p.model === "pod",
+      title: (p) => (p.channel === "etsy" ? "Pick one free channel and decide on Etsy Offsite Ads" : "Pick one free channel"),
+      body: (p) => ul([
+        p.channel === "etsy" ? "Offsite Ads are free until they bring a sale; then Etsy charges 15% of the order total (capped at $100). While your shop has never made $10,000 in a 365-day period, you can opt out in Shop Manager › Settings › Offsite Ads." : "",
+        "On Pinterest, Pins must be your own original content. Use links in moderation and avoid blocked link shorteners.",
+        p.channel === "shopify" ? "Shopify Messaging gives Basic and higher plans 10,000 free emails a month." + (p.country === "us" ? " In the US, follow CAN-SPAM." : "") : "",
+      ]),
+      links: (p) => ({ etsy: [link("etsyOffsite", "Etsy: how Offsite Ads work")], shopify: [link("shopEmail", "Shopify Messaging")] })[p.channel] || [],
+      src: (p) => [].concat(p.channel === "etsy" ? ["etsyOffsite"] : [], ["pinterestRules"], p.channel === "shopify" ? ["shopEmail"] : [], p.channel === "shopify" && p.country === "us" ? ["canSpam"] : []) },
+
+    { id: "w2-pod-cash", day: 13, area: "finance", prio: "med", when: (p) => p.model === "pod",
+      title: "Check when your money actually arrives",
+      body: (p) => ul([
+        p.channel === "etsy" ? "New sellers' funds are generally available 14 days after a sale. Etsy may hold a share of physical-item sales in a reserve, which for most sellers is removed within 90 days." : "",
+        p.channel === "shopify" ? "Shopify usually pays out in 3–5 business days in the US, with longer settlement for new merchants." : "",
+        p.channel === "tiktok" ? "On TikTok Shop US, new sellers are on a 31-day settlement counted from delivery." : "",
+        "Printful and Printify charge you production costs when each order comes in. Keep enough in your account to cover them until payouts arrive.",
+      ]),
+      links: (p) => (p.channel === "etsy" ? [link("etsyDeposit", "Etsy: when deposits arrive"), link("etsyReserve", "Etsy: payment reserves")] : []),
+      src: (p) => [].concat(({ etsy: ["etsyDeposit", "etsyReserve"], shopify: ["shopPayouts"], tiktok: ["ttsSettle"] })[p.channel] || [], ["printful"]) },
+
+    // ======== Affiliate marketing
+    { id: "w2-affiliate-improve", day: 9, area: "content", prio: "high", when: (p) => p.model === "affiliate",
+      title: "Improve your best post using what got clicks",
+      body: (p) => ul([
+        p.channel === "aff_amazon" ? "You earn only on items a shopper adds to their cart within 24 hours of clicking your link. Put the link where people make their decision, not only at the end." : "",
+        "Keep the disclosure right next to each link. A note only in your bio, or behind a “more” tap, isn't enough.",
+        p.channel === "aff_tiktok" ? "In TikTok Studio, find where viewers stopped watching, and change the hook or that part of the video." : "",
+      ]),
+      action: { label: "Draft hooks and captions with AI", go: "tools:hooks" },
+      links: (p) => ({ aff_amazon: [link("amzAssocWindow", "Amazon: the 24-hour window")], aff_tiktok: [link("ttAnalytics", "TikTok: how analytics work")] })[p.channel] || [],
+      src: (p) => [].concat(p.channel === "aff_amazon" ? ["amzAssocWindow"] : [], ["ftcInfluencer"], p.channel === "aff_tiktok" ? ["ttAnalytics"] : []) },
+
+    { id: "w2-affiliate-second", day: 10, area: "research", prio: "med", when: (p) => p.model === "affiliate",
+      title: "Add a second product or program",
+      body: (p) => ul([
+        p.channel === "aff_amazon" ? "Check the product's category rate first; some categories pay 0%." : "",
+        p.channel === "aff_network" ? "Apply to one more brand program. Joining Awin, impact.com or CJ isn't the same as being approved by a brand, and each brand sets its own commission." : "",
+        p.channel === "aff_tiktok" ? "On TikTok Shop, promoting other sellers' products from the marketplace needs at least 5,000 followers." : "",
+      ]),
+      links: (p) => ({ aff_amazon: [link("amzAssocAgree", "Amazon Associates agreement")], aff_network: [link("awinJoin", "Awin: join as a publisher")], aff_tiktok: [link("ttsCreator", "TikTok Shop: becoming a creator")] })[p.channel] || [],
+      src: (p) => ({ aff_amazon: ["amzAssocAgree"], aff_network: ["awinJoin", "impact", "cjAff"], aff_tiktok: ["ttsCreator"] })[p.channel] || [] },
+
+    { id: "w2-affiliate-free", day: 11, area: "marketing", prio: "high", when: (p) => p.model === "affiliate",
+      title: "Share your best piece on one more free channel",
+      body: (p) => ul([
+        "On Pinterest, Pins must be your original content and use links in moderation, and some link shorteners are blocked.",
+        "The disclosure rules apply on every platform: plain words like “I earn a commission”, next to the link.",
+        p.channel === "aff_amazon" ? "Don't boost or pay for ads that send people straight to Amazon links. Since April 14, 2026 those purchases don't earn commission." : "",
+      ]),
+      links: () => [link("pinterestRules", "Pinterest: content guidelines"), link("ftcInfluencer", "FTC: disclosure basics")],
+      src: (p) => ["pinterestRules", "ftcInfluencer", "ftcEndorse"].concat(p.channel === "aff_amazon" ? ["amzAssocUpdates"] : []) },
+
+    // No payout facts for the TikTok Shop affiliate channel in the spec, so the step is skipped there.
+    { id: "w2-affiliate-payout", day: 13, area: "finance", prio: "med", when: (p) => p.model === "affiliate" && p.channel !== "aff_tiktok",
+      title: "Check when and how you'll be paid",
+      body: (p) => ul([
+        ...(p.channel === "aff_amazon" ? [
+          "Amazon pays about 60 days after the end of the month.",
+          "The minimum is $10 by direct deposit or gift card, or $100 by check with a $15 fee.",
+          "You have 180 days from applying to refer sales; Amazon reviews the account after 3 qualifying sales.",
+        ] : []),
+        ...(p.channel === "aff_network" ? [
+          "Awin pays twice a month once you reach the threshold, $20 for USD.",
+          "CJ's minimum is $50 by direct deposit or $100 by check, after commissions lock. CJ says missing payment or tax details are a common reason publishers don't get paid.",
+        ] : []),
+      ]),
+      links: (p) => ({ aff_amazon: [link("amzAssocPay", "Amazon Associates: payment thresholds")], aff_network: [link("awinPay", "Awin: payment thresholds"), link("cjPay", "CJ: payment cycle")] })[p.channel] || [],
+      src: (p) => ({ aff_amazon: ["amzAssocAgree", "amzAssocPay", "amzAssoc180"], aff_network: ["awinPay", "cjPay"] })[p.channel] || [] },
+
+    // ======== Digital products
+    // No listing guide for Payhip in the spec, so the step is skipped there.
+    { id: "w2-digital-listing", day: 9, area: "listings", prio: "high", when: (p) => p.model === "digital" && p.channel !== "payhip",
+      title: "Improve your listing with the platform's own guide",
+      body: (p) => ul([
+        p.channel === "etsy" ? "Use all 13 tags, keep titles under 15 words starting with what the item is, and fill in every attribute. Listing photos must be your own." : "",
+        p.channel === "gumroad" ? "To show in Discover, a product needs a category, ratings turned on and at least one sale. Your account also has to pass Gumroad's review." : "",
+        p.channel === "shopify" ? "In the product's “Search engine listing” section, set a page title and meta description. Shopify says text over 70 characters (title) or 320 (description) may be cut off in results." : "",
+      ]),
+      action: { label: "Draft the description with AI", go: "tools:describe" },
+      links: (p) => ({ etsy: [link("etsySearchHow", "Etsy: how search works")], gumroad: [link("gumroadDiscover", "Gumroad: Discover")], shopify: [link("shopSEO", "Shopify: SEO for products")] })[p.channel] || [],
+      src: (p) => ({ etsy: ["etsySearchHow", "etsyTitles", "etsySellerPolicy"], gumroad: ["gumroadDiscover"], shopify: ["shopSEO"] })[p.channel] || [] },
+
+    { id: "w2-digital-second", day: 10, area: "content", prio: "med", when: (p) => p.model === "digital",
+      title: "Make a second product that goes with the first",
+      body: (p) => ul([
+        "Check the licence of every font, template and graphic you use for commercial use.",
+        p.channel === "etsy" ? "On Etsy, items must be made or designed by you, and AI use must be disclosed." : "",
+        "If you sell both together at a discount, check what the discount does to your profit first.",
+      ]),
+      action: { label: "Open the discount impact calculator", go: "tools:discount" },
+      links: () => [link("canvaLicense", "Canva: licensing explained")],
+      src: (p) => ["canvaLicense"].concat(p.channel === "etsy" ? ["etsySellerPolicy"] : []) },
+
+    { id: "w2-digital-free", day: 11, area: "marketing", prio: "high", when: (p) => p.model === "digital",
+      title: "Share it on one free channel",
+      body: (p) => ul([
+        "On Pinterest, share only original content, and use links in moderation.",
+        p.channel === "shopify" ? "Shopify Messaging gives 10,000 free emails a month on Basic and up." + (p.country === "us" ? " In the US, follow CAN-SPAM." : "") : "",
+        p.channel === "gumroad" ? "Discover listing isn't instant. Your account needs payout settings, a minimum balance from real sales, and a review that takes about 3 weeks on average. Sales from Discover cost 30%." : "",
+      ]),
+      action: { label: "Draft posts with AI", go: "tools:hooks" },
+      links: (p) => [link("pinterestRules", "Pinterest: content guidelines"), p.channel === "shopify" && link("shopEmail", "Shopify Messaging"), p.channel === "gumroad" && link("gumroadDiscover", "Gumroad: Discover")].filter(Boolean),
+      src: (p) => ["pinterestRules"].concat(p.channel === "shopify" ? ["shopEmail"] : [], p.channel === "shopify" && p.country === "us" ? ["canSpam"] : [], p.channel === "gumroad" ? ["gumroadDiscover", "gumroad"] : []) },
+
+    { id: "w2-digital-payout", day: 13, area: "finance", prio: "med", when: (p) => p.model === "digital",
+      title: "Check when your money arrives",
+      body: (p) => ul([
+        p.channel === "gumroad" ? "Gumroad pays out only once your balance is at least $100 (higher in some countries). On weekly, monthly and quarterly schedules, sales are held at least 7 days." : "",
+        p.channel === "payhip" ? "Your first PayPal sale goes through an approval that may delay that payout. By default, PayPal withdrawals are started by you." : "",
+        p.channel === "etsy" ? "Digital sales aren't held in a reserve, but new sellers' funds are generally available 14 days after a sale." : "",
+        p.channel === "shopify" ? "Shopify usually pays out in 3–5 business days in the US, with longer settlement for new merchants." : "",
+      ]),
+      links: (p) => ({ gumroad: [link("gumroadPay", "Gumroad: getting paid")], payhip: [link("payhipPaypal", "Payhip: connect PayPal")], etsy: [link("etsyDeposit", "Etsy: when deposits arrive")] })[p.channel] || [],
+      src: (p) => ({ gumroad: ["gumroadPay"], payhip: ["payhipPaypal"], etsy: ["etsyReserve", "etsyDeposit"], shopify: ["shopPayouts"] })[p.channel] || [] },
+
+    // ======== Reselling
+    { id: "w2-resell-photos", day: 9, area: "listings", prio: "high", when: (p) => p.model === "resell",
+      title: "Improve photos and details using eBay's guide",
+      body: () => ul([
+        "Use at least one photo 500 pixels on its longest side; eBay recommends about 1600. Add several angles and close-ups of any wear or flaws. You can add up to 24 photos.",
+        "Stock photos aren't allowed for used items, and photos can't have added text, borders or watermarks.",
+        "Fill in item specifics: buyers filter by them, and listings without them drop out of filtered results.",
+        "The same photo habits help on Mercari and Poshmark.",
+      ]),
+      action: { label: "Draft the listing with AI", go: "tools:describe" },
+      links: () => [link("ebayPhotos", "eBay: photo tips"), link("ebaySpecifics", "eBay: item specifics")],
+      src: ["ebayPicPolicy", "ebayPhotos", "ebaySpecifics"] },
+
+    { id: "w2-resell-offers", day: 10, area: "marketing", prio: "high", when: (p) => p.model === "resell",
+      title: "Send offers to people already interested",
+      body: (p) => ul([
+        ...(p.channel === "ebay" ? [
+          "In Seller Hub › Active Listings, filter “Send offers - eligible”. Offers must be at least 5% below Buy It Now and are valid for 96 hours. eBay sends them to the 30 most recent interested buyers.",
+          "Offers can't include contact details such as an email address, phone number or URL.",
+        ] : []),
+        ["mercari", "poshmark"].includes(p.channel) ? "Reply to offers the same day, and know your lowest price before one comes in." : "",
+      ]),
+      action: { label: "Open message templates", go: "tools:messages" },
+      links: (p) => ({ ebay: [link("ebayOffers", "eBay: send offers to buyers")], poshmark: [link("poshStart", "Poshmark: get started")] })[p.channel] || [],
+      src: (p) => (p.channel === "ebay" ? ["ebayOffers"] : []) },
+
+    { id: "w2-resell-source", day: 11, area: "suppliers", prio: "high", when: (p) => p.model === "resell",
+      title: "Buy your next items using sold prices",
+      body: (p) => ul([
+        "Work out the most you'll pay for each item from its recent sold price before you go shopping.",
+        p.channel === "ebay" ? "New accounts have monthly limits on how many items and how much in total you can list or sell. Check yours in Seller Hub before buying more than you can list. A Store subscription doesn't raise the limit." : "",
+        "Skip anything that might be fake. Counterfeits break marketplace rules and the law.",
+      ]),
+      action: { label: "Open the max buy price calculator", go: "tools:maxbuy" },
+      links: (p) => (p.channel === "ebay" ? [link("ebayLimits", "eBay: selling limits")] : []),
+      src: (p) => (p.channel === "ebay" ? ["ebayLimits"] : []) },
+
+    { id: "w2-resell-payout", day: 13, area: "finance", prio: "med", when: (p) => p.model === "resell",
+      title: "Check when each sale's money reaches you",
+      body: (p) => ul([
+        p.channel === "ebay" ? "eBay's holds on new or infrequent sellers are usually resolved within 30 days. Shipping the same day with tracking helps." : "",
+        p.channel === "mercari" ? "Mercari releases funds when the buyer rates, or 72 hours after delivery. Direct deposit is free but takes up to 5 business days; Instant Pay is $3." : "",
+        p.channel === "poshmark" ? "Poshmark releases earnings within 3 days of delivery, then direct deposit takes 2–3 business days." : "",
+      ]),
+      links: (p) => ({ ebay: [link("ebayHolds", "eBay: payment holds")], mercari: [link("mercariPaid", "Mercari: getting paid")], poshmark: [link("poshPaid", "Poshmark: when you get paid")] })[p.channel] || [],
+      src: (p) => ({ ebay: ["ebayHolds"], mercari: ["mercariPaid"], poshmark: ["poshPaid"] })[p.channel] || [] },
+
+    // ======== Freelancing
+    { id: "w2-freelance-profile", day: 9, area: "listings", prio: "high", when: (p) => p.model === "freelance",
+      title: "Improve your profile or gig with the platform's guide",
+      body: (p) => ul([
+        ...(p.channel === "fiverr" ? [
+          "The title starts “I will…”; finish it with exactly what you deliver.",
+          "Add 1–3 Gig images, ideally 1280 × 769 px, that you have commercial rights to.",
+          "The description can be up to 1,200 characters, with no contact details.",
+        ] : []),
+        ...(p.channel === "upwork" ? [
+          "The title can be up to 70 characters, so be specific about the service.",
+          "Only the first 250 characters of your overview show in search, so lead with what you do for clients.",
+          "Aim for a 100% complete profile.",
+          "Add a portfolio. Upwork says freelancers with a published portfolio are hired 9 times more often (Upwork's own figure).",
+        ] : []),
+        p.channel === "direct" ? "Make sure your one-page service page states the outcome, what's included, delivery time and price." : "",
+      ]),
+      action: { label: "Draft the description with AI", go: "tools:describe" },
+      links: (p) => ({ fiverr: [link("fiverrGigBest", "Fiverr: Gig best practices")], upwork: [link("upworkProfile", "Upwork: complete your profile")] })[p.channel] || [],
+      src: (p) => ({ fiverr: ["fiverrCreateGig", "fiverrGigImages", "fiverrGigBest"], upwork: ["upworkTitle", "upworkProfile"] })[p.channel] || [] },
+
+    { id: "w2-freelance-offer", day: 10, area: "research", prio: "med", when: (p) => p.model === "freelance",
+      title: "Sharpen your offer before adding another",
+      body: (p) => ul([
+        p.channel === "fiverr" ? "Fiverr suggests starting with one Gig and adding more only after it gets positive feedback and several sales. New sellers can have up to 4 active Gigs. This week, improve the packages in the Gig you have." : "",
+        p.channel === "upwork" ? "Tailor each proposal. Open with the client's problem, because only the first couple of sentences show in their list. Answer the screening questions, and keep it short." : "",
+        p.channel === "direct" ? "Add a smaller starter package so new clients can try you at lower risk." : "",
+      ]),
+      links: (p) => ({ fiverr: [link("fiverrGigBest", "Fiverr: Gig best practices")], upwork: [link("upworkProposal", "Upwork: writing proposals")] })[p.channel] || [],
+      src: (p) => ({ fiverr: ["fiverrGigBest", "fiverrLevels"], upwork: ["upworkProposal"] })[p.channel] || [] },
+
+    { id: "w2-freelance-reviews", day: 11, area: "marketing", prio: "high", when: (p) => p.model === "freelance",
+      title: "Ask happy clients for a review and a referral",
+      body: (p) => ul([
+        "Ask every client whose work you delivered on time for a review or a testimonial you can show.",
+        p.channel === "upwork" ? "If clients view your proposals but don't invite you to interview, Upwork suggests working on your cover letter." : "",
+        p.country === "us" ? "If you send cold emails, follow CAN-SPAM. Use an honest subject line, include your postal address, and honour opt-outs within 10 business days." : "",
+      ]),
+      action: { label: "Open message templates", go: "tools:messages" },
+      links: (p) => (p.channel === "upwork" ? [link("upworkProposal", "Upwork: writing proposals")] : []),
+      src: (p) => [].concat(p.channel === "upwork" ? ["upworkProposal"] : [], p.country === "us" ? ["canSpam"] : []) },
+
+    // No payout facts for own clients outside the US in the spec, so the step is skipped there.
+    { id: "w2-freelance-payout", day: 13, area: "finance", prio: "med", when: (p) => p.model === "freelance" && (p.channel !== "direct" || p.country === "us"),
+      title: "Plan for when your earnings clear",
+      body: (p) => ul([
+        p.channel === "fiverr" ? "Earnings become available 14 days after an order is completed (7 for Top Rated, Pro and Seller Plus)." : "",
+        p.channel === "upwork" ? "Hourly work is paid 10 days after the weekly billing period ends. For fixed-price work, the client has up to 14 days to review, then there's a 5-day security hold." : "",
+        p.country === "us" ? "Set money aside from every payment for self-employment tax (15.3% on 92.35% of net earnings)." : "",
+      ]),
+      links: (p) => ({ fiverr: [link("fiverrOrders", "Fiverr: managing orders")], upwork: [link("upworkHourly", "Upwork: hourly payments")] })[p.channel] || [],
+      src: (p) => [].concat(({ fiverr: ["fiverrOrders"], upwork: ["upworkHourly", "upworkFixed"] })[p.channel] || [], p.country === "us" ? ["irsSE"] : []) },
+
+    // ======== Content creator
+    { id: "w2-creator-improve", day: 9, area: "content", prio: "high", when: (p) => p.model === "creator" && !["twitch", "yt_live"].includes(p.channel),
+      title: "Fix the first 30 seconds using your analytics",
+      body: (p) => ul([
+        ...(p.channel === "yt" ? [
+          "The “Intro” key moment shows what share of viewers are still watching after 30 seconds. If it's low, YouTube suggests checking that your title and thumbnail match the video and trying a new opening.",
+          "Verify your phone number in YouTube Studio to unlock intermediate features, including custom thumbnails. One phone number can verify up to 2 channels a year.",
+        ] : []),
+        p.channel === "tt_creator" ? "In TikTok Studio, find the drop-off points and what was on screen when people left. TikTok advises watching overall trends rather than one video's numbers." : "",
+      ]),
+      action: { label: "Draft hooks with AI", go: "tools:hooks" },
+      links: (p) => ({ yt: [link("ytRetention", "YouTube: audience retention"), link("ytFeatures", "YouTube: unlock features")], tt_creator: [link("ttAnalytics", "TikTok: how analytics work")] })[p.channel] || [],
+      src: (p) => ({ yt: ["ytRetention", "ytFeatures", "ytThumbs"], tt_creator: ["ttAnalytics"] })[p.channel] || [] },
+
+    { id: "w2-creator-format", day: 10, area: "content", prio: "med", when: (p) => p.model === "creator" && !["twitch", "yt_live"].includes(p.channel),
+      title: "Try a second format that counts toward the program",
+      body: (p) => ul([
+        ...(p.channel === "yt" ? [
+          "Shorts-feed views don't count towards long-form watch hours, so mix in long videos if you're aiming for the watch-hour route.",
+          "From 1 February 2027, new applicants need 1,000 subscribers plus 8,000 qualified watch hours in 365 days, or 20 million qualified Shorts views in 90 days.",
+        ] : []),
+        p.channel === "tt_creator" ? "Only original videos at least 1 minute long count for Creator Rewards." : "",
+      ]),
+      links: (p) => ({ yt: [link("ytYppChanges", "YouTube: Partner Program changes")], tt_creator: [link("ttRewards", "TikTok: Creator Rewards Program")] })[p.channel] || [],
+      src: (p) => ({ yt: ["ytYpp", "ytYppChanges"], tt_creator: ["ttRewards"] })[p.channel] || [] },
+
+    { id: "w2-creator-timeline", day: 13, area: "finance", prio: "med", when: (p) => p.model === "creator",
+      title: "Know how long approval and payment take",
+      body: (p) => ul([
+        p.channel === "yt" ? "After you finish the sign-up steps (contract and AdSense), a review typically takes about a month. If you're rejected, you can reapply 30 days later." : "",
+        p.channel === "tt_creator" ? "In the US, Creator Rewards pays monthly once you pass $50." : "",
+        "Meanwhile, sponsorships and affiliate links must be clearly disclosed in the video itself.",
+      ]),
+      links: (p) => ({ yt: [link("ytRejected", "YouTube: if you're rejected")], tt_creator: [link("ttRewardsTerms", "TikTok: Creator Rewards terms (US)")] })[p.channel] || [],
+      src: (p) => [].concat(({ yt: ["ytYpp", "ytRejected"], tt_creator: ["ttRewardsTerms"] })[p.channel] || [], ["ftcInfluencer"]) },
+
+    // ======== Online courses
+    { id: "w2-courses-coupon", day: 9, area: "listings", prio: "high", when: (p) => p.model === "courses",
+      title: "Give your first students a coupon link",
+      body: (p) => ul([
+        p.channel === "teachable" ? "Add <b>?coupon_code=CODE</b> to a sales or checkout page link. Only one coupon works per checkout, and a paid product can't sell for less than $1." : "",
+        p.channel === "thinkific" ? "Add <b>?coupon=CODE</b> to a course, bundle or checkout link and the coupon applies automatically." : "",
+        "Describe what students will learn, and never promise income or results you can't back up.",
+      ]),
+      action: { label: "Open the discount impact calculator", go: "tools:discount" },
+      links: (p) => ({ teachable: [link("teachableCoupons", "Teachable: coupons")], thinkific: [link("thinkificCoupons", "Thinkific: coupon links")] })[p.channel] || [],
+      src: (p) => [].concat(({ teachable: ["teachableCoupons"], thinkific: ["thinkificCoupons"] })[p.channel] || [], ["ftcScam"]) },
+
+    { id: "w2-courses-second", day: 10, area: "store", prio: "med", when: (p) => p.model === "courses",
+      title: "Add a second offer: an order bump or a bundle",
+      body: (p) => ul([
+        p.channel === "thinkific" ? "Order bumps need Thinkific Payments, and each product can have only one bump. Coupons don't apply to the bump." : "",
+        p.channel === "teachable" ? "Coupons don't apply to order bumps; set a sale price on the bump instead." : "",
+        "Price the bump so it still makes a profit after fees.",
+      ]),
+      action: { label: "Open the price calculator", go: "tools:price" },
+      links: (p) => ({ thinkific: [link("thinkificBumps", "Thinkific: order bumps")], teachable: [link("teachableCoupons", "Teachable: coupons")] })[p.channel] || [],
+      src: (p) => ({ thinkific: ["thinkificBumps"], teachable: ["teachableCoupons"] })[p.channel] || [] },
+
+    { id: "w2-courses-free", day: 11, area: "marketing", prio: "high", when: (p) => p.model === "courses",
+      title: "Email your waitlist and share one free lesson",
+      body: (p) => ul([
+        "Email the people who asked to hear about the course, and share one short lesson publicly so others can judge it.",
+        p.country === "us" ? "Marketing emails must follow CAN-SPAM. Identify them as an ad unless people asked for them, include your postal address, and honour opt-outs within 10 business days." : "",
+      ]),
+      action: { label: "Draft posts with AI", go: "tools:hooks" },
+      links: (p) => (p.country === "us" ? [link("canSpam", "FTC: CAN-SPAM guide")] : []),
+      src: (p) => (p.country === "us" ? ["canSpam"] : []) },
+
+    { id: "w2-courses-payout", day: 13, area: "finance", prio: "med", when: (p) => p.model === "courses",
+      title: "Check when course sales reach your bank",
+      body: (p) => ul([
+        p.channel === "teachable" ? "You choose daily, weekly or monthly payouts. Reserves can hold part of a sale (Teachable's example: a Jan 1 purchase unlocks Jan 15). Payouts stop once earnings reach $500 without a tax form." : "",
+        p.channel === "thinkific" ? "Your first payout comes 7–14 days after your first successful payment, then about 2 business days after each sale in the US." : "",
+        p.channel === "payhip" ? "Your first PayPal sale goes through an approval that may delay it." : "",
+      ]),
+      links: (p) => ({ teachable: [link("teachablePayouts", "Teachable: payouts")], thinkific: [link("thinkificPayouts", "Thinkific: payouts")] })[p.channel] || [],
+      src: (p) => ({ teachable: ["teachablePayouts"], thinkific: ["thinkificPayouts"], payhip: ["payhipPaypal"] })[p.channel] || [] },
+
+    // ======== Self-publishing
+    { id: "w2-books-metadata", day: 9, area: "listings", prio: "high", when: (p) => p.model === "books",
+      title: "Improve your keywords and categories with KDP's guide",
+      body: () => ul([
+        "Use up to 7 keywords, ideally 2–3-word phrases in the order readers type them. Search Amazon with them before you save.",
+        "Don't repeat words from your title or categories, and avoid praise or time-limited phrases. KDP has zero tolerance for misleading metadata.",
+        "Choose up to 3 categories that match the book's main subject.",
+      ]),
+      action: { label: "Draft the description with AI", go: "tools:describe" },
+      links: () => [link("kdpKeywords", "KDP: keywords"), link("kdpCategories", "KDP: categories")],
+      src: ["kdpKeywords", "kdpCategories"] },
+
+    { id: "w2-books-second", day: 10, area: "content", prio: "med", when: (p) => p.model === "books",
+      title: "Add a second format or start book two",
+      body: () => ul([
+        "If you published only the eBook, consider a paperback. Its royalty is 60% of list price at $9.99 and up, minus printing, which depends on page count, trim size, ink and paper.",
+        "From 21 September 2026, KDP allows up to 2 new titles per format per week, resetting Sunday at 00:00 UTC.",
+      ]),
+      action: { label: "Open the book royalty calculator", go: "tools:royalty" },
+      links: () => [link("kdpPrint", "KDP: printing costs"), link("kdpLimit", "KDP: title limits")],
+      src: ["kdpPaper", "kdpPrint", "kdpLimit", "kdpCreate"] },
+
+    { id: "w2-books-promo", day: 11, area: "marketing", prio: "med", when: (p) => p.model === "books",
+      title: "Decide whether KDP Select's free promotions suit you",
+      body: () => ul([
+        "KDP Select makes your eBook exclusive to Amazon for 90 days, renewing automatically. Print and audio versions can still be sold elsewhere.",
+        "In each 90-day term you can run either up to 5 free-promotion days or one Kindle Countdown Deal. A Countdown Deal needs 30 days in Select and a list price of $2.99–$24.99 on Amazon.com.",
+        "Tell the readers who asked about your book when it's free or discounted.",
+      ]),
+      links: () => [link("kdpSelect", "KDP Select"), link("kdpFreePromo", "KDP: free book promotions")],
+      src: ["kdpSelect", "kdpFreePromo", "kdpCountdown"] },
+
+    { id: "w2-books-payout", day: 13, area: "finance", prio: "low", when: (p) => p.model === "books",
+      title: "Know when royalties are paid",
+      body: () => ul([
+        "Royalties are paid about 60 days after the end of the month of the sale.",
+        "By direct deposit (EFT) there's no minimum; by wire the minimum is $100.",
+      ]),
+      links: () => [link("kdpThresholds", "KDP: payment thresholds")],
+      src: ["kdpThresholds"] },
+
+    // ======== Newsletter
+    { id: "w2-newsletter-recs", day: 9, area: "marketing", prio: "high", when: (p) => p.model === "newsletter",
+      title: "Recommend other newsletters your readers would like",
+      body: (p) => ul([
+        ...(p.channel === "substack" ? [
+          "Add recommendations from your dashboard. The writers are notified and prompted to recommend you back, and the Recommendations tab shows how many free subscribers each one brought.",
+          "Substack says the most powerful engine for growth on its platform is ongoing recommendations from fellow writers.",
+        ] : []),
+        p.channel === "beehiiv" ? "Free recommendations work on every plan, including Free." : "",
+      ]),
+      links: (p) => ({ substack: [link("substackRecs", "Substack: recommendations")], beehiiv: [link("beehiivRecs", "beehiiv: Recommendations Network")] })[p.channel] || [],
+      src: (p) => ({ substack: ["substackRecs", "substackFeatured"], beehiiv: ["beehiivRecs"] })[p.channel] || [] },
+
+    { id: "w2-newsletter-welcome", day: 10, area: "store", prio: "med", when: (p) => p.model === "newsletter",
+      title: "Improve your sign-up and welcome page",
+      body: (p) => ul([
+        "Say who it's for, what readers get and how often.",
+        p.channel === "substack" ? "You can add up to 3 endorsement blurbs from writers who recommend you to your Welcome page. Blurbs don't show on the mobile version." : "",
+      ]),
+      links: (p) => (p.channel === "substack" ? [link("substackEndorse", "Substack: add an endorsement")] : []),
+      src: (p) => (p.channel === "substack" ? ["substackEndorse"] : []) },
+
+    { id: "w2-newsletter-paid", day: 11, area: "finance", prio: "med", when: (p) => p.model === "newsletter",
+      title: "Work out whether a paid tier makes sense yet",
+      body: (p) => ul([
+        ...(p.channel === "substack" ? [
+          "The minimum price is $5 a month and $30 a year (US-dollar accounts). A yearly-only plan isn't possible, and price changes apply only to new subscribers.",
+          "Substack keeps 10% of paid revenue, plus Stripe processing.",
+        ] : []),
+        p.channel === "beehiiv" ? "Paid subscriptions and the Ad Network are on paid plans only." : "",
+      ]),
+      action: { label: "Open the subscription income calculator", go: "tools:recurring" },
+      links: (p) => ({ substack: [link("substackPaid", "Substack: set up paid")], beehiiv: [link("beehiivPlans", "beehiiv: plans")] })[p.channel] || [],
+      src: (p) => ({ substack: ["substackPaid", "substackCost"], beehiiv: ["beehiivPlans", "beehiivAds"] })[p.channel] || [] },
+
+    // ======== Amazon FBA
+    { id: "w2-fba-images", day: 9, area: "listings", prio: "high", when: (p) => p.model === "fba",
+      title: "Plan listing photos to Amazon's own guidance",
+      body: () => ul([
+        "Shoot on a white background (RGB 255, 255, 255). Amazon prefers images over 1,000 pixels on each side so shoppers can zoom.",
+        "Every product needs at least one image, and Amazon recommends at least six.",
+        "Amazon suggests the product fill 85% or more of the frame.",
+        "Only show and claim what your samples actually do.",
+      ]),
+      action: { label: "Draft the listing with AI", go: "tools:describe" },
+      links: () => [link("amzPhotos", "Amazon: product photo guide")],
+      src: ["amzPhotos", "amzSEO"] },
+
+    { id: "w2-fba-order", day: 10, area: "suppliers", prio: "high", when: (p) => p.model === "fba",
+      title: "Place a stock order only if samples and numbers work",
+      body: (p) => ul([
+        "Re-run profit per unit with real quotes and Amazon's fee estimator. Only order stock you can afford to lose.",
+        "New sellers who send eligible products to FBA within 90 days of their first listing get FBA New Selection benefits.",
+        p.country === "us" ? "In the US, children's products (ages 12 and under) need third-party lab testing and a Children's Product Certificate." : "",
+      ]),
+      action: { label: "Open the product evaluator", go: "tools:evaluate" },
+      links: () => [link("fbaCalc", "Amazon: fee calculator")],
+      src: (p) => ["fbaCalc", "fbaGuide"].concat(p.country === "us" ? ["cpscCpc"] : []) },
+
+    { id: "w2-fba-cash", day: 13, area: "finance", prio: "med", when: (p) => p.model === "fba",
+      title: "Plan cash flow around Amazon's payout timing",
+      body: () => ul([
+        "Amazon settles seller accounts about every two weeks and typically holds each order's money for 7 days after delivery. A bank transfer can take up to 5 business days.",
+        "Storage fees keep running on unsold stock, and items stored more than 181 days carry an aged-inventory fee.",
+      ]),
+      links: () => [link("amzPayments", "Amazon: how seller payments work")],
+      src: ["amzPayments", "fbaGuide"] },
+
+    // ======== Handmade
+    { id: "w2-handmade-listing", day: 9, area: "listings", prio: "high", when: (p) => p.model === "handmade",
+      title: (p) => (p.channel === "etsy" ? "Improve your listings with Etsy's search guide" : "Improve your listings"),
+      body: (p) => ul([
+        ...(p.channel === "etsy" ? [
+          "Use all 13 tags as natural multi-word phrases, and fill in every attribute that fits. Filtered searches show only listings that have that attribute.",
+          "Keep titles under 15 words and start with what the item is.",
+          "Etsy ranks partly on listing quality (favourites, add-to-carts and sales after views) and on your review rating, response rate and case rate from the past 3 months.",
+        ] : []),
+        p.channel === "shopify" ? "In the product's “Search engine listing” section, set a page title and meta description. Shopify says text over 70 characters (title) or 320 (description) may be cut off in results." : "",
+      ]),
+      action: { label: "Draft the description with AI", go: "tools:describe" },
+      links: (p) => ({ etsy: [link("etsySearchHow", "Etsy: how search works"), link("etsyTitles", "Etsy: listing titles")], shopify: [link("shopSEO", "Shopify: SEO for products")] })[p.channel] || [],
+      src: (p) => ({ etsy: ["etsySearchHow", "etsyTitles"], shopify: ["shopSEO"] })[p.channel] || [] },
+
+    { id: "w2-handmade-second", day: 10, area: "content", prio: "med", when: (p) => p.model === "handmade",
+      title: "Add a second item or variation you can make well",
+      body: (p) => ul([
+        p.channel === "etsy" ? "On Etsy, listing photos must be your own photos of the finished item." : "",
+        p.country === "us" ? "In the US, if it's made mainly for children 12 and under, it needs lab testing and a Children's Product Certificate." : "",
+        "Price materials and your time before you list it.",
+      ]),
+      action: { label: "Open the price calculator", go: "tools:price" },
+      links: (p) => (p.channel === "etsy" ? [link("etsyCreativity", "Etsy: Creativity Standards")] : []),
+      src: (p) => [].concat(p.channel === "etsy" ? ["etsyCreativity"] : [], p.country === "us" ? ["cpscCpc"] : []) },
+
+    { id: "w2-handmade-free", day: 11, area: "marketing", prio: "high", when: (p) => p.model === "handmade",
+      title: (p) => (p.channel === "etsy" ? "Pick one free channel and decide on Offsite Ads" : "Pick one free channel"),
+      body: (p) => ul([
+        p.channel === "etsy" ? "Offsite Ads cost nothing until they bring a sale, then 15% of the order total (capped at $100). You can opt out while your shop has never made $10,000 in a 365-day period." : "",
+        p.channel === "shopify" ? "Shopify Messaging gives 10,000 free emails a month on Basic and up." + (p.country === "us" ? " In the US, follow CAN-SPAM." : "") : "",
+        "On Pinterest, share only original content, and use links in moderation.",
+      ]),
+      action: { label: "Draft posts with AI", go: "tools:hooks" },
+      links: (p) => ({ etsy: [link("etsyOffsite", "Etsy: how Offsite Ads work")], shopify: [link("shopEmail", "Shopify Messaging")] })[p.channel] || [],
+      src: (p) => [].concat(p.channel === "etsy" ? ["etsyOffsite"] : [], p.channel === "shopify" ? ["shopEmail"] : [], p.channel === "shopify" && p.country === "us" ? ["canSpam"] : [], ["pinterestRules"]) },
+
+    { id: "w2-handmade-cash", day: 13, area: "finance", prio: "med", when: (p) => p.model === "handmade",
+      title: "Check when your money actually arrives",
+      body: (p) => ul([
+        p.channel === "etsy" ? "New sellers' funds are generally available 14 days after a sale. A reserve may hold a share of physical-item sales; for most sellers it's removed within 90 days. Shipping with tracking can release reserved funds sooner." : "",
+        p.channel === "shopify" ? "Shopify's US payouts usually take 3–5 business days, longer for new merchants." : "",
+      ]),
+      links: (p) => (p.channel === "etsy" ? [link("etsyDeposit", "Etsy: when deposits arrive"), link("etsyReserve", "Etsy: payment reserves")] : []),
+      src: (p) => ({ etsy: ["etsyDeposit", "etsyReserve"], shopify: ["shopPayouts"] })[p.channel] || [] },
+  ];
+
+  const WEEK2_META = {
+    "w2-supplier-review": { cost: "Free", gets: "Week 1's real numbers, and one thing to change" },
+    "w2-pod-review": { cost: "Free", gets: "Week 1's real numbers, and one thing to change" },
+    "w2-affiliate-review": { cost: "Free", gets: "Week 1's real numbers, and one thing to change" },
+    "w2-digital-review": { cost: "Free", gets: "Week 1's real numbers, and one thing to change" },
+    "w2-resell-review": { cost: "Free", gets: "Week 1's real numbers, and one thing to change" },
+    "w2-freelance-review": { cost: "Free", gets: "Week 1's real numbers, and one thing to change" },
+    "w2-creator-review": { cost: "Free", gets: "Week 1's real numbers, and one thing to change" },
+    "w2-courses-review": { cost: "Free", gets: "Week 1's real numbers, and one thing to change" },
+    "w2-books-review": { cost: "Free", gets: "Week 1's real numbers, and one thing to change" },
+    "w2-newsletter-review": { cost: "Free", gets: "Week 1's real numbers, and one thing to change" },
+    "w2-fba-review": { cost: "Free", gets: "Real quotes and Amazon fees in the profit calculator" },
+    "w2-handmade-review": { cost: "Free", gets: "Week 1's real numbers, and one thing to change" },
+    "w2-supplier-ads": { cost: "Your test budget, capped by you", gets: "One capped ad test, compared with your break-even" },
+    "w2-pod-ads": { cost: "Your test budget, capped by you", gets: "One capped ad test, compared with your break-even" },
+    "w2-digital-ads": { cost: "Your test budget, capped by you", gets: "One capped ad test, compared with your break-even" },
+    "w2-courses-ads": { cost: "Your test budget, capped by you", gets: "One capped ad test, compared with your break-even" },
+    "w2-fba-ads": { cost: "Your test budget, capped by you", gets: "One capped ad test, compared with your break-even" },
+    "w2-handmade-ads": { cost: "Your test budget, capped by you", gets: "One capped ad test, compared with your break-even" },
+    "w2-supplier-listing": { cost: "Free", gets: "A product page that follows the platform's own guide" },
+    "w2-supplier-second": { cost: "What the supplier charges for a sample", gets: "A second product, checked before you list it" },
+    "w2-supplier-free": { cost: "Free; Shopify emails past 10,000 a month cost extra", gets: "One free way to reach buyers, tried" },
+    "w2-supplier-cash": { cost: "Free", gets: "A plan to cover supplier bills until you're paid" },
+    "w2-pod-listing": { cost: "Free", gets: "Listings that follow your platform's own guide" },
+    "w2-pod-second": { gets: "A second design you own, with an honest delivery date" },
+    "w2-pod-free": { cost: "Free", gets: "One free channel picked to share your designs" },
+    "w2-pod-cash": { cost: "Free", gets: "A plan to cover production costs until you're paid" },
+    "w2-affiliate-improve": { cost: "Free", gets: "Your best post improved, with disclosure by each link" },
+    "w2-affiliate-second": { cost: "Free", gets: "A second product or program, checked first" },
+    "w2-affiliate-free": { cost: "Free", gets: "Your best piece shared on one more free channel" },
+    "w2-affiliate-payout": { cost: "Free", gets: "A note of when and how you'll be paid" },
+    "w2-digital-listing": { cost: "Free", gets: "A listing that follows your platform's own guide" },
+    "w2-digital-second": { gets: "A second product, with every licence checked" },
+    "w2-digital-free": { cost: "Free to post", gets: "Your product shared on one free channel" },
+    "w2-digital-payout": { cost: "Free", gets: "A note of when your sales money arrives" },
+    "w2-resell-photos": { cost: "Free", gets: "Listings with clear photos and full item specifics" },
+    "w2-resell-offers": { cost: "Free", gets: "Offers handled fast, with your lowest price set" },
+    "w2-resell-source": { cost: "What you pay for the items", gets: "Your next items, bought below your max price" },
+    "w2-resell-payout": { cost: "Free", gets: "A note of when each sale's money reaches you" },
+    "w2-freelance-profile": { cost: "Free", gets: "A clearer gig, profile or service page" },
+    "w2-freelance-offer": { gets: "A sharper offer before you add another" },
+    "w2-freelance-reviews": { cost: "Free", gets: "Reviews or testimonials asked for from happy clients" },
+    "w2-freelance-payout": { cost: "Free", gets: "A plan for when your earnings clear" },
+    "w2-creator-improve": { cost: "Free", gets: "A stronger opening for your next video" },
+    "w2-creator-format": { cost: "Free", gets: "A second format that counts toward the program" },
+    "w2-creator-timeline": { cost: "Free", gets: "A realistic timeline for approval and payment" },
+    "w2-courses-coupon": { cost: "Free", gets: "A coupon link for your first students" },
+    "w2-courses-second": { gets: "A second offer priced to profit after fees" },
+    "w2-courses-free": { cost: "Free", gets: "Your waitlist emailed and one free lesson shared" },
+    "w2-courses-payout": { cost: "Free", gets: "A note of when course sales reach your bank" },
+    "w2-books-metadata": { cost: "Free", gets: "Up to 7 keywords and 3 categories that fit your book" },
+    "w2-books-second": { gets: "A paperback planned, or book two started" },
+    "w2-books-promo": { gets: "A decision on KDP Select and free promotions" },
+    "w2-books-payout": { cost: "Free", gets: "A note of when your royalties will be paid" },
+    "w2-newsletter-recs": { cost: "Free", gets: "Newsletters recommended to your readers" },
+    "w2-newsletter-welcome": { cost: "Free", gets: "A welcome page that says who it's for and how often" },
+    "w2-newsletter-paid": { cost: "Free", gets: "A decision on whether to add a paid tier yet" },
+    "w2-fba-images": { gets: "A photo plan that follows Amazon's guidance" },
+    "w2-fba-order": { cost: "Your stock order: only what you can afford to lose", gets: "A stock order placed only if the numbers work" },
+    "w2-fba-cash": { cost: "Free", gets: "A cash plan around Amazon's payout timing" },
+    "w2-handmade-listing": { cost: "Free", gets: "Listings that follow your platform's search guide" },
+    "w2-handmade-second": { cost: "Your materials and time", gets: "A second item or variation, priced before you list it" },
+    "w2-handmade-free": { cost: "Free", gets: "One free channel picked to share your work" },
+    "w2-handmade-cash": { cost: "Free", gets: "A note of when your sales money arrives" },
+  };
+  WEEK2.forEach((s) => { const when = s.when; GUIDE.push({ ...s, when: (p) => !!p.week2 && when(p) }); });
+  const hasWeek2 = (p) => GUIDE.some((s) => s.day > 7 && s.when({ ...p, week2: true }));
   const STEP = Object.fromEntries(GUIDE.map((s) => [s.id, s]));
   // What each plan step costs and what you will have when it is done (facts from the step and its sources).
   const STEP_META = {"d1-legal-us":{"cost":"Free to check; an EIN from the IRS is free","gets":"Notes on the US registrations, licenses and taxes you need"},
@@ -1843,7 +4043,9 @@
       "Approval takes time: YouTube says a review typically takes about a month. If you're turned down, you can reapply 30 days later.",
       "TikTok Creator Rewards needs 10,000 followers and 100,000 views in the last 30 days. Only original videos at least 1 minute long can earn, and US payouts happen monthly once you pass $50.",
       "Most part-time creators earn little: Linktree's 2022 Creator Report found 68% made under $1,000 a year. Linktree sells creator tools, so treat this as vendor data.",
-    ], src: ["ytYpp", "ytYppChanges", "ytRejected", "ttRewards", "ttRewardsTerms", "linktreeReport"] },
+      "Twitch Affiliate needs 25 followers, 4 hours streamed on 4 different days and an average of 3 viewers at once on 4 days, within 30 days. Twitch then pays about 15 days after each month ends, once you're owed $50 ($100 by wire).",
+      "YouTube Live: 16+ to stream and 50 subscribers to stream from a phone. Super Chat needs the Partner Program and age 18+, and you keep 70% after sales tax and App Store fees.",
+    ], src: ["ytYpp", "ytYppChanges", "ytRejected", "ttRewards", "ttRewardsTerms", "linktreeReport", "twitchAffJoin", "twitchPaid", "ytLiveMobile", "ytLiveRestrict", "ytSuperElig", "ytSuperManage"] },
     courses: { items: [
       "Teachable has no free plan. After a 7-day trial, Starter is $39 a month ($29 billed yearly) plus a 7.5% transaction fee; Builder ($89, or $69 yearly) and Growth ($189, or $139 yearly) have no transaction fee with Teachable Payments.",
       "Teachable can hold part of a sale for a while (its example: a purchase on 1 January unlocks on 15 January), and holds payouts at $500 until you file a tax form. Thinkific's first payout arrives 7–14 days after your first payment.",
@@ -1878,7 +4080,94 @@
       BANKRATE_LINE,
       "<b>Money to start</b>: Etsy charges $0.20 per listing, plus a one-time setup fee in some places (shown during setup, non-refundable). Shopify's trial, then $1 a month for 3 months, then Basic at $39 a month. Plus your materials. In the US, children's products need third-party lab testing.",
     ], src: ["etsy10k", "etsyDeposit", "etsyReserve", "etsyOffsite", "bankrate", "etsyFees", "shopPricing", "shopTrial", "cpscCpc"] },
+    stock: { items: [
+      "Adobe Stock pays 33% of the net price for photos, vectors and illustrations, and 35% for video. Adobe's own example: a $29.99 plan covering 10 photos pays about $0.99 per photo.",
+      "Shutterstock pays 15% to 40% per download, at least $0.10, by level; everyone restarts at level 1 on 1 January. Level 2 starts at 101 image downloads in the year.",
+      "Canva pays Creators from a monthly royalty pool it keeps confidential, so there's no official rate per use. Canva isn't taking new Element Creator applications.",
+      "Payouts: Adobe from $25 and 45 days after your first sale; Shutterstock monthly from a minimum you set ($25 or more); Canva from US$10 (US$25 by wire).",
+      "None of the three publishes typical earnings, and acceptance doesn't guarantee sales.",
+    ], src: ["adobeStockRoyalty", "adobeStockRoyaltyEx", "ssLevels", "ssPayouts", "canvaCreators", "canvaCreatorsHelp", "adobeStockPayout", "ssPaySettings", "canvaCreatorsPay"] },
+    declutter: { items: [
+      "No stock to buy: your costs are platform fees, plus packaging and postage if you post items. OfferUp charges nothing on in-person sales, and Vinted charges sellers nothing.",
+      "Depop charges US and UK sellers payment processing only: 3.3% + $0.45 (US) or 2.9% + £0.30 (UK). eBay UK private sellers pay no final value fee outside motors.",
+      "eBay US charges 13.6% + $0.30/$0.40 per order in most categories. Meta's Seller Protection Policy lists 10% (minimum $0.80) for US shipped sales, though other Meta pages differ, and Meta starts payment 5 days after delivery is confirmed.",
+      "Vinted pays into your balance when an order completes (the buyer confirms, or 2 days after delivery), and bank withdrawals take up to 5 business days.",
+      "In the US, a personal item sold for less than you paid isn't taxable income, even with a Form 1099-K. In the UK, personal possessions usually aren't taxed unless one sells for over £6,000.",
+    ], src: ["offerupFree", "vintedFree", "depopFees", "ebayUKPrivate", "ebayFees", "fbmSellerPolicy", "vintedPaid", "vintedWithdraw", "irs1099kCommon", "hmrcOnline"] },
+    salesjob: { items: [
+      "For wholesale and manufacturing sales representatives, the US Bureau of Labor Statistics says most employers pay salary plus commission, or salary plus bonuses. Commission is usually a percentage of sales.",
+      "US employees covered by federal law must get at least $7.25 an hour, or the state's higher minimum. Selling by phone or internet from a base isn't “outside sales”, the exemption that removes minimum wage.",
+      "UK workers paid by commission must still get at least the National Minimum Wage for their hours. Genuinely self-employed people aren't entitled to it.",
+      "The FTC says honest employers never ask you to pay to get a job, and give you time to consider an offer.",
+    ], src: ["blsSalesRep", "dolMinWage", "dolStateMin", "dolOutside", "ukNmwWho", "ukNmwCalc", "hmrcNmwTime", "ftcJobScams"] },
+    tutor: { items: [
+      "Preply keeps 100% of each new student's trial lesson, then 33% of your rate at first, falling to 18% after 400 hours taught.",
+      "italki takes no commission on trial lessons, and 15% to 21% on other lessons (30% on group classes). You can withdraw once you have $30.",
+      "Cambly pays $0.17 a minute ($10.20 an hour), or $0.20 on Cambly Kids, weekly once you're owed $20. It doesn't guarantee any number of students.",
+      "Wyzant keeps 25% and pays on the 1st and 15th of each month. Outschool keeps 30% and asks for your share back if a family is refunded after you're paid.",
+      "Being accepted isn't automatic: Preply may turn down low-demand subjects, italki closes languages when it has enough teachers, and Cambly is limiting new tutors.",
+    ], src: ["preplyCommission", "italkiCommission", "italkiWithdraw", "camblyTutors", "camblyAddendum", "wyzantFee", "wyzantSchedule", "outschoolAddendum", "outschoolRefunds", "preplyRegister", "italkiOpen"] },
+    clipping: { items: [
+      "On Content Rewards you're paid only for verified views on clips the brand approves, at the rate each campaign sets. A campaign can cap what one clip earns, set a minimum before it pays, and stops paying when its budget runs out.",
+      "Money arrives after checks: on per-1,000-views campaigns, views earn for 7 days and then there's a 3-day hold, so a payout settles about 10 days after approval. Withdrawing needs identity checks, and some methods charge a fee.",
+      "Platform payouts rarely add to this. YouTube doesn't share Shorts revenue on unedited clips or reuploads of others' content, even with permission, and TikTok Creator Rewards doesn't count content copied with slight changes.",
+      "As a hired clip editor on Fiverr, Fiverr keeps 20% and releases earnings 14 days after an order is completed (7 days for higher levels). Upwork's fee is 0% to 15% per contract.",
+      BANKRATE_LINE,
+      "<b>Money to start</b>: CapCut has a free plan and YouTube Studio is free. You must be 18 for Content Rewards and to sell on Upwork.",
+    ], src: ["whopCrDocs", "whopCrTerms", "whopCrBrandTerms", "whopPayouts", "whopFees", "ytShortsMon", "ytReused", "ttRewards", "fiverrHow", "fiverrOrders", "upworkFee", "bankrate", "upworkEligible"] },
+    ugc: { items: [
+      "Billo shows a fixed payout on each job before you apply, and you can't negotiate it. Approved videos are paid by PayPal twice a month. Only people 18 and over in the US, Canada and the UK can join.",
+      "Billo's Premium level needs 14 brand-approved videos, at least 5 rated with an average of 4.8 or more, and 90%+ on-time delivery.",
+      "On Insense, money is released only after the brand approves your content. PayPal withdrawals take up to 3 working days and bank transfers up to 5.",
+      "TikTok One usually needs 1,000+ followers and age 18+. Base pay is earned when TikTok One approves your content; revenue-share pay only when it runs as an ad.",
+      "Amazon Influencer videos are reviewed first (typically 2 business days), and onsite commission needs its own sign-up. Associates pays about 60 days after the month ends, from $10.",
+      BANKRATE_LINE,
+      "<b>Money to start</b>: Billo brands ship products to you at no cost. For samples, use products you already own.",
+    ], src: ["billoStart", "billoPaid", "billoFaq", "billoPremium", "insensePay", "insenseTerms", "ttOneSignup", "ttOneTerms", "amzInfUpload", "amzInfFaq", "amzAssocPay", "bankrate"] },
   };
+  Object.assign(STEP_META, WEEK2_META);
+  Object.assign(STEP_META, {
+  "cl1-how": { cost: "Free; a 4-minute lesson in this app", gets: "How clippers get paid and what's allowed" },
+  "cl1-permission": { cost: "Free to read", gets: "Whose content you may clip, and the risks if you don't ask" },
+  "cl1-whop": { cost: "Free to check; 18+ only", gets: "Accounts connected and ready to submit clips" },
+  "cl1-hire": { cost: { fiverr: "Fiverr keeps 20% of each order", upwork: "0–15% per contract on Upwork", "*": "Fiverr 20%, Upwork 0–15%, or no fee direct" }, gets: "Where you'll find creators to edit for" },
+  "cl2-payouts": { cost: "Free to read", gets: "Why the campaign or creator pays you, not the platform" },
+  "cl2-campaign": { cost: "Free", gets: "1 or 2 campaigns whose rules you understand" },
+  "cl2-creators": { cost: "Free", gets: "A list of 10 creators to approach" },
+  "cl3-tools": { cost: "Free tools; CapCut has paid extras", gets: "A working setup for making vertical clips" },
+  "cl4-clips": { cost: "Your time", gets: "3 clips ready to submit or show" },
+  "cl5-disclose": { cost: "Free", gets: "Paid clips labelled the way the FTC and platforms expect" },
+  "cl5-submit": { cost: "Free", gets: "Your first clips submitted for review" },
+  "cl5-pitch": { cost: "Free", gets: "5 to 10 creators contacted with a sample" },
+  "cl6-agree": { cost: "Free", gets: "Written terms and safe access to the creator's channel" },
+  "cl6-payout": { cost: "Some withdrawal methods charge a fee", gets: "Withdrawals set up and payout timing known" },
+  "cl7-review": { cost: "Free", gets: "What to make more of next week" },
+  "on-clip": { cost: "Your time", gets: "New clips every day" },
+  "on-clip-check": { cost: "Free", gets: "Accounts kept clear of claims and strikes" },
+  "u1-how": { cost: "Free; a 4-minute lesson in this app", gets: "How UGC work pays and who owns the videos" },
+  "u1-elig": { cost: "Free to check", gets: "Whether you qualify, and how to join" },
+  "u2-rights": { cost: "Free to read", gets: "Who can use your videos, where and for how long" },
+  "u2-honest": { cost: "Free to read", gets: "The honesty and disclosure rules for product videos" },
+  "u2-ads": { cost: "Free", gets: "Notes on what current ads in your category do" },
+  "u3-samples": { cost: "Your time; products you already own", gets: "3 sample videos for your portfolio" },
+  "u4-profile": { cost: "Free", gets: "A profile or page brands can hire you from" },
+  "u5-apply": { cost: "Free", gets: "Your first applications, uploads or pitches sent" },
+  "u6-deliver": { cost: "Your time", gets: "Work delivered to the brief and on time" },
+  "u6-paid": { cost: { ugc_direct: "Stripe: 2.9% + 30¢ per US card payment", "*": "Free to set up" }, gets: "A way for the money to reach you" },
+  "u7-review": { cost: "Free", gets: "Your real pay per hour, and what to change" },
+  "on-ugc-apply": { cost: "Your time", gets: "A steady flow of applications" },
+  "on-ugc-sample": { cost: "Your time", gets: "A portfolio that keeps improving" },
+  "lv1-rules": { cost: "Free to read", gets: "The thresholds and age rules for getting paid" },
+  "lv1-setup": { cost: "Free", gets: "An account that's ready to stream and be paid" },
+  "lv2-copyright": { cost: "Free to read", gets: "The music and copyright rules that cause strikes" },
+  "lv3-gear": { cost: "OBS Studio is free", gets: "Streaming software set up and tested" },
+  "lv4-schedule": { cost: "Free", gets: "A streaming schedule you can keep" },
+  "lv5-first": { cost: "Your time", gets: "Your first live stream done" },
+  "lv6-clips": { cost: "Free", gets: "Short clips from your stream" },
+  "lv7-money": { cost: { twitch: "Payout from $50; processor fee per payout", "*": "Free to read" }, gets: "How and when the platform would pay you" },
+  "lv7-review": { cost: "Free", gets: "One change to test next week" },
+  "on-live": { cost: "Your time", gets: "Streams on a steady schedule" },
+  });
   const realisticBody = (p) => { const r = REALISTIC[p && p.model]; return r ? ul(r.items) : ""; };
   const LESSONS = [
     { id: "how", title: "How dropshipping works and who is responsible", mins: 4, fit: (p) => SHIP(p),
@@ -1977,6 +4266,78 @@
         "<b>Scale</b>: your hours limit how much you can sell, so price for profit from day one.",
       ]),
       src: ["etsyCreativity", "etsySellerPolicy", "cpscCpc", "cpscSmall"] },
+    { id: "stock", title: "How selling stock photos, videos and templates works and what's allowed", mins: 5, fit: (p) => p.model === "stock",
+      body: () => "<p>You upload photos, video clips or designs to a stock site. Buyers pay the site for a licence to use them, and the site pays you a share of each sale. You don't set the price.</p>" + ul([
+        "<b>Adobe Stock</b>: 33% of the net price for photos, vectors and illustrations, 35% for video. Payout from $25, at least 45 days after your first sale. AI work must be labelled.",
+        "<b>Shutterstock</b>: 15% to 40% per download, depending on your level; everyone restarts at level 1 on 1 January. At least $0.10 per download. No AI-generated uploads.",
+        "<b>Canva Creators</b>: you apply with a portfolio. Canva pays monthly from a royalty pool shared by how often your designs are used. No AI-generated content.",
+        "<b>Releases</b>: anyone identifiable needs a signed model release; recognisable private property, artwork and distinctive products need a property release.",
+        "<b>Logos and brands</b>: remove them from the file, the title and the keywords. Some products can't be accepted even without a logo.",
+        "<b>Keywords</b>: Adobe allows up to 49 and weighs the first 10 most; Shutterstock asks for 7 to 50, in English.",
+        "<b>Age</b>: all three require you to be 18 or older.",
+      ]) + "<p>Earnings per download are small and vary with what each buyer paid. Acceptance doesn't guarantee sales.</p>" + checked,
+      src: ["adobeStockRoyalty", "adobeStockPayout", "adobeStockAI", "ssLevels", "ssAI", "canvaCreators", "canvaContribAgree", "adobeStockModel", "adobeStockIP", "ssTrademark", "adobeStockKeywords", "ssKeywords", "adobeStockGuidelines", "ssAge"] },
+    { id: "declutter", title: "How selling your own things works and what's allowed", mins: 4, fit: (p) => p.model === "declutter",
+      body: () => "<p>You sell things you already own and no longer need. There's no stock to buy, so your costs are platform fees and, if you post items, packaging and postage.</p>" + ul([
+        "<b>Facebook Marketplace</b>: local pickup, or shipping with checkout in the US (Meta's Seller Protection Policy lists 10% per shipped sale, minimum $0.80; other Meta pages differ). Services, digital products and rentals aren't allowed.",
+        "<b>OfferUp</b>: local pickup only since September 2025. No fees on in-person sales; most items post free up to monthly limits.",
+        "<b>Vinted</b>: no seller fees; buyers pay a Buyer Protection fee. You must be 18 or older.",
+        "<b>Depop</b>: no selling fee for US and UK sellers; payment processing is 3.3% + $0.45 (US) or 2.9% + £0.30 (UK).",
+        "<b>eBay</b>: 18 or older. US: 13.6% + $0.30/$0.40 per order in most categories. UK private sellers: no final value fee except motors.",
+        "<b>Safety</b>: meet in busy public places, get paid before you hand anything over, never refund an overpayment, and never share a verification code.",
+        "<b>Tax</b>: selling your own things at a loss usually isn't taxed in the US or UK. Buying things to resell is different: it can be a business.",
+      ]) + checked,
+      src: ["fbmSellerPolicy", "fbmCommerce", "offerupShipEnd", "offerupFree", "vintedFree", "vintedAge", "depopFees", "ebayUnderage", "ebayFees", "ebayUKPrivate", "offerupSafety", "ftcSelling", "irs1099kCommon", "hmrcOnline"] },
+    { id: "salesjob", title: "How remote sales jobs work and what's allowed", mins: 4, fit: (p) => p.model === "salesjob",
+      body: () => "<p>You work for a company, selling its products or services by phone, video or online. It's a job, not your own business: there's no stock to buy and no platform fee. Common job titles include sales development representative (SDR), appointment setter, inside sales and customer success.</p>" + ul([
+        "<b>Pay</b>: many sales jobs pay a salary plus commission, usually a percentage of what you sell. With commission-only pay, weeks without sales pay nothing.",
+        "<b>Employee or contractor (US)</b>: the IRS decides from how the work really happens, not the job title. Covered employees are owed at least $7.25 an hour, or their state's higher rate.",
+        "<b>UK</b>: workers on commission must still get at least the National Minimum Wage for their hours. The genuinely self-employed aren't covered.",
+        "<b>Scams</b>: real employers never charge you to get hired. Fake checks, paid “training”, reshipping packages and job offers by text are all scams.",
+        "<b>Courses</b>: the FTC says a program promising guaranteed income or a “proven system” to make money is likely a scam.",
+      ]),
+      src: ["blsSalesRep", "irsWorker", "dolMinWage", "dolOutside", "ukNmwWho", "ukNmwCalc", "ftcJobScams", "ftcReship", "ftcJobText", "ftcScam"] },
+    { id: "tutor", title: "How online tutoring works and what's allowed", mins: 4, fit: (p) => p.model === "tutor",
+      body: () => "<p>You teach a subject or language over video, usually through a platform that finds students, takes payment and keeps a share.</p>" + ul([
+        "<b>Preply</b>: you set your rate. Preply keeps 100% of each new student's trial lesson, then 18% to 33% of regular lessons, falling as your hours grow.",
+        "<b>italki</b> (languages): no commission on trial lessons; 21% on single lessons, down to 15% on 15- and 20-lesson packages.",
+        "<b>Cambly</b> (English): fixed pay of $0.17 a minute, or $0.20 on Cambly Kids. No teaching certificate needed.",
+        "<b>Wyzant</b> (US residents only): keeps a flat 25%, so you get 75% of your rate.",
+        "<b>Outschool</b> (classes for children): keeps 30%. You need ID verification once, and a criminal background check renewed every year.",
+        "<b>Children</b>: each platform has its own rules, such as parental supervision, recorded lessons and keeping all contact on the platform. Follow them exactly.",
+        "<b>Tax</b>: Cambly and Wyzant treat tutors as independent contractors; Cambly doesn't withhold tax, so you handle your own.",
+      ]) + checked,
+      src: ["preplyCommission", "italkiCommission", "camblyTutors", "camblyApply", "wyzantFee", "wyzantReg", "outschoolAddendum", "outschoolBg", "preplyTerms", "camblyKidsPrivacy", "outschoolPersonal", "camblyAddendum", "wyzantVet"] },
+    { id: "clipping", title: "How stream clipping works and what's allowed", mins: 4, fit: (p) => p.model === "clipping",
+      body: () => "<p>You cut short vertical clips from a creator's long videos or streams and post them on TikTok, YouTube Shorts or Instagram Reels. The footage isn't yours, so you need the creator's permission, and someone has to pay you for the work.</p>" + ul([
+        "<b>Clipping campaigns</b>: on Whop's Content Rewards, a creator or brand sets a rate per 1,000 views and a budget. You post, submit the link, and are paid for verified views on approved clips. You must be 18 or older.",
+        "<b>Clip editor for hire</b>: a creator pays you per clip or per month, through Fiverr (20% fee), Upwork (0–15%) or directly.",
+        "<b>Platform payouts</b>: YouTube and TikTok don't pay for clips of others' content with little added. YouTube's rule applies even with permission.",
+        "<b>Copyright</b>: posting someone's content without permission can bring takedowns and strikes; 3 YouTube strikes in 90 days can end your channel.",
+        "<b>Disclosure</b>: if you're paid to post a clip on your own account, label it as an ad.",
+      ]) + "<p>Pay depends on views you can't control, budgets that run out and brands' approval.</p>" + checked,
+      src: ["whopCrDocs", "whopCrTerms", "fiverrVsUpwork", "upworkFee", "ytShortsMon", "ytReused", "ttRewards", "ytStrikes", "whopFtc", "ftcInfluencer"] },
+
+    { id: "ugc", title: "How UGC work pays and what's allowed", mins: 4, fit: (p) => p.model === "ugc",
+      body: () => "<p>UGC (user-generated content) creators make product videos and photos that brands use in their own ads, product pages and social accounts. You're paid for the content itself, often without posting it to an audience of your own.</p>" + ul([
+        "<b>Billo</b>: US, Canada or UK, 18+, no following needed. Each job shows a fixed payout, brands ship the product free, and PayPal pays twice a month.",
+        "<b>Insense</b>: you apply to brand briefs. The brand's payment is held when you're hired and released after it approves your content.",
+        "<b>TikTok One</b>: TikTok's marketplace for brand deals; 18+ and usually 1,000+ followers. Brands may run your posts as Spark Ads.",
+        "<b>Amazon Influencer</b>: for Amazon Associates with a following; videos on product pages can earn commission when shoppers buy.",
+        "<b>Usage rights</b>: the platform's terms or your contract decide who may use your video, where and for how long. On Billo the rights pass to the brand once it accepts.",
+        "<b>Honesty</b>: only say what's true about products you've actually used. The FTC bans fake testimonials.",
+      ]) + checked,
+      src: ["billoFaq", "billoStart", "billoPaid", "insensePay", "ttOneSignup", "ttSpark", "amzAssocPolicies", "amzInfFaq", "billoTerms", "ftcEndorse", "ftcReviewsRule"] },
+
+    { id: "live", title: "How live streaming pays and what's allowed", mins: 4, fit: (p) => p.model === "creator" && ["twitch", "yt_live"].includes(p.channel),
+      body: () => "<p>You broadcast live while viewers watch and chat, and some can pay you during the stream. Platforms pay only once you meet their thresholds.</p>" + ul([
+        "<b>Twitch</b>: Affiliate needs 25 followers, 4 hours streamed, 4 different days and an average of 3 viewers on 4 days, all within 30 days. Then subscriptions, Bits and ads can pay you.",
+        "<b>Twitch payouts</b>: about 15 days after each month ends, from $50 ($100 by wire). Under 18, a parent or guardian must accept the Monetized Streamer Agreement.",
+        "<b>YouTube Live</b>: 16 or older; 50 subscribers to stream from a phone. Super Chat needs the Partner Program and age 18+; you keep 70% after sales tax and App Store fees.",
+        "<b>Copyright</b>: don't play recorded music you don't have rights to. Three copyright strikes end a Twitch account; a YouTube stream removed for copyright brings a strike and a 7-day streaming ban.",
+        "<b>Sponsors</b>: say it out loud during the stream, and repeat it.",
+      ]) + "<p>Meeting a threshold lets you join or apply; it doesn't guarantee income.</p>" + checked,
+      src: ["twitchAffJoin", "twitchPaid", "twitchOnboard", "ytLiveRestrict", "ytLiveMobile", "ytSuperElig", "ytSuperManage", "twitchDmca", "ytStrikes", "ftcInfluencer"] },
     { id: "realistic", title: "What's realistic: income, payout waits and start-up costs", mins: 3, fit: (p) => !!REALISTIC[p.model],
       body: (p) => p && REALISTIC[p.model] ? "<p>Figures published by the platforms, regulators and surveys, for <b>" + MODEL_NAME[p.model].toLowerCase() + "</b>.</p>" + realisticBody(p)
         : "<p>" + BANKRATE_LINE + "</p><p>Build your plan to see the figures for the way you want to earn.</p>",
@@ -2193,11 +4554,60 @@
     { cat: "Business & legal", name: "IRS: Form 1099-K", url: S.irs1099k[1], cost: "Free guide", desc: "How marketplace and payment-app income is reported.", fit: (p) => p.country === "us" },
     { cat: "Business & legal", name: "SBA: licenses and permits", url: S.sbaLicense[1], cost: "Free guide", desc: "What your state and city may require.", fit: (p) => p.country === "us" },
     { cat: "Business & legal", name: "FTC: Mail Order Rule", url: S.ftcMail[1], cost: "Free guide", desc: "US rules for delivery promises and refunds.", fit: (p) => SHIP(p) || p.model === "resell" },
-    { cat: "Business & legal", name: "FTC: disclosures for influencers", url: S.ftcInfluencer[1], cost: "Free guide", desc: "How to disclose affiliate links and sponsorships.", fit: (p) => p.model === "affiliate" },
+    { cat: "Business & legal", name: "FTC: disclosures for influencers", url: S.ftcInfluencer[1], cost: "Free guide", desc: "How to disclose affiliate links and sponsorships.", fit: (p) => ["affiliate", "creator", "clipping", "ugc"].includes(p.model) },
     { cat: "Business & legal", name: "IRS: self-employment tax", url: S.irsSE[1], cost: "Free guide", desc: "Tax on self-employment income in the US.", fit: (p) => p.country === "us" },
     { cat: "Business & legal", name: "FTC: CAN-SPAM guide", url: S.canSpam[1], cost: "Free guide", desc: "US rules for marketing emails.", fit: (p) => ["newsletter", "courses", "freelance"].includes(p.model) },
     { cat: "Business & legal", name: "CPSC: children's products", url: S.cpscCpc[1], cost: "Free guide", desc: "Testing and certificates for children's products.", fit: (p) => ["handmade", "fba", "pod"].includes(p.model) && p.country === "us" },
     { cat: "Business & legal", name: "HMRC: online selling", url: S.hmrcOnline[1], cost: "Free guide", desc: "When to tell HMRC about online income.", fit: (p) => p.country === "uk" },
+    { cat: "Stock", name: "Adobe Stock Contributor", url: S.adobeStockContrib[1], cost: "33% photos, 35% video", desc: "Sell licences to your photos, videos, illustrations and vectors. AI work must be labelled.", fit: (p) => p.model === "stock" },
+    { cat: "Stock", name: "Shutterstock Contributor", url: S.ssSubmit[1], cost: "Free; 15–40% per download", desc: "Sell photos, videos and illustrations. No AI-generated uploads.", fit: (p) => p.model === "stock" },
+    { cat: "Stock", name: "Shutterstock earnings schedule", url: S.ssPayouts[1], cost: "", desc: "What each earnings level pays, and how many downloads it needs.", fit: (p) => p.channel === "shutterstock" },
+    { cat: "Stock", name: "Canva Creators", url: S.canvaCreators[1], cost: "Apply; royalty pool", desc: "Publish templates in Canva's library once your application is approved.", fit: (p) => p.model === "stock" },
+    { cat: "Stock", name: "Adobe Stock release rules", url: S.adobeStockModel[1], cost: "Free guide", desc: "Who needs a model release, and how to upload one.", fit: (p) => p.model === "stock" },
+    { cat: "Stock", name: "Creative Market", url: "https://creativemarket.com/sell", cost: "Apply; shops earn 50% by default", desc: "Marketplace for templates, fonts and graphics. Payouts from $20.", fit: (p) => p.model === "stock" || p.model === "digital" },
+    // Sell your own things
+    { cat: "Sell", name: "Facebook Marketplace", url: "https://www.facebook.com/marketplace/", cost: "Fee on US shipped sales; check when you list", desc: "Sell locally, or ship in the US with checkout.", fit: (p) => p.channel === "fbm" },
+    { cat: "Sell", name: "OfferUp", url: "https://offerup.com/", cost: "No fee on in-person sales", desc: "Local pickup only; shipping ended in 2025.", fit: (p) => p.channel === "offerup" },
+    { cat: "Sell", name: "Vinted", url: "https://www.vinted.co.uk/", cost: "No seller fees", desc: "Secondhand marketplace; buyers pay Buyer Protection.", fit: (p) => p.channel === "vinted" },
+    { cat: "Sell", name: "Depop", url: "https://www.depop.com/", cost: "No selling fee (US, UK); processing applies", desc: "Resale app popular for clothing.", fit: (p) => p.channel === "depop" },
+    { cat: "Sell", name: "eBay UK (private seller)", url: S.ebayUKPrivate[1], cost: "No final value fee except motors", desc: "300 free listings a month for private sellers.", fit: (p) => p.channel === "ebay_own" && p.country === "uk" },
+    { cat: "Sell", name: "eBay", url: S.ebayStart[1], cost: "13.6% + $0.30/$0.40 per order", desc: "Marketplace for new and used items.", fit: (p) => p.channel === "ebay_own" && p.country !== "uk" },
+    { cat: "Safety", name: "OfferUp Community MeetUp Spots", url: S.offerupSpots[1], cost: "Free", desc: "Public places with lighting and cameras for local handovers.", fit: (p) => p.channel === "offerup" || p.channel === "fbm" },
+    { cat: "Business & legal", name: "FTC: scams when selling online", url: S.ftcSelling[1], cost: "Free guide", desc: "Overpayment, fake payment and verification-code scams.", fit: (p) => p.model === "declutter" },
+    { cat: "Business & legal", name: "IRS: Form 1099-K common situations", url: S.irs1099kCommon[1], cost: "Free guide", desc: "Selling personal items at a loss, and what to report.", fit: (p) => p.model === "declutter" && p.country === "us" },
+    // Remote sales jobs
+    { cat: "Jobs", name: "LinkedIn Jobs", url: "https://www.linkedin.com/jobs/", cost: "Free to search", desc: "Search jobs, set alerts and apply.", fit: (p) => p.model === "salesjob" },
+    { cat: "Jobs", name: "Indeed", url: "https://www.indeed.com/", cost: "Never pay to apply", desc: "Job search site; read its safe job search guide.", fit: (p) => p.model === "salesjob" },
+    { cat: "Business & legal", name: "FTC: job scams", url: S.ftcJobScams[1], cost: "Free guide", desc: "Fake checks, paid training and reshipping scams.", fit: (p) => p.model === "salesjob" },
+    { cat: "Business & legal", name: "ReportFraud.ftc.gov", url: S.reportFraud[1], cost: "Free", desc: "Report a job or selling scam to the FTC.", fit: (p) => ["salesjob", "declutter"].includes(p.model) && p.country === "us" },
+    { cat: "Business & legal", name: "IRS: contractor or employee?", url: S.irsWorker[1], cost: "Free guide", desc: "How the IRS decides your work status.", fit: (p) => p.model === "salesjob" && p.country === "us" },
+    { cat: "Business & legal", name: "DOL: state minimum wages", url: S.dolStateMin[1], cost: "Free guide", desc: "Minimum wage where you live.", fit: (p) => p.model === "salesjob" && p.country === "us" },
+    { cat: "Business & legal", name: "GOV.UK: who gets the minimum wage", url: S.ukNmwWho[1], cost: "Free guide", desc: "Minimum wage rules, including commission work.", fit: (p) => p.model === "salesjob" && p.country === "uk" },
+    // Online tutoring
+    { cat: "Tutoring", name: "Preply", url: S.preplyTeach[1], cost: "18–33% commission; trials 100%", desc: "Set your own rate for any subject or language.", fit: (p) => p.channel === "preply" },
+    { cat: "Tutoring", name: "italki", url: S.italkiApply[1], cost: "0% on trials; 15–21% on lessons", desc: "Teach languages as a Community Tutor or Professional Teacher.", fit: (p) => p.channel === "italki" },
+    { cat: "Tutoring", name: "Cambly", url: S.camblyTutors[1], cost: "Pays $0.17/min ($0.20 Kids)", desc: "English tutoring; no certificate needed.", fit: (p) => p.channel === "cambly" },
+    { cat: "Tutoring", name: "Wyzant", url: S.wyzantHow[1], cost: "25% platform fee", desc: "Tutoring marketplace for US residents.", fit: (p) => p.channel === "wyzant" },
+    { cat: "Tutoring", name: "Outschool", url: S.outschoolTeach[1], cost: "30% service fee", desc: "Live online classes for children.", fit: (p) => p.channel === "outschool" },
+    { cat: "Tutoring", name: "Outschool Trust & Safety", url: S.outschoolSafety[1], cost: "Free", desc: "Outschool's safety rules for teaching children.", fit: (p) => p.channel === "outschool" },
+    // Clipping
+    { cat: "Clipping", name: "Content Rewards (Whop)", url: S.whopDiscover[1], cost: "Paid per 1,000 views; 18+", desc: "Clipping campaigns that pay for verified views on approved clips.", fit: (p) => p.model === "clipping" },
+    { cat: "Clipping", name: "Twitch Clips", url: S.twitchClips[1], cost: "Free", desc: "Make and download clips; streamers control who can clip.", fit: (p) => p.model === "clipping" || p.channel === "twitch" },
+    { cat: "Clipping", name: "YouTube: Shorts from your videos", url: S.ytEditShort[1], cost: "Free", desc: "Turn up to 60 seconds of your own long video into a Short.", fit: (p) => p.model === "clipping" || p.channel === "yt_live" },
+    { cat: "Clipping", name: "CapCut", url: S.capcutShorts[1], cost: "Free plan", desc: "Long video to shorts, auto captions and auto reframe.", fit: (p) => p.model === "clipping" || p.model === "ugc" },
+    { cat: "Clipping", name: "YouTube channel permissions", url: S.ytPermissions[1], cost: "Free", desc: "Get Editor access to a creator's channel without their password.", fit: (p) => p.model === "clipping" && p.channel === "hire" },
+    { cat: "Clipping", name: "YouTube reused-content rules", url: S.ytReused[1], cost: "Free guide", desc: "Why clips of others' content usually can't earn ad revenue.", fit: (p) => p.model === "clipping" },
+    // UGC
+    { cat: "UGC", name: "Billo", url: S.billoFaq[1], cost: "Fixed pay per job; US, CA, UK", desc: "UGC jobs for brands; products shipped to you.", fit: (p) => p.model === "ugc" },
+    { cat: "UGC", name: "Insense", url: S.insenseCreators[1], cost: "Paid after brand approval", desc: "Apply to brand briefs for UGC and creator ads.", fit: (p) => p.model === "ugc" },
+    { cat: "UGC", name: "TikTok One", url: S.ttOneSignup[1], cost: "18+; usually 1,000+ followers", desc: "TikTok's marketplace for paid brand projects.", fit: (p) => p.model === "ugc" },
+    { cat: "UGC", name: "Amazon Influencer Program", url: S.amzInfInfo[1], cost: "Associates account needed", desc: "Storefront and shoppable product videos on Amazon.", fit: (p) => p.model === "ugc" },
+    { cat: "Business & legal", name: "FTC: fake reviews and testimonials rule", url: S.ftcReviewsRule[1], cost: "Free guide", desc: "What the 2024 rule bans, in questions and answers.", fit: (p) => p.model === "ugc" },
+    // Live streaming
+    { cat: "Creators", name: "Twitch Affiliate", url: S.twitchAffJoin[1], cost: "Free; 25 followers + 3 avg viewers", desc: "Twitch's first paid level: subs, Bits and ads.", fit: (p) => p.channel === "twitch" },
+    { cat: "Creators", name: "OBS Studio", url: S.obs[1], cost: "Free", desc: "Open-source software for streaming and recording.", fit: (p) => p.channel === "twitch" || p.channel === "yt_live" },
+    { cat: "Creators", name: "YouTube Live", url: S.ytLiveStart[1], cost: "Free; 16+", desc: "Go live by webcam, phone (50+ subscribers) or encoder.", fit: (p) => p.channel === "yt_live" },
+    { cat: "Creators", name: "Super Chat eligibility", url: S.ytSuperElig[1], cost: "YPP and 18+", desc: "Paid chat messages during your live streams.", fit: (p) => p.channel === "yt_live" },
   ];
 
   const FEES = {
@@ -2227,8 +4637,21 @@
     thinkific: { label: "Thinkific Payments", pct: 2.9, fixed: 0, hint: "No transaction fee; about 2.9% card processing. Check for a per-payment amount." },
     amazonFBA: { label: "Amazon FBA (enter your fees)", pct: null, fixed: null, hint: "Fee % = referral fee; fixed = FBA fulfilment fee per unit from Amazon's estimator." },
     custom: { label: "Custom", pct: null, fixed: null, hint: "" },
+    fbmShip: { label: "Facebook Marketplace shipped sale (US)", pct: 10, fixed: 0, hint: "Meta's Seller Protection Policy: 10%, minimum $0.80, on the total including shipping and tax. Other Meta pages give a different rate; use the fee shown when you list." },
+    offerup: { label: "OfferUp, in-person sale", pct: 0, fixed: 0, hint: "No fee on in-person sales. A paid subscription is needed only past the free listing limits." },
+    vinted: { label: "Vinted (seller)", pct: 0, fixed: 0, hint: "Sellers pay no fee; buyers pay the Buyer Protection fee on top." },
+    depopUS: { label: "Depop (US seller)", pct: 3.3, fixed: 0.45, hint: "Payment processing only; no selling fee. Add 12% if the sale came through a Boosted listing." },
+    depopUK: { label: "Depop (UK seller)", pct: 2.9, fixed: 0.3, cur: "GBP", hint: "Payment processing (£0.30 fixed); no selling fee. Add 12% for Boosted listings." },
+    preplyNew: { label: "Preply, new tutor", pct: 33, fixed: 0, hint: "28% after 20 hours taught, falling to 18% after 400. Trial lessons with new students: Preply keeps 100%." },
+    preply400: { label: "Preply, after 400 hours taught", pct: 18, fixed: 0, hint: "Trial lessons with new students: Preply keeps 100%." },
+    italkiSingle: { label: "italki, single lesson", pct: 21, fixed: 0, hint: "Packages: 19% (5 lessons), 17% (10), 15% (15 or 20). Trial lessons: 0%. Group classes: 30%." },
+    italkiPkg: { label: "italki, 15- or 20-lesson package", pct: 15, fixed: 0, hint: "Trial lessons: 0%." },
+    wyzant: { label: "Wyzant", pct: 25, fixed: 0, hint: "0% on students you refer yourself. Students pay a separate 9% fee." },
+    outschool: { label: "Outschool", pct: 30, fixed: 0, hint: "Parents pay a separate marketplace fee that isn't part of your 70%." },
+    twitchSub: { label: "Twitch subscription, standard split", pct: 50, fixed: 0, hint: "Worked out after taxes and payment fees. In the Plus Program Twitch keeps 40% or 30% instead." },
+    ytSupers: { label: "YouTube Super Chat / Super Stickers", pct: 30, fixed: 0, hint: "You keep 70%, worked out after local sales tax and iOS App Store fees." },
   };
-  const DEFAULT_FEE = { shopify: "shopify", etsy: "etsy", ebay: "ebay", tiktok: "tiktok", amazon: "amazonI", mercari: "mercari", poshmark: "poshmark", gumroad: "gumroad", payhip: "payhipFree", aff_amazon: "custom", aff_tiktok: "custom", aff_network: "custom", fiverr: "fiverr", upwork: "upwork", direct: "stripeUS", yt: "custom", tt_creator: "custom", teachable: "teachableStarter", thinkific: "thinkific", kdp: "custom", substack: "substack", beehiiv: "custom", amz_fba: "amazonFBA" };
+  const DEFAULT_FEE = { shopify: "shopify", etsy: "etsy", ebay: "ebay", tiktok: "tiktok", amazon: "amazonI", mercari: "mercari", poshmark: "poshmark", gumroad: "gumroad", payhip: "payhipFree", aff_amazon: "custom", aff_tiktok: "custom", aff_network: "custom", fiverr: "fiverr", upwork: "upwork", direct: "stripeUS", yt: "custom", tt_creator: "custom", teachable: "teachableStarter", thinkific: "thinkific", kdp: "custom", substack: "substack", beehiiv: "custom", amz_fba: "amazonFBA", adobe_stock: "custom", shutterstock: "custom", canva_creators: "custom", fbm: "fbmShip", offerup: "offerup", vinted: "vinted", depop: "depopUS", ebay_own: "ebay", employee: "custom", contract: "custom", preply: "preplyNew", italki: "italkiSingle", cambly: "custom", wyzant: "wyzant", outschool: "outschool", whop: "custom", hire: "custom", billo: "custom", insense: "custom", tt_one: "custom", amz_inf: "custom", ugc_direct: "stripeUS", twitch: "twitchSub", yt_live: "ytSupers" };
 
   // ---------------------------------------------------------------------------
   // Helpers
@@ -2537,8 +4960,10 @@
     if (mode === "db") { acc.biz.delete(id); buildAccount(); drawHeader(); const ok = await accDoc("account/biz/" + id, undefined); if (ok !== false) return ok === true; }
     return localAccount((a) => { a.businesses = a.businesses.filter((x) => x.id !== id); });
   }
+  const track = (name) => { if (PLAT && PLAT.track) PLAT.track(name); };
   async function addBadges(ids) {
     if (!ids.length) return true;
+    ids.forEach((id) => track("badge-" + id));
     if (mode === "db") {
       ids.forEach((id) => acc.badges.add(id)); buildAccount();
       let ok = true; for (const id of ids) ok = (await accDoc("account/badges/" + id, { at: Date.now() })) !== null && ok;
@@ -3071,13 +5496,19 @@
     newsletter: ["Paid subscriptions and sponsorships", "Sent by email", "No"],
     fba: ["Your own branded products", "Amazon stores and ships them", "Yes: you buy stock first"],
     handmade: ["Things you make", "You make and ship each order", "Materials"],
+    stock: ["Licences to your photos, videos and templates", "The stock site delivers the files to buyers", "No"],
+    declutter: ["Things you already own", "You hand over or post each item", "No"],
+    salesjob: ["A company's products or services", "The company provides what you sell", "No"],
+    tutor: ["Lessons in a subject or language", "You teach live over video", "No"],
+    clipping: ["Short clips cut from other creators' videos", "Nothing to ship", "No"],
+    ugc: ["Product videos and photos for brands", "Nothing to ship; brands may send you the product", "No"],
   };
   const MODEL_FILTERS = [
     ["", "All"],
     ["nostock", "No stock to buy", (k) => MODEL_FACTS[k][2] === "No"],
-    ["noship", "Nothing to ship", (k) => ["affiliate", "digital", "freelance", "creator", "courses", "newsletter"].includes(k)],
-    ["physical", "Physical products", (k) => ["supplier", "pod", "resell", "fba", "handmade"].includes(k)],
-    ["skill", "Uses a skill you have", (k) => ["pod", "freelance", "creator", "courses", "books", "newsletter", "handmade", "digital"].includes(k)],
+    ["noship", "Nothing to ship", (k) => ["affiliate", "digital", "freelance", "creator", "courses", "newsletter", "stock", "salesjob", "tutor", "clipping", "ugc"].includes(k)],
+    ["physical", "Physical products", (k) => ["supplier", "pod", "resell", "fba", "handmade", "declutter"].includes(k)],
+    ["skill", "Uses a skill you have", (k) => ["pod", "freelance", "creator", "courses", "books", "newsletter", "handmade", "digital", "stock", "tutor", "clipping", "ugc"].includes(k)],
   ];
   const setup = { step: 0, draft: null, compare: false, filter: "", back: false };
   function startSetup(editing) { setup.draft = null; setup.step = editing ? 99 : 0; setup.compare = false; setup.filter = ""; setup.back = false; st.editingProfile = !!editing; }
@@ -3109,6 +5540,9 @@
     ph: ["ttRewardsAcademy", "phTts", "amzGlobal", "shopPayCountries", "stripeGlobal", "phPaypal"], ng: ["ttRewardsAcademy", "ngEtsy", "amzGlobal", "shopPayCountries", "stripeGlobal", "ngPaypal"], br: ["ttsBrazil", "shopPayCountries"] };
   function setupWarnings(a) {
     const msgs = availability(a);
+    if (a.model === "clipping" && a.channel === "whop") msgs.push("<b>Content Rewards is for people 18 and older only</b>, even with a parent's permission.");
+    if (a.model === "ugc" && a.channel === "billo" && a.country && !["us", "ca", "uk"].includes(a.country)) msgs.push("<b>Billo accepts creators only in the US, Canada and the UK.</b>");
+    if (a.model === "creator" && a.channel === "yt_live") msgs.push("<b>You must be 16 or older to live stream on YouTube.</b> Ages 13–15 can take part only with an adult visibly in the stream.");
     if (a.channel === "tiktok" && a.country && a.country !== "us") msgs.push("<b>The TikTok Shop steps follow TikTok Shop US rules.</b> Sellers elsewhere should check their own country's Seller Center.");
     if (a.channel === "aff_tiktok" && a.country && a.country !== "us") msgs.push("<b>The TikTok Shop affiliate steps follow US rules.</b> Other countries have their own requirements.");
     if (a.model === "fba") msgs.push("<b>Amazon FBA means paying for stock before you sell anything.</b> Only invest what you can afford to lose; the plan has you check every fee first.");
@@ -3117,7 +5551,7 @@
   }
   function compareTable(onPick) {
     const tw = el("div", "tablewrap"); const t = el("table", "compare");
-    t.innerHTML = "<caption class=\"small muted\" style=\"text-align:left;padding-bottom:6px\">The 12 ways to earn, side by side</caption><thead><tr><th scope=\"col\">Way to earn</th><th scope=\"col\">What you sell</th><th scope=\"col\">Who makes or ships it</th><th scope=\"col\">Stock to buy first</th><th scope=\"col\">Where (in this app)</th><th scope=\"col\"></th></tr></thead>";
+    t.innerHTML = "<caption class=\"small muted\" style=\"text-align:left;padding-bottom:6px\">The " + MODELS.length + " ways to earn, side by side</caption><thead><tr><th scope=\"col\">Way to earn</th><th scope=\"col\">What you sell</th><th scope=\"col\">Who makes or ships it</th><th scope=\"col\">Stock to buy first</th><th scope=\"col\">Where (in this app)</th><th scope=\"col\"></th></tr></thead>";
     const tb = el("tbody");
     MODELS.forEach(([k, name]) => {
       const f = MODEL_FACTS[k]; const tr = el("tr");
@@ -3209,12 +5643,13 @@
       e.preventDefault();
       if (!a.level || !a.model || !a.channel || !a.country) { toast("Answer each question first."); return; }
       if (!ADS_MODELS.includes(a.model) || !a.ads) a.ads = "none";
-      const prof = { level: a.level, model: a.model, channel: a.channel, country: a.country, ads: a.ads, start: (st.profile && st.profile.start) || today(), choices: (st.profile && st.profile.choices) || {} };
+      const prof = { level: a.level, model: a.model, channel: a.channel, country: a.country, ads: a.ads, start: (st.profile && st.profile.start) || today(), choices: (st.profile && st.profile.choices) || {}, week2: !!(st.profile && st.profile.week2) };
       save.disabled = true; save.textContent = "Building…";
       const first = !st.profile;
       if (!(await saveProfile(prof))) { save.disabled = false; save.textContent = first ? "Build my plan" : "Update my plan"; return; }
       st.profile = prof; st.editingProfile = false; setup.draft = null;
       try { await syncPlan(prof); } catch {}
+      if (first) track("plan-built-" + prof.model);
       keepStorage();
       ensureFeeDefaults(true);
       toast(first ? "Your plan is ready. Here's your first step." : "Your plan is updated.");
@@ -3235,6 +5670,12 @@
     newsletter: "Days 1–4 set up, learn the email rules and write ahead; days 5–7 find your first readers.",
     fba: "This week is research and numbers: account, fees, samples and brand. Stock usually takes weeks to make and ship, so don't order until the numbers work.",
     handmade: "Days 1–3 check the rules and price your work; days 4–7 photograph, list and promote.",
+    stock: "Days 1–2 check you can join and learn the AI, release and trademark rules; days 3–5 make your first files and submit them; days 6–7 set up payouts and learn from rejections.",
+    declutter: "Days 1–2 pick where to sell and check its rules; days 3–4 photograph, price and list your first items; days 5–7 hand over or post what sells and check your numbers.",
+    salesjob: "This week is about finding a real role: how sales jobs pay, how to spot job scams, then your profile, search and first applications. It's a job, not a business, so there's nothing to buy.",
+    tutor: "Days 1–3 check a platform's rules and apply; days 4–7 set up your profile, rate and first lessons. Acceptance can take time, and no platform guarantees students.",
+    clipping: "Days 1–2 learn the permission and payout rules; days 3–5 set up your tools and make your first clips; days 6–7 submit or pitch and review. You're paid only for approved work: verified views on campaigns, or jobs a creator agrees to.",
+    ugc: "Days 1–2 check you qualify and learn who owns your videos; days 3–4 make samples and finish your profile; days 5–7 apply to briefs and deliver. Brands choose who they hire, so the first job can take a while.",
   };
   function renderPlan() {
     const wrap = el("div"); wrap.style.display = "grid"; wrap.style.gap = "18px";
@@ -3247,7 +5688,7 @@
 
     const head = el("section", "card plan-head");
     const left = el("div"); left.style.display = "grid"; left.style.gap = "10px";
-    left.append(el("h2", null, "Your 7-day plan"));
+    left.append(el("h2", null, p.week2 ? "Your 2-week plan" : "Your 7-day plan"));
     const chips = el("div", "chips");
     [MODEL_NAME[p.model], CHANNEL_NAME[p.channel], labelFor("level", p.level), labelFor("country", p.country), !ADS_MODELS.includes(p.model) ? null : p.ads === "some" ? "Paid ads" : "No paid ads"].filter(Boolean).forEach((c) => chips.append(el("span", "chip", c)));
     left.append(chips);
@@ -3267,6 +5708,12 @@
     const edit = el("button", "btn sm", "Change answers"); edit.type = "button"; edit.onclick = () => { startSetup(true); render(); };
     const restart = el("button", "btn sm", "Restart dates from today"); restart.type = "button"; restart.onclick = restartPlan;
     if (!readOnly) btns.append(edit, restart);
+    if (!readOnly && !p.week2 && hasWeek2(p)) {
+      const w2 = el("button", "btn sm primary", "Add week 2 (days 8–14)"); w2.type = "button";
+      w2.onclick = async () => { const np = { ...p, week2: true }; if (await saveProfile(np)) { await syncPlan(np); track("week2-added"); toast("Week 2 added: review your numbers, improve what you have and grow."); } };
+      btns.append(w2);
+    }
+    if (PLAT && downloads) { const cal = el("button", "btn sm", "Add to calendar"); cal.type = "button"; cal.onclick = saveIcs; btns.append(cal); }
     left.append(btns);
     const prog = el("div", "prog");
     prog.append(el("span", "label", "Progress"));
@@ -3285,7 +5732,7 @@
 
     const days = el("div", "days");
     const td = today();
-    for (let d = 1; d <= 7; d++) {
+    for (let d = 1; d <= 14; d++) {
       const items = oneOff.filter((t) => t.day === d).sort((a, b) => GUIDE.indexOf(STEP[a.step]) - GUIDE.indexOf(STEP[b.step]));
       if (!items.length) continue;
       const date = addDays(p.start, d - 1);
@@ -3527,10 +5974,22 @@
     bigcartel: ["Big Cartel", "https://www.bigcartel.com/", "Simple store builder for artists and makers."],
     folksy: ["Folksy", "https://folksy.com/", "UK marketplace for handmade crafts.", "uk"],
     noths: ["Not On The High Street", "https://www.notonthehighstreet.com/", "UK marketplace for small creative brands; you apply to join.", "uk"],
+    adobeStock: ["Adobe Stock", "https://contributor.stock.adobe.com/", "Sell photos, videos and illustrations; AI work allowed if labelled."],
+    shutterstock: ["Shutterstock", "https://submit.shutterstock.com/", "Sell photos, videos and illustrations; no AI-generated uploads."],
+    canvaCreators: ["Canva Creators", "https://www.canva.com/creators/", "Publish templates in Canva once your application is approved."],
+    creativeMarket: ["Creative Market", "https://creativemarket.com/sell", "Marketplace for templates, fonts and graphics; you apply to open a shop."],
+    offerup: ["OfferUp", "https://offerup.com/", "Local buying and selling; pickup only since 2025.", "us"],
+    preply: ["Preply", S.preplyTeach[1], "Tutoring marketplace where you set your own rate."],
+    italki: ["italki", S.italkiApply[1], "Language tutoring marketplace."],
+    cambly: ["Cambly", S.camblyTutors[1], "English tutoring paid per minute."],
+    wyzant: ["Wyzant", S.wyzantHow[1], "Tutoring marketplace for US residents.", "us"],
+    outschool: ["Outschool", S.outschoolTeach[1], "Live online classes for children."],
+    linkedinJobs: ["LinkedIn Jobs", "https://www.linkedin.com/jobs/", "Search jobs, set alerts and apply."],
+    indeed: ["Indeed", "https://www.indeed.com/", "Job search site."],
   };
   // def: the option this plan's own steps are written for. channel: the
   // choice overlaps the "Where will you do it?" answer.
-  const DEF_BY_CHANNEL = { shopify: "shopify", etsy: "etsy", gumroad: "gumroad", payhip: "payhip", ebay: "ebay", mercari: "mercari", poshmark: "poshmark", fiverr: "fiverr", upwork: "upwork", teachable: "teachable", thinkific: "thinkific", kdp: "kdp", substack: "substack", beehiiv: "beehiiv", aff_amazon: "amzAssoc", aff_tiktok: "ttsAff", aff_network: "awin", tiktok: "ttShop", amazon: "amazonSell" };
+  const DEF_BY_CHANNEL = { shopify: "shopify", etsy: "etsy", gumroad: "gumroad", payhip: "payhip", ebay: "ebay", mercari: "mercari", poshmark: "poshmark", fiverr: "fiverr", upwork: "upwork", teachable: "teachable", thinkific: "thinkific", kdp: "kdp", substack: "substack", beehiiv: "beehiiv", aff_amazon: "amzAssoc", aff_tiktok: "ttsAff", aff_network: "awin", tiktok: "ttShop", amazon: "amazonSell", adobe_stock: "adobeStock", shutterstock: "shutterstock", canva_creators: "canvaCreators", fbm: "fbMarket", offerup: "offerup", vinted: "vinted", depop: "depop", ebay_own: "ebay", preply: "preply", italki: "italki", cambly: "cambly", wyzant: "wyzant", outschool: "outschool" };
   const byChannel = (p) => DEF_BY_CHANNEL[p.channel] || null;
   const CHOICES = {
     store: { title: "Store builder", ask: "Which store builder will you use?", items: ["shopify", "woocommerce", "wix", "squarespace", "bigcommerce"], def: () => "shopify", note: "This plan's steps are written for Shopify. The others do the same job, but their menus and apps differ, so follow their own setup guides." },
@@ -3577,6 +6036,11 @@
     newsletter: { title: "Newsletter platform", ask: "Where will you publish your newsletter?", items: ["substack", "beehiiv", "kit", "ghost", "mailerlite"], def: byChannel, channel: true },
     manufacturers: { title: "Finding a manufacturer", ask: "Where will you look for a manufacturer?", items: ["alibaba", "globalSources", "madeInChina", "thomasnet"], note: "Get samples from more than one, and check certifications before you pay for stock." },
     handmadeSell: { title: "Where you'll sell", ask: "Where will you sell your handmade items?", items: ["etsy", "amzHandmade", "shopify", "bigcartel", "folksy", "noths"], def: byChannel, channel: true },
+    stockPlatform: { title: "Where you'll sell", ask: "Where will you sell your files?", items: ["adobeStock", "shutterstock", "canvaCreators", "creativeMarket"], def: byChannel, channel: true, note: "Each site has its own rules on AI-generated work and releases. Read them before you upload." },
+    stockEdit: { title: "Editing", ask: "What will you edit your photos and clips with?", items: ["lightroom", "photopea", "davinci", "capcut"], note: "Edit only photos and clips you made yourself." },
+    declutterMarket: { title: "Where you'll sell", ask: "Where will you sell your things?", items: ["fbMarket", "offerup", "vinted", "depop", "ebay"], def: byChannel, channel: true, note: "Fees and payout times differ; check each one's fee page before you list." },
+    tutorPlatform: { title: "Tutoring platform", ask: "Where will you teach?", items: ["preply", "italki", "cambly", "wyzant", "outschool"], def: byChannel, channel: true, note: "Each platform has its own eligibility rules and takes a different share." },
+    jobBoard: { title: "Job search", ask: "Where will you look for roles?", items: ["linkedinJobs", "indeed", "linkedin"], note: "Never pay to apply for a job." },
   };
   // Which choice each guide step offers. Functions pick by plan.
   const STEP_CHOICE = {
@@ -3602,6 +6066,13 @@
     "nl1-platform": "newsletter", "nl3-issues": "writing", "nl4-signup": "newsletter", "nl5-promote": "postWhere",
     "fb2-research": "fbaResearch", "fb3-supplier": "manufacturers", "fb5-listing": "photos",
     "hm2-product": "etsyResearch", "hm4-photos": "photos", "hm5-list": "handmadeSell", "hm6-promote": "postWhere", "hm7-review": "bookkeeping",
+    "st1-rules": "stockPlatform", "st4-make": (p) => (p.channel === "canva_creators" ? null : "stockEdit"), "st7-review": "bookkeeping", "on-stock-batch": (p) => (p.channel === "canva_creators" ? null : "stockEdit"),
+    "dc1-account": "declutterMarket", "dc3-photos": "photos", "dc5-ship": "shipping", "dc7-review": "bookkeeping", "on-dc-handover": (p) => (p.channel === "offerup" ? null : "shipping"),
+    "sj4-search": "jobBoard", "sj6-apply": "jobBoard", "on-sj-apply": "jobBoard",
+    "tu1-pay": "tutorPlatform", "tu5-lesson": "recording", "tu7-review": "bookkeeping",
+    "cl1-hire": "freelancePlatform", "cl5-pitch": "freelancePlatform", "cl3-tools": "video", "cl4-clips": "video", "on-clip": "video", "cl6-agree": "invoicing", "cl7-review": "bookkeeping",
+    "u2-ads": "productResearch", "u3-samples": "video", "u4-profile": (p) => (p.channel === "ugc_direct" ? "portfolio" : null), "u6-paid": (p) => (p.channel === "ugc_direct" ? "invoicing" : null), "u7-review": "bookkeeping", "on-ugc-sample": "video",
+    "lv6-clips": "video",
   };
   function choiceFor(stepId, p) { const c = STEP_CHOICE[stepId]; const g = typeof c === "function" ? c(p || {}) : c; return g && CHOICES[g] ? g : null; }
   function optItems(g, p) {
@@ -3665,8 +6136,8 @@
     return wrap;
   }
   // Is the chosen option also one of this model's "Where will you do it?" answers?
-  const CHANNEL_OF = Object.fromEntries(Object.entries(DEF_BY_CHANNEL).map(([k, v]) => [v, k]));
-  const MODEL_CHANNEL_HAS = (p, optId) => { const ch = optId === "shopDigital" ? "shopify" : CHANNEL_OF[optId]; return !!ch && (CHANNELS[p.model] || []).some((c) => c[0] === ch); };
+  // Several channels can share one option (eBay for reselling and for your own things), so look at this model's channels.
+  const MODEL_CHANNEL_HAS = (p, optId) => (CHANNELS[p.model] || []).some((c) => DEF_BY_CHANNEL[c[0]] === optId || (optId === "shopDigital" && c[0] === "shopify"));
   function openChoice(g) {
     const p = st.profile || {};
     const box = $("#readBody"); box.textContent = "";
@@ -3707,6 +6178,8 @@
     digital: ["profit", "price", "describe"], resell: ["maxbuy", "compare", "profit"], freelance: ["rate", "compare", "helper"],
     creator: ["creator", "hooks", "trends"], courses: ["recurring", "price", "describe"], books: ["royalty", "describe", "trends"],
     newsletter: ["recurring", "hooks", "helper"], fba: ["profit", "evaluate", "price"], handmade: ["profit", "price", "describe"],
+    stock: ["trends", "describe"], declutter: ["profit", "describe", "trends"], salesjob: ["helper"], tutor: ["rate", "helper"],
+    clipping: ["rate", "hooks", "helper"], ugc: ["rate", "describe", "helper"],
   };
   const TOOL_NAME = () => Object.fromEntries(TOOL_LIST.map((t) => [t.id, t.name]));
   function renderToday() {
@@ -3803,8 +6276,22 @@
       r.append(no); ic.append(r); left.append(ic);
     }
 
+    const ckKey = "dd-checkin:" + st.biz;
+    if (WEB && PLAT.canSendFeedback() && dayN >= 7 && !lsGet(ckKey, false)) {
+      const ck = el("section", "card prompt");
+      ck.append(el("h3", null, "Quick check-in: how's it going?"), el("p", "small muted", "One tap, anonymous: only your answer, the way you're earning and the plan day are sent. It helps make Startline better for everyone."));
+      const r = el("div", "row-gap");
+      [["earning", "I've made money"], ["not-yet", "Not yet"], ["stopped", "I've stopped"]].forEach(([k, l]) => {
+        const b = el("button", "btn", l); b.type = "button";
+        b.onclick = async () => { lsSet(ckKey, true); render(); try { await PLAT.sendFeedback({ kind: "checkin", model: p.model, day: Math.min(dayN, 400), answer: k }); toast("Thanks for letting us know."); } catch { toast("That couldn't be sent. No problem."); } };
+        r.append(b);
+      });
+      const no = el("button", "btn", "Not now"); no.type = "button"; no.onclick = () => { lsSet(ckKey, true); render(); }; r.append(no);
+      ck.append(r); left.append(ck);
+    }
+
     // Today's list: the rest of today's plan steps, then anything else due, then quick add.
-    const todays = dayN >= 1 && dayN <= 7 ? oneOff.filter((t) => t.day === dayN && (!n || t.id !== n.id)) : [];
+    const todays = dayN >= 1 && dayN <= (p.week2 ? 14 : 7) ? oneOff.filter((t) => t.day === dayN && (!n || t.id !== n.id)) : [];
     const shownIds = new Set(todays.map((t) => t.id).concat(n ? [n.id] : []));
     const dueList = st.tasks.filter((t) => t.status !== "done" && t.due && t.due <= td && !shownIds.has(t.id)).sort(sortTasks);
     const daySec = el("section", "card");
@@ -4335,6 +6822,7 @@
     { id: "compare", group: "Calculators", name: "Compare platforms" },
     { id: "ads", group: "Calculators", name: "Ads break-even and budget" },
     { id: "discount", group: "Calculators", name: "Discount impact" },
+    { id: "sales", group: "Records", name: "Sales log" },
     { id: "evaluate", group: "Research", name: "Product evaluator" },
     { id: "trends", group: "Research", name: "Trend and demand check" },
     { id: "delivery", group: "Shipping", name: "Delivery dates and holiday deadlines" },
@@ -4447,7 +6935,7 @@
     if (!toolBody) return;
     toolBody.textContent = "";
     if (CALC_TOOLS.has(currentTool)) toolBody.append(currencyPicker());
-    const fn = { profit: toolProfit, price: toolPrice, maxbuy: toolMaxBuy, affiliate: toolAffiliate, rate: toolRate, royalty: toolRoyalty, recurring: toolRecurring, creator: toolCreator, compare: toolCompare, ads: toolAds, discount: toolDiscount, evaluate: toolEvaluate,
+    const fn = { profit: toolProfit, price: toolPrice, maxbuy: toolMaxBuy, affiliate: toolAffiliate, rate: toolRate, royalty: toolRoyalty, recurring: toolRecurring, creator: toolCreator, compare: toolCompare, ads: toolAds, discount: toolDiscount, sales: toolSales, evaluate: toolEvaluate,
       trends: toolTrends, delivery: toolDelivery, messages: toolMessages, helper: toolHelper, describe: toolDescribe, hooks: toolHooks, directory: toolDirectory }[currentTool] || toolProfit;
     toolBody.append(fn());
     if (CALC_TOOLS.has(currentTool)) toolBody.append(el("p", "small muted calc-note", "Estimates from the numbers you enter and the published fees shown. Fees change, so check them on each platform. Not financial or tax advice."));
@@ -4461,7 +6949,7 @@
     sel.onchange = () => { lsSet("dd-cur", sel.value); renderTool(); const s2 = $("#calcCur"); if (s2) s2.focus(); };
     f.append(l, sel); return f;
   }
-  const CALC_TOOLS = new Set(["profit", "price", "maxbuy", "affiliate", "rate", "royalty", "recurring", "creator", "compare", "ads", "discount"]);
+  const CALC_TOOLS = new Set(["sales", "profit", "price", "maxbuy", "affiliate", "rate", "royalty", "recurring", "creator", "compare", "ads", "discount"]);
   function renderToolsDirectory() { if (st.tab === "tools" && ["directory", "evaluate", "helper"].includes(currentTool)) renderTool(); }
 
   // --- Profit per order
@@ -4596,6 +7084,50 @@
   }
 
   // --- Discount impact
+  // Sales log: real numbers for the weekly check. Totals are kept per currency.
+  function toolSales() {
+    const sec = toolCard("Sales log", "Write down each sale as it happens, so your weekly check uses real numbers. Amounts are in the currency picked above.");
+    const { form, out } = calcLayout(sec);
+    const txt = (id, label, type) => { const f = el("div", "field"); const l = el("label", "label", label); l.htmlFor = id; const i = el("input"); i.id = id; i.type = type; f.append(l, i); form.append(f); return i; };
+    const date = txt("n-sDate", "Date", "date"); date.value = today();
+    const item = txt("n-sItem", "What sold", "text"); item.maxLength = 120;
+    const amt = numField(form, "sAmount", "Amount the buyer paid");
+    const fees = numField(form, "sFees", "Platform and payment fees");
+    const costs = numField(form, "sCosts", "Your costs for this sale", { hint: "Product, shipping and packaging." });
+    const n = (v) => (v === "" || !isFinite(Number(v)) ? null : Number(v));
+    if (!readOnly) {
+      const add = el("button", "btn primary", "Add sale"); add.type = "button"; form.append(add);
+      add.onclick = async () => {
+        const a = n(amt.value); if (a == null || !/^\d{4}-\d{2}-\d{2}$/.test(date.value)) { toast("Enter the date and the amount."); amt.focus(); return; }
+        const ok = await putDoc("sales", newId(), { date: date.value, amount: a, fees: n(fees.value) || 0, costs: n(costs.value) || 0, qty: 1, item: item.value.trim().slice(0, 120),
+          platform: (st.profile && CHANNEL_NAME[st.profile.channel]) || "", note: "", currency: userCur(), at: Date.now() });
+        if (ok) { ["sAmount", "sFees", "sCosts"].forEach((k) => cvSet(k, "")); toast("Sale added."); }
+      };
+    }
+    const rows = st.sales.slice().sort((x, y) => (y.date || "").localeCompare(x.date || "") || (y.at || 0) - (x.at || 0));
+    if (!rows.length) { out.append(el("p", "muted", "No sales yet. Each one you add shows here, with totals for this month.")); return sec; }
+    const month = today().slice(0, 7);
+    const sum = (list) => { const t = {}; list.forEach((x) => { const c = x.currency || "USD"; const o = t[c] || (t[c] = { n: 0, got: 0, out: 0 }); o.n++; o.got += x.amount || 0; o.out += (x.fees || 0) + (x.costs || 0); }); return t; };
+    [["This month", rows.filter((x) => (x.date || "").startsWith(month))], ["All time", rows]].forEach(([label, list]) => {
+      Object.entries(sum(list)).forEach(([c, t]) => {
+        oBig(out, label + " · " + t.n + (t.n === 1 ? " sale" : " sales"), money(t.got - t.out, c), t.got - t.out >= 0 ? "pos" : "neg");
+        oLine(out, "Received", money(t.got, c)); oLine(out, "Fees and costs", "−" + money(t.out, c));
+      });
+    });
+    out.append(el("span", "label", "Latest sales"));
+    const list = el("ul", "sales-list");
+    rows.slice(0, 30).forEach((x) => {
+      const li = el("li"); li.append(el("span", null, fmtDay(x.date) + (x.item ? " · " + x.item : "")), el("b", null, money(x.amount || 0, x.currency || "USD")));
+      if (!readOnly) {
+        const del = el("button", "btn sm", "Delete"); del.type = "button"; del.setAttribute("aria-label", "Delete sale from " + fmtDay(x.date) + (x.item ? ", " + x.item : ""));
+        del.onclick = async () => { const { id, ...data } = x; if (await delDoc("sales", id)) toast("Sale deleted.", { undo: () => putDoc("sales", id, data) }); };
+        li.append(del);
+      }
+      list.append(li);
+    });
+    out.append(list);
+    return sec;
+  }
   function toolDiscount() {
     const sec = toolCard("Discount impact", "What a sale price does to your profit, and how many more orders you'd need to earn the same total.");
     const { form, out } = calcLayout(sec);
@@ -5572,7 +8104,7 @@
   function maybeCelebrate(t) {
     if (t.source !== "plan" || !STEP[t.step] || STEP[t.step].ongoing) return;
     const one = oneOffPlan().map((x) => (x.id === t.id ? { ...x, status: "done" } : x));
-    if (one.length && one.every((x) => x.status === "done")) { celebrate("You finished your 7-day plan", "Every step done. Keep the weekly tasks going and check your numbers."); return; }
+    if (one.length && one.every((x) => x.status === "done")) { { const p = st.profile || {}; celebrate(p.week2 ? "You finished your 2-week plan" : "You finished your 7-day plan", "Every step done. Keep the weekly tasks going and check your numbers." + (!p.week2 && hasWeek2(p) ? " Week 2 is ready on the Plan tab." : "")); } return; }
     const day = one.filter((x) => x.day === t.day);
     if (day.length && day.every((x) => x.status === "done")) {
       const daysDone = [1, 2, 3, 4, 5, 6, 7].filter((d) => { const s = one.filter((x) => x.day === d); return s.length && s.every((x) => x.status === "done"); }).length;
@@ -5844,7 +8376,8 @@
     const top = el("div", "track-top");
     const left = el("div"); left.style.display = "grid"; left.style.gap = "4px";
     const left7 = oneOff.length - done;
-    left.append(el("span", "label", dayN >= 1 && dayN <= 7 ? "Day " + dayN + " of 7" : dayN > 7 ? (left7 ? "Day " + dayN + " · " + left7 + (left7 === 1 ? " step" : " steps") + " to go" : "Plan finished") : "Starts " + fmtDay(p.start)));
+    const last = p.week2 ? 14 : 7, w0 = p.week2 && dayN > 7 ? 7 : 0;
+    left.append(el("span", "label", dayN >= 1 && dayN <= last ? "Day " + dayN + " of " + last : dayN > last ? (left7 ? "Day " + dayN + " · " + left7 + (left7 === 1 ? " step" : " steps") + " to go" : "Plan finished") : "Starts " + fmtDay(p.start)));
     const big = el("b", "big"); const bigN = el("span"); big.append(bigN, el("span", "small muted", " / " + oneOff.length + " steps"));
     countUp(bigN, done, (v) => String(Math.round(v)), animate ? 0 : done);
     left.append(big);
@@ -5855,7 +8388,7 @@
     const fill = el("span", "track-fill"); fill.setAttribute("aria-hidden", "true"); track.append(fill);
     const runner = el("span", "runner"); runner.setAttribute("aria-hidden", "true"); track.append(runner);
     const pct = oneOff.length ? done / oneOff.length : 0;
-    for (let d = 1; d <= 7; d++) {
+    for (let d = 1 + w0; d <= 7 + w0; d++) {
       const items = oneOff.filter((t) => t.day === d); const dd = items.filter((t) => t.status === "done").length;
       const full = items.length > 0 && dd === items.length;
       const lap = el("button", "lap" + (full ? " done" : "") + (d === dayN ? " now" : "")); lap.type = "button";
@@ -5868,8 +8401,8 @@
       track.append(lap);
     }
     const span = (100 - 100 / 7); // distance between the first and last day centres
-    later(() => { fill.style.width = "calc(" + (span * pct).toFixed(2) + "%)"; runner.style.left = (100 / 14 + span * (Math.min(Math.max(dayN, 1), 7) - 1) / 6).toFixed(2) + "%"; }, animate);
-    if (!animate || calm()) { fill.style.width = "calc(" + (span * pct).toFixed(2) + "%)"; runner.style.left = (100 / 14 + span * (Math.min(Math.max(dayN, 1), 7) - 1) / 6).toFixed(2) + "%"; }
+    later(() => { fill.style.width = "calc(" + (span * pct).toFixed(2) + "%)"; runner.style.left = (100 / 14 + span * (Math.min(Math.max(dayN - w0, 1), 7) - 1) / 6).toFixed(2) + "%"; }, animate);
+    if (!animate || calm()) { fill.style.width = "calc(" + (span * pct).toFixed(2) + "%)"; runner.style.left = (100 / 14 + span * (Math.min(Math.max(dayN - w0, 1), 7) - 1) / 6).toFixed(2) + "%"; }
     card.append(track);
     return card;
   }
@@ -6012,6 +8545,26 @@
     return { app: "startline", format: 1, exportedAt: new Date().toISOString(), business: curBiz().name, profile: st.profile || null,
       tasks: st.tasks, learn: Object.entries(st.learn).map(([id, v]) => ({ id, ...v })), products: st.products, links: st.links, sales: st.sales, calculators: CV };
   }
+  // Plan steps as all-day calendar events with a 9am reminder (web only: claude.ai can't save .ics files).
+  function planIcs() {
+    const esc = (t) => String(t).replace(/[\\;,]/g, (c) => "\\" + c).replace(/\r?\n/g, "\\n");
+    const enc = new TextEncoder();
+    const fold = (line) => { let out = "", cur = ""; for (const ch of line) { if (enc.encode(cur + ch).length > 74) { out += cur + "\r\n "; cur = ""; } cur += ch; } return out + cur; };
+    const d8 = (iso) => iso.replace(/-/g, "");
+    const stamp = new Date().toISOString().replace(/[-:]/g, "").replace(/\.\d+/, "");
+    const lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Startline//Plan//EN", "CALSCALE:GREGORIAN", "X-WR-CALNAME:" + esc("Startline: " + curBiz().name)];
+    planOrder().filter((t) => t.due && t.status !== "done" && !STEP[t.step].ongoing).forEach((t) => {
+      lines.push("BEGIN:VEVENT", "UID:" + t.id + "@startline", "DTSTAMP:" + stamp, "DTSTART;VALUE=DATE:" + d8(t.due), "DTEND;VALUE=DATE:" + d8(addDays(t.due, 1)),
+        "SUMMARY:" + esc(t.title), "DESCRIPTION:" + esc("Startline plan, day " + t.day + ". Open Startline for the steps and links."),
+        "BEGIN:VALARM", "ACTION:DISPLAY", "DESCRIPTION:" + esc(t.title), "TRIGGER:PT9H", "END:VALARM", "END:VEVENT");
+    });
+    lines.push("END:VCALENDAR");
+    return lines.map(fold).join("\r\n") + "\r\n";
+  }
+  async function saveIcs() {
+    try { await downloads.save({ filename: "startline-plan.ics", data: planIcs() }); toast("Saved. Open the file to add your plan to your calendar."); }
+    catch { toast("The calendar file couldn't be saved."); }
+  }
   async function saveExport(status) {
     const json = JSON.stringify(exportData(), null, 1);
     const name = "startline-" + curBiz().name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 40) + "-" + today() + ".json";
@@ -6061,7 +8614,7 @@
     if (p && MODEL_NAME[p.model] && (CHANNELS[p.model] || []).some((c) => c[0] === p.channel) && ["new", "store", "selling"].includes(p.level) && COUNTRY_IDS.includes(p.country)) {
       const choices = {};
       Object.entries(p.choices && typeof p.choices === "object" ? p.choices : {}).forEach(([g, id]) => { if (CHOICES[g] && CHOICES[g].items.includes(id)) choices[g] = id; });
-      if (!(await saveProfile({ level: p.level, model: p.model, channel: p.channel, country: p.country, ads: p.ads === "some" ? "some" : "none", start: /^\d{4}-\d{2}-\d{2}$/.test(p.start || "") ? p.start : today(), choices }))) n.failed++;
+      if (!(await saveProfile({ level: p.level, model: p.model, channel: p.channel, country: p.country, ads: p.ads === "some" ? "some" : "none", start: /^\d{4}-\d{2}-\d{2}$/.test(p.start || "") ? p.start : today(), week2: p.week2 === true, choices }))) n.failed++;
       else n.profile = true;
     }
     return n;
@@ -6123,6 +8676,27 @@
       ins.append(el("p", "small muted", "Startline works in any browser and can also be installed, so it opens in its own window and keeps working offline. On Android, or in Chrome or Edge on a computer, choose Install. On iPhone or iPad, open it in Safari, tap the Share button, then Add to Home Screen. In Safari on a Mac, choose File, then Add to Dock."));
       if (PLAT.canInstall()) { const ib = el("button", "btn sm primary", "Install Startline"); ib.type = "button"; ib.onclick = () => installApp(); ins.append(ib); }
       box.append(ins);
+    }
+    // Feedback
+    if (WEB && (PLAT.canSendFeedback() || PLAT.contactEmail())) {
+      const fb = el("section", "set-sec"); fb.id = "set-feedback"; fb.append(el("h3", null, "Send feedback"));
+      if (PLAT.canSendFeedback()) {
+        fb.append(el("p", "small muted", "What's missing, wrong or confusing? It's sent anonymously; add an email address in the message if you'd like a reply."));
+        const ta = el("textarea"); ta.id = "fbText"; ta.rows = 3; ta.maxLength = 2000; ta.setAttribute("aria-label", "Your feedback");
+        const st2 = el("p", "small muted"); st2.setAttribute("aria-live", "polite");
+        const send = el("button", "btn sm primary", "Send"); send.type = "button";
+        send.onclick = async () => {
+          const msg = ta.value.trim(); if (!msg) { ta.focus(); return; }
+          send.disabled = true;
+          try { await PLAT.sendFeedback({ kind: "feedback", model: (st.profile && st.profile.model) || null, message: msg }); ta.value = ""; st2.textContent = "Sent. Thank you."; }
+          catch { st2.textContent = "That couldn't be sent. Check your connection and try again."; }
+          send.disabled = false;
+        };
+        fb.append(ta, send, st2);
+      } else {
+        const a = el("a", "btn sm", "Email feedback"); a.href = "mailto:" + PLAT.contactEmail() + "?subject=" + encodeURIComponent("Startline feedback"); fb.append(a);
+      }
+      box.append(fb);
     }
     // Shortcuts
     const ks = el("section", "set-sec"); ks.id = "set-keys"; ks.append(el("h3", null, "Keyboard shortcuts"));

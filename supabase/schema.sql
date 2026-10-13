@@ -90,3 +90,21 @@ $$;
 
 revoke all on function public.delete_my_account() from public, anon;
 grant execute on function public.delete_my_account() to authenticated;
+
+-- Anonymous feedback and check-ins from the app. Anyone can add one; nobody
+-- can read them through the API (read them in Dashboard > Table Editor).
+-- No user id or email is stored.
+create table if not exists public.feedback (
+  id         bigint generated always as identity primary key,
+  created_at timestamptz not null default now(),
+  kind       text not null check (kind in ('feedback', 'checkin')),
+  model      text check (char_length(model) <= 20),
+  day        int check (day between 0 and 400),
+  answer     text check (char_length(answer) <= 20),
+  message    text check (char_length(message) <= 2000)
+);
+alter table public.feedback enable row level security;
+drop policy if exists "Anyone can send feedback" on public.feedback;
+create policy "Anyone can send feedback" on public.feedback for insert to anon, authenticated with check (true);
+revoke all on table public.feedback from anon, authenticated;
+grant insert on table public.feedback to anon, authenticated;
