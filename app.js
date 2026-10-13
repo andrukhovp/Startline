@@ -22,7 +22,203 @@
     shopIP: ["Shopify Help: intellectual property", "https://help.shopify.com/en/manual/compliance/intellectual-property"],
     shopGoogle: ["Shopify Help: free listings on Google", "https://help.shopify.com/en/manual/online-sales-channels/marketplaces/google/shopping-on-google/google-listings"],
     shopCollective: ["Shopify Help: Collective requirements", "https://help.shopify.com/en/manual/online-sales-channels/shopify-collective/retailers/requirements-and-considerations"],
-    shopCourse: ["Shopify Learn: Dropshipping 101", "https://www.shopify.com/learn/course/dropshipping-101-build-your-first-online-store/sign-up-for-shopify"],
+    shopCourse: ["Learn With Shopify: Dropshipping University (YouTube)", "https://www.youtube.com/playlist?list=PL1BMWTNEcBEoVNKsBNjKY7r4PfhwisM-L"],
+    shopCourseBlog: ["Shopify Blog: best dropshipping courses", "https://www.shopify.com/blog/best-dropshipping-courses"],
+    ytYppChanges: ["YouTube Help: changes to the YouTube Partner Program", "https://support.google.com/youtube/answer/12843009?hl=en"],
+    ytBlog2027: ["YouTube Blog: new opportunities to earn and changes to the YouTube Partner Program", "https://blog.youtube/news-and-events/youtube-partner-program-updates-2027-new-opportunities-earn/"],
+    gumroadFees: ["Gumroad Help: Gumroad's fees", "https://gumroad.com/help/article/66-gumroads-fees"],
+    etsyOffsite: ["Etsy Help: how Etsy's Offsite Ads work", "https://help.etsy.com/hc/en-us/articles/360000338367-How-Etsy-s-Offsite-Ads-Work"],
+    cbpEcomFaq: ["CBP: e-commerce frequently asked questions", "https://www.cbp.gov/trade/basic-import-export/e-commerce/faqs"],
+    cbpDeMinimisRule: ["Federal Register: indefinite suspension of the de minimis exemption (June 24, 2026)", "https://www.federalregister.gov/documents/full_text/html/2026/06/24/2026-12670.html"],
+    shopPayoutsUS: ["Shopify Help: Shopify Payments payouts in the United States", "https://help.shopify.com/en/manual/payments/shopify-payments/supported-countries/united-states/payouts"],
+    stripePricing: ["Stripe: pricing and fees", "https://stripe.com/pricing"],
+    bankrate: ["Bankrate: side hustle survey (2025)", "https://www.bankrate.com/loans/small-business/side-hustles-survey/"],
+    bankratePR: ["Bankrate: fewer Americans have a side hustle in 2025 (press release)", "https://www.bankrate.com/press-releases/fewer-americans-have-a-side-hustle-in-2025/"],
+    linktreeReport: ["Linktree: 2022 Creator Report", "https://linktr.ee/creator-report/"],
+    etsy10k: ["Etsy, Inc.: Form 10-K for 2025 (SEC)", "https://www.sec.gov/Archives/edgar/data/1370637/000137063726000019/etsy-20251231.htm"],
+    ftcAutomators: ["FTC: Automators AI owners banned (Feb 2024)", "https://www.ftc.gov/news-events/news/press-releases/2024/02/ftc-action-leads-ban-owners-automators-ai-e-commerce-money-making-scheme"],
+    ftcClickProfit: ["FTC: action to stop Click Profit (Mar 2025)", "https://www.ftc.gov/news-events/news/press-releases/2025/03/ftc-acts-stop-click-profit-online-business-opportunity-has-cost-consumers-least-14-million"],
+    ftcClickProfitBan: ["FTC: e-commerce scheme operators banned from industry (Aug 2025)", "https://www.ftc.gov/news-events/news/press-releases/2025/08/ftc-case-against-e-commerce-business-opportunity-scheme-its-operators-results-permanent-ban-industry"],
+    ftcEEB: ["FTC: action ends Ecommerce Empire Builders scheme (May 2025)", "https://www.ftc.gov/news-events/news/press-releases/2025/05/ftc-action-ends-ecommerce-empire-builders-online-business-opportunity-scam"],
+    ftcAIComply: ["FTC: crackdown on deceptive AI claims and schemes (Sep 2024)", "https://www.ftc.gov/news-events/news/press-releases/2024/09/ftc-announces-crackdown-deceptive-ai-claims-schemes"],
+    ftcFbaMachine: ["FTC: FBA Machine/Passive Scaling case", "https://www.ftc.gov/legal-library/browse/cases-proceedings/x240032-fba-machinepassive-scaling-ftc-v"],
+    ftcFbaMachineBan: ["FTC: e-commerce business opportunity operator banned (Jul 2025)", "https://www.ftc.gov/news-events/news/press-releases/2025/07/ftc-obtains-permanent-ban-e-commerce-business-opportunity-scheme-operator"],
+    ftcAscend: ["FTC: order banning Ascend Ecom (Jun 2025)", "https://www.ftc.gov/news-events/news/press-releases/2025/06/ftc-case-leads-order-banning-ascend-ecom-its-owners-business-opportunity-marketing"],
+    ftcBizOppRule: ["FTC: selling a business opportunity? The Business Opportunity Rule", "https://www.ftc.gov/business-guidance/resources/selling-work-home-or-other-business-opportunity-revised-rule-may-apply-you-1"],
+    ftcVetting: ["FTC: vetting a business or coaching opportunity before you buy in", "https://consumer.ftc.gov/consumer-alerts/2023/08/vetting-business-or-coaching-opportunity-you-buy"],
+    ftcScammed: ["FTC: what to do if you were scammed", "https://consumer.ftc.gov/articles/what-do-if-you-were-scammed"],
+    shopSEO: ["Shopify Help: adding keywords for SEO", "https://help.shopify.com/en/manual/promoting-marketing/seo/adding-keywords"],
+    shopReports: ["Shopify Help: behavior reports (conversion rate over time)", "https://help.shopify.com/en/manual/reports-and-analytics/shopify-reports/report-types/default-reports/behaviour-reports"],
+    shopEmail: ["Shopify: Shopify Messaging (email marketing)", "https://www.shopify.com/email-marketing"],
+    shopEmailFaq: ["Shopify Help: Shopify Email FAQ", "https://help.shopify.com/en/manual/promoting-marketing/create-marketing/shopify-email/faq"],
+    shopUsers: ["Shopify Help: users and permissions", "https://help.shopify.com/en/manual/your-account/users"],
+    shopCollab: ["Shopify Help: collaborator accounts", "https://help.shopify.com/en/manual/your-account/staff-accounts/collaborator-accounts"],
+    etsyTitles: ["Etsy Seller Handbook: new guidance for listing titles", "https://www.etsy.com/seller-handbook/article/1399426136697"],
+    etsyAds: ["Etsy Help: set up and manage an Etsy Ads campaign", "https://help.etsy.com/hc/en-us/articles/360033701174-How-to-Set-Up-and-Manage-an-Etsy-Ads-Campaign"],
+    etsyAdsPerf: ["Etsy Help: review the performance of your Etsy Ads", "https://help.etsy.com/hc/en-us/articles/360034223613-How-to-Review-the-Performance-of-Your-Etsy-Ads"],
+    etsyDeposit: ["Etsy Help: why hasn't my money been deposited yet?", "https://help.etsy.com/hc/en-us/articles/360002080688-Why-Hasn-t-My-Money-Been-Deposited-Yet"],
+    ebayPicPolicy: ["eBay: picture policy", "https://www.ebay.com/help/policies/listing-policies/picture-policy?id=4370"],
+    ebayPhotos: ["eBay Seller Center: take great photos", "https://www.ebay.com/sellercenter/listings/photo-tips"],
+    ebaySpecifics: ["eBay Seller Center: item specifics", "https://www.ebay.com/sellercenter/listings/item-specifics"],
+    ebayOffers: ["eBay Help: Best Offer and sending offers to buyers", "https://www.ebay.com/help/selling/listings/selling-buy-now/adding-best-offer-listing?id=4144"],
+    ebayPromoted: ["eBay Help: general campaign strategy (Promoted Listings)", "https://www.ebay.com/help/selling/ebay-advertising/promoted-listings/general-campaign-strategy?id=4164"],
+    ebayLimits: ["eBay (international sellers site): selling limits", "https://export.ebay.com/sea-en/first-steps/rules-and-restrictions-in-selling/selling-limits/"],
+    amzPhotos: ["Amazon: how to take product photos", "https://sell.amazon.com/blog/product-photos"],
+    amzSEO: ["Amazon: 7 ways to improve your product's search rankings", "https://sell.amazon.com/blog/amazon-seo"],
+    amzPayments: ["Amazon: how Amazon seller payments work", "https://sell.amazon.com/blog/amazon-seller-payments"],
+    amzAdsFaq: ["Amazon Ads: FAQs", "https://advertising.amazon.com/resources/faq/"],
+    amzSP: ["Amazon: Sponsored Products", "https://sell.amazon.com/advertising/sponsored-products"],
+    amzAssoc180: ["Amazon Associates Help: application review and the 180-day window", "https://affiliate-program.amazon.com/help/node/topic/G7MJTPEP9NC3YKMG"],
+    amzAssocWindow: ["Amazon Associates Help: the 24-hour window for qualifying purchases", "https://affiliate-program.amazon.com/help/node/topic/G9SMD8TQHFJ7728F"],
+    amzAssocPay: ["Amazon Associates Help: payment thresholds", "https://affiliate-program.amazon.com/help/node/topic/GP8Z3AZ27ZFHTEUL"],
+    awinPay: ["Awin: what are the payment thresholds?", "https://success.awin.com/s/article/What-are-the-payment-thresholds?language=en_US"],
+    cjPay: ["CJ Junction: understanding CJ's publisher payment cycle", "https://junction.cj.com/article/cookie-dough-understanding-publisher-payment-cycle"],
+    ttsListing: ["TikTok Shop US: Product Listing Policy", "https://seller-us.tiktok.com/university/essay?knowledge_id=3196690250417921&lang=en"],
+    ttsQuality: ["TikTok Shop US: product detail pages and listing quality guidelines", "https://seller-us.tiktok.com/university/essay?knowledge_id=481891871868714"],
+    ttsSettle: ["TikTok Shop US: Finance & Settlement 101", "https://seller-us.tiktok.com/university/essay?knowledge_id=1167036928444174&lang=en"],
+    ttAnalytics: ["TikTok Creator Academy: analytics", "https://www.tiktok.com/creator-academy/en/article/tool-analytics-intro"],
+    ytRejected: ["YouTube Help: my channel was rejected for monetization", "https://support.google.com/youtube/answer/9235730?hl=en"],
+    ytFeatures: ["YouTube Help: get access to intermediate and advanced features", "https://support.google.com/youtube/answer/9891124?hl=en"],
+    ytThumbs: ["YouTube Help: add custom thumbnails", "https://support.google.com/youtube/answer/72431?hl=en"],
+    ytRetention: ["YouTube Help: measure key moments for audience retention", "https://support.google.com/youtube/answer/9314415?hl=en"],
+    printfulTime: ["Printful Help: how long does fulfillment take?", "https://help.printful.com/hc/en-us/articles/360014007980-How-long-does-fulfillment-take"],
+    gumroadPay: ["Gumroad Help: getting paid", "https://gumroad.com/help/article/13-getting-paid"],
+    gumroadDiscover: ["Gumroad Help: Gumroad Discover", "https://gumroad.com/help/article/79-gumroad-discover"],
+    payhipPaypal: ["Payhip Help: connect your PayPal account", "https://help.payhip.com/article/64-connecting-your-paypal-account"],
+    mercariPaid: ["Mercari: getting paid (direct deposit, Instant Pay)", "https://www.mercari.com/us/help_center/article/6004/"],
+    poshPaid: ["Poshmark: when do I get paid for a shipped order?", "https://support.poshmark.com/s/article/773838096?language=en_US"],
+    fiverrAccount: ["Fiverr Help: creating your Fiverr account", "https://help.fiverr.com/hc/en-us/articles/360050063113-Creating-your-Fiverr-account"],
+    fiverrKickstart: ["Fiverr Help: Seller Plus Kickstart", "https://help.fiverr.com/hc/en-us/articles/27291415082257-Seller-Plus-Kickstart-Start-your-freelance-journey-strong"],
+    fiverrLevels: ["Fiverr Help: understanding Fiverr's freelancer levels", "https://help.fiverr.com/hc/en-us/articles/360010560118-Understanding-Fiverr-s-freelancer-levels"],
+    fiverrGigBest: ["Fiverr Help: Gigs best practices", "https://help.fiverr.com/hc/en-us/articles/360010452317-Gigs-best-practices"],
+    fiverrCreateGig: ["Fiverr Help: creating a Gig", "https://help.fiverr.com/hc/en-us/articles/360010451397-Creating-a-Gig"],
+    fiverrGigImages: ["Fiverr Help: creating Gig images", "https://help.fiverr.com/hc/en-us/articles/15863342952977-Guidelines-for-selecting-Gig-images"],
+    upworkProfile: ["Upwork Help: build a 100% complete profile", "https://support.upwork.com/hc/en-us/articles/34924882793107-Build-a-100-complete-profile"],
+    upworkTitle: ["Upwork: why a great title and overview matter", "https://www.upwork.com/resources/upwork-profiles-why-a-great-title-and-overview-can-make-a-difference"],
+    upworkProposal: ["Upwork: how to create a proposal that wins jobs", "https://www.upwork.com/resources/how-to-create-a-proposal-that-wins-jobs"],
+    teachablePayouts: ["Teachable Help: payouts FAQ", "https://support.teachable.com/en/articles/12082041-payouts-faq"],
+    teachableCoupons: ["Teachable Help: coupons", "https://support.teachable.com/en/articles/11682479-coupons"],
+    thinkificPayouts: ["Thinkific Help: Thinkific Payments payouts", "https://support.thinkific.com/hc/en-us/articles/360058186954-Thinkific-Payments-Payouts"],
+    thinkificBumps: ["Thinkific Help: sell more with order bumps", "https://support.thinkific.com/hc/en-us/articles/4410781476631-Sell-More-with-Order-Bumps"],
+    thinkificCoupons: ["Thinkific Help: share links with coupons automatically applied", "https://support.thinkific.com/hc/en-us/articles/360035675974-Share-Links-with-Coupons-Automatically-Applied"],
+    kdpKeywords: ["KDP Help: make your book more discoverable with keywords", "https://kdp.amazon.com/en_US/help/topic/G201298500"],
+    kdpCategories: ["KDP Help: categories", "https://kdp.amazon.com/en_US/help/topic/G200652170"],
+    kdpSelect: ["KDP Help: KDP Select", "https://kdp.amazon.com/en_US/help/topic/G200798990"],
+    kdpFreePromo: ["KDP Help: Free Book Promotions", "https://kdp.amazon.com/en_US/help/topic/G201298240"],
+    kdpCountdown: ["KDP Help: Kindle Countdown Deals", "https://kdp.amazon.com/en_US/help/topic/G201293780"],
+    kdpThresholds: ["KDP Help: payment thresholds", "https://kdp.amazon.com/en_US/help/topic/G201207800"],
+    kdpLimit: ["KDP Community: update on KDP title creation limits", "https://www.kdpcommunity.com/s/article/KDP-Title-Creation-Limits-Update?language=en_US"],
+    kdpCreate: ["KDP Help: create a book", "https://kdp.amazon.com/en_US/help/topic/G202172740"],
+    substackPaid: ["Substack Help: how do I set up a paid publication?", "https://support.substack.com/hc/en-us/articles/360037459952-How-do-I-set-up-a-paid-publication"],
+    substackRecs: ["Substack Help: how can I recommend other publications?", "https://support.substack.com/hc/en-us/articles/5036794583828-How-can-I-recommend-other-publications-on-Substack"],
+    substackFeatured: ["Substack Help: how do I get featured on Substack?", "https://support.substack.com/hc/en-us/articles/360037455112-How-do-I-get-featured-on-Substack"],
+    substackEndorse: ["Substack Help: add an endorsement to your publication", "https://support.substack.com/hc/en-us/articles/7889090558996-How-do-I-add-an-endorsement-to-my-Substack-publication"],
+    beehiivRecs: ["beehiiv Help: FAQs about the Recommendations Network", "https://www.beehiiv.com/support/article/14194737991319-The-5-keys-to-successful-Boosts-campaigns-plus-FAQs"],
+    beehiivAds: ["beehiiv Help: Ad Network FAQ", "https://www.beehiiv.com/support/article/17507491038231-ad-network-faq"],
+    amzAssocPolicies: ["Amazon Associates: Associates Program Policies", "https://affiliate-program.amazon.com/help/operating/policies"],
+    etsyMinors: ["Etsy: Minors Policy", "https://www.etsy.com/legal/minors/"],
+    shopTerms: ["Shopify: Terms of Service", "https://www.shopify.com/legal/terms"],
+    ebayIdentity: ["eBay: identity policies", "https://www.ebay.com/help/policies/identity-policies/identity-policies?id=4218"],
+    fiverrMinors: ["Fiverr Help: navigating Fiverr as a minor", "https://help.fiverr.com/hc/en-us/articles/32567580782609-Navigating-Fiverr-as-a-minor-How-to-stay-safe-and-compliant"],
+    upworkEligible: ["Upwork Help: who's eligible to join and use Upwork?", "https://support.upwork.com/hc/en-us/articles/211067778-Who-s-eligible-to-join-and-use-Upwork"],
+    adsenseAge: ["AdSense Help: age requirement for an AdSense account", "https://support.google.com/adsense/answer/14230?hl=en"],
+    adsenseUnder18: ["AdSense Help: monetising videos when you're under 18", "https://support.google.com/adsense/answer/2533300?hl=en"],
+    kdpTerms: ["KDP: Terms and Conditions", "https://kdp.amazon.com/terms-and-conditions"],
+    shopTaxUS: ["Shopify Help: navigating US tax regulations", "https://help.shopify.com/en/manual/taxes/us/navigating-us-tax-regulations"],
+    shopTaxLiability: ["Shopify Help: US tax liability", "https://help.shopify.com/en/manual/taxes/us/us-tax-liability"],
+    sstMarketplace: ["Streamlined Sales Tax: marketplace facilitator state guidance", "https://www.streamlinedsalestax.org/for-businesses/marketplace-facilitator"],
+    etsySalesTax: ["Etsy Help: how US state sales tax applies to Etsy orders", "https://help.etsy.com/hc/en-us/articles/360000343968-How-US-State-Sales-Tax-and-Fees-Applies-to-Etsy-Orders"],
+    hmrcVatReg: ["GOV.UK: register for VAT", "https://www.gov.uk/register-for-vat"],
+    // Countries (checked October 2026)
+    euStart: ["Your Europe: starting a business", "https://europa.eu/youreurope/business/running-business/start-ups/starting-business/index_en.htm"],
+    euSmeVat: ["European Commission: the domestic SME VAT scheme", "https://sme-vat-rules.ec.europa.eu/sme-scheme/domestic-sme-scheme_en"],
+    euGpsr: ["EUR-Lex: General Product Safety Regulation (EU) 2023/988", "https://eur-lex.europa.eu/eli/reg/2023/988/oj/eng"],
+    euDac7: ["European Commission: DAC7 reporting by digital platforms", "https://taxation-customs.ec.europa.eu/taxation/tax-transparency-cooperation/administrative-co-operation-and-mutual-assistance/dac7_en"],
+    euReturns: ["Your Europe: returning goods bought online", "https://europa.eu/youreurope/citizens/consumers/shopping/returns/index_en.htm"],
+    euGuarantee: ["Your Europe: consumer guarantees", "https://europa.eu/youreurope/business/selling-in-eu/consumer-contracts-guarantees/consumer-guarantees/index_en.htm"],
+    shopPayCountries: ["Shopify Help: Shopify Payments supported countries", "https://help.shopify.com/en/manual/payments/shopify-payments/supported-countries"],
+    shopPayoutCur: ["Shopify Help: supported payout currencies", "https://help.shopify.com/en/manual/payments/shopify-payments/store-currency/supported-payout-currencies"],
+    stripeGlobal: ["Stripe: global availability", "https://stripe.com/global"],
+    ttsEurope: ["TikTok Newsroom: TikTok Shop expands across Europe", "https://newsroom.tiktok.com/tiktok-shop-expands-across-europe?lang=en-150"],
+    amzGlobal: ["Amazon Global Selling", "https://globalselling.amazon.com/"],
+    caSoleProp: ["Canada.ca: register a sole proprietorship or partnership", "https://www.canada.ca/en/services/business/start/register-with-gov/register-sole-prop-partner.html"],
+    caBN: ["CRA: do you need a business number?", "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/business-registration/business-number-program-account/need-bn.html"],
+    caGst: ["CRA: when to register for and charge GST/HST", "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/when-register-charge.html"],
+    caT2125: ["CRA: Form T2125, statement of business or professional activities", "https://www.canada.ca/en/revenue-agency/services/forms-publications/forms/t2125.html"],
+    caConsumer: ["Office of Consumer Affairs: complaint roadmap", "https://ised-isde.canada.ca/site/office-consumer-affairs/en/complaint-roadmap"],
+    auAbnSole: ["ABR: ABN entitlement for sole traders", "https://www.abr.gov.au/business-super-funds-charities/applying-abn/abn-entitlement/sole-trader"],
+    auAbnApply: ["business.gov.au: register for an ABN", "https://business.gov.au/registrations/register-for-an-australian-business-number-abn"],
+    auBizName: ["ASIC: register a business name", "https://www.asic.gov.au/for-business-and-companies/business-names/register-a-business-name"],
+    auGst: ["ATO: registering for GST", "https://www.ato.gov.au/businesses-and-organisations/gst-excise-and-indirect-taxes/gst/registering-for-gst"],
+    auIncome: ["ATO: business, partnership and trust income", "https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/income-you-must-declare/business-partnership-and-trust-income"],
+    auAccc: ["ACCC: repair, replace, refund, cancel", "https://www.accc.gov.au/consumers/problem-with-a-product-or-service-you-bought/repair-replace-refund-cancel"],
+    inUdyam: ["Ministry of MSME: Udyam registration", "https://udyamregistration.gov.in/Government-India/Ministry-MSME-registration.htm"],
+    inGstReg: ["GST Council: registration under GST law", "https://gstcouncil.gov.in/sites/default/files/e-version-gst-flyers/Registration_under_GST_Law_new.pdf"],
+    inGstEcom: ["GST Council: notification 34/2023 (small sellers on e-commerce platforms)", "https://gstcouncil.gov.in/sites/default/files/2024-05/gst-ct-34-2023.pdf"],
+    inCgst24: ["CBIC: CGST Act, section 24", "https://taxinformation.cbic.gov.in/content/html/tax_repository/gst/acts/2017_CGST_act/active/chapter6/section24_v1.00.html"],
+    inGstServices: ["CBIC: GST, an update (services through e-commerce)", "https://cbic-gst.gov.in/pdf/01062019-GST-An-Update.pdf"],
+    inItr: ["Income Tax Department: individuals with business or profession income", "https://www.incometax.gov.in/iec/foportal/help/individual-business-profession"],
+    inEcomRules: ["Department of Consumer Affairs: Consumer Protection (E-Commerce) Rules 2020", "https://consumeraffairs.nic.in/theconsumerprotection/consumer-protection-e-commerce-rules-2020"],
+    inStripe: ["Stripe Support: Stripe accounts are invite-only in India", "https://support.stripe.com/questions/stripe-accounts-are-invite-only-in-india"],
+    inPaypal: ["PayPal India: receiving payments from Indian customers", "https://www.paypal.com/in/cshelp/article/can-i-use-paypal-to-receive-payments-from-indian-customers-help1049"],
+    inEtsy: ["Etsy Help: accepting payments as a seller in India", "https://help.etsy.com/hc/en-in/articles/6742925359255-How-to-Accept-Payments-as-a-Seller-in-India"],
+    inAppsBlocked: ["PIB: government blocks 59 mobile apps (June 2020)", "https://www.pib.gov.in/PressReleseDetailm.aspx?PRID=1635206"],
+    phBirOnline: ["BIR: taxpayer's guide for online sellers", "https://bir-cdn.bir.gov.ph/BIR/pdf/TAXPAYERS%20GUIDE%20FOR%20ONLINE%20SELLERS.pdf"],
+    phBir91: ["BIR: RMC No. 91-2024 digest", "https://bir-cdn.bir.gov.ph/BIR/pdf/RMC%20No.%2091-2024%20Digest.pdf"],
+    phBir38: ["BIR: RMC No. 38-2026 digest (registration badge)", "https://bir-cdn.bir.gov.ph/BIR/pdf/RMC%20No.%2038-2026%20Digest.pdf"],
+    phBir8: ["BIR: RMC No. 8-2024 (e-marketplace sellers)", "https://bir-cdn.bir.gov.ph/BIR/pdf/RMC%20No.%208-2024.pdf"],
+    phDti: ["DTI: Business Name Registration System", "https://bnrs.dti.gov.ph/about"],
+    phVat: ["BIR: RR No. 3-2024", "https://bir-cdn.bir.gov.ph/BIR/pdf/RR%203-2024%20(final).pdf"],
+    phVat2021: ["BIR: RR No. 4-2021", "https://bir-cdn.bir.gov.ph/local/pdf/RR%20No.%204-2021_copy.pdf"],
+    ph8pct: ["BIR: RMO No. 23-2018 digest (8% income tax option)", "https://bir-cdn.bir.gov.ph/local/pdf/RMO_No.%2023-2018_digest.pdf"],
+    phNoReturn: ["DTI: is a “no return, no exchange” policy allowed?", "https://fairtrade.dti.gov.ph/faq/is-no-return-no-exchange-policy-allowed/"],
+    phIta: ["DTI: Internet Transactions Act of 2023", "https://ecommerce.dti.gov.ph/internet-transactions-act-of-2023/"],
+    phPaypal: ["PayPal Philippines: withdrawing money from PayPal", "https://www.paypal.com/ph/cshelp/article/how-do-i-withdraw-money-from-my-paypal-account-help394"],
+    phTts: ["TikTok Shop PH: individual seller requirements", "https://seller-ph.tiktok.com/university/essay?knowledge_id=1409396384466690"],
+    ngTaxId: ["Nigeria Revenue Service: what is a Tax ID?", "https://taxid.nrs.gov.ng/what-is-a-tax-id"],
+    ngCac: ["CAC: business name registration", "https://www.cac.gov.ng/services/business-name"],
+    ngPit: ["Joint Revenue Board: 2026 personal income tax guidelines", "https://www.jrb.gov.ng/assets/2026-pit-guidelines-TJG3n9-T.pdf"],
+    ngTaxAdmin: ["Nigeria Revenue Service: Nigeria Tax Administration Act", "https://www.nrs.gov.ng/tax-laws/nigeria-tax-administration-act"],
+    ngFccpc: ["FCCPC: consumer rights and responsibilities", "https://fccpc.gov.ng/consumers/consumer-rights-responsibilities/rights-responsibilities/"],
+    ngEtsy: ["Etsy Help: why can't I open a shop in my country?", "https://help.etsy.com/hc/en-us/articles/1500006519562-Why-Can-t-I-Open-a-Shop-in-My-Country"],
+    ngPaypal: ["PayPal Nigeria: receiving money through PayPal", "https://www.paypal.com/ng/cshelp/article/how-do-i-receive-money-through-paypal-help667"],
+    brCarne: ["Receita Federal: Carnê-Leão", "https://www.gov.br/receitafederal/pt-br/assuntos/orientacao-tributaria/declaracoes-e-demonstrativos/dirpf/carne-leao"],
+    brMei: ["gov.br: register as a Microempreendedor Individual (MEI)", "https://www.gov.br/pt-br/servicos/realizar-registro-como-microempreendedor-individual-mei"],
+    brMeiLimit: ["gov.br: the MEI revenue limit", "https://www.gov.br/memp/pt-br/teto-do-mei"],
+    brDasn: ["Receita Federal: MEI annual declaration due by 31 May (2026)", "https://www.gov.br/receitafederal/pt-br/assuntos/noticias/2026/maio/microempreendedor-individual-mei-tem-ate-31-de-maio-para-entregar-declaracao-anual"],
+    brArrep: ["gov.br: the right of withdrawal for online purchases", "https://www.gov.br/mj/pt-br/assuntos/noticias/consumidor-tem-direito-ao-arrependimento-em-compras-on-line"],
+    ttsBrazil: ["TikTok Newsroom: TikTok Shop arrives in Brazil", "https://newsroom.tiktok.com/pt-br/tiktok-shop-chega-ao-brasil"],
+    govReturns: ["GOV.UK: accepting returns and giving refunds", "https://www.gov.uk/accepting-returns-and-giving-refunds"],
+    govDistance: ["GOV.UK: online and distance selling for businesses", "https://www.gov.uk/online-and-distance-selling-for-businesses"],
+    ukCCRegs: ["legislation.gov.uk: Consumer Contracts Regulations 2013", "https://www.legislation.gov.uk/uksi/2013/3134"],
+    hmrcPlatformSeller: ["GOV.UK: selling goods or services on a digital platform", "https://www.gov.uk/guidance/selling-goods-or-services-on-a-digital-platform"],
+    hmrcExcluded: ["HMRC manual: excluded sellers (IEIM901630)", "https://www.gov.uk/hmrc-internal-manuals/international-exchange-of-information/ieim901630"],
+    hmrcSellersNews: ["GOV.UK: information for online sellers", "https://www.gov.uk/government/news/information-for-online-sellers"],
+    hmrc3000: ["GOV.UK: side hustlers to be taken out of tax returns (March 2025)", "https://www.gov.uk/government/news/boost-for-side-hustlers-as-300000-people-to-be-taken-out-of-tax-returns-government-announces"],
+    taxHustles: ["HMRC: Tax Help for Hustles, selling online", "https://taxhelpforhustles.campaign.gov.uk/buying-or-making-things-to-sell-and-online-selling-tax-rules/"],
+    etsyUKSell: ["Etsy UK: how to sell on Etsy (fees)", "https://www.etsy.com/uk/sell"],
+    etsyUKFees: ["Etsy UK: Fees & Payments Policy", "https://www.etsy.com/uk/legal/fees/"],
+    etsyProcessing: ["Etsy Help: payment processing fees", "https://help.etsy.com/hc/en-gb/articles/115015628847-What-are-Payment-Processing-Fees-for-Selling-on-Etsy"],
+    etsyROF: ["Etsy Help: what is a Regulatory Operating Fee?", "https://help.etsy.com/hc/en-us/articles/1500011073202-What-is-a-Regulatory-Operating-Fee"],
+    etsyVatFees: ["Etsy Help: how VAT is collected on seller fees", "https://help.etsy.com/hc/en-us/articles/360040584433-How-VAT-Is-Collected-on-Seller-Fees"],
+    ebayUKPrivate: ["eBay UK: fees for private sellers", "https://www.ebay.co.uk/help/selling/fees-credits-invoices/fees-private-sellers-activated-managed-payments?id=4822"],
+    ebayUKBPF: ["eBay UK: Buyer Protection fee", "https://www.ebay.co.uk/help/buying/paying-items/buyer-protection-fee?id=5594"],
+    ebayUKBusiness: ["eBay UK: fees for business sellers", "https://www.ebay.co.uk/help/selling/fees-credits-invoices/fees-business-sellers-activated-managed-payments?id=4809"],
+    ebayUKRateCard: ["eBay UK Seller Centre: rate card change (February 2026)", "https://www.ebay.co.uk/sellercentre/news/2026-january/rate-card-change"],
+    ebayUKROF: ["eBay UK Seller Centre: regulatory operating fee", "https://www.ebay.co.uk/sellercentre/news/2024-february/regulatory-operating-fee"],
+    euOss: ["European Commission: the VAT One Stop Shop", "https://vat-one-stop-shop.ec.europa.eu/one-stop-shop_en"],
+    shopReserves: ["Shopify Help: Shopify Payments reserves", "https://help.shopify.com/en/manual/payments/shopify-payments/payouts/reserves"],
+    shopHolds: ["Shopify Help: payout holds", "https://help.shopify.com/en/manual/payments/shopify-payments/payouts/account-holds"],
+    etsyReserve: ["Etsy Help: what is a Payment account reserve?", "https://help.etsy.com/hc/en-us/articles/360058722214-What-is-a-Payment-Account-Reserve"],
+    ebayHolds: ["eBay: transaction holds", "https://www.ebay.com/help/selling/getting-paid/getting-paid-items-youve-sold/payments-hold?id=4816"],
+    paypalHolds: ["PayPal Help: new sellers, payments on hold", "https://www.paypal.com/us/cshelp/article/new-paypal-account-%E2%80%93-payments-on-hold-and-accessing-your-money-quicker-help848"],
+    upworkFixed: ["Upwork Help: how payments for fixed-price contracts work", "https://support.upwork.com/hc/en-us/articles/211063718-How-payments-for-milestones-and-fixed-price-contracts-work"],
+    upworkHourly: ["Upwork Help: how payments for hourly contracts work", "https://support.upwork.com/hc/en-us/articles/211063668-How-payments-for-hourly-contracts-work"],
+    ttsTerms: ["TikTok Shop US: Seller Terms of Service", "https://seller-us.tiktok.com/university/essay?knowledge_id=1331308753078058&lang=en"],
+    irsRecords: ["IRS: how long should I keep records?", "https://www.irs.gov/businesses/small-businesses-self-employed/how-long-should-i-keep-records"],
+    hmrcRecords: ["GOV.UK: how long to keep your records if you're self-employed", "https://www.gov.uk/self-employed-records/how-long-to-keep-your-records"],
+    shopChargeback: ["Shopify Help: the chargeback process", "https://help.shopify.com/en/manual/payments/chargebacks/chargeback-process"],
+    stripeDisputes: ["Stripe Docs: respond to disputes", "https://docs.stripe.com/disputes/responding"],
     shopDigital: ["Shopify App Store: Digital Downloads", "https://apps.shopify.com/digital-downloads"],
     dsers: ["DSers: pricing", "https://www.dsers.com/pricing"],
     dsersApp: ["DSers on the Shopify App Store", "https://apps.shopify.com/dsers"],
@@ -185,6 +381,17 @@
     handmade: [["etsy", "Etsy", "Made by you, your own photos"], ["shopify", "My own store (Shopify)", "Your website and checkout"]],
   };
   const SHIP = (p) => p.model === "supplier" || p.model === "pod";
+  // Countries with their own business-basics step. "eu" covers EU-wide rules;
+  // registration and income tax still follow the member state.
+  const COUNTRIES = [["us", "United States", ""], ["uk", "United Kingdom", ""], ["eu", "European Union", "EU-wide rules"], ["ca", "Canada", ""], ["au", "Australia", ""],
+    ["in", "India", ""], ["ph", "Philippines", ""], ["ng", "Nigeria", ""], ["br", "Brazil", ""], ["other", "Somewhere else", ""]];
+  const COUNTRY_IDS = COUNTRIES.map((c) => c[0]);
+  const COUNTRY_NAME = Object.fromEntries(COUNTRIES.map((c) => [c[0], c[1]]));
+  const COUNTRY_CUR = { us: "USD", uk: "GBP", eu: "EUR", ca: "CAD", au: "AUD", in: "INR", ph: "PHP", ng: "NGN", br: "BRL" };
+  const CURRENCIES = ["USD", "GBP", "EUR", "CZK", "DKK", "HUF", "PLN", "RON", "SEK", "CAD", "AUD", "INR", "PHP", "NGN", "BRL"];
+  const sellsGoods = (p) => SHIP(p) || ["handmade", "fba", "resell"].includes(p.model);
+  const LEGAL_NOTE = (from) => '<p class="small muted">General information from ' + from + ', not legal or tax advice.</p>';
+  const AGE_LINE = "Most selling and freelancing platforms need you to be 18, or the age of majority where you live if that's higher. Under 18, some let a parent or guardian own the account; they're then responsible for it, and the payouts go to them.";
   const isMarket = (p) => p.channel !== "shopify";
 
   // ---------------------------------------------------------------------------
@@ -243,7 +450,7 @@
     ebay: "eBay, most categories: 13.6% of the total sale up to $7,500 (shipping and sales tax included), plus $0.30 per order of $10 or less or $0.40 per order over $10.",
     tiktok: "TikTok Shop US: its seller page lists a 6% commission per sale; check your category's rate in Seller Center.",
     amazon: "Amazon: referral fee by category (most are 8% to 15%, with a minimum, often $0.30), plus $0.99 per unit on the Individual plan or $39.99 a month on Professional.",
-    gumroad: "Gumroad: 10% + 50¢ per direct sale with no monthly fee; 30% on sales to new customers who find you through Gumroad Discover.",
+    gumroad: "Gumroad: 10% + 50¢ per direct sale, plus card processing (2.9% + 30¢) or PayPal fees, and no monthly fee. Sales through Gumroad Discover cost a flat 30%, which includes processing.",
     payhip: "Payhip: Free plan takes 5% per sale, Plus ($29/month) 2%, Pro ($99/month) 0%. PayPal or Stripe processing is charged on top at their standard rates.",
     mercari: "Mercari: no listing fee; a 10% selling fee on the item price plus any shipping the buyer pays.",
     poshmark: "Poshmark (US): a flat $2.95 on sales under $15, and 20% on sales of $15 or more. No listing or monthly fees.",
@@ -264,6 +471,7 @@
     { id: "d1-legal-us", day: 2, area: "legal", prio: "med", when: (p) => p.country === "us",
       title: "Sort out the business basics (US)",
       body: () => ul([
+        "Most selling and freelancing platforms need you to be 18, or the age of majority where you live if that's higher. Under 18, some let a parent or guardian own the account; they're then responsible for it, and the payouts go to them.",
         "If you don't register another kind of business, you're a sole proprietor automatically and don't need to register the business with your state.",
         "Many states require a DBA (“doing business as”) filing if you trade under a name other than your own.",
         "Licenses and permits depend on your state, county and city. Your Secretary of State's website is the place to start.",
@@ -275,16 +483,110 @@
 
     { id: "d1-legal-uk", day: 2, area: "legal", prio: "med", when: (p) => p.country === "uk",
       title: "Check what HMRC needs from you (UK)",
-      body: () => ul([
+      body: (p) => ul([
+        "Most selling and freelancing platforms need you to be 18, or the age of majority where you live if that's higher. Under 18, some let a parent or guardian own the account; they're then responsible for it, and the payouts go to them.",
         "The trading allowance lets you earn up to £1,000 of gross trading income a year tax-free. It's measured before costs, not on profit, and covers all your side-hustle income together.",
         "If your gross trading income goes over £1,000 in a tax year, you must register for Self Assessment, by 5 October after that tax year ends.",
         "Buying goods to resell for a profit is usually treated as trading.",
+        "The government has announced a £3,000 threshold for needing a Self Assessment return, but no start date is set. Until it changes, the £1,000 rule applies, and income above it must be reported.",
+        "Platforms such as eBay, Vinted and Airbnb send HMRC your name, address, date of birth, National Insurance number and yearly earnings, and send you a copy by 31 January.",
+        "You're left out of those reports only if you made fewer than 30 sales of goods and received €2,000 (about £1,700) or less in the year. Services are always reported. Being reported doesn't by itself mean you owe tax.",
+        sellsGoods(p) ? "Online buyers can cancel within 14 days of receiving their goods, without giving a reason, and then have another 14 days to send them back. Refund within 14 days of getting the item back, including standard delivery." : "",
+        sellsGoods(p) ? "If you don't tell buyers about this right, they can cancel for up to 12 months." : "",
       ]) + '<p class="small muted">General information from GOV.UK, not tax advice.</p>',
-      links: [link("hmrcOnline", "Check if you need to tell HMRC"), link("hmrcAllow", "Trading allowance")], src: ["hmrcAllow", "hmrcOnline"] },
+      links: [link("hmrcOnline", "Check if you need to tell HMRC"), link("hmrcAllow", "Trading allowance")],
+      src: (p) => ["hmrcAllow", "hmrcOnline", "hmrc3000", "taxHustles", "hmrcPlatformSeller", "hmrcExcluded", "hmrcSellersNews"].concat(sellsGoods(p) ? ["govReturns", "govDistance", "ukCCRegs"] : []) },
+
+    { id: "d1-legal-eu", day: 2, area: "legal", prio: "med", when: (p) => p.country === "eu",
+      title: "Check the business basics in your EU country",
+      body: (p) => ul([
+        AGE_LINE,
+        "Registration, taxes and legal forms follow your own country's rules. Each EU country has an online “Point of Single Contact” for setting up. As an EU citizen you can set up as a sole trader in any EU country.",
+        "Income tax is reported in the country where you're based, under its rules.",
+        "Each country sets its own VAT registration threshold, up to €85,000 (EU SME scheme since 1 January 2025).",
+        "Platforms report sellers to tax authorities by 31 January (DAC7). You're left out only with fewer than 30 sales of goods and €2,000 or less received in the year.",
+        sellsGoods(p) ? "Online buyers can withdraw within 14 days without a reason; for goods, the 14 days start at delivery. Refund within 14 days of the cancellation; you can wait until the goods, or proof of return, arrive. Exceptions include personalised goods and sales by private individuals." : "",
+        sellsGoods(p) ? "Since 13 December 2024 (GPSR), each listing must show the manufacturer's name, postal and electronic address, and an EU responsible person if the manufacturer is outside the EU, plus a picture, the product type and any warnings." : "",
+      ]) + LEGAL_NOTE("the European Commission"),
+      links: [link("euStart", "Your Europe: starting a business")],
+      src: (p) => ["euStart", "euSmeVat", "euDac7"].concat(sellsGoods(p) ? ["euReturns", "euGuarantee", "euGpsr"] : []) },
+
+    { id: "d1-legal-ca", day: 2, area: "legal", prio: "med", when: (p) => p.country === "ca",
+      title: "Sort out the business basics (Canada)",
+      body: (p) => ul([
+        AGE_LINE,
+        "A sole proprietor trading under their own legal name generally doesn't need to register a business name. Other trade names are registered with your province or territory.",
+        "You need a Business Number only when you open a CRA program account, such as GST/HST or payroll.",
+        "Report self-employment income on Form T2125 with your personal tax return. It covers sales on online platforms and influencer income.",
+        sellsGoods(p) ? "Cancellation and return rules for buyers vary by province and territory. Your provincial or territorial consumer affairs office has the details." : "",
+      ]) + LEGAL_NOTE("the Government of Canada"),
+      links: [link("caSoleProp", "Registering a sole proprietorship"), link("caT2125", "Form T2125")],
+      src: (p) => ["caSoleProp", "caBN", "caT2125"].concat(sellsGoods(p) ? ["caConsumer"] : []) },
+
+    { id: "d1-legal-au", day: 2, area: "legal", prio: "med", when: (p) => p.country === "au",
+      title: "Sort out the business basics (Australia)",
+      body: (p) => ul([
+        AGE_LINE,
+        "If you're carrying on a business as a sole trader, you can get an ABN for free through the Business Registration Service. Hobbies don't qualify.",
+        "You don't need to register a business name if you trade under your own first name and surname only.",
+        "Sole traders report business income in their individual tax return, using the business and professional items schedule.",
+        sellsGoods(p) ? "Australian Consumer Law guarantees apply to online sales. For a major problem the buyer chooses a refund, replacement or repair. There's no legal change-of-mind right, but you must honour your own returns policy." : "",
+      ]) + LEGAL_NOTE("the ATO, ABR and ASIC"),
+      links: [link("auAbnApply", "Register for an ABN"), link("auBizName", "Business names (ASIC)")],
+      src: (p) => ["auAbnSole", "auAbnApply", "auBizName", "auIncome"].concat(sellsGoods(p) ? ["auAccc"] : []) },
+
+    { id: "d1-legal-in", day: 2, area: "legal", prio: "med", when: (p) => p.country === "in",
+      title: "Sort out the business basics (India)",
+      body: (p) => ul([
+        AGE_LINE,
+        "Udyam (MSME) registration is free and optional. You register with your own Aadhaar, and only on the official portal.",
+        "Business income goes on your yearly income tax return. ITR-4 (Sugam) is an optional simplified form for presumptive income; otherwise you use ITR-3.",
+        sellsGoods(p) ? "Under the Consumer Protection (E-Commerce) Rules 2020, marketplace sellers can't refuse returns or refunds for goods that are defective, deficient, spurious or not as described." : "",
+      ]) + LEGAL_NOTE("Government of India sites"),
+      links: [link("inUdyam", "Udyam registration"), link("inItr", "Income tax for business income")],
+      src: (p) => ["inUdyam", "inItr"].concat(sellsGoods(p) ? ["inEcomRules"] : []) },
+
+    { id: "d1-legal-ph", day: 2, area: "legal", prio: "med", when: (p) => p.country === "ph",
+      title: "Register with the BIR (Philippines)",
+      body: (p) => ul([
+        AGE_LINE,
+        "All self-employed people, including online sellers and content creators, must register with the BIR before their first sale, or within 30 days of getting a DTI business name or Mayor's permit.",
+        "You can register online through ORUS with Form 1901 and ₱30 documentary stamp tax. Online sellers must show their BIR registration on their shop page.",
+        "If you sell on an e-marketplace, give the platform your BIR Certificate of Registration before selling.",
+        "Register any business name with the DTI online (BNRS). It's valid for 5 years and isn't a licence to operate.",
+        "File quarterly (1701Q) and annual income tax returns. With ₱3,000,000 or less in sales you can choose a flat 8% instead of graduated rates; you choose each year.",
+        sellsGoods(p) ? "“No return, no exchange” notices are banned. Buyers get a repair, replacement or refund for hidden defects, but not for a change of mind." : "",
+      ]) + LEGAL_NOTE("the BIR and DTI"),
+      links: [link("phBirOnline", "BIR guide for online sellers"), link("phDti", "DTI business names")],
+      src: (p) => ["phBir91", "phBirOnline", "phBir38", "phBir8", "phDti", "ph8pct"].concat(sellsGoods(p) ? ["phNoReturn", "phIta"] : []) },
+
+    { id: "d1-legal-ng", day: 2, area: "legal", prio: "med", when: (p) => p.country === "ng",
+      title: "Sort out the business basics (Nigeria)",
+      body: (p) => ul([
+        AGE_LINE,
+        "Since 1 January 2026, a 13-digit Tax ID from the Nigeria Revenue Service (formerly FIRS) replaces old TINs. Individuals get theirs through their NIN.",
+        "To trade under a business name, register it with the CAC online. You don't need a lawyer or accountant to do this.",
+        "Every taxable person files an annual return by 31 March. For business income you need audited accounts or a statement of accounts you sign off yourself.",
+        sellsGoods(p) ? "Under the FCCPA, buyers can return goods within a reasonable time if they're in good condition, with limited exceptions." : "",
+      ]) + LEGAL_NOTE("the NRS, CAC and FCCPC"),
+      links: [link("ngTaxId", "Get a Tax ID"), link("ngCac", "Register a business name")],
+      src: (p) => ["ngTaxId", "ngCac", "ngPit", "ngTaxAdmin"].concat(sellsGoods(p) ? ["ngFccpc"] : []) },
+
+    { id: "d1-legal-br", day: 2, area: "legal", prio: "med", when: (p) => p.country === "br",
+      title: "Sort out the business basics (Brazil)",
+      body: (p) => ul([
+        AGE_LINE,
+        "If you sell regularly for profit as a private person (CPF), the Receita Federal treats you as an individual business for income tax, even without a CNPJ.",
+        "Becoming an MEI is free on the Portal do Empreendedor and gives you a CNPJ. Your activity must be on the permitted list, you can't be a partner in another company, and you can have at most one employee.",
+        "The MEI revenue limit is R$81,000 a year (R$6,750 a month in your first year). A bill to raise it isn't law yet.",
+        sellsGoods(p) ? "Buyers have 7 days from receiving an online purchase to withdraw (CDC art. 49), and their payment must be refunded immediately." : "",
+      ]) + LEGAL_NOTE("gov.br"),
+      links: [link("brMei", "Register as an MEI")],
+      src: (p) => ["brCarne", "brMei", "brMeiLimit"].concat(sellsGoods(p) ? ["brArrep"] : []) },
 
     { id: "d1-legal-other", day: 2, area: "legal", prio: "med", when: (p) => p.country === "other",
       title: "Check your country's rules for selling online",
-      body: () => "<p>Look up how your country handles registering a small business and paying tax on online income. If you sell into the EU, VAT rules can differ from normal retail. Shopify recommends talking to a lawyer about the laws where you operate and sell.</p>",
+      body: () => "<p>Look up how your country handles registering a small business and paying tax on online income. If you sell into the EU, VAT rules can differ from normal retail. Shopify recommends talking to a lawyer about the laws where you operate and sell.</p><p>Most selling and freelancing platforms need you to be 18, or the age of majority where you live if that's higher. Under 18, some let a parent or guardian own the account; they're then responsible for it, and the payouts go to them.</p>",
       links: [link("shopDrop", "Shopify's legal notes")], src: ["shopDrop"] },
 
     // ======== Dropshipping and print-on-demand
@@ -299,8 +601,9 @@
         "Shopify offers a 3-day free trial with no credit card. After the trial, most plans cost $1 a month for the first 3 months.",
         "After that, Basic costs $39 a month billed monthly, or $29 a month billed yearly (US prices).",
         "Basic's online card rate with Shopify Payments is 2.9% + 30¢ in the US. If you use another payment provider, Shopify charges an extra 2% on Basic.",
+        "The person who opens the store must be 18, or the age of majority where they live if that's older.",
       ]) + checked,
-      links: [link("shopTrial", "Start the free trial"), link("shopPricing", "Compare plans")], src: ["shopPricing", "shopTrial"] },
+      links: [link("shopTrial", "Start the free trial"), link("shopPricing", "Compare plans")], src: ["shopPricing", "shopTrial", "shopTerms"] },
 
     { id: "d1-etsy", day: 1, area: "store", prio: "high", when: (p) => p.level === "new" && p.channel === "etsy",
       title: "Open your Etsy shop",
@@ -308,9 +611,11 @@
         "Listing fee: $0.20 per listing, charged whether or not it sells. Listings last 4 months and renew for another $0.20 if auto-renew is on.",
         "Transaction fee: 6.5% of the order total, including shipping and gift wrap.",
         "Payment processing (US bank account): 3% + $0.25 per order.",
-        "Etsy may charge a one-time shop setup fee; it shows during sign-up.",
+        "Offsite Ads: if a shopper clicks an Etsy ad on another site and buys within 30 days, Etsy charges 15% of the order total, up to $100 per order. Shops under $10,000 in yearly sales can opt out. Once a shop reaches $10,000 in 365 days, the rate is 12% and the ads can't be turned off.",
+        "Etsy may charge a one-time shop setup fee. It varies by location, shows during sign-up and isn't refundable.",
+        "You must be 18 to own an Etsy account. Teens 13 to 17 can sell only through a parent's or guardian's account, with their permission and direct supervision; the account's name, email and billing details must be the adult's.",
       ]) + checked,
-      links: [link("etsySell", "Open Etsy's seller sign-up")], src: ["etsyFees"] },
+      links: [link("etsySell", "Open Etsy's seller sign-up")], src: ["etsyFees", "etsyOffsite", "etsyMinors"] },
 
     { id: "d1-tiktok", day: 1, area: "store", prio: "high", when: (p) => p.level === "new" && p.channel === "tiktok",
       title: "Register as a TikTok Shop seller",
@@ -321,7 +626,7 @@
         "TikTok Shop's US page lists no setup fee and a 6% commission per sale.",
         p.country !== "us" ? "<b>These are TikTok Shop US rules.</b> If you live elsewhere, use your country's TikTok Shop Seller Center; requirements differ." : "",
       ]) + checked,
-      links: [link("ttsHome", "Open TikTok Shop sign-up"), link("ttsIndividual", "Registration guide")], src: ["ttsHome", "ttsIndividual"] },
+      links: [link("ttsHome", "Open TikTok Shop sign-up"), link("ttsIndividual", "Registration guide")], src: ["ttsHome", "ttsIndividual", "ttsTerms"] },
 
     { id: "d1-ebay", day: 1, area: "store", prio: "high", when: (p) => p.level === "new" && p.channel === "ebay",
       title: "Create your eBay seller account",
@@ -329,8 +634,9 @@
         "Most categories: final value fee of 13.6% on the total sale up to $7,500, plus $0.30 per order of $10 or less, or $0.40 per order over $10.",
         "Without an eBay Store subscription, your first 250 listings each month have no insertion fee; after that it's $0.35 per listing.",
         "Payment processing is included in eBay's fees.",
+        "Members must be 18 or older, because listing is a contract. Someone under 18 can use an adult's account with the holder's permission, and the holder is responsible for everything on it.",
       ]) + checked,
-      links: [link("ebayStart", "eBay's start-selling guide"), link("ebayFees", "Fee details")], src: ["ebayFees", "ebayStart"] },
+      links: [link("ebayStart", "eBay's start-selling guide"), link("ebayFees", "Fee details")], src: ["ebayFees", "ebayStart", "ebayIdentity"] },
 
     { id: "d1-amazon", day: 1, area: "store", prio: "high", when: (p) => p.level === "new" && p.channel === "amazon",
       title: "Choose an Amazon selling plan",
@@ -347,16 +653,16 @@
       links: (p) => RULES[p.channel].src.map((k) => link(k)), src: (p) => RULES[p.channel].src },
 
     { id: "d1-course", day: 1, area: "learning", prio: "med", when: (p) => p.level === "new" && SHIP(p),
-      title: (p) => ({ shopify: "Start Shopify's Dropshipping 101 course", etsy: "Skim Etsy's Seller Handbook", tiktok: "Start the TikTok Shop Academy registration course", ebay: "Read eBay's start-selling guide", amazon: "Read Amazon's dropshipping guide" })[p.channel],
+      title: (p) => ({ shopify: "Watch Shopify's Dropshipping University videos", etsy: "Skim Etsy's Seller Handbook", tiktok: "Start the TikTok Shop Academy registration course", ebay: "Read eBay's start-selling guide", amazon: "Read Amazon's dropshipping guide" })[p.channel],
       body: (p) => ({
-        shopify: "<p>Shopify Learn's <i>Dropshipping 101: Build your first online store</i> runs about 2 hours. It covers product research, choosing suppliers, building the store, Facebook ads, fulfilment and refunds. Some lessons name the Oberlo app; check any app it mentions is still offered before following those steps.</p>",
+        shopify: "<p>Shopify's <i>Dropshipping University</i> is a free video series on the Learn With Shopify YouTube channel, about 3.5 hours long. It covers setting up your first store, product research and TikTok dropshipping. Check that any app it names is still offered before you follow those steps.</p>",
         etsy: "<p>Etsy's Seller Handbook collects advice from Etsy staff and sellers, sorted by how far along your shop is.</p>",
         tiktok: "<p>TikTok Shop Academy is TikTok's learning site for sellers. Its registration course explains business types, the documents you need and each sign-up step.</p>",
         ebay: "<p>eBay's guide walks through creating a seller account, listing, and shipping your first order.</p>",
         amazon: "<p>Amazon's seller-education page explains how dropshipping works in its store and links to its Drop Shipping Policy.</p>",
       })[p.channel],
       links: (p) => [link(({ shopify: "shopCourse", etsy: "etsyHandbook", tiktok: "ttsAcademy", ebay: "ebayStart", amazon: "amzDrop" })[p.channel], "Open it")],
-      src: (p) => [({ shopify: "shopCourse", etsy: "etsyHandbook", tiktok: "ttsAcademy", ebay: "ebayStart", amazon: "amzDrop" })[p.channel]] },
+      src: (p) => [({ shopify: "shopCourseBlog", etsy: "etsyHandbook", tiktok: "ttsAcademy", ebay: "ebayStart", amazon: "amzDrop" })[p.channel]] },
 
     { id: "d2-research", day: 2, area: "research", prio: "high", when: (p) => p.model === "supplier" && p.level !== "selling",
       title: "Shortlist 3 to 5 product ideas",
@@ -388,9 +694,10 @@
         "<b>Spocket</b>: suppliers in the US and EU; paid plans from $39.99 a month after a free trial.",
         "<b>AutoDS</b>: paid plans with a trial. Its product research tools are a separate paid add-on.",
         "<b>Shopify Collective</b>: sell products from other Shopify brands. Free, but your store must be in a supported country (the US is one), use Shopify Payments and pass Shopify's checks.",
+        "Ask whether US orders ship from a US warehouse or from abroad. Orders shipped from abroad now owe US import duty at any value.",
       ]) + checked,
       links: [link("dsersApp", "DSers"), link("cj", "CJdropshipping"), link("spocket", "Spocket"), link("autods", "AutoDS"), link("collective", "Shopify Collective")],
-      src: ["dsers", "cj", "spocket", "autods", "shopCollective"] },
+      src: ["dsers", "cj", "spocket", "autods", "shopCollective", "cbpEcomFaq"] },
 
     { id: "d2-supplier-mkt", day: 2, area: "suppliers", prio: "high", when: (p) => p.model === "supplier" && ["ebay", "amazon", "tiktok"].includes(p.channel) && p.level !== "selling",
       title: (p) => "Find a supplier that meets " + CHANNEL_NAME[p.channel] + "'s rules",
@@ -407,8 +714,9 @@
         "<b>Printful</b>: no monthly fee to create products or connect a store; you pay production costs when a customer orders. An optional Growth plan gives product discounts.",
         "<b>Printify</b>: Free plan with no monthly fee and up to 5 connected stores. Premium is $39 a month or $299 a year and gives up to 20% off most products.",
         "Both connect to Shopify, Etsy and other channels. Check each one's list for your channel before you start.",
+        "If an order for a US customer is printed outside the US, it can now owe US import duty. Check how your print partner handles it before you set prices.",
       ]) + checked,
-      links: [link("printful", "Printful"), link("printify", "Printify")], src: ["printful", "printify"] },
+      links: [link("printful", "Printful"), link("printify", "Printify")], src: ["printful", "printify", "cbpEcomFaq"] },
 
     { id: "d3-vet", day: 3, area: "suppliers", prio: "high", when: (p) => p.model === "supplier",
       title: "Check your supplier before you list anything",
@@ -431,8 +739,10 @@
         FEE_TEXT[p.channel],
         "Profit per order = price − product cost − shipping − platform and payment fees − ad cost per order.",
         "Your break-even ad cost is everything left before ads. If ads cost more than that per order, every sale loses money.",
+        p.country === "us" || p.channel === "tiktok" ? "US imports no longer enter duty-free at any value: since August 29, 2025, parcels worth $800 or less pay duties, taxes and fees by product type, country of origin and value, by post too. A 2025 law makes this permanent from July 1, 2027." : "",
+        p.country === "us" || p.channel === "tiktok" ? "Ask your supplier who pays US duty on each order and how much it adds. Put it in your product cost, and say in your shipping policy if customers may be charged on delivery." : "",
       ]) + checked,
-      action: { label: "Open the profit calculator", go: "tools:profit" }, src: (p) => [FEE_SRC[p.channel]] },
+      action: { label: "Open the profit calculator", go: "tools:profit" }, src: (p) => [FEE_SRC[p.channel]].concat(p.country === "us" || p.channel === "tiktok" ? ["cbpEcomFaq", "cbpDeMinimisRule"] : []) },
 
     { id: "d4-build", day: 4, area: "store", prio: "high", when: (p) => p.channel === "shopify" && p.level === "new" && SHIP(p),
       title: "Build the store and your first product page",
@@ -489,7 +799,8 @@
       title: "Turn on payments and know when you'll be paid",
       body: (p) => ul([
         "Set up Shopify Payments in Settings › Payments and add your bank account. Payouts are delayed until setup is complete.",
-        "US payouts usually reach your bank 3 to 5 business days after a payment. New merchants start with a longer settlement time, and higher-risk accounts can wait 5 to 20 business days.",
+        "US payouts usually reach your bank 3 to 5 business days after a customer's payment is captured. New stores start with a longer settlement time that shortens as you fulfil orders on time. Higher-risk accounts can be put on a 5 to 20 business day schedule.",
+        "Adding or changing your bank account can pause payouts for 3 to 5 business days.",
         SHIP(p) ? "You pay your supplier when you place each order, so plan for that money going out before your first payout arrives." : "",
       ]),
       links: [link("shopifyAdmin", "Open Shopify admin")], src: ["shopPayouts"] },
@@ -534,7 +845,7 @@
     { id: "d6-ads", day: 6, area: "marketing", prio: "high", when: (p) => p.ads === "some" && p.channel === "shopify",
       title: "Run one small test ad with a hard spending cap",
       body: () => ul([
-        "Meta: most advertisers charged per impression need at least $1 a day per ad set. Meta suggests a daily budget of at least 10 times the average cost of the result you optimise for, such as a purchase.",
+        "Meta: most advertisers charged per impression need at least $1 a day per ad set. Ads Manager warns you if a budget is below the minimum, and may suggest more if it's too low for good results.",
         "TikTok: the campaign budget must be over $50 and each ad group's daily budget over $20.",
         "Decide the most you can afford to lose on this test before you start, and set it as the budget.",
         "Compare cost per purchase with your break-even from the calculator. Stop or change the ad if it's higher.",
@@ -583,7 +894,8 @@
           "Your account is reviewed after you make at least 3 qualifying sales within 180 days. Your own purchases don't count.",
           "Your site or account must be public, owned by you, with recent content. Amazon's rule of thumb is at least 10 posts of original content.",
           "Commission rates are fixed by product category, from 0% to 10%; categories that aren't listed earn 4%. Commission is based on what Amazon receives, not counting shipping, tax and similar charges, and is paid about 60 days after the end of the month.",
-          "From April 14, 2026, purchases from customers who arrive through paid or boosted ads linking to Amazon don't earn commission.",
+          "From April 14, 2026, purchases from customers who arrive through paid or boosted ads linking to Amazon don't earn commission, with limited exceptions.",
+          "Since April 14, 2026, a purchase only earns commission if the item is shipped, streamed or downloaded, and paid for, within 180 days of the purchase.",
         ]),
         aff_tiktok: ul([
           "You must be 18 or older, based in the US, and have at least 1,000 followers.",
@@ -600,7 +912,7 @@
         ]),
       })[p.channel] + checked,
       links: (p) => ({ aff_amazon: [link("amzAssoc", "Amazon Associates"), link("amzAssocPart", "Requirements")], aff_tiktok: [link("ttsCreator", "TikTok Shop creator requirements")], aff_network: [link("awinJoin", "Awin"), link("impact", "impact.com"), link("cjAff", "CJ")] })[p.channel],
-      src: (p) => ({ aff_amazon: ["amzAssocPart", "amzAssocAgree", "amzAssocUpdates"], aff_tiktok: ["ttsCreator"], aff_network: ["awinJoin", "impact", "cjAff"] })[p.channel] },
+      src: (p) => ({ aff_amazon: ["amzAssocPart", "amzAssocAgree", "amzAssocUpdates", "amzAssocPolicies"], aff_tiktok: ["ttsCreator"], aff_network: ["awinJoin", "impact", "cjAff"] })[p.channel] },
 
     { id: "af1-disclose", day: 1, area: "legal", prio: "high", when: (p) => p.model === "affiliate",
       title: "Learn the disclosure rules for affiliate links",
@@ -810,20 +1122,22 @@
           "Fiverr keeps 20% of every order, including extras and tips. On a $100 order you receive $80.",
           "Earnings become available 14 days after an order is completed (7 days for Top Rated, Pro and Seller Plus freelancers).",
           "An order counts as completed when the buyer accepts it, or when the 3-day response window ends without a reply.",
+          "You must be 18. Teens 13 to 17 can use Fiverr only through a parent's or guardian's account, and some services (such as modelling and dance lessons) aren't allowed for under-18s.",
         ]),
         upwork: ul([
           "Joining is free. Upwork's freelancer service fee varies from 0% to 15% per contract; you see the rate before you send a proposal or accept an offer, and it's charged only when you're paid.",
           "Proposals cost Connects. Basic accounts may get 10 free Connects a month; extra Connects cost $0.15 each (minimum 10). New freelancers may get up to 50 free Connects once.",
           "Freelancer Plus costs $19.99 a month and includes 100 Connects.",
+          "You must be 18, or the age of majority in your country if that's older.",
         ]),
         direct: ul([
           "No platform fee, but you find every client yourself.",
           "You need: one page that shows your work and how to contact you, a simple written agreement for each job, and a way to send invoices and take payment.",
-          "Card payments through processors such as Stripe cost money too (for US cards, Stripe charges 2.9% + 30¢).",
+          "Card payments through processors such as Stripe cost money too. Stripe charges 2.9% + 30¢ for US cards; international cards add 1.5%, and currency conversion adds 1%.",
         ]),
       })[p.channel] + checked,
       links: (p) => ({ fiverr: [link("fiverrHow", "How Fiverr works")], upwork: [link("upworkFee", "Upwork fees"), link("upworkConnects", "Connects")], direct: [] })[p.channel],
-      src: (p) => ({ fiverr: ["fiverrVsUpwork", "fiverrOrders", "fiverrHow"], upwork: ["upworkFee", "upworkConnects", "upworkFree"], direct: ["substackCost"] })[p.channel] },
+      src: (p) => ({ fiverr: ["fiverrVsUpwork", "fiverrOrders", "fiverrHow", "fiverrMinors"], upwork: ["upworkFee", "upworkConnects", "upworkFree", "upworkEligible"], direct: ["stripePricing"] })[p.channel] },
 
     { id: "fr2-offer", day: 2, area: "research", prio: "high", when: (p) => p.model === "freelance" && p.level !== "selling",
       title: "Choose one service and package it",
@@ -887,19 +1201,22 @@
     { id: "cr1-program", day: 1, area: "legal", prio: "high", when: (p) => p.model === "creator",
       title: (p) => (p.channel === "yt" ? "Know the YouTube Partner Program requirements" : "Know the TikTok Creator Rewards requirements"),
       body: (p) => (p.channel === "yt" ? ul([
-        "First tier (fan funding and Shopping): 500 subscribers, 3 public uploads in the last 90 days, and either 3,000 watch hours in 12 months or 3 million Shorts views in 90 days.",
-        "Ad revenue tier: 1,000 subscribers and either 4,000 watch hours in 12 months or 10 million Shorts views in 90 days.",
+        "Fan funding and Shopping: 500 subscribers, 3 public uploads in the last 90 days, and either 3,000 watch hours in 12 months or 3 million Shorts views in 90 days. This doesn't change in 2027.",
+        "Ad revenue: 1,000 subscribers and either 4,000 watch hours in 12 months or 10 million Shorts views in 90 days.",
+        "From February 1, 2027, new applicants for ad revenue need 1,000 subscribers and either 8,000 watch hours in the last 365 days or 20 million Shorts views in the last 90 days. Channels already in the program keep their place.",
+        "From February 1, 2027, earning from ads and Premium on Shorts needs 10 million Shorts views in the last 90 days. Below that you stay in the program and keep earning on long videos.",
         "You also need 2-Step Verification, no active Community Guidelines strikes, an AdSense account, and to live where the program is available. Every channel is reviewed before it's accepted.",
         "YouTube shares 55% of ad revenue on long videos and 45% on Shorts.",
-        "From February 1, 2027 YouTube is changing some activity and Shorts payout rules; accept the new terms in YouTube Studio by January 31, 2027.",
+        "From February 1, 2027, channels must stay active: 1,000 watch hours in 365 days, 1 million Shorts views in 90 days, or 2 long videos or 5 Shorts uploaded every 90 days. Accept the new terms in YouTube Studio by January 31, 2027, or the affected features stop paying.",
+        "AdSense needs you to be 18. If you're younger, you can still earn by linking your channel to a parent's or guardian's AdSense account; payments go to them.",
       ]) : ul([
         "You need at least 10,000 followers and 100,000 video views in the last 30 days, a personal account in good standing, and to be 18 or older in an eligible country.",
         "Only original videos at least 1 minute long, posted after you join, can earn. Duets, Stitches, Photo Mode and paid or sponsored posts don't count.",
         "A video starts earning after 1,000 qualified For You views. Payment is monthly once you pass $50 (US terms).",
-        p.country !== "us" && p.country !== "uk" ? "Check TikTok's list of eligible countries for where you live." : "",
+        p.country === "eu" ? "In the EU, only Germany and France are on TikTok's list of eligible countries." : ["ca", "au", "in", "ph", "ng"].includes(p.country) ? COUNTRY_NAME[p.country] + " isn't on TikTok's list of eligible countries, so you can't join from there." : p.country === "other" ? "Check TikTok's list of eligible countries for where you live." : "",
       ])) + checked,
       links: (p) => (p.channel === "yt" ? [link("ytYppJoin", "YouTube Partner Program")] : [link("ttRewardsAcademy", "Creator Rewards Program")]),
-      src: (p) => (p.channel === "yt" ? ["ytYpp", "ytBlog"] : ["ttRewards", "ttRewardsAcademy", "ttRewardsTerms"]) },
+      src: (p) => (p.channel === "yt" ? ["ytYpp", "ytBlog", "ytYppChanges", "ytBlog2027", "adsenseAge", "adsenseUnder18"] : ["ttRewards", "ttRewardsAcademy", "ttRewardsTerms"]) },
 
     { id: "cr2-niche", day: 2, area: "research", prio: "high", when: (p) => p.model === "creator" && p.level !== "selling",
       title: "Pick a topic and a format you can repeat every week",
@@ -913,7 +1230,7 @@
       title: "Plan and film 5 videos in one session",
       body: (p) => ul([
         "Write a hook, three points and an ending for each video, then film them together.",
-        p.channel === "tt_creator" ? "For Creator Rewards, make them at least 1 minute long and fully your own." : "Mix Shorts with at least one longer video; Shorts-feed views don't count towards the 4,000 watch hours.",
+        p.channel === "tt_creator" ? "For Creator Rewards, make them at least 1 minute long and fully your own." : "Mix Shorts with at least one longer video; Shorts-feed views don't count towards watch hours (4,000 now, 8,000 for new applicants from February 1, 2027).",
         "Use only music, clips and images you have the rights to use.",
       ]),
       action: { label: "Draft hooks with AI", go: "tools:hooks" }, src: (p) => (p.channel === "tt_creator" ? ["ttRewards"] : ["ytYpp"]) },
@@ -1011,8 +1328,10 @@
         "Paperbacks on Amazon.com earn 60% of the list price at $9.99 and up (50% below that), minus the printing cost.",
         "Royalties are paid about 60 days after the end of the month of the sale.",
         "Public domain works can only use the 35% option.",
+        "Since September 21, 2026, an account can create up to 2 new titles per format (eBook, paperback, hardcover) each week; the count resets on Sunday at 00:00 UTC.",
+        "You must be 18, or the age of majority where you live if that's older. A parent or guardian can open the account and be the publisher of a minor's book.",
       ]) + checked,
-      links: [link("kdp", "Open KDP")], src: ["kdpEbook", "kdpPaper", "kdpPrint"] },
+      links: [link("kdp", "Open KDP")], src: ["kdpEbook", "kdpPaper", "kdpPrint", "kdpLimit", "kdpTerms"] },
 
     { id: "bk1-rules", day: 1, area: "legal", prio: "high", when: (p) => p.model === "books",
       title: "Read KDP's rules on AI and content",
@@ -1256,10 +1575,43 @@
     { id: "on-make", day: 7, ongoing: true, repeat: "weekly", area: "content", prio: "med", when: (p) => p.model === "digital" || p.model === "pod" || p.model === "handmade",
       title: "Add or improve one product", body: () => "<p>Add a new design or product, or improve the listing of one that gets views but few sales.</p>" },
     { id: "on-week", day: 7, ongoing: true, repeat: "weekly", area: "finance", prio: "med", when: () => true,
-      title: "Weekly check: income, costs and profit", body: () => "<p>Re-run the calculators with this week's real numbers.</p>", action: (p) => ({ label: "Open the calculator", go: "tools:" + ({ affiliate: "affiliate", freelance: "rate", books: "royalty", newsletter: "recurring", creator: "creator", resell: "maxbuy" }[p.model] || "profit") }) },
+      title: "Weekly check: income, costs and profit",
+      body: (p) => "<p>Re-run the calculators with this week's real numbers, and log any sales in Tools › Sales log.</p>" + ul([
+        "Save every receipt, invoice and payout report as you go.",
+        p.country === "us" ? "The IRS generally expects you to keep records for 3 years after you file, and 6 years if you left out more than 25% of your income." : "",
+        p.country === "uk" ? "HMRC: keep your records for at least 5 years after the 31 January Self Assessment deadline for that tax year." : "",
+        p.channel === "shopify" ? "Check for chargebacks. On Shopify Payments you get 7 to 21 days to respond; Shopify charges $15 per US chargeback and returns it if you win. Add your messages with the customer and the policies they agreed to." : "",
+        p.channel === "direct" ? "Check for Stripe disputes. You usually have 5 to 21 days to send evidence, and if you miss the deadline the customer wins." : "",
+      ]), action: (p) => ({ label: "Open the calculator", go: "tools:" + ({ affiliate: "affiliate", freelance: "rate", books: "royalty", newsletter: "recurring", creator: "creator", resell: "maxbuy" }[p.model] || "profit") }),
+      src: (p) => [].concat(p.country === "us" ? ["irsRecords"] : [], p.country === "uk" ? ["hmrcRecords"] : [], p.channel === "shopify" ? ["shopChargeback"] : [], p.channel === "direct" ? ["stripeDisputes", "stripePricing"] : []) },
     { id: "on-supplier", day: 7, ongoing: true, repeat: "weekly", area: "suppliers", prio: "low", when: (p) => SHIP(p),
       title: "Check supplier stock, prices and delivery times", body: () => "<p>Update your prices and the delivery time you show customers if anything changed.</p>" },
   ];
+  GUIDE.push({ id: "d2-tax", day: 2, area: "legal", prio: "med", when: (p) => SHIP(p) || ["digital", "handmade", "fba", "courses"].includes(p.model),
+    title: "Know when sales tax or VAT applies",
+    body: (p) => (p.country === "us" ? ul([
+      "Each US state sets its own sales tax rules. You must collect tax in a state where you have nexus: a physical presence there, or sales above that state's economic nexus threshold (often $100,000 a year). States have been able to set these thresholds since the Supreme Court's 2018 Wayfair decision.",
+      "On Etsy, eBay, Amazon and TikTok Shop, the marketplace usually collects and pays sales tax for you. Some states still ask you to report those sales.",
+      "On your own store, nobody does this for you. Register with the state before you collect, then add the registration in Shopify under Settings › Taxes and duties. Shopify's tax liability page flags states where you're near a threshold.",
+      "Thresholds, what counts towards them and filing rules differ by state. Check the state's department of revenue, or the Streamlined Sales Tax site for its member states.",
+    ]) : p.country === "uk" ? ul([
+      "You must register for VAT if your VAT-taxable turnover goes over £90,000 in the last 12 months, or you expect it to go over £90,000 in the next 30 days alone. You can register voluntarily below that.",
+      "Selling digital products or goods to customers in the EU can bring EU VAT rules into play, even if you're under the UK threshold.",
+    ]) : ul([
+      p.country === "eu" ? "Your country sets its own VAT registration threshold, up to €85,000. Check its tax authority before you pass it." : "",
+      p.country === "ca" ? "You're a small supplier while your taxable sales stay at CA$30,000 or less, in one quarter and over the last four quarters. Above that, you must register for GST/HST within 29 days. You can register voluntarily." : "",
+      p.country === "au" ? "You must register for GST within 21 days once your GST turnover, current or projected over 12 months, reaches A$75,000. Voluntary registration lasts at least 12 months." : "",
+      p.country === "in" ? "GST: goods-only suppliers must register above ₹40 lakh turnover (₹20 lakh in some states); services or mixed suppliers above ₹20 lakh (₹10 lakh in some states). Inter-state suppliers of goods must register whatever their turnover." : "",
+      p.country === "in" ? "Selling goods through a platform that collects TCS normally needs GST registration. Since 1 October 2023, small goods sellers may enrol without it if they stay under the threshold, sell in one state only, make no inter-state sales and hold a PAN." : "",
+      p.country === "in" ? "Service suppliers selling through e-commerce platforms with turnover up to ₹20 lakh (₹10 lakh in special-category states) don't need to register." : "",
+      p.country === "ph" ? "Businesses with gross sales of ₱3,000,000 a year or less are VAT-exempt but pay percentage tax instead." : "",
+      p.country === "br" ? "As an MEI you pay a monthly DAS and file the yearly DASN-SIMEI declaration by 31 May, even with no revenue." : "",
+      p.country === "ng" ? "Check with the Nigeria Revenue Service whether you need to register for VAT. This app hasn't confirmed the current threshold." : "",
+      p.country === "eu" ? "Selling to consumers in other EU countries: once those sales pass €10,000 a year, you charge VAT at the buyer's country's rate. The One Stop Shop (OSS) lets you report it in one return." : "Selling to customers in the EU: a business set up in one EU country can charge its home VAT on cross-border sales to EU consumers until those sales (goods and digital services together) pass €10,000 a year. Above that, VAT is due at the customer's country's rate, and the One Stop Shop (OSS) lets you report it in one return.",
+      p.country === "eu" ? "" : "Businesses outside the EU don't get the €10,000 threshold: VAT on digital services sold to EU consumers is due from the first sale, and can be reported through the non-Union OSS. Imported goods worth up to €150 use the Import OSS.",
+      p.country === "other" ? "Your own country's sales tax, VAT or GST rules apply too; the business-basics step shows where to check." : "",
+    ])) + '<p class="small muted">General information from official tax pages, not tax advice.</p>',
+    src: (p) => (p.country === "us" ? ["shopTaxUS", "shopTaxLiability", "sstMarketplace", "etsySalesTax"] : p.country === "uk" ? ["hmrcVatReg", "euOss"] : ({ eu: ["euSmeVat"], ca: ["caGst"], au: ["auGst"], in: ["inGstReg", "inCgst24", "inGstEcom", "inGstServices"], ph: ["phVat", "phVat2021"], br: ["brDasn"], ng: ["ngTaxAdmin"] }[p.country] || []).concat(["euOss"])) });
   GUIDE.push({ id: "d1-scams", day: 1, area: "learning", prio: "med", when: () => true,
     title: "Read: how to spot a get-rich-quick scam",
     body: () => ul([
@@ -1272,6 +1624,13 @@
   const STEP_META = {"d1-legal-us":{"cost":"Free to check; an EIN from the IRS is free","gets":"Notes on the US registrations, licenses and taxes you need"},
     "d1-legal-uk":{"cost":"Free to check on GOV.UK","gets":"A note of whether you must register for Self Assessment"},
     "d1-legal-other":{"cost":"Free to look up","gets":"Notes on your country's business and tax rules"},
+    "d1-legal-eu":{"cost":"Free to look up","gets":"Notes on your country's registration, VAT and listing rules"},
+    "d1-legal-ca":{"cost":"Free to check","gets":"Notes on registration, the Business Number and Form T2125"},
+    "d1-legal-au":{"cost":"An ABN is free","gets":"Notes on the ABN, business names and your tax return"},
+    "d1-legal-in":{"cost":"Udyam registration is free","gets":"Notes on Udyam and your income tax return"},
+    "d1-legal-ph":{"cost":"₱30 documentary stamp tax to register","gets":"A plan to register with the BIR before your first sale"},
+    "d1-legal-ng":{"cost":"Free to check","gets":"Notes on your Tax ID, business name and annual return"},
+    "d1-legal-br":{"cost":"Registering as an MEI is free","gets":"Notes on MEI, its revenue limit and income tax"},
     "d1-how":{"cost":"Free; a 4-minute lesson in this app","gets":"An overview of who's responsible and where the money goes"},
     "d1-shopify":{"cost":"Free 3-day trial; most plans then $1/month for 3 months","gets":"A Shopify store on the free trial"},
     "d1-etsy":{"cost":"Possible one-time setup fee; listings are $0.20 each","gets":"An Etsy shop, ready for your first listing"},
@@ -1415,6 +1774,7 @@
     "on-make":{"cost":"Free, apart from materials or any listing fee","gets":"One new or improved product each week"},
     "on-week":{"cost":"Free; uses this app's calculators","gets":"This week's real income, costs and profit"},
     "on-supplier":{"cost":"Free","gets":"Prices and delivery times that match your supplier"}};
+  STEP_META["d2-tax"] = { cost: "Free to check", gets: "Whether you need to collect sales tax or VAT yet" };
   STEP_META["d1-scams"] = { cost: "Free; a 3-minute lesson in this app", gets: "The warning signs of a money-making scam" };
   function metaOf(id, p) {
     const m = STEP_META[id]; if (!m) return null;
@@ -1433,6 +1793,93 @@
   // ---------------------------------------------------------------------------
   // Lessons and courses
   // ---------------------------------------------------------------------------
+  // What's realistic: published figures on income, waiting times and start-up
+  // costs, per model. Every line has a source; nothing here is an estimate.
+  const BANKRATE_LINE = "In Bankrate's 2025 survey of US adults, the typical (median) side hustle brought in <b>$200 a month</b>. The average was $885, pulled up by a small group of high earners.";
+  const ETSY_SIZE = "Etsy is big and crowded: at the end of 2025 it had 5.6 million active sellers and 86.5 million active buyers (Etsy counts a seller as active after any sale or fee in 12 months).";
+  const REALISTIC = {
+    supplier: { items: [
+      "“Done-for-you” stores mostly fail. In its 2025 case against Click Profit, the FTC said more than a fifth of the stores it sold earned nothing after Amazon's fees, another third made under $2,500 in lifetime sales, and Amazon blocked, suspended or ended about 95% of them. These are the FTC's allegations.",
+      BANKRATE_LINE,
+      "You pay the supplier when you place each order, but platform money arrives later: Shopify usually pays in 3–5 business days in the US (longer for new stores); TikTok Shop US starts new sellers on a 31-day settlement period counted from delivery; eBay holds for new sellers are usually resolved within 30 days; Amazon settles about every two weeks and typically holds each order's money for 7 days after delivery.",
+      "<b>Money to start</b>: Shopify's 3-day trial, then most plans are $1 a month for 3 months, then Basic is $39 a month ($29 billed yearly). DSers has a free plan and the CJdropshipping app is free. TikTok Shop US has no setup fee; eBay's first 250 listings a month have no insertion fee; Amazon is $0.99 per item sold or $39.99 a month. Add the cost of a sample order.",
+    ], src: ["ftcClickProfit", "bankrate", "bankratePR", "shopPayouts", "ttsSettle", "ebayHolds", "amzPayments", "shopPricing", "shopTrial", "dsers", "cj", "ttsHome", "ebayFees", "amzPricing"] },
+    pod: { items: [
+      ETSY_SIZE,
+      "Printing comes before shipping. Printful says fulfilment takes 2–5 business days on average for most products, and knitwear 7–12, longer in November and December.",
+      "New Etsy sellers wait for money: funds are generally available 14 days after a sale, and a reserve can hold part of each physical-item sale, usually for no more than 90 days.",
+      "Etsy Offsite Ads: if a sale comes from one, Etsy charges 15% of the order total (up to $100) on top of other fees. You can opt out while your shop has never made $10,000 in a 365-day period.",
+      "<b>Money to start</b>: Printful has no monthly fee and Printify has a free plan; you pay production per order. Etsy charges $0.20 per listing, plus a one-time setup fee in some places (shown during setup, non-refundable). Canva Free costs nothing.",
+    ], src: ["etsy10k", "printfulTime", "etsyDeposit", "etsyReserve", "etsyOffsite", "printful", "printify", "etsyFees", "canva"] },
+    affiliate: { items: [
+      "Amazon gives you 180 days after applying to refer 3 qualifying sales. Your account is reviewed after that, and the application can be withdrawn if the sales don't happen.",
+      "You earn on items a shopper adds to their cart within 24 hours of clicking your link, if the order is placed within 89 days of that click.",
+      "Payment is slow and has minimums: Amazon pays about 60 days after the end of the month, once you're owed at least $10 by direct deposit or gift card ($100 by cheque, with a $15 fee). Awin pays twice a month once you reach its threshold ($20 for US-dollar accounts). CJ's own article gives $50 by direct deposit or $100 by cheque.",
+      BANKRATE_LINE,
+      "<b>Money to start</b>: Amazon Associates, impact.com and CJ are free to join. Awin takes a small refundable deposit when you sign up.",
+    ], src: ["amzAssoc180", "amzAssocPart", "amzAssocWindow", "amzAssocAgree", "amzAssocPay", "awinPay", "cjPay", "bankrate", "amzAssoc", "impact", "cjAff", "awinJoin"] },
+    digital: { items: [
+      ETSY_SIZE,
+      "Gumroad pays out once your balance reaches $100 (more in some countries), and on weekly, monthly or quarterly schedules each sale is held at least 7 days.",
+      "Gumroad's Discover marketplace isn't instant: your account needs payout settings and a minimum balance from real sales, then a risk review that Gumroad says takes about 3 weeks on average. Discover sales cost 30%.",
+      "Etsy doesn't hold digital sales in a reserve, but new sellers' funds are generally available 14 days after a sale. On Payhip, your first PayPal payment goes through an approval that can delay it.",
+      "<b>Money to start</b>: Gumroad has no monthly fee (10% + 50¢ per direct sale plus processing). Payhip's free plan takes 5% per sale plus processing. Etsy is $0.20 per listing plus any setup fee. Canva Free costs nothing.",
+    ], src: ["etsy10k", "gumroadPay", "gumroadDiscover", "gumroadFees", "etsyReserve", "etsyDeposit", "payhipPaypal", "payhip", "etsyFees", "canva"] },
+    resell: { items: [
+      "New eBay accounts have selling limits: a set number of items and a set total value each month. eBay reviews them monthly and you can ask for more; a Store subscription doesn't raise them. Seller Hub shows yours.",
+      "eBay can hold money for new or infrequent sellers, usually for up to 30 days. Shipping on the day of payment, with tracking, helps.",
+      "Mercari releases funds when the buyer rates the order, or 72 hours after delivery. Direct deposit is free but can take up to 5 business days; Instant Pay costs $3. Poshmark releases earnings within 3 days of delivery, then direct deposit takes 2–3 business days.",
+      "<b>Money to start</b>: eBay's first 250 listings a month have no insertion fee; Mercari and Poshmark have no listing fees. You pay for the items you buy and for shipping supplies, and you choose how much.",
+    ], src: ["ebayLimits", "ebayHolds", "mercariPaid", "poshPaid", "ebayFees", "mercariFees", "poshFees"] },
+    freelance: { items: [
+      "Fiverr keeps 20% of every order, and your earnings become available 14 days after an order is completed (7 days for Top Rated, Pro and Seller Plus).",
+      "New Fiverr sellers can have up to 4 active Gigs. Level 1 needs 5 completed orders, 3 different clients, $400 earned, a 4.4+ rating, an 80% response rate and a Success Score of 5 or more.",
+      "Upwork pays hourly work 10 days after the weekly billing period ends. For fixed-price work the client has up to 14 days to review, then there's a 5-day security hold.",
+      BANKRATE_LINE,
+      "<b>Money to start</b>: Fiverr and Upwork are free to join. Upwork proposals cost Connects; extra Connects are $0.15 each (10 minimum). Creating a Fiverr Gig needs a computer browser.",
+    ], src: ["fiverrHow", "fiverrOrders", "fiverrLevels", "upworkHourly", "upworkFixed", "bankrate", "fiverrAccount", "upworkFree", "upworkConnects"] },
+    creator: { items: [
+      "YouTube's ad-revenue tier needs 1,000 subscribers plus 4,000 watch hours in 12 months or 10 million Shorts views in 90 days. From 1 February 2027, new applicants need 8,000 watch hours in 365 days or 20 million Shorts views in 90 days. Channels already in the program aren't affected.",
+      "Approval takes time: YouTube says a review typically takes about a month. If you're turned down, you can reapply 30 days later.",
+      "TikTok Creator Rewards needs 10,000 followers and 100,000 views in the last 30 days. Only original videos at least 1 minute long can earn, and US payouts happen monthly once you pass $50.",
+      "Most part-time creators earn little: Linktree's 2022 Creator Report found 68% made under $1,000 a year. Linktree sells creator tools, so treat this as vendor data.",
+    ], src: ["ytYpp", "ytYppChanges", "ytRejected", "ttRewards", "ttRewardsTerms", "linktreeReport"] },
+    courses: { items: [
+      "Teachable has no free plan. After a 7-day trial, Starter is $39 a month ($29 billed yearly) plus a 7.5% transaction fee; Builder ($89, or $69 yearly) and Growth ($189, or $139 yearly) have no transaction fee with Teachable Payments.",
+      "Teachable can hold part of a sale for a while (its example: a purchase on 1 January unlocks on 15 January), and holds payouts at $500 until you file a tax form. Thinkific's first payout arrives 7–14 days after your first payment.",
+      "The FTC lists guaranteed income, big returns and a “proven system” as signs of a scam. Your course mustn't promise them either.",
+      BANKRATE_LINE,
+      "<b>Money to start</b>: Teachable from $29 a month billed yearly after the trial. Thinkific has a 30-day trial, then Basic is $54 a month or $40 billed yearly. Payhip's free plan takes 5% per sale.",
+    ], src: ["teachable", "teachablePayouts", "thinkificPayouts", "ftcScam", "bankrate", "thinkific", "thinkificFaq", "payhip"] },
+    books: { items: [
+      "Royalties are per copy: eBooks earn 35% or 70% (70% needs a list price of $2.99–$12.99 on Amazon.com, minus a delivery cost); paperbacks earn 60% at $9.99 and up, minus printing.",
+      "Amazon pays about 60 days after the end of the month. Direct deposit has no minimum; wire transfers need $100.",
+      "From 21 September 2026, an account can create up to 2 new titles per format (eBook, paperback, hardcover) each week. The count resets on Sunday at 00:00 UTC.",
+      BANKRATE_LINE,
+      "<b>Money to start</b>: publishing is free. For paperbacks, the printing cost comes out of your royalty.",
+    ], src: ["kdpEbook", "kdpPaper", "kdpThresholds", "kdpLimit", "kdpCreate", "bankrate", "kdpPrint"] },
+    newsletter: { items: [
+      "Substack's lowest paid price is $5 a month and $30 a year (US-dollar accounts). You can't offer yearly only, and a price change applies to new subscribers only.",
+      "Substack keeps 10% of paid subscriptions, and Stripe's processing fee comes on top.",
+      "beehiiv's Ad Network is only on paid plans, so it isn't on the Free plan (up to 2,500 subscribers).",
+      BANKRATE_LINE,
+      "<b>Money to start</b>: Substack is free to publish; beehiiv's Free plan covers up to 2,500 subscribers with no card needed.",
+    ], src: ["substackPaid", "substackCost", "beehiivAds", "beehiivPlans", "bankrate"] },
+    fba: { items: [
+      "“We run your Amazon store” schemes keep getting shut down. The FTC alleged people lost at least $15.9 million to FBA Machine/Passive Scaling, whose operator was banned in July 2025, and said Amazon blocked, suspended or ended about 95% of Click Profit's stores.",
+      "Cash comes back slowly: Amazon settles about every two weeks and typically holds each order's money for 7 days after delivery, then a bank transfer can take up to 5 business days.",
+      "Sponsored Products ads only show while your item is in stock, and the daily budget isn't spread through the day, so a small budget can go in minutes.",
+      "<b>Money to start</b>: the Professional plan is $39.99 a month, plus your stock and samples, plus FBA fees for fulfilment, monthly storage and inbound placement. Brand Registry is free but needs a registered or pending trademark.",
+    ], src: ["ftcFbaMachine", "ftcFbaMachineBan", "ftcClickProfit", "amzPayments", "amzSP", "amzAdsFaq", "amzPricing", "fbaGuide", "brandRegistry"] },
+    handmade: { items: [
+      ETSY_SIZE,
+      "New Etsy sellers wait for money: funds are generally available 14 days after a sale, and a reserve can hold part of each sale.",
+      "Etsy Offsite Ads cost 15% of the order total (up to $100) on sales they bring in. You can opt out while your shop has never made $10,000 in a 365-day period.",
+      BANKRATE_LINE,
+      "<b>Money to start</b>: Etsy charges $0.20 per listing, plus a one-time setup fee in some places (shown during setup, non-refundable). Shopify's trial, then $1 a month for 3 months, then Basic at $39 a month. Plus your materials. In the US, children's products need third-party lab testing.",
+    ], src: ["etsy10k", "etsyDeposit", "etsyReserve", "etsyOffsite", "bankrate", "etsyFees", "shopPricing", "shopTrial", "cpscCpc"] },
+  };
+  const realisticBody = (p) => { const r = REALISTIC[p && p.model]; return r ? ul(r.items) : ""; };
   const LESSONS = [
     { id: "how", title: "How dropshipping works and who is responsible", mins: 4, fit: (p) => SHIP(p),
       body: () => "<p>You list a product, a customer pays you, and you pay a supplier to make or ship it straight to the customer. You never hold stock.</p><p>The customer bought from you, so the responsibility stays with you:</p>" + ul([
@@ -1455,7 +1902,7 @@
     { id: "digital", title: "Selling digital products", mins: 4, fit: (p) => p.model === "digital",
       body: () => "<p>You make a file once, such as a planner, template, printable or guide, and sell it again and again. There's nothing to ship, so platform fees are the main cost on each sale.</p>" + ul([
         "<b>Etsy</b>: digital items must be made or designed by you, AI use must be disclosed, and listing photos must be your own. Fees are the same as physical items.",
-        "<b>Gumroad</b>: 10% + 50¢ per direct sale; 30% for sales through its Discover marketplace.",
+        "<b>Gumroad</b>: 10% + 50¢ per direct sale plus card or PayPal processing; a flat 30%, processing included, for sales through its Discover marketplace.",
         "<b>Payhip</b>: Free plan 5% per sale, Plus $29/month with 2%, Pro $99/month with 0%, plus payment processing.",
         "<b>Shopify</b>: your own store plan, plus Shopify's free Digital Downloads app.",
         "<b>Licences</b>: anything you didn't make yourself (fonts, graphics, templates) needs a licence that allows commercial use.",
@@ -1480,12 +1927,12 @@
       src: ["fiverrVsUpwork", "fiverrOrders", "upworkFee", "upworkConnects", "irsSE", "irsEst"] },
     { id: "creator", title: "How creators get paid", mins: 4, fit: (p) => p.model === "creator",
       body: () => ul([
-        "<b>YouTube Partner Program</b>: from 500 subscribers (with 3 recent uploads and 3,000 watch hours or 3 million Shorts views) for fan funding and Shopping; from 1,000 subscribers (with 4,000 watch hours or 10 million Shorts views) for ad revenue. YouTube shares 55% of ad revenue on long videos and 45% on Shorts.",
+        "<b>YouTube Partner Program</b>: from 500 subscribers (with 3 recent uploads and 3,000 watch hours or 3 million Shorts views) for fan funding and Shopping; from 1,000 subscribers (with 4,000 watch hours or 10 million Shorts views) for ad revenue. From February 1, 2027, new applicants need 8,000 watch hours or 20 million Shorts views for ad revenue, and Shorts ad earnings need 10 million Shorts views every 90 days. YouTube shares 55% of ad revenue on long videos and 45% on Shorts.",
         "<b>TikTok Creator Rewards</b>: 10,000 followers and 100,000 views in 30 days, 18+, original videos at least 1 minute long. Paid monthly once you pass $50 (US).",
         "<b>Sponsorships</b>: brands pay for a mention or video. You must disclose them clearly, in the video itself.",
         "<b>Affiliate links and your own products</b>: often steadier than platform payouts.",
       ]) + "<p>Meeting a threshold starts a review; it doesn't guarantee approval or income.</p>" + checked,
-      src: ["ytYpp", "ytBlog", "ttRewards", "ttRewardsTerms", "ftcInfluencer"] },
+      src: ["ytYpp", "ytBlog", "ytYppChanges", "ttRewards", "ttRewardsTerms", "ftcInfluencer"] },
     { id: "courses", title: "Selling online courses", mins: 4, fit: (p) => p.model === "courses",
       body: () => ul([
         "<b>Check demand first</b>: a waitlist or pre-sale tells you whether people will pay before you record hours of video.",
@@ -1530,6 +1977,20 @@
         "<b>Scale</b>: your hours limit how much you can sell, so price for profit from day one.",
       ]),
       src: ["etsyCreativity", "etsySellerPolicy", "cpscCpc", "cpscSmall"] },
+    { id: "realistic", title: "What's realistic: income, payout waits and start-up costs", mins: 3, fit: (p) => !!REALISTIC[p.model],
+      body: (p) => p && REALISTIC[p.model] ? "<p>Figures published by the platforms, regulators and surveys, for <b>" + MODEL_NAME[p.model].toLowerCase() + "</b>.</p>" + realisticBody(p)
+        : "<p>" + BANKRATE_LINE + "</p><p>Build your plan to see the figures for the way you want to earn.</p>",
+      src: (p) => p && REALISTIC[p.model] ? REALISTIC[p.model].src : ["bankrate", "bankratePR"] },
+    { id: "holds", title: "Account holds, reserves and suspensions", mins: 4, fit: (p) => !["affiliate", "creator", "books"].includes(p.model),
+      body: () => "<p>Platforms hold back money to cover refunds and chargebacks, especially for new sellers. Expect your first payouts to take longer than later ones.</p>" + ul([
+        "<b>Shopify Payments</b>: payouts can be held while Shopify reviews your account, for example after chargebacks, complaints or missing tax details. A reserve holds back part of each sale for a set time (such as 10% for 120 days) to cover refunds and chargebacks; you can still take payments.",
+        "<b>Etsy</b>: a reserve can hold a percentage of each physical-item sale, for example after your first sale, a jump in orders, late shipping or more refunds. Adding tracking releases money sooner, and for most sellers the reserve ends within 90 days. Digital sales aren't held.",
+        "<b>eBay</b>: new or infrequent sellers have funds held until eBay confirms delivery. Holds usually end within 30 days; shipping quickly with tracking shortens them.",
+        "<b>PayPal</b>: a new seller's first payments can be held for up to 21 days. Add tracking and the money is usually released about 24 hours after delivery; for services or digital items, mark the order completed and it's released after 7 days.",
+        "<b>Fiverr and Upwork</b>: Fiverr earnings become available 14 days after an order is completed (7 days for Top Rated, Pro and Seller Plus). On Upwork, fixed-price payments sit in a 5-day security hold after approval, and hourly pay usually arrives 10 days after the work week ends.",
+        "<b>What helps</b>: ship on time with tracking, answer customers fast, and reply to any request for information or ID quickly. Notices arrive by email and in your seller dashboard.",
+      ]),
+      src: ["shopReserves", "shopHolds", "etsyReserve", "ebayHolds", "paypalHolds", "fiverrOrders", "upworkFixed", "upworkHourly"] },
     { id: "where", title: "Where each model is allowed", mins: 4, fit: () => true,
       body: () => '<div class="tablewrap"><table><thead><tr><th>Where</th><th>What the rules say</th></tr></thead><tbody>' +
         "<tr><td>Shopify</td><td>Dropshipping, print-on-demand and digital products allowed; retail rules apply</td></tr>" +
@@ -1552,7 +2013,7 @@
         "<tr><td>TikTok Shop US</td><td>No setup fee; 6% commission per sale</td></tr>" +
         "<tr><td>Mercari</td><td>No listing fee; 10% of item price + buyer-paid shipping</td></tr>" +
         "<tr><td>Poshmark</td><td>$2.95 under $15; 20% at $15 or more</td></tr>" +
-        "<tr><td>Gumroad</td><td>10% + 50¢ per direct sale; 30% via Discover</td></tr>" +
+        "<tr><td>Gumroad</td><td>10% + 50¢ per direct sale plus processing; 30% via Discover (processing included)</td></tr>" +
         "<tr><td>Payhip</td><td>Free plan 5%; Plus $29/month + 2%; Pro $99/month + 0%; plus processing</td></tr>" +
         "<tr><td>Amazon Associates, impact.com, CJ</td><td>Free to join</td></tr>" +
         "<tr><td>Awin</td><td>Small refundable deposit at sign-up</td></tr>" +
@@ -1607,8 +2068,18 @@
         "Vague answers about what you'd sell, how customers would find you and what it would cost.",
         "Pressure to decide now, and asks for card details before you've had time to check.",
         "Upsells: paying more for mentoring “to make it work”.",
-      ]) + "<p>That's why this app doesn't promise income by the end of the week. It gets you set up and selling, and shows your real numbers so you can decide what to change.</p>",
+      ]) + "<p>That's why this app doesn't promise income by the end of the week. It gets you set up and ready to sell, and shows your real numbers so you can decide what to change.</p>",
       src: ["ftcScam"] },
+    { id: "traps", title: "Done-for-you stores and other traps", mins: 4, fit: () => true,
+      body: () => ul([
+        "<b>“Done-for-you” or “AI-powered” stores.</b> The FTC has banned the operators of several schemes that sold ready-made online stores, including Automators AI (2024), Ecommerce Empire Builders (2025) and Click Profit (2025). Ecommerce Empire Builders sold stores for as much as $35,000 while promising $10,000 a month. Click Profit charged a management fee of at least $45,000, and the FTC said Amazon blocked, suspended or ended about 95% of its stores.",
+        "<b>“We'll take care of everything.”</b> The FTC warns that profitable “turnkey” businesses are rare, at best. Be wary of anyone who says you don't need to understand the business because their experts handle it.",
+        "<b>Never hand over your store or seller login.</b> If someone really needs access, use the platform's own tools. On Shopify, staff and collaborator accounts give only the permissions a job needs, and you can remove them when it's done. If you already shared a password, change it (and anywhere you reused it), turn on two-factor authentication, and check your bank and card accounts.",
+        "<b>Ask for the disclosure document.</b> Under the FTC's Business Opportunity Rule, a seller of a business opportunity must give you a one-page disclosure document at least 7 days before you sign or pay. If they claim earnings, they must also give you an earnings claim statement and have written proof. Not every course or coaching program is covered, but no paperwork plus big income promises is a red flag.",
+        "<b>Contracts that gag reviews.</b> In the Automators and Click Profit cases, the FTC said the companies restricted or threatened customers over negative reviews. A contract that stops you posting an honest review is a warning sign.",
+        "<b>Report it.</b> In the US, report scams at ReportFraud.ftc.gov and to your state attorney general.",
+      ]),
+      src: ["ftcAutomators", "ftcEEB", "ftcAIComply", "ftcClickProfit", "ftcClickProfitBan", "ftcVetting", "shopCollab", "shopUsers", "ftcScammed", "ftcBizOppRule", "ftcScam"] },
   ];
   const LESSON = Object.fromEntries(LESSONS.map((l) => [l.id, l]));
 
@@ -1623,8 +2094,8 @@
     { id: "c-fba", title: "A guide to Amazon FBA fees", by: "Amazon", len: "Article", fit: (p) => p.model === "fba", url: S.fbaGuide[1], note: "Fulfilment, storage and other FBA fees explained." },
     { id: "c-cpsc", title: "Online sellers safety guide", by: "CPSC", len: "FAQ", fit: (p) => ["handmade", "fba"].includes(p.model), url: S.cpscOnline[1], note: "US product safety basics for online sellers." },
     { id: "c-etsycreative", title: "Etsy's Creativity Standards", by: "Etsy", len: "Policy", fit: (p) => p.model === "handmade" && p.channel === "etsy", url: S.etsyCreativity[1], note: "What counts as made or designed by you." },
-    { id: "c-shopify", title: "Dropshipping 101: Build your first online store", by: "Shopify Learn", len: "About 2 hours", fit: (p) => SHIP(p) && p.channel === "shopify", url: S.shopCourse[1],
-      note: "Product research, suppliers, store building, Facebook ads, fulfilment and refunds. Some lessons name the Oberlo app; check apps are still offered." },
+    { id: "c-shopify", title: "Dropshipping University", by: "Learn With Shopify (YouTube)", len: "About 3.5 hours", fit: (p) => SHIP(p) && p.channel === "shopify", url: S.shopCourse[1],
+      note: "Free videos from Shopify on setting up a dropshipping store, product research and TikTok dropshipping." },
     { id: "c-ftc", title: "Disclosures 101 for social media influencers", by: "FTC", len: "Guide", fit: (p) => p.model === "affiliate", url: S.ftcInfluencer[1],
       note: "When and how to disclose affiliate links, free products and sponsorships." },
     { id: "c-awin", title: "How to start affiliate marketing with Awin", by: "Awin", len: "Tutorial", fit: (p) => p.channel === "aff_network", url: S.awinGuide[1],
@@ -1678,7 +2149,7 @@
     { cat: "Affiliate programs", name: "Awin", url: S.awinJoin[1], cost: "Refundable deposit", desc: "Affiliate network with thousands of brands.", fit: (p) => p.channel === "aff_network" },
     { cat: "Affiliate programs", name: "impact.com", url: S.impact[1], cost: "Free for partners", desc: "Partnership platform used by many brands.", fit: (p) => p.channel === "aff_network" },
     { cat: "Affiliate programs", name: "CJ Affiliate", url: S.cjAff[1], cost: "Free publisher account", desc: "Affiliate network; basic HTML knowledge helps.", fit: (p) => p.channel === "aff_network" },
-    { cat: "Digital products", name: "Gumroad", url: S.gumroad[1], cost: "10% + 50¢ per sale", desc: "Sell downloads with no monthly fee.", fit: (p) => p.model === "digital" },
+    { cat: "Digital products", name: "Gumroad", url: S.gumroad[1], cost: "10% + 50¢ per sale + processing", desc: "Sell downloads with no monthly fee.", fit: (p) => p.model === "digital" },
     { cat: "Digital products", name: "Payhip", url: S.payhip[1], cost: "Free plan 5% per sale", desc: "Sell downloads, courses and memberships.", fit: (p) => p.model === "digital" },
     { cat: "Digital products", name: "Shopify Digital Downloads", url: S.shopDigital[1], cost: "Free app", desc: "Shopify's own app for selling files.", fit: (p) => p.model === "digital" && p.channel === "shopify" },
     { cat: "Freelancing", name: "Fiverr", url: "https://www.fiverr.com/", cost: "20% of each order", desc: "Sell packaged services to buyers.", fit: (p) => p.model === "freelance" },
@@ -1732,20 +2203,24 @@
   const FEES = {
     shopify: { label: "Shopify Payments, Basic (US online card)", pct: 2.9, fixed: 0.3 },
     shopify3p: { label: "Shopify Basic + another payment provider", pct: 2, fixed: 0, hint: "Shopify's 2% only. Add your provider's own fees." },
-    etsy: { label: "Etsy (US)", pct: 9.5, fixed: 0.25, hint: "6.5% transaction + 3% + $0.25 processing. Add $0.20 per listing to other costs." },
+    etsyUK: { label: "Etsy (UK seller)", pct: 10.98, fixed: 0.2, cur: "GBP", hint: "6.5% transaction + 4% + £0.20 processing + 0.48% regulatory operating fee. Add the $0.20 listing fee (billed in US dollars) to other costs. Etsy adds VAT to its fees unless you've given it a VAT number." },
+    ebayUKprivate: { label: "eBay UK, private seller", pct: 0, fixed: 0, cur: "GBP", hint: "No final value fee for UK-based private sellers (vehicles excepted); buyers pay eBay's Buyer Protection fee on top. Fees apply above 300 listings a month, for upgrades or for overseas delivery." },
+    ebayUKbusiness: { label: "eBay UK, business seller (“Everything Else” category)", pct: 13.25, fixed: null, cur: "GBP", hint: "12.9% final value fee + 0.35% regulatory operating fee, plus £0.30 per order of £10 or less or £0.40 over £10. Other categories differ; fees exclude VAT." },
+    etsy: { label: "Etsy (US)", pct: 9.5, fixed: 0.25, hint: "6.5% transaction + 3% + $0.25 processing. Add $0.20 per listing to other costs. Sales from Offsite Ads add 15% (12% once you pass $10,000 a year), up to $100 per order." },
     ebay: { label: "eBay, most categories", pct: 13.6, fixed: null, hint: "$0.30 per order of $10 or less, $0.40 over $10." },
     tiktok: { label: "TikTok Shop US", pct: 6, fixed: 0, hint: "Check your category's rate in Seller Center." },
     amazonI: { label: "Amazon, Individual plan", pct: null, fixed: 0.99, hint: "Enter your category's referral fee %." },
     amazonP: { label: "Amazon, Professional plan", pct: null, fixed: 0, hint: "Enter your category's referral fee %. Add $39.99 to monthly costs." },
     mercari: { label: "Mercari", pct: 10, fixed: 0, hint: "10% of the item price plus buyer-paid shipping." },
     poshmark: { label: "Poshmark (US)", pct: 20, fixed: 0, hint: "Under $15 it's a flat $2.95 instead; the calculators apply that automatically." },
-    gumroad: { label: "Gumroad, direct sales", pct: 10, fixed: 0.5, hint: "30% instead on sales through Gumroad Discover." },
+    gumroad: { label: "Gumroad, direct sale (card)", pct: 12.9, fixed: 0.8, hint: "10% + 50¢ Gumroad fee + 2.9% + 30¢ card processing. PayPal fees differ." },
+    gumroadDiscover: { label: "Gumroad, Discover sale", pct: 30, fixed: 0, hint: "Flat 30%; processing included." },
     payhipFree: { label: "Payhip, Free plan", pct: 5, fixed: 0, hint: "Add PayPal or Stripe processing at their standard rates." },
     payhipPlus: { label: "Payhip, Plus plan", pct: 2, fixed: 0, hint: "Add $29 to monthly costs, and PayPal or Stripe processing." },
     payhipPro: { label: "Payhip, Pro plan", pct: 0, fixed: 0, hint: "Add $99 to monthly costs, and PayPal or Stripe processing." },
     fiverr: { label: "Fiverr (freelancer side)", pct: 20, fixed: 0, hint: "Fiverr keeps 20% of every order, including tips." },
     upwork: { label: "Upwork (enter your contract's fee)", pct: null, fixed: 0, hint: "Between 0% and 15%; Upwork shows it before you accept." },
-    stripeUS: { label: "Card payment via Stripe (US)", pct: 2.9, fixed: 0.3, hint: "Stripe's standard US card rate." },
+    stripeUS: { label: "Card payment via Stripe (US)", pct: 2.9, fixed: 0.3, hint: "Stripe's standard US card rate. International cards add 1.5%, and currency conversion adds 1%." },
     substack: { label: "Substack paid subscription (US cards)", pct: 13.6, fixed: 0.3, hint: "10% Substack + 2.9% + 30¢ Stripe + 0.7% Stripe Billing." },
     teachableStarter: { label: "Teachable Starter (US card)", pct: 10.4, fixed: 0.3, hint: "7.5% Teachable fee + 2.9% + 30¢ card processing. Add the plan to monthly costs." },
     teachablePaid: { label: "Teachable Builder or Growth (US card)", pct: 2.9, fixed: 0.3, hint: "0% Teachable fee with Teachable Payments + 2.9% + 30¢ card processing." },
@@ -1777,7 +2252,16 @@
     if (s === addDays(t, -1)) return "Yesterday";
     return parse(s).toLocaleDateString(undefined, { month: "short", day: "numeric" });
   };
-  const money = (n, cur = "USD") => { try { return n.toLocaleString(undefined, { style: "currency", currency: cur }); } catch { return n.toFixed(2); } };
+  const money = (n, cur = userCur()) => { try { return n.toLocaleString(undefined, { style: "currency", currency: cur }); } catch { return n.toFixed(2); } };
+  // The calculators show amounts in the currency picked in Tools, or else the
+  // one for the country in the plan.
+  function userCur() {
+    const pick = lsGet("dd-cur", "");
+    if (pick && CURRENCIES.includes(pick)) return pick;
+    const c = typeof st !== "undefined" && st.profile && st.profile.country;
+    return COUNTRY_CUR[c] || "USD";
+  }
+  const curName = (c) => { try { return new Intl.DisplayNames(undefined, { type: "currency" }).of(c); } catch { return c; } };
   const newId = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
   const CHECK_SVG = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg>';
   const lsGet = (k, d) => { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch { return d; } };
@@ -2564,7 +3048,7 @@
     { key: "level", q: "How far along are you?", opts: () => [["new", "Haven't started", "Nothing set up yet"], ["store", "Set up, no sales yet", "Account or shop exists"], ["selling", "Already earning", "Getting orders or commissions"]] },
     { key: "model", q: "How do you want to make money?", opts: () => MODELS },
     { key: "channel", q: "Where will you do it?", opts: (a) => CHANNELS[a.model] || [] },
-    { key: "country", q: "Where do you live?", opts: () => [["us", "United States", ""], ["uk", "United Kingdom", ""], ["other", "Somewhere else", ""]] },
+    { key: "country", q: "Where do you live?", opts: () => COUNTRIES },
     { key: "ads", q: "Will you pay for ads this week?", opts: () => [["none", "No", "Free methods only"], ["some", "Yes", "I have a budget I can afford to lose"]], show: (a) => ADS_MODELS.includes(a.model) },
   ];
   function labelFor(key, value, p) {
@@ -2599,8 +3083,32 @@
   function startSetup(editing) { setup.draft = null; setup.step = editing ? 99 : 0; setup.compare = false; setup.filter = ""; setup.back = false; st.editingProfile = !!editing; }
   // After changing one answer from the review screen, go straight back to it.
   const advance = () => { setup.step = setup.back ? 99 : setup.step + 1; };
+  // Where a platform isn't available, or only partly, in the chosen country.
+  function availability(a) {
+    const c = a.country, ch = a.channel, msgs = [];
+    if (!c || !ch) return msgs;
+    const name = COUNTRY_NAME[c];
+    if (c === "in" && ["tiktok", "aff_tiktok", "tt_creator"].includes(ch)) msgs.push("<b>TikTok has been blocked in India since June 2020</b>, so the TikTok steps won't work from there.");
+    if (ch === "tt_creator" && ["ca", "au", "ph", "ng"].includes(c)) msgs.push("<b>TikTok Creator Rewards isn't open in " + name + ".</b> TikTok's list of eligible countries is the US, UK, Germany, Japan, South Korea, France, Mexico and Brazil.");
+    if (ch === "tt_creator" && c === "eu") msgs.push("<b>In the EU, TikTok Creator Rewards is open only in Germany and France.</b>");
+    if (ch === "tiktok" && c === "eu") msgs.push("<b>TikTok Shop is open to sellers in only some EU countries:</b> France, Germany, Ireland, Italy and Spain, and since June 2026 Austria, Belgium, the Netherlands and Poland.");
+    if (ch === "tiktok" && c === "ph") msgs.push("<b>TikTok Shop has a Philippine Seller Center.</b> Individual sellers there must be Philippine citizens aged 18 or over.");
+    if (ch === "tiktok" && c === "br") msgs.push("<b>TikTok Shop launched in Brazil in May 2025</b> with its own Seller Center.");
+    if (ch === "etsy" && c === "ng") msgs.push("<b>Etsy shops can't be opened in Nigeria</b>, because Etsy Payments isn't available there.");
+    if (ch === "etsy" && c === "in") msgs.push("<b>New Etsy shops in India can sell internationally only</b> and must be paid through Payoneer.");
+    if (["amazon", "amz_fba"].includes(ch) && ["ph", "ng"].includes(c)) msgs.push("<b>There's no Amazon marketplace in " + name + ".</b> Check Amazon Global Selling for whether you can register on another one.");
+    if (ch === "aff_amazon" && ["ph", "ng"].includes(c)) msgs.push("<b>There's no Amazon Associates programme in " + name + "</b>, because there's no local Amazon store.");
+    if (ch === "shopify" && ["in", "ph", "ng", "br"].includes(c)) msgs.push("<b>Shopify Payments isn't available in " + name + "</b>, so you'll need a third-party payment provider. Check Shopify's pricing for the extra fee that applies.");
+    if (ch === "shopify" && c === "eu") msgs.push("<b>Shopify Payments is confirmed in Austria, Belgium, Czechia, Denmark, Finland, France, Germany, Ireland, Italy, the Netherlands, Poland, Portugal, Romania, Spain and Sweden.</b> Elsewhere, check Shopify's list.");
+    if (ch === "direct" && c === "in") msgs.push("<b>New Stripe accounts in India are invite-only</b>, and PayPal India can receive payments from international customers only.");
+    if (ch === "direct" && c === "ph") msgs.push("<b>Stripe isn't available in the Philippines.</b> PayPal can receive payments and withdraw to a local bank.");
+    if (ch === "direct" && c === "ng") msgs.push("<b>Stripe doesn't offer standard accounts in Nigeria</b>, and new PayPal users there must link a partner bank to receive money.");
+    return msgs;
+  }
+  const AVAIL_SRC = { in: ["inAppsBlocked", "inEtsy", "inStripe", "inPaypal"], eu: ["ttsEurope", "ttRewardsAcademy", "shopPayCountries"], ca: ["ttRewardsAcademy"], au: ["ttRewardsAcademy"],
+    ph: ["ttRewardsAcademy", "phTts", "amzGlobal", "shopPayCountries", "stripeGlobal", "phPaypal"], ng: ["ttRewardsAcademy", "ngEtsy", "amzGlobal", "shopPayCountries", "stripeGlobal", "ngPaypal"], br: ["ttsBrazil", "shopPayCountries"] };
   function setupWarnings(a) {
-    const msgs = [];
+    const msgs = availability(a);
     if (a.channel === "tiktok" && a.country && a.country !== "us") msgs.push("<b>The TikTok Shop steps follow TikTok Shop US rules.</b> Sellers elsewhere should check their own country's Seller Center.");
     if (a.channel === "aff_tiktok" && a.country && a.country !== "us") msgs.push("<b>The TikTok Shop affiliate steps follow US rules.</b> Other countries have their own requirements.");
     if (a.model === "fba") msgs.push("<b>Amazon FBA means paying for stock before you sell anything.</b> Only invest what you can afford to lose; the plan has you check every fee first.");
@@ -2719,8 +3227,8 @@
     ship: "Days 1–5 get you to a shop that can take orders; days 6–7 put your product in front of buyers.",
     affiliate: "Days 1–3 set up your accounts and learn the disclosure rules; days 4–7 publish content with your links. Programs pay only on completed sales, usually weeks later.",
     digital: "Days 1–5 take you from an idea to a listed product; days 6–7 get it in front of buyers.",
-    resell: "Days 1–3 set up and learn what sells; days 3–5 buy and list your first items; days 6–7 sell and ship.",
-    freelance: "Days 1–4 set up your offer, rate and profile; days 5–7 find and serve your first clients.",
+    resell: "Days 1–3 set up and learn what sells; days 3–5 buy and list your first items; days 6–7 promote your listings and be ready to ship.",
+    freelance: "Days 1–4 set up your offer, rate and profile; days 5–7 pitch your first clients.",
     creator: "Days 1–3 learn the program rules and plan your content; days 4–7 post on a schedule. Platform payouts start only after you qualify and are approved.",
     courses: "Days 1–3 set up and check demand; days 4–7 build the first module and open enrolment to a small group.",
     books: "Days 1–3 set up KDP and plan the book; days 4–7 work on the cover, pricing and description. Writing a book takes longer than a week; this sets you up.",
@@ -2743,7 +3251,18 @@
     const chips = el("div", "chips");
     [MODEL_NAME[p.model], CHANNEL_NAME[p.channel], labelFor("level", p.level), labelFor("country", p.country), !ADS_MODELS.includes(p.model) ? null : p.ads === "some" ? "Paid ads" : "No paid ads"].filter(Boolean).forEach((c) => chips.append(el("span", "chip", c)));
     left.append(chips);
+    const av = availability(p);
+    if (av.length) { const n = html("div", "note", av.join("<br>")); const sb = sourcesBlock(AVAIL_SRC[p.country]); if (sb) n.append(sb); left.append(n); }
     left.append(html("p", "small muted", (SHIP(p) ? PLAN_INTRO.ship : PLAN_INTRO[p.model] || "") + " <b>No guide can promise income in a week</b>: that depends on what you sell, your price and whether people buy. Each step shows where its facts come from, and the calculators show your numbers before you spend money."));
+    const real = REALISTIC[p.model];
+    if (real) {
+      const d = el("details", "fold realistic"); d.open = !!lsGet("dd-fold-real", false);
+      d.addEventListener("toggle", () => lsSet("dd-fold-real", d.open));
+      const sm = el("summary"); sm.append(el("b", null, "What's realistic"), el("span", "small muted", " · income, payout waits and start-up costs"));
+      d.append(sm, html("div", "prose", realisticBody(p)));
+      const sb = sourcesBlock(real.src); if (sb) d.append(sb);
+      left.append(d);
+    }
     const btns = el("div", "row-gap");
     const edit = el("button", "btn sm", "Change answers"); edit.type = "button"; edit.onclick = () => { startSetup(true); render(); };
     const restart = el("button", "btn sm", "Restart dates from today"); restart.type = "button"; restart.onclick = restartPlan;
@@ -2949,6 +3468,13 @@
     clickDrop: ["Royal Mail Click & Drop", "https://www.royalmail.com/business/shipping/ways-pay/click-drop", "Royal Mail's label tool; no monthly fee.", "uk"],
     evri: ["Evri", "https://www.evri.com/", "Parcel delivery with drop-off shops and lockers.", "uk"],
     parcel2go: ["Parcel2Go", "https://www.parcel2go.com/", "Compare UK couriers and book labels.", "uk"],
+    dhl: ["DHL", "https://www.dhl.com/", "Parcel and express shipping in many countries."],
+    canadaPost: ["Canada Post", "https://www.canadapost-postescanada.ca/", "Canada's national postal service.", "ca"],
+    ausPost: ["Australia Post", "https://auspost.com.au/", "Australia's national postal service.", "au"],
+    indiaPost: ["India Post", "https://www.indiapost.gov.in/", "India's national postal service.", "in"],
+    phlPost: ["PHLPost", "https://www.phlpost.gov.ph/", "The Philippines' national postal service.", "ph"],
+    nipost: ["NIPOST", "https://www.nipost.gov.ng/", "Nigeria's national postal service.", "ng"],
+    correios: ["Correios", "https://www.correios.com.br/", "Brazil's national postal service.", "br"],
     // freelancing
     fiverr: ["Fiverr", "https://www.fiverr.com/", "Clients buy your packaged services (gigs)."],
     upwork: ["Upwork", "https://www.upwork.com/", "Send proposals to jobs clients post."],
@@ -3038,7 +3564,7 @@
     resellMarket: { title: "Marketplace", ask: "Where will you list items?", items: ["ebay", "mercari", "poshmark", "depop", "vinted", "fbMarket", "grailed"], def: byChannel, channel: true, note: "Fees differ between marketplaces; compare them in Tools › Compare platforms." },
     sourcing: { title: "Where to find stock", ask: "Where will you find items to resell?", items: ["fbMarket", "shopgoodwill", "estatesales", "craigslist", "gumtree"], note: "Thrift and charity shops, yard sales and car boot sales work too." },
     listingTools: { title: "Listing tools", ask: "What will help you list faster?", items: ["photoroom", "removebg", "vendoo", "listPerfectly"] },
-    shipping: { title: "Shipping labels", ask: "Where will you buy shipping labels?", items: ["pirateship", "usps", "ups", "clickDrop", "evri", "parcel2go"], note: "Marketplaces like eBay also sell labels inside their own site." },
+    shipping: { title: "Shipping labels", ask: "Where will you buy shipping labels?", items: ["pirateship", "usps", "ups", "dhl", "clickDrop", "evri", "parcel2go", "canadaPost", "ausPost", "indiaPost", "phlPost", "nipost", "correios"], note: "Marketplaces like eBay also sell labels inside their own site." },
     freelancePlatform: { title: "Where you'll find clients", ask: "Where will you find clients?", items: ["fiverr", "upwork", "freelancer", "pph", "contra", "linkedin"], def: byChannel, channel: true },
     portfolio: { title: "Portfolio", ask: "Where will your portfolio live?", items: ["behance", "dribbble", "contra", "carrd", "notion"] },
     invoicing: { title: "Getting paid", ask: "How will direct clients pay you?", items: ["stripeInv", "paypalBiz", "wave", "freshbooks"], note: "Only for clients outside platforms like Fiverr and Upwork, which handle payment for you." },
@@ -3354,7 +3880,7 @@
     c.append(el("h2", null, "Start an online business, one step at a time"));
     const names = MODELS.map((m) => m[1].replace(/ \(.*\)$/, "").toLowerCase());
     c.append(el("p", null, "Answer five quick questions and you'll get a 7-day plan for how you want to earn: " + names.slice(0, -1).join(", ") + " or " + names.slice(-1)[0] + ". Each step explains what to do, what it costs, links to the right site and shows its sources."));
-    c.append(el("p", "small muted", "No guide can promise income in a week. What this app can do is show you the real steps, the real fees and your numbers before you spend money."));
+    c.append(el("p", "small muted", "No guide can promise income in a week. What this app can do is show you the real steps, the real fees and your numbers before you spend money. It's general information, not financial, legal or tax advice."));
     const row = el("div", "row-gap");
     const go1 = el("button", "btn primary", "Build my plan"); go1.type = "button"; go1.onclick = () => { startSetup(false); setTab("plan"); };
     const go2 = el("button", "btn", "Compare the " + MODELS.length + " ways to earn"); go2.type = "button"; go2.onclick = () => { startSetup(false); setup.step = 1; setup.compare = true; setTab("plan"); };
@@ -3716,7 +4242,7 @@
     box.append(el("h2", null, l.title));
     box.append(html("div", "prose", l.body(st.profile)));
     if (l.go) { const b = el("button", "btn primary sm", "Open the profit calculator"); b.type = "button"; b.onclick = () => go(l.go); box.append(b); }
-    const src = sourcesBlock(l.src); if (src) box.append(src);
+    const src = sourcesBlock(val(l.src, st.profile)); if (src) box.append(src);
     const act = el("div", "actions"); act.append(el("span"));
     const right = el("div");
     const close = el("button", "btn", "Close"); close.type = "button"; close.onclick = () => $("#readDlg").close();
@@ -3828,15 +4354,15 @@
   const nv = (k) => (CV[k] === undefined || CV[k] === null || CV[k] === "" || isNaN(Number(CV[k])) ? null : Number(CV[k]));
   function ensureFeeDefaults(force) {
     if (force || !CV.fee || !FEES[CV.fee]) {
-      CV.fee = (st.profile && DEFAULT_FEE[st.profile.channel]) || "shopify";
+      CV.fee = (st.profile && ((st.profile.country === "uk" && { etsy: "etsyUK" }[st.profile.channel]) || DEFAULT_FEE[st.profile.channel])) || "shopify";
       const f = FEES[CV.fee]; CV.pct = f.pct == null ? "" : f.pct; CV.fixed = f.fixed == null ? "" : f.fixed;
       lsSet("dd-calc2", CV);
     }
   }
-  const FEE_SRC_KEY = { fiverr: "fiverrVsUpwork", upwork: "upworkFee", stripeUS: "substackCost", substack: "substackCost", teachableStarter: "teachableFees", teachablePaid: "teachableFees", thinkific: "thinkific", amazonFBA: "fbaCalc", shopify: "shopPricing", shopify3p: "shopPricing", etsy: "etsyFees", ebay: "ebayFees", tiktok: "ttsHome", amazonI: "amzPricing", amazonP: "amzPricing", mercari: "mercariFees", poshmark: "poshFees", gumroad: "gumroad", payhipFree: "payhip", payhipPlus: "payhip", payhipPro: "payhip" };
+  const FEE_SRC_KEY = { etsyUK: "etsyUKSell", ebayUKprivate: "ebayUKPrivate", ebayUKbusiness: "ebayUKBusiness", fiverr: "fiverrVsUpwork", upwork: "upworkFee", stripeUS: "stripePricing", substack: "substackCost", teachableStarter: "teachableFees", teachablePaid: "teachableFees", thinkific: "thinkific", amazonFBA: "fbaCalc", shopify: "shopPricing", shopify3p: "shopPricing", etsy: "etsyFees", ebay: "ebayFees", tiktok: "ttsHome", amazonI: "amzPricing", amazonP: "amzPricing", mercari: "mercariFees", poshmark: "poshFees", gumroad: "gumroadFees", gumroadDiscover: "gumroadFees", payhipFree: "payhip", payhipPlus: "payhip", payhipPro: "payhip" };
   function feeOf(price, key = CV.fee, pct = nv("pct"), fixed = nv("fixed")) {
     if (key === "poshmark" && price < 15) return 2.95;
-    if (key === "ebay" && fixed == null) fixed = price > 10 ? 0.4 : 0.3;
+    if ((key === "ebay" || key === "ebayUKbusiness") && fixed == null) fixed = price > 10 ? 0.4 : 0.3;
     return (price * (pct || 0)) / 100 + (fixed || 0);
   }
   const costsOf = () => (nv("cost") || 0) + (nv("ship") || 0) + (nv("other") || 0);
@@ -3861,7 +4387,8 @@
     const pct = numField(form, "pct", "Fee %", { step: "0.1" });
     const fixed = numField(form, "fixed", "Fixed fee per sale");
     const showHint = () => {
-      hint.textContent = FEES[sel.value].hint || "";
+      const f = FEES[sel.value]; const fc = f.cur || "USD";
+      hint.textContent = (f.hint || "") + (f.fixed !== 0 && sel.value !== "custom" && fc !== userCur() ? " The fixed fee here is in " + curName(fc) + "; convert it to your currency." : "");
       const k = FEE_SRC_KEY[sel.value];
       if (k) { const a = el("a", null, " Source: " + S[k][0]); a.href = S[k][1]; a.target = "_blank"; a.rel = "noopener"; hint.append(a); }
     };
@@ -3919,10 +4446,22 @@
   function renderTool() {
     if (!toolBody) return;
     toolBody.textContent = "";
+    if (CALC_TOOLS.has(currentTool)) toolBody.append(currencyPicker());
     const fn = { profit: toolProfit, price: toolPrice, maxbuy: toolMaxBuy, affiliate: toolAffiliate, rate: toolRate, royalty: toolRoyalty, recurring: toolRecurring, creator: toolCreator, compare: toolCompare, ads: toolAds, discount: toolDiscount, evaluate: toolEvaluate,
       trends: toolTrends, delivery: toolDelivery, messages: toolMessages, helper: toolHelper, describe: toolDescribe, hooks: toolHooks, directory: toolDirectory }[currentTool] || toolProfit;
     toolBody.append(fn());
+    if (CALC_TOOLS.has(currentTool)) toolBody.append(el("p", "small muted calc-note", "Estimates from the numbers you enter and the published fees shown. Fees change, so check them on each platform. Not financial or tax advice."));
   }
+  function currencyPicker() {
+    const f = el("div", "field cur-pick"); const l = el("label", "label", "Currency"); l.htmlFor = "calcCur";
+    const sel = el("select"); sel.id = "calcCur";
+    const home = COUNTRY_CUR[st.profile && st.profile.country] || "USD";
+    fill(sel, [["", "Match my country (" + home + ")"]].concat(CURRENCIES.map((c) => [c, c + " · " + curName(c)])));
+    sel.value = lsGet("dd-cur", "") || "";
+    sel.onchange = () => { lsSet("dd-cur", sel.value); renderTool(); const s2 = $("#calcCur"); if (s2) s2.focus(); };
+    f.append(l, sel); return f;
+  }
+  const CALC_TOOLS = new Set(["profit", "price", "maxbuy", "affiliate", "rate", "royalty", "recurring", "creator", "compare", "ads", "discount"]);
   function renderToolsDirectory() { if (st.tab === "tools" && ["directory", "evaluate", "helper"].includes(currentTool)) renderTool(); }
 
   // --- Profit per order
@@ -3997,8 +4536,9 @@
         if (nv("margin") != null) { const d = 1 - pct - nv("margin") / 100; return d > 0 ? (C + fixed + A) / d : null; }
         return null;
       };
-      let price = solve(fixedRaw == null && CV.fee === "ebay" ? 0.4 : fixedRaw || 0);
-      if (price != null && CV.fee === "ebay" && fixedRaw == null && price <= 10) price = solve(0.3);
+      const ebayLike = CV.fee === "ebay" || CV.fee === "ebayUKbusiness";
+      let price = solve(fixedRaw == null && ebayLike ? 0.4 : fixedRaw || 0);
+      if (price != null && ebayLike && fixedRaw == null && price <= 10) price = solve(0.3);
       if (price == null) { out.append(el("p", nv("margin") != null ? "neg" : "muted", nv("margin") != null ? "That margin isn't reachable: fees and margin add up to 100% or more." : "Enter a target margin or a target profit.")); return; }
       const rounded = Math.ceil(price) - 0.01 >= price ? Math.ceil(price) - 0.01 : Math.ceil(price) + 0.99;
       oBig(out, "Price you need", money(price));
@@ -4041,8 +4581,8 @@
         if (cpa > 0) { oLine(out, "Target cost per purchase", money(cpa)); oLine(out, "Target ROAS", (P / cpa).toFixed(2)); }
         else oLine(out, "Target cost per purchase", "Not possible at this price", "neg");
       }
-      oLine(out, "Meta: suggested daily budget at break-even", money(before * 10) + "/day");
-      out.append(el("p", "small muted", "Meta suggests a daily budget of at least 10× the average cost of the result you optimise for. Most advertisers charged per impression need at least $1 a day per ad set."));
+      oLine(out, "Rule of thumb: 10× break-even cost a day", money(before * 10) + "/day");
+      out.append(el("p", "small muted", "A common rule of thumb, not a Meta rule: budget about 10 times your target cost per result each day. Meta's own minimum is about $1 a day per ad set for most advertisers charged per impression."));
       oLine(out, "TikTok minimums", "Ad group over $20/day; campaign over $50");
       const D = nv("daily"), N = nv("days");
       if (D && N) {
@@ -4303,7 +4843,7 @@
       ],
       digital: [
         { name: "Etsy (US)", fee: (P) => P * 0.095 + 0.25 + 0.2, monthly: 0, note: "Assumes one $0.20 listing fee per sale. Must be made or designed by you." },
-        { name: "Gumroad (direct sale)", fee: (P) => P * 0.1 + 0.5, monthly: 0, note: "30% instead for sales through Gumroad Discover." },
+        { name: "Gumroad (direct sale)", fee: (P) => P * 0.129 + 0.8, monthly: 0, note: "10% + 50¢ plus 2.9% + 30¢ card processing. A flat 30% (processing included) through Discover." },
         { name: "Payhip Free", fee: (P) => P * 0.05, monthly: 0, note: "Plus PayPal or Stripe processing." },
         { name: "Payhip Plus", fee: (P) => P * 0.02, monthly: 29, note: "Plus PayPal or Stripe processing." },
         { name: "Payhip Pro", fee: () => 0, monthly: 99, note: "Plus PayPal or Stripe processing." },
@@ -4381,7 +4921,7 @@
       margin = (profit / price) * 100;
       if (before <= 0) add("bad", "Loses money on every order", `After product, shipping and ${FEES[CV.fee] ? FEES[CV.fee].label : "platform"} fees you'd make ${money(before)} per order before ads.`, [FEE_SRC_KEY[CV.fee]].filter(Boolean));
       else if (ads != null && profit <= 0) add("bad", "Ads cost more than the product earns", `You'd make ${money(before)} before ads, so ${money(ads)} per order in ads leaves ${money(profit)}.`);
-      else add("ok", "Profit per order: " + money(profit), `Margin ${pct1(margin)}. Break-even ad cost: ${money(before)} per order. Following Meta's guidance (daily budget at least 10× cost per result), testing at that cost means about ${money(before * 10)} a day.`, ["metaBudget"]);
+      else add("ok", "Profit per order: " + money(profit), `Margin ${pct1(margin)}. Break-even ad cost: ${money(before)} per order. Meta's minimum is about $1 a day per ad set; set a test budget you can afford to lose.`, ["metaBudget"]);
     } else add("info", "Profit not checked yet", "Enter the supplier price and your selling price.");
     if (maxD != null) {
       if (ch === "tiktok" && maxD > 6) add("bad", "Too slow for TikTok Shop US", `Supplier shipping is up to ${maxD} days. TikTok Shop US regular orders must be delivered within 6 business days of Awaiting Shipment.`, ["ttsFulfill"]);
@@ -4410,7 +4950,7 @@
     const p = st.profile;
     const sec = toolCard("Product evaluator", "For products you'd sell and ship. Paste the product link and copy the numbers from the listing; each check says where its rule comes from.");
     if (p && !SHIP(p)) sec.append(el("p", "small muted", "Your plan is " + MODEL_NAME[p.model].toLowerCase() + "; these checks use Shopify's rules for products you ship."));
-    else if (p) sec.append(el("p", "small", "Checking against your plan: " + CHANNEL_NAME[p.channel] + ", " + (p.country === "us" ? "United States" : p.country === "uk" ? "United Kingdom" : "outside the US/UK") + "."));
+    else if (p) sec.append(el("p", "small", "Checking against your plan: " + CHANNEL_NAME[p.channel] + ", " + (p.country !== "other" ? COUNTRY_NAME[p.country] || "outside the US and UK" : "outside the US/UK") + "."));
     const grid = el("div", "calc"); const form = el("div", "fields"); const right = el("div"); right.style.display = "grid"; right.style.gap = "10px"; right.style.alignContent = "start";
     grid.append(form, right); sec.append(grid);
     const text = (key, label, opts = {}) => {
@@ -4545,7 +5085,7 @@
     const fld = (label, input) => { const d = el("div", "field"); const l = el("label", "label", label); l.htmlFor = input.id; d.append(l, input); form.append(d); return input; };
     const q = el("input"); q.type = "text"; q.id = "trQ"; q.value = CV.trQ || ""; q.placeholder = "Separate ideas with commas";
     fld("Keywords (up to 5)", q);
-    const g = el("select"); g.id = "trGeo"; fill(g, GEOS); g.value = CV.trGeo ?? (st.profile && st.profile.country === "uk" ? "GB" : "US"); fld("Country", g);
+    const g = el("select"); g.id = "trGeo"; fill(g, GEOS); g.value = CV.trGeo ?? ({ us: "US", uk: "GB", ca: "CA", au: "AU" }[st.profile && st.profile.country] ?? (st.profile ? "" : "US")); fld("Country", g);
     const go2 = el("button", "btn primary", "Show searches"); go2.type = "submit"; form.append(go2);
     sec.append(form);
     form.addEventListener("submit", (e) => { e.preventDefault(); cvSet("trQ", q.value); cvSet("trGeo", g.value); renderTool(); });
@@ -5518,7 +6058,7 @@
       if (await put("sales", x.id, { date: x.date, amount: num(x.amount), fees: num(x.fees) || 0, costs: num(x.costs) || 0, qty: Math.max(1, Math.round(num(x.qty) || 1)), item: clean(x.item, 120), platform: clean(x.platform, 40), note: clean(x.note, 500), currency: /^[A-Z]{3}$/.test(x.currency || "") ? x.currency : "", at: Number(x.at) || Date.now() })) n.sales++;
     }
     const p = obj.profile;
-    if (p && MODEL_NAME[p.model] && (CHANNELS[p.model] || []).some((c) => c[0] === p.channel) && ["new", "store", "selling"].includes(p.level) && ["us", "uk", "other"].includes(p.country)) {
+    if (p && MODEL_NAME[p.model] && (CHANNELS[p.model] || []).some((c) => c[0] === p.channel) && ["new", "store", "selling"].includes(p.level) && COUNTRY_IDS.includes(p.country)) {
       const choices = {};
       Object.entries(p.choices && typeof p.choices === "object" ? p.choices : {}).forEach(([g, id]) => { if (CHOICES[g] && CHOICES[g].items.includes(id)) choices[g] = id; });
       if (!(await saveProfile({ level: p.level, model: p.model, channel: p.channel, country: p.country, ads: p.ads === "some" ? "some" : "none", start: /^\d{4}-\d{2}-\d{2}$/.test(p.start || "") ? p.start : today(), choices }))) n.failed++;
@@ -5630,6 +6170,6 @@
   claudeUse("sample").then((s) => { sample = s; updateAiBtn(); if (st.tab === "tools") renderTool(); });
   claudeUse("downloads").then((d) => { downloads = d; });
   // Test hook for the automated checks; inert unless a test sets the flag first.
-  if (window.__ddTest) window.__dd = { S, GUIDE, STEP, LESSONS, COURSES, TOOLS, TOOL_LIST, CHANNELS, MODELS, QUESTIONS, FEES, DEFAULT_FEE, ADS_MODELS, val, parseQuick, today, addDays, addMonth, applicable, O, CHOICES, STEP_CHOICE, choiceFor, optItems, planChoiceGroups };
+  if (window.__ddTest) window.__dd = { S, GUIDE, STEP, LESSONS, COURSES, TOOLS, TOOL_LIST, CHANNELS, MODELS, QUESTIONS, FEES, DEFAULT_FEE, ADS_MODELS, COUNTRY_IDS, REALISTIC, availability, val, parseQuick, today, addDays, addMonth, applicable, O, CHOICES, STEP_CHOICE, choiceFor, optItems, planChoiceGroups };
   setInterval(() => { if (document.visibilityState === "visible" && (st.tab === "plan" || st.tab === "tasks" || st.tab === "today") && !anyDialog() && !typing(document.activeElement)) render(); }, 60 * 60 * 1000);
 })();

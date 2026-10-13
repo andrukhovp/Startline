@@ -557,3 +557,11 @@ details.fold[open] > summary { margin-bottom: 8px; }
 .site-item:hover { border-color: var(--accent); }
 .site-item .small { font-weight: 400; }
 .site-item.ext::after { justify-self: end; margin-top: -1.4em; }
+
+/* Calculators: currency picker and the estimate note */
+.cur-pick { max-width: 340px; margin: 0 0 14px; }
+.calc-note { margin: 14px 0 0; }
+/* Plan head: What's realistic, and platform availability for the country */
+details.fold.realistic { border-top: 1px solid var(--line); padding-top: 10px; }
+details.fold.realistic .prose ul { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; }
+.note .sources { margin-top: 8px; }
