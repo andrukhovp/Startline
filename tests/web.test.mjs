@@ -91,7 +91,11 @@ async function signIn(pg, { email, pass }) {
   await pg.fill("#authEmail", email); await pg.fill("#authPass", pass);
   await pg.click(".auth-form button[type=submit]");
 }
-const waitSynced = (pg) => pg.waitForFunction(() => /Saved to your account/.test(document.querySelector("#syncText").textContent), null, { timeout: 8000 }).then(() => true, () => false);
+const waitSynced = (pg) => pg.waitForFunction(() => /Saved to your account/.test(document.querySelector("#syncText").textContent), null, { timeout: 20000 }).then(() => true, async () => {
+  // Say what the screen shows, so a failure can be told apart from slowness.
+  console.log("  note: not synced:", JSON.stringify(await pg.evaluate(() => ({ sync: document.querySelector("#syncText")?.textContent, auth: !!document.querySelector("#auth"), msg: document.querySelector(".auth-msg")?.textContent || "", title: document.querySelector("#authTitle")?.textContent, email: document.querySelector("#authEmail")?.value, url: location.pathname + location.search + location.hash })).catch((e) => String(e))));
+  return false;
+});
 const tasksTab = async (pg) => { if (await pg.isVisible("#tab-tasks")) await pg.click("#tab-tasks"); else await pg.click('#bnav button[data-tab="tasks"]'); await pg.waitForTimeout(300); };
 async function addTask(pg, title) {
   await tasksTab(pg); await pg.waitForSelector("#addTitle");
@@ -215,6 +219,9 @@ try {
     check(S, "feedback is sent anonymously to the feedback table", fb.length === 1 && fb[0].kind === "feedback", JSON.stringify(fb));
     await pg.keyboard.press("Escape");
     await openAuth(pg); await pg.click(".auth-seg button:has-text('Sign in')");
+    await pg.focus("#authPass"); await pg.waitForTimeout(100); await pg.keyboard.type("x");
+    check(S, "moving to another box straight away keeps the cursor there", (await pg.inputValue("#authEmail")) === "" && (await pg.inputValue("#authPass")) === "x");
+    await pg.fill("#authPass", "");
     await axe(pg, "sign-in screen (light)");
     await pg.click(".auth-form button[type=submit]");
     check(S, "asks for an email", /Enter your email/.test(await authMsg(pg)));
@@ -342,7 +349,8 @@ try {
     check(S, "confirms the password changed", /password was changed/.test(await text(pg, "#toast")), await text(pg, "#toast"));
     await pg.click("#acctBtn"); await pg.waitForSelector("#signOutBtn");
     await Promise.all([pg.waitForNavigation(), pg.click("#signOutBtn")]); await pg.waitForTimeout(300);
-    await openAuth(pg); await signIn(pg, A); await pg.waitForTimeout(500);
+    await openAuth(pg); await signIn(pg, A);
+    await pg.waitForFunction(() => /don't match/.test((document.querySelector(".auth-msg") || {}).textContent || ""), null, { timeout: 10000 }).catch(() => {});
     check(S, "the old password no longer works", /don't match/.test(await authMsg(pg)));
     A.pass = "brand new pass 3";
     await Promise.all([pg.waitForNavigation(), signIn(pg, A)]);

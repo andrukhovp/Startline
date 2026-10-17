@@ -494,7 +494,8 @@
     }
     box.append(card);
     const first = card.querySelector("input") || card.querySelector(".auth-actions button") || h;
-    setTimeout(() => first.focus(), 30);
+    // Don't pull the cursor back if someone has already moved into the form.
+    setTimeout(() => { if (first.isConnected && !card.contains(document.activeElement)) first.focus(); }, 30);
   }
   function closeAuth() { const box = $("#auth"); if (box) box.remove(); lockApp(false); }
   async function signedIn(s) {
